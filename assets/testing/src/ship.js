@@ -1,0 +1,7 @@
+class Ship {
+    constructor() {
+
+    }; 
+
+
+}
