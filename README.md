@@ -2,41 +2,38 @@
 
 ![asteroids](readme-files/responsive.png)
 
-## Overview:
-
-You can visit the deployed website [here](https://leithdm.github.io/milestone-project-2/).
-
-<br/>
-
-## Table of Contents
-1. [**UX**](#ux)
-    - [**User Stories**](#user-stories)
-    - [**Design**](#design)
-        - [**Framework**](#framework)
-        - [**Color Scheme**](#color-scheme)
-        - [**Icons**](#icons)
-        - [**Typography**](#typography)
-    - [**Wireframes**](#wireframes)
-
-2. [**Features**](#features)
-    - [**Existing Features**](#existing-features)
-    - [**Future Features**](#future-features)
-
-3. [**Technologies Used**](#technologies-used)
-    - [**Front-End Technologies**](#front-end-technologies)
-
-4. [**Testing**](#testing)
-
-5. [**Deployment**](#deployment)
-
-6. [**Credits**](#credits)
-    - [**Content**](#content)
-    - [**Media**](#media)
-    - [**Acknowledgments**](#acknowledgments)
+- [Asteroids](#asteroids)
+  - [Overview](#overview)
+  - [UX](#ux)
+    - [User Stories](#user-stories)
+    - [Design](#design)
+      - [Color Scheme](#color-scheme)
+      - [Typography](#typography)
+    - [Wireframes](#wireframes)
+        - [back to top](#back-to-top)
+  - [Features](#features)
+    - [Existing Features](#existing-features)
+    - [Future Features](#future-features)
+        - [back to top](#back-to-top-1)
+  - [Technologies Used](#technologies-used)
+    - [Front-End Technologies](#front-end-technologies)
+  - [Agile Project Management](#agile-project-management)
+  - [Testing](#testing)
+  - [Deployment](#deployment)
+  - [Credits](#credits)
+    - [Content](#content)
+    - [Media](#media)
+    - [Acknowledgments](#acknowledgments)
 
 <br/>
 
 ---
+
+## Overview
+
+You can view the deployed game [here](https://leithdm.github.io/milestone-project-2/).
+
+<br/>
 
 ## UX
 
@@ -126,6 +123,16 @@ The overall concept is...
 - [Balsamiq](https://balsamiq.com/) - used to create the project's wireframes.
 - [Google Fonts](https://fonts.google.com/) - used to provide font styling.
 - [Am I Responsive?](http://ami.responsivedesign.is/) - used to show site responsiveness. 
+
+<br/>
+
+---
+
+## Agile Project Management
+
+GitHub [Projects](https://github.com/leithdm/milestone-project-2/projects/1) was used to iteratively sprint through the development of this app. Each *Issue* was an individual *User Story*.
+
+![GitHub Projects in action](wireframes/agile-project-management.png)
 
 <br/>
 
