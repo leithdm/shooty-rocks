@@ -92,7 +92,7 @@ The overall concept is...
 
 
 |    Home Page   |    Sound-Options.html     |    High-Scores.html    |
-|    :----:      |    :----:   |    :----:     |    :----:     |
+|    :----:      |    :----:                 |    :----:              |
 |[Desktop/Mobile](wireframes/home-page.png)|[Desktop/Mobile](wireframes/sound-options.png)|[Desktop/Mobile](wireframes/high-scores-page.png)|
 
 <br/>
