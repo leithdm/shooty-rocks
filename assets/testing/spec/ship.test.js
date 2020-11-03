@@ -4,13 +4,12 @@ beforeEach(() => {
   ship = new Ship();
 });
 
-it("should create a ship", () => {
+it("test we can create a visible ship", () => {
   expect(ship).toBeDefined();
   expect(ship.visible).toBeTrue();
 });
 
-// SHIP ROTATION
-describe("ship rotation", () => {
+describe("test the ships rotation", () => {
   it("ship should rotate to the right by +5 degrees from a starting position of 90 degrees when ship moved to the right x1 time", () => {
     expect(ship.rotate).toBeDefined();
     ship.rotate(RIGHT);
@@ -37,8 +36,7 @@ describe("ship rotation", () => {
   });
 });
 
-// CONVERT SHIP ANGLE IN DEGREES TO RADIANS
-describe("convert ship angle to radians", () => {
+describe("test we are correctly converting the ships angle in degrees to radians", () => {
   it("should convert 90 degrees starting position to 0 radians", () => {
     expect(convertAngleToRadians(ship.angle)).toBeDefined();
     expect(convertAngleToRadians(ship.angle)).toBeCloseTo(1.5708, 2);
@@ -53,8 +51,7 @@ describe("convert ship angle to radians", () => {
   });
 });
 
-// UPDATE THE SHIPS POSITION Y-DIRECTION WHEN MOVING IN Y-DIRECTION
-describe("update ships position in y-direction when moving forward", () => {
+describe("test we are updating the ships y position when moving forward in y-direction", () => {
   beforeEach(() => {
     ship = new Ship();
     //initial conditions with ship starting at x=400px, y=300px
@@ -63,6 +60,7 @@ describe("update ships position in y-direction when moving forward", () => {
     expect(ship.velX).toBe(0);
     expect(ship.velY).toBe(0);
     ship.movingForward = true;
+    ship.frictionConstant = 1.0; 
   });
   it("should move the ship forward by 0.1px starting at 90 degrees in y-direction if ship is moved forward x1 time", () => {
     expect(ship.updateShip).toBeDefined();
@@ -83,8 +81,7 @@ describe("update ships position in y-direction when moving forward", () => {
   });
 });
 
-// UPDATE THE SHIPS POSITION X-DIRECTION WHEN MOVING IN X-DIRECTION
-describe("update ships position in x-direction when moving in x-direction", () => {
+describe("test we are updating the ships x position when moving forward in x-direction", () => {
   beforeEach(() => {
     ship = new Ship();
     //initial conditions with ship in the middle of the hypothetical canvas
@@ -94,6 +91,7 @@ describe("update ships position in x-direction when moving in x-direction", () =
     expect(ship.velX).toBe(0);
     expect(ship.velY).toBe(0);
     ship.movingForward = true;
+    ship.frictionConstant = 1.0; 
   });
   it("should move the ship forward by 0.1px in x-direction starting at 0 degrees if ship is moved forward x1 times in x-direction", () => {
     expect(ship.movingForward).toBeTrue();
@@ -113,8 +111,7 @@ describe("update ships position in x-direction when moving in x-direction", () =
   });
 });
 
-// UPDATE THE SHIPS POSITION X AND Y DIRECTION WHEN MOVING IN X AND Y DIRECTION
-describe("update ships position in x-direction and y-direction when moving in x-direction and y-direction", () => {
+describe("test we are updating both the ships x and y position when moving forward in x and y direction", () => {
   beforeEach(() => {
     ship = new Ship();
     //initial conditions with ship in the middle of the hypothetical canvas
@@ -144,14 +141,13 @@ describe("update ships position in x-direction and y-direction when moving in x-
   });
 });
 
-
-// CHECK IF THE SHIP IS OFF-SCREEN
-describe("check if the ship is off-screen, If true, make it re-enter on opposite side of screen", () => {
+describe("test if the ship is off-screen. If true, make it re-enter on opposite side of screen", () => {
   beforeEach(() => {
     ship = new Ship();
     expect(ship.velX).toBe(0);
     expect(ship.velY).toBe(0);
     ship.movingForward = true;
+    ship.frictionConstant = 1.0; 
   });
   it("the ship.x should change to the canvas width once the ship is < than 0px", () => {
     expect(ship.movingForward).toBeTrue();
@@ -200,5 +196,85 @@ describe("check if the ship is off-screen, If true, make it re-enter on opposite
       ship.updateShip();
     }
     expect(ship.y).toBe(canvasHeight - 0.2);
+  });
+});
+
+describe("test if the ship slows down, and eventually stops, due to friction when no longer moving forward in y-direction", () => {
+  it("ship should feel friction constant of 0.99 when ship moves forward x1 time in y-direction", () => {
+    //conditions
+    ship.movingForward = true; 
+    expect(ship.x).toBe(400);
+    expect(ship.y).toBe(300);
+    expect(ship.velX).toBe(0);
+    expect(ship.velY).toBe(0);
+    expect(ship.movingForward).toBeTrue();
+    ship.visible = true; 
+
+    ship.updateShip(); 
+    expect(ship.velY).toBe(0.099);
+    expect(ship.y).toBe(299.901);
+  });
+  it("ship should slow down and eventually stop due to friction constant of 0.99 in y-direction", () => {
+    //conditions
+    ship.movingForward = true; 
+    expect(ship.x).toBe(400);
+    expect(ship.y).toBe(300);
+    expect(ship.velX).toBe(0);
+    expect(ship.velY).toBe(0);
+    expect(ship.movingForward).toBeTrue();
+    ship.visible = true; 
+
+    for(let i=0; i<10; i++) {
+      ship.updateShip(); 
+    }
+    //stop moving the ship forward
+    ship.movingForward = false; 
+    
+    //call updateShip() x300 times and find resultant velY
+    for(let i=0; i<300; i++) {
+      ship.updateShip(); 
+    }
+    expect(ship.velY).toBeCloseTo(0.0, 1);
+  });
+});
+
+describe("test if the ship slows down, and eventually stops, due to friction when no longer moving forward in x-direction", () => {
+  it("ship should feel friction constant of 0.99 when ship moves forward x1 time in x-direction", () => {
+    //conditions
+    ship.movingForward = true; 
+    ship.angle = 0; 
+    expect(ship.x).toBe(400);
+    expect(ship.y).toBe(300);
+    expect(ship.velX).toBe(0);
+    expect(ship.velY).toBe(0);
+    expect(ship.movingForward).toBeTrue();
+    ship.visible = true; 
+
+    ship.updateShip(); 
+    expect(ship.velX).toBe(0.099);
+    expect(ship.x).toBe(399.901);
+  });
+  it("ship should slow down and eventually stop due to friction constant of 0.99 in x-direction", () => {
+    //conditions
+    ship.movingForward = true; 
+    ship.angle = 0; 
+    expect(ship.x).toBe(400);
+    expect(ship.y).toBe(300);
+    expect(ship.velX).toBe(0);
+    expect(ship.velY).toBe(0);
+    expect(ship.movingForward).toBeTrue();
+    ship.visible = true; 
+
+    for(let i=0; i<10; i++) {
+      ship.updateShip(); 
+    }
+    //stop moving the ship forward
+    ship.movingForward = false; 
+    
+    //call updateShip() x300 times and find resultant velX
+    for(let i=0; i<300; i++) {
+      ship.updateShip(); 
+    }
+    expect(ship.velX).toBeCloseTo(0.0, 1);
   });
 });
