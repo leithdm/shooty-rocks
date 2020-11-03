@@ -21,6 +21,10 @@ class Ship {
     if (this.movingForward) {
         this.velX += Math.cos(radians) * this.speed; 
         this.velY += Math.sin(radians) * this.speed; 
+        console.log(this.velY);
     }
+
+    this.y -= this.velY; 
+    this.x -= this.velX;
   }
 }

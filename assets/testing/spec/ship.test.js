@@ -53,25 +53,26 @@ describe("convert ship angle to radians", () => {
   });
 });
 
-// UPDATE THE SHIPS POSITION IN X and Y-DIRECTION WHEN MOVING IN X and Y-DIRECTION
-describe("update ships position in y-direction when moving in y-direction", () => {
+// UPDATE THE SHIPS POSITION Y-DIRECTION WHEN MOVING IN Y-DIRECTION
+describe("update ships position in y-direction when moving forward", () => {
   beforeEach(() => {
     ship = new Ship();
-        //initial conditions with ship in the middle of the hypothetical canvas
-        expect(ship.x).toBe(400);
-        expect(ship.y).toBe(300);
-        expect(ship.velX).toBe(0);
-        expect(ship.velY).toBe(0);
-        ship.movingForward = true;
+    //initial conditions with ship starting at x=400px, y=300px
+    expect(ship.x).toBe(400);
+    expect(ship.y).toBe(300);
+    expect(ship.velX).toBe(0);
+    expect(ship.velY).toBe(0);
+    ship.movingForward = true;
   });
-  it("should move the ship forward by 0.1px in y-direction if ship is moved forward x1 time in y-direction", () => {
+  it("should move the ship forward by 0.1px starting at 90 degrees in y-direction if ship is moved forward x1 time", () => {
     expect(ship.updateShip).toBeDefined();
     expect(ship.movingForward).toBeTrue();
     //move ship in y-direction by "1 press" of keyboard
     ship.updateShip();
     expect(ship.velY).toBe(0.1);
+    expect(ship.y).toBe(299.9);
   });
-  it("should move the ship forward by 1.0px in y-direction if ship is moved forward x10 times in y-direction", () => {
+  it("should move the ship forward by 1.0px starting at 90 degrees in y-direction if ship is moved forward x10 times in y-direction", () => {
     expect(ship.updateShip).toBeDefined();
     expect(ship.movingForward).toBeTrue();
     //move ship in y-direction by "10 presses" of keyboard
@@ -79,19 +80,21 @@ describe("update ships position in y-direction when moving in y-direction", () =
       ship.updateShip();
     }
     expect(ship.velY).toBeCloseTo(1.0, 2);
+    expect(ship.y).toBe(294.5);
   });
 });
 
+// UPDATE THE SHIPS POSITION X-DIRECTION WHEN MOVING IN X-DIRECTION
 describe("update ships position in x-direction when moving in x-direction", () => {
   beforeEach(() => {
     ship = new Ship();
-        //initial conditions with ship in the middle of the hypothetical canvas
-        ship.angle = 0; 
-        expect(ship.x).toBe(400);
-        expect(ship.y).toBe(300);
-        expect(ship.velX).toBe(0);
-        expect(ship.velY).toBe(0);
-        ship.movingForward = true;
+    //initial conditions with ship in the middle of the hypothetical canvas
+    ship.angle = 0;
+    expect(ship.x).toBe(400);
+    expect(ship.y).toBe(300);
+    expect(ship.velX).toBe(0);
+    expect(ship.velY).toBe(0);
+    ship.movingForward = true;
   });
   it("should move the ship forward by 0.1px in x-direction starting at 0 degrees if ship is moved forward x1 times in x-direction", () => {
     expect(ship.updateShip).toBeDefined();
@@ -99,16 +102,37 @@ describe("update ships position in x-direction when moving in x-direction", () =
     //move ship in x-direction by "1 press" of keyboard
     ship.updateShip();
     expect(ship.velX).toBe(0.1, 2);
+    expect(ship.x).toBeCloseTo(399.9, 2);
   });
   it("should move the ship forward by 1.0px in x-direction starting at 0 degrees if ship is moved forward x10 times in x-direction", () => {
     expect(ship.updateShip).toBeDefined();
     expect(ship.movingForward).toBeTrue();
     //move ship in x-direction by "1 press" of keyboard
-    for(let i=0; i<10; i++) {
+    for (let i = 0; i < 10; i++) {
       ship.updateShip();
     }
     expect(ship.velX).toBeCloseTo(1.0, 2);
+    expect(ship.x).toBe(394.5);
   });
 });
 
-
+// UPDATE THE SHIPS POSITION X AND Y DIRECTION WHEN MOVING IN X AND Y DIRECTION
+describe("update ships position in x-direction and y-direction when moving in x-direction and y-direction", () => {
+  beforeEach(() => {
+    ship = new Ship();
+    //initial conditions with ship in the middle of the hypothetical canvas
+    ship.angle = 45;
+    expect(ship.x).toBe(400);
+    expect(ship.y).toBe(300);
+    expect(ship.velX).toBe(0);
+    expect(ship.velY).toBe(0);
+    ship.movingForward = true;
+  });
+  it("should move the ship forward by 0.07px in x-direction and 0.07px in y-direction starting at 45 degrees if ship is moved forward x1 time", () => {
+    expect(ship.updateShip).toBeDefined();
+    expect(ship.movingForward).toBeTrue();
+    ship.updateShip();
+    expect(ship.velX).toBeCloseTo(0.07, 2);
+    expect(ship.velY).toBeCloseTo(0.07, 2);
+  });
+});
