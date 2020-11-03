@@ -9,6 +9,7 @@ class Ship {
     this.angle = 90;
     this.velX = 0;
     this.velY = 0;
+    this.radius = 15; 
   }
 
   rotate(direction) {
@@ -21,7 +22,19 @@ class Ship {
     if (this.movingForward) {
         this.velX += Math.cos(radians) * this.speed; 
         this.velY += Math.sin(radians) * this.speed; 
-        console.log(this.velY);
+    }
+
+    if(this.x < 0) {
+        this.x = canvasWidth; 
+    }
+    if(this.x > canvasWidth) {
+        this.x = 0; 
+    }
+    if(this.y > canvasHeight) {
+        this.y = 0; 
+    }
+    if(this.y < 0) {
+        this.y = canvasHeight; 
     }
 
     this.y -= this.velY; 
