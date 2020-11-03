@@ -73,7 +73,6 @@ describe("update ships position in y-direction when moving forward", () => {
     expect(ship.y).toBe(299.9);
   });
   it("should move the ship forward by 1.0px starting at 90 degrees in y-direction if ship is moved forward x10 times in y-direction", () => {
-    expect(ship.updateShip).toBeDefined();
     expect(ship.movingForward).toBeTrue();
     //move ship in y-direction by "10 presses" of keyboard
     for (let i = 0; i < 10; i++) {
@@ -97,7 +96,6 @@ describe("update ships position in x-direction when moving in x-direction", () =
     ship.movingForward = true;
   });
   it("should move the ship forward by 0.1px in x-direction starting at 0 degrees if ship is moved forward x1 times in x-direction", () => {
-    expect(ship.updateShip).toBeDefined();
     expect(ship.movingForward).toBeTrue();
     //move ship in x-direction by "1 press" of keyboard
     ship.updateShip();
@@ -105,7 +103,6 @@ describe("update ships position in x-direction when moving in x-direction", () =
     expect(ship.x).toBeCloseTo(399.9, 2);
   });
   it("should move the ship forward by 1.0px in x-direction starting at 0 degrees if ship is moved forward x10 times in x-direction", () => {
-    expect(ship.updateShip).toBeDefined();
     expect(ship.movingForward).toBeTrue();
     //move ship in x-direction by "1 press" of keyboard
     for (let i = 0; i < 10; i++) {
@@ -128,7 +125,6 @@ describe("update ships position in x-direction and y-direction when moving in x-
     ship.movingForward = true;
   });
   it("should move the ship forward by 0.07px in x-direction and 0.07px in y-direction starting at 45 degrees if ship is moved forward x1 time", () => {
-    expect(ship.updateShip).toBeDefined();
     expect(ship.movingForward).toBeTrue();
     ship.angle = 45;
     ship.updateShip();
@@ -138,7 +134,6 @@ describe("update ships position in x-direction and y-direction when moving in x-
     expect(ship.y).toBeCloseTo(299.93, 2);
   });
   it("should move the ship forward by 0.07px in x-direction and 0.07px in y-direction starting at 135 degrees if ship is moved forward x1 time", () => {
-    expect(ship.updateShip).toBeDefined();
     expect(ship.movingForward).toBeTrue();
     ship.angle = 135;
     ship.updateShip();
@@ -146,5 +141,30 @@ describe("update ships position in x-direction and y-direction when moving in x-
     expect(ship.velY).toBeCloseTo(0.07, 2);
     expect(ship.x).toBeCloseTo(400.07, 2);
     expect(ship.y).toBeCloseTo(299.93, 2);
+  });
+});
+
+
+// CHECK IF THE SHIP IS OFF-SCREEN
+describe("check if the ship is off-screen, If true, make it re-enter on opposite side of screen", () => {
+  beforeEach(() => {
+    ship = new Ship();
+    //initial conditions with ship in the middle of the hypothetical canvas
+    ship.x = 0;  
+    ship.angle = 0;
+    expect(ship.x).toBe(0);
+    expect(ship.y).toBe(300);
+    expect(ship.velX).toBe(0);
+    expect(ship.velY).toBe(0);
+    ship.movingForward = true;
+  });
+  it("the ship.x should change to the canvas width of 800px once the ship is < than 0px", () => {
+    expect(ship.movingForward).toBeTrue();
+    for(let i=0; i<2; i++) {
+      //run updateShip() once to move ship by 0.1px from 0px.  
+      //when run a second time, ship is moved from 800px-velX (which is 0.2px after the 2nd run)
+      ship.updateShip();
+    }
+    expect(ship.x).toBe(799.8);
   });
 });
