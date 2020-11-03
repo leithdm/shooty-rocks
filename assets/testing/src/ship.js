@@ -10,6 +10,7 @@ class Ship {
     this.velX = 0;
     this.velY = 0;
     this.radius = 15; 
+    this.frictionConstant = 0.99; 
   }
 
   rotate(direction) {
@@ -24,7 +25,14 @@ class Ship {
         this.velY += Math.sin(radians) * this.speed; 
     }
 
+    //determine if ship is off the screen
     this.checkIfShipOffScreen(); 
+
+    //friction
+    this.velY *= this.frictionConstant; 
+    this.velX *= this.frictionConstant; 
+
+    //update x and y positions of ship
     this.y -= this.velY; 
     this.x -= this.velX;
   }
