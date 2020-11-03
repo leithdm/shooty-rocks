@@ -24,6 +24,12 @@ class Ship {
         this.velY += Math.sin(radians) * this.speed; 
     }
 
+    this.checkIfShipOffScreen(); 
+    this.y -= this.velY; 
+    this.x -= this.velX;
+  }
+
+  checkIfShipOffScreen() {
     if(this.x < 0) {
         this.x = canvasWidth; 
     }
@@ -36,8 +42,5 @@ class Ship {
     if(this.y < 0) {
         this.y = canvasHeight; 
     }
-
-    this.y -= this.velY; 
-    this.x -= this.velX;
   }
 }
