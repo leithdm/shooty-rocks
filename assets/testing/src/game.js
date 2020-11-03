@@ -8,3 +8,4 @@ const LEFT = -1;
 function convertAngleToRadians(angle) {
     return angle * (Math.PI / 180);
 }
+
