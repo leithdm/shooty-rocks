@@ -121,7 +121,6 @@ describe("update ships position in x-direction and y-direction when moving in x-
   beforeEach(() => {
     ship = new Ship();
     //initial conditions with ship in the middle of the hypothetical canvas
-    ship.angle = 45;
     expect(ship.x).toBe(400);
     expect(ship.y).toBe(300);
     expect(ship.velX).toBe(0);
@@ -131,8 +130,21 @@ describe("update ships position in x-direction and y-direction when moving in x-
   it("should move the ship forward by 0.07px in x-direction and 0.07px in y-direction starting at 45 degrees if ship is moved forward x1 time", () => {
     expect(ship.updateShip).toBeDefined();
     expect(ship.movingForward).toBeTrue();
+    ship.angle = 45;
     ship.updateShip();
     expect(ship.velX).toBeCloseTo(0.07, 2);
     expect(ship.velY).toBeCloseTo(0.07, 2);
+    expect(ship.x).toBeCloseTo(399.93, 2);
+    expect(ship.y).toBeCloseTo(299.93, 2);
+  });
+  it("should move the ship forward by 0.07px in x-direction and 0.07px in y-direction starting at 135 degrees if ship is moved forward x1 time", () => {
+    expect(ship.updateShip).toBeDefined();
+    expect(ship.movingForward).toBeTrue();
+    ship.angle = 135;
+    ship.updateShip();
+    expect(ship.velX).toBeCloseTo(-0.07, 2);
+    expect(ship.velY).toBeCloseTo(0.07, 2);
+    expect(ship.x).toBeCloseTo(400.07, 2);
+    expect(ship.y).toBeCloseTo(299.93, 2);
   });
 });
