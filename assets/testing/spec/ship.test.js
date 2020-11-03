@@ -149,22 +149,56 @@ describe("update ships position in x-direction and y-direction when moving in x-
 describe("check if the ship is off-screen, If true, make it re-enter on opposite side of screen", () => {
   beforeEach(() => {
     ship = new Ship();
-    //initial conditions with ship in the middle of the hypothetical canvas
-    ship.x = 0;  
-    ship.angle = 0;
-    expect(ship.x).toBe(0);
-    expect(ship.y).toBe(300);
     expect(ship.velX).toBe(0);
     expect(ship.velY).toBe(0);
     ship.movingForward = true;
   });
-  it("the ship.x should change to the canvas width of 800px once the ship is < than 0px", () => {
+  it("the ship.x should change to the canvas width once the ship is < than 0px", () => {
     expect(ship.movingForward).toBeTrue();
+    ship.x = 0;  
+    ship.angle = 0;
+    expect(ship.x).toBe(0);
     for(let i=0; i<2; i++) {
       //run updateShip() once to move ship by 0.1px from 0px.  
-      //when run a second time, ship is moved from 800px-velX (which is 0.2px after the 2nd run)
+      //when run a second time, ship is moved from canvasWidth - velX(which is 0.2px after the 2nd run)
       ship.updateShip();
     }
-    expect(ship.x).toBe(799.8);
+    expect(ship.x).toBe(canvasWidth - 0.2);
+  });
+  it("the ship.x should change to 0px once the ship is > than canvasWidth", () => {
+    expect(ship.movingForward).toBeTrue();
+    ship.x = canvasWidth;  
+    ship.angle = 180;
+    expect(ship.x).toBe(canvasWidth);
+    for(let i=0; i<2; i++) {
+      //run updateShip() once to move ship by 0.1px from canvasWidth.  
+      //when run a second time, ship is moved from 0px + velX(which is 0.2px after the 2nd run)
+      ship.updateShip();
+    }
+    expect(ship.x).toBe(0.2);
+  });
+  it("the ship.y should change to 0px once the ship is > than canvasHeight", () => {
+    expect(ship.movingForward).toBeTrue();
+    ship.y = canvasHeight;  
+    ship.angle = 270;
+    expect(ship.y).toBe(canvasHeight);
+    for(let i=0; i<2; i++) {
+      //run updateShip() once to move ship by 0.1px from canvasHeight.  
+      //when run a second time, ship is moved from 0px + velY(which is 0.2px after the 2nd run)
+      ship.updateShip();
+    }
+    expect(ship.y).toBe(0.2);
+  });
+  it("the ship.y should change to 800px once the ship is < than 0px", () => {
+    expect(ship.movingForward).toBeTrue();
+    ship.y = 0;  
+    ship.angle = 90;
+    expect(ship.y).toBe(0);
+    for(let i=0; i<2; i++) {
+      //run updateShip() once to move ship by 0.1px from 0px.  
+      //when run a second time, ship is moved from canvasHeight - velY(which is 0.2px after the 2nd run)
+      ship.updateShip();
+    }
+    expect(ship.y).toBe(canvasHeight - 0.2);
   });
 });

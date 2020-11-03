@@ -27,6 +27,15 @@ class Ship {
     if(this.x < 0) {
         this.x = canvasWidth; 
     }
+    if(this.x > canvasWidth) {
+        this.x = 0; 
+    }
+    if(this.y > canvasHeight) {
+        this.y = 0; 
+    }
+    if(this.y < 0) {
+        this.y = canvasHeight; 
+    }
 
     this.y -= this.velY; 
     this.x -= this.velX;
