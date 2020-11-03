@@ -81,3 +81,34 @@ describe("update ships position in y-direction when moving in y-direction", () =
     expect(ship.velY).toBeCloseTo(1.0, 2);
   });
 });
+
+describe("update ships position in x-direction when moving in x-direction", () => {
+  beforeEach(() => {
+    ship = new Ship();
+        //initial conditions with ship in the middle of the hypothetical canvas
+        ship.angle = 0; 
+        expect(ship.x).toBe(400);
+        expect(ship.y).toBe(300);
+        expect(ship.velX).toBe(0);
+        expect(ship.velY).toBe(0);
+        ship.movingForward = true;
+  });
+  it("should move the ship forward by 0.1px in x-direction starting at 0 degrees if ship is moved forward x1 times in x-direction", () => {
+    expect(ship.updateShip).toBeDefined();
+    expect(ship.movingForward).toBeTrue();
+    //move ship in x-direction by "1 press" of keyboard
+    ship.updateShip();
+    expect(ship.velX).toBe(0.1, 2);
+  });
+  it("should move the ship forward by 1.0px in x-direction starting at 0 degrees if ship is moved forward x10 times in x-direction", () => {
+    expect(ship.updateShip).toBeDefined();
+    expect(ship.movingForward).toBeTrue();
+    //move ship in x-direction by "1 press" of keyboard
+    for(let i=0; i<10; i++) {
+      ship.updateShip();
+    }
+    expect(ship.velX).toBeCloseTo(1.0, 2);
+  });
+});
+
+

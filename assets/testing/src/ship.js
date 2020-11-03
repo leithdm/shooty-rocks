@@ -19,6 +19,7 @@ class Ship {
   updateShip() {
     let radians = convertAngleToRadians(this.angle);
     if (this.movingForward) {
+        this.velX += Math.cos(radians) * this.speed; 
         this.velY += Math.sin(radians) * this.speed; 
     }
   }
