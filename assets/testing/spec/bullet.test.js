@@ -67,7 +67,7 @@ describe("test we are updating both the bullets x and y coordinates when moving 
   beforeEach(() => {
     ship = new Ship(); //starting at 300px in the y-direction
     bullet = new Bullet();
-    bullet.angle = 45; //explicityly set the bullet.angle to 45 degrees
+    bullet.angle = 45; //explicitly set the bullet.angle to 45 degrees
   });
   it("should move the bullet forward approx. 3.5px in both x and y direction starting at 45 degrees when moved forward x1 frame", () => {    expect(ship).toBeDefined();
     expect(ship).toBeDefined();
@@ -80,4 +80,13 @@ describe("test we are updating both the bullets x and y coordinates when moving 
     expect(bullet.x).toBeCloseTo(396.5, 1);
     expect(bullet.y).toBeCloseTo(296.5, 1);
   }); 
+});
+
+describe("test we have a drawBullet() method", () => {
+  beforeEach(() => {
+    bullet = new Bullet();
+  });
+  it("should define a drawBullet() method", () => {
+    expect(bullet.drawBullet).toBeDefined(); 
+  });
 });
