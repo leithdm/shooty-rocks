@@ -278,3 +278,9 @@ describe("test if the ship slows down, and eventually stops, due to friction whe
     expect(ship.velX).toBeCloseTo(0.0, 1);
   });
 });
+
+describe("test ship has draw() method", () => {
+  it("should have draw() method defined", () => {
+    expect(ship.drawShip).toBeDefined(); 
+  });
+});
