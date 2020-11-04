@@ -10,5 +10,7 @@ class Bullet {
     updateBullet() {
         let radians = convertAngleToRadians(this.angle); 
         this.y -= Math.sin(radians) * this.speed; 
+        this.x -= Math.cos(radians) * this.speed; 
+        console.log(this.x);
     }
 }
