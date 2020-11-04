@@ -4,7 +4,7 @@ beforeEach(() => {
   ship = new Ship();
 });
 
-it("test we can create a visible ship", () => {
+it("test we can create an instance of a ship and that it is visible", () => {
   expect(ship).toBeDefined();
   expect(ship.visible).toBeTrue();
 });
@@ -279,8 +279,8 @@ describe("test if the ship slows down, and eventually stops, due to friction whe
   });
 });
 
-describe("test ship has draw() method", () => {
-  it("should have draw() method defined", () => {
+describe("test ship has a drawShip() method", () => {
+  it("should have drawShip() method defined", () => {
     expect(ship.drawShip).toBeDefined(); 
   });
 });

@@ -1,13 +1,6 @@
 let canvas;
-let canvasWidth = 800;
-let canvasHeight = 600;
 let ship;
 let keys = [];
-const RIGHT = 1;
-const LEFT = -1;
-const KEY_LEFT_ARROW = 37;
-const KEY_UP_ARROW = 38;
-const KEY_RIGHT_ARROW = 39;
 
 window.onload = () => {
   setupCanvas();
@@ -64,6 +57,3 @@ function render() {
   requestAnimationFrame(render);
 }
 
-function convertAngleToRadians(angle) {
-  return angle * (Math.PI / 180);
-}
