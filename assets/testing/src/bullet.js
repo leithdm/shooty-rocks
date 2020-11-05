@@ -7,6 +7,7 @@ class Bullet {
     this.speed = 5;
     this.width = 4; 
     this.height = 4; 
+    this.collisionRadius = 3; 
   }
 
   updateBullet() {
