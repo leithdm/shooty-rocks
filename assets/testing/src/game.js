@@ -41,6 +41,9 @@ function renderGame() {
   //check if collision between ship and asteroid
   checkCollisionShipAsteroid(); 
 
+  //check if collision between a bullet and asteroid
+  checkCollisionBulletAsteroid();  
+  
   //update the ships position
   ship.updateShip();
 

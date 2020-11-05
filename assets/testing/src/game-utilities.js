@@ -12,7 +12,6 @@ const KEY_RIGHT_ARROW = 39; //for keyboard input right arrow key
 const KEY_SHOOT = 32; //for keyboard input spacebar
 const NUMBER_OF_ASTEROIDS = 8; //for setting the number of asteroids that appear on screen
 
-
 /**************************************************/
 /*game 'helper' methods                           */
 /**************************************************/
@@ -67,14 +66,14 @@ function renderGameCanvas() {
 //for creating an array of asteroid objects
 function createAsteroids() {
   for (let i = 0; i < NUMBER_OF_ASTEROIDS; i++) {
-    asteroidsArray.push(new Asteroid());
+    asteroidsArray.push(new Asteroid()); 
   }
 }
 
 //for drawing bullets to the game canvas
 function renderBullets() {
   if (bulletsArray.length !== 0) {
-    for (let i = 0; i < bulletsArray.length; i++) {
+    for (let i=0; i<bulletsArray.length; i++) {
       bulletsArray[i].updateBullet();
       bulletsArray[i].drawBullet();
     }
@@ -83,14 +82,15 @@ function renderBullets() {
 
 //for rendering asteroids to the game canvas
 function renderAsteroids() {
-  for (let i = 0; i < asteroidsArray.length; i++) {
+  for (let i=0; i <asteroidsArray.length; i++) {
     asteroidsArray[i].updateAsteroid();
     asteroidsArray[i].drawAsteroid();
   }
 }
 
-//for circle collision-detection between an object 1 and an object 2
-function collisionDetection(obj1x, obj1y, obj1CollisionRadius, obj2x, obj2y, obj2CollisionRadius) {
+//for circle collision-detection between object 1 and object 2
+function collisionDetection(obj1x, obj1y, obj1CollisionRadius,
+  obj2x, obj2y, obj2CollisionRadius) {
   let radiusCollisionSum;
   let xDiff;
   let yDiff;
@@ -100,23 +100,40 @@ function collisionDetection(obj1x, obj1y, obj1CollisionRadius, obj2x, obj2y, obj
   yDiff = obj1y - obj2y;
 
   //determine if there is a collision
-  if (radiusCollisionSum > Math.sqrt(xDiff * xDiff + yDiff * yDiff)) {
+  if (radiusCollisionSum > Math.sqrt((xDiff * xDiff) + (yDiff * yDiff))) {
     return true;
   } else {
     return false;
   }
 }
 
-//for checking collision between ship and asteroid 
+//for checking collision between ship and asteroid
 function checkCollisionShipAsteroid() {
-  if(asteroidsArray.length !== 0) {
-    for(let i=0; i<asteroidsArray.length; i++) {
-      if(collisionDetection(ship.x, ship.y, ship.collisionRadius, 
+  if (asteroidsArray.length !== 0) {
+    for (let i=0; i<asteroidsArray.length; i++) {
+      if (collisionDetection(ship.x, ship.y, ship.collisionRadius,
         asteroidsArray[i].x, asteroidsArray[i].y, asteroidsArray[i].collisionRadius)) {
-          ship.x = canvasWidth/2; 
-          ship.y = canvasHeight/2;
-          ship.velX = 0; 
-          ship.velY = 0; 
+        ship.x = canvasWidth/2;
+        ship.y = canvasHeight/2;
+        ship.velX = 0;
+        ship.velY = 0;
+        console.log("Collision with asteroid !");
+      }
+    }
+  }
+}
+
+//for checking collison between a bullet and an asteroid
+function checkCollisionBulletAsteroid() {
+  if (asteroidsArray.length !== 0 && bulletsArray.length !== 0) {
+    for (let i=0; i<asteroidsArray.length; i++) {
+      for (let j=0; j<bulletsArray.length; j++) {
+        if(collisionDetection(bulletsArray[j].x, bulletsArray[j].y, bulletsArray[j].collisionRadius,
+          asteroidsArray[i].x, asteroidsArray[i].y, asteroidsArray[i].collisionRadius)) {
+          //remote the bullet and the asteroid
+          asteroidsArray.splice(i, 1);
+          bulletsArray.splice(j, 1);
+        }
       }
     }
   }
