@@ -1,7 +1,8 @@
 let canvas;
 let ship;
-let keys = [];
-let bullets = []; 
+let keysArray = [];
+let bulletsArray = []; 
+let asteroidsArray = [];
 
 window.onload = () => {
   setupCanvas();
@@ -18,32 +19,38 @@ function setupCanvas() {
   //create a new ship
   ship = new Ship();
 
+  //create asteroids and push into asteroids array
+  createAsteroids(); 
+
+  //setup keyboard input
   setupKeyboardInput();
+
+  //render everything to the screen
   render();
 }
 
 function setupKeyboardInput() {
   //holding down any key sets the value for that particular key to true
   document.body.addEventListener("keydown", (evt) => {
-    keys[evt.keyCode] = true;
+    keysArray[evt.keyCode] = true;
   });
 
   //releasing the key sets the value for that key to false
   document.body.addEventListener("keyup", (evt) => {
-    keys[evt.keyCode] = false;
+    keysArray[evt.keyCode] = false;
     if(evt.keyCode === KEY_SHOOT) {
-      bullets.push(new Bullet()); 
+      bulletsArray.push(new Bullet()); 
     }
   });
 }
 
 function render() {
-  ship.movingForward = keys[KEY_UP_ARROW];
+  ship.movingForward = keysArray[KEY_UP_ARROW];
 
-  if(keys[KEY_LEFT_ARROW]) {
+  if(keysArray[KEY_LEFT_ARROW]) {
     ship.rotate(LEFT);
   }
-  if(keys[KEY_RIGHT_ARROW]) {
+  if(keysArray[KEY_RIGHT_ARROW]) {
     ship.rotate(RIGHT);
   }
 
@@ -51,19 +58,20 @@ function render() {
   context.clearRect(0, 0, canvasWidth, canvasHeight);
   drawGameCanvas(); 
 
-  //update the ships position, then draw the ship
+  //update the ships position
   ship.updateShip(); 
+
+  //render the ship
   ship.drawShip();
 
-  //draw bullets
-  if(bullets.length !== 0) {
-    for(let i=0; i<bullets.length; i++) {
-      bullets[i].updateBullet();
-      bullets[i].drawBullet(); 
-    }
-  }
+  //render the bullets
+  renderBullets(); 
+
+  //render the asteroids
+  renderAsteroids(); 
 
   //automated frame per second game loop. More efficient than setInterval()
   requestAnimationFrame(render);
 }
+
 
