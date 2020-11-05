@@ -1,3 +1,7 @@
+/**************************************************/
+/*game constants                                  */
+/**************************************************/
+
 const canvasWidth = 800; //canvas.width
 const canvasHeight = 600; //canvas.height
 const RIGHT = 1; //for ship rotation to the right in ship.rotation(direction)
@@ -7,6 +11,19 @@ const KEY_UP_ARROW = 38; //for keyboard input up arrow key
 const KEY_RIGHT_ARROW = 39; //for keyboard input right arrow key
 const KEY_SHOOT = 32; //for keyboard input spacebar
 const NUMBER_OF_ASTEROIDS = 8; //for setting the number of asteroids that appear on screen
+
+
+/**************************************************/
+/*game 'helper' methods                           */
+/**************************************************/
+
+//for setting up the game canvas
+function setupCanvas() {
+  canvas = document.getElementById("canvas");
+  context = canvas.getContext("2d");
+  canvas.width = canvasWidth;
+  canvas.height = canvasHeight;
+}
 
 //for converting degrees to radians
 function convertAngleToRadians(angle) {
@@ -23,21 +40,33 @@ function setupKeyboardInput() {
   //releasing the key sets the value for that particular key to false
   document.body.addEventListener("keyup", (evt) => {
     keysArray[evt.keyCode] = false;
-    if(evt.keyCode === KEY_SHOOT) {
-      bulletsArray.push(new Bullet()); 
+    if (evt.keyCode === KEY_SHOOT) {
+      bulletsArray.push(new Bullet());
     }
   });
 }
 
+//for checking if ship is moving forward, left, or right
+function checkKeyboardInput() {
+  ship.movingForward = keysArray[KEY_UP_ARROW];
+
+  if (keysArray[KEY_LEFT_ARROW]) {
+    ship.rotate(LEFT);
+  }
+  if (keysArray[KEY_RIGHT_ARROW]) {
+    ship.rotate(RIGHT);
+  }
+}
+
 //for creating a black game canvas
-function drawGameCanvas() {
+function renderGameCanvas() {
   context.fillStyle = "black";
   context.fillRect(0, 0, canvas.width, canvas.height);
 }
 
 //for creating an array of asteroid objects
 function createAsteroids() {
-  for(let i=0; i<NUMBER_OF_ASTEROIDS; i++) {
+  for (let i = 0; i < NUMBER_OF_ASTEROIDS; i++) {
     asteroidsArray.push(new Asteroid());
   }
 }
@@ -45,7 +74,7 @@ function createAsteroids() {
 //for drawing bullets to the game canvas
 function renderBullets() {
   if (bulletsArray.length !== 0) {
-    for(let i=0; i < bulletsArray.length; i++) {
+    for (let i = 0; i < bulletsArray.length; i++) {
       bulletsArray[i].updateBullet();
       bulletsArray[i].drawBullet();
     }
@@ -54,8 +83,8 @@ function renderBullets() {
 
 //for rendering asteroids to the game canvas
 function renderAsteroids() {
-  for(let i=0; i<asteroidsArray.length; i++) {
-    asteroidsArray[i].updateAsteroid(); 
-    asteroidsArray[i].drawAsteroid(); 
+  for (let i = 0; i < asteroidsArray.length; i++) {
+    asteroidsArray[i].updateAsteroid();
+    asteroidsArray[i].drawAsteroid();
   }
 }

@@ -1,63 +1,55 @@
 let canvas;
 let ship;
 let keysArray = [];
-let bulletsArray = []; 
+let bulletsArray = [];
 let asteroidsArray = [];
 
-window.onload = () => {
-  setupCanvas();
-};
+/**************************************************/
+/*Reference 'game-utilities' for abstracted code  */
+/**************************************************/
 
-function setupCanvas() {
-  canvas = document.getElementById("canvas");
-  context = canvas.getContext("2d");
-  canvas.width = canvasWidth;
-  canvas.height = canvasHeight;
+window.onload = () => {
+  //setup the game canvas
+  setupCanvas();
 
   //draw the game canvas
-  drawGameCanvas(); 
+  renderGameCanvas();
 
   //instantiate a new ship
   ship = new Ship();
 
   //create asteroids, and push into asteroidsArray
-  createAsteroids(); 
+  createAsteroids();
 
   //setup keyboard to listen for input
   setupKeyboardInput();
 
-  //render everything to the screen
-  render();
-}
+  //render everything to the canvas
+  renderGame();
+};
 
-function render() {
-  ship.movingForward = keysArray[KEY_UP_ARROW];
+function renderGame() {
+  //check if ship moving forward, left or right
+  checkKeyboardInput();
 
-  if(keysArray[KEY_LEFT_ARROW]) {
-    ship.rotate(LEFT);
-  }
-  if(keysArray[KEY_RIGHT_ARROW]) {
-    ship.rotate(RIGHT);
-  }
-
-  //clear the canvas, then redraw the canvas in order to get ready for next frame
+  //clear the canvas, to get ready for the next frame
   context.clearRect(0, 0, canvasWidth, canvasHeight);
-  drawGameCanvas(); 
+
+  //render the game canvas
+  renderGameCanvas();
 
   //update the ships position
-  ship.updateShip(); 
+  ship.updateShip();
 
   //render the ship
   ship.drawShip();
 
   //render the bullets
-  renderBullets(); 
+  renderBullets();
 
   //render the asteroids
-  renderAsteroids(); 
+  renderAsteroids();
 
   //automated frame per second game loop. More efficient than setInterval()
-  requestAnimationFrame(render);
+  requestAnimationFrame(renderGame);
 }
-
-
