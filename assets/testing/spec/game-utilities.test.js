@@ -59,3 +59,24 @@ describe("test collision detection between ship and asteroid", () => {
         expect(collisionDetection(ship.x, ship.y, ship.collisionRadius, asteroid.x, asteroid.y, asteroid.collisionRadius )).toBe(true);
     });
 });
+
+describe("test to check whether this is a collision between the ship and an asteroid", () => {
+    let ship; 
+    let asteroid; 
+    let asteroidsArray = []; //mock an asteroidsArray
+
+    beforeEach(() => {
+        ship = new Ship(); 
+        ship.x = 600; //initially move the ship away from the centre of the game canvas
+        ship.y = 300; 
+
+        asteroid = new Asteroid();  
+        asteroid.x = 550; //have the asteroid collide with the ship
+        asteroid.y = 300; 
+        asteroidsArray.push(new Asteroid());
+      });
+
+    it("if there is a collision the ship should move back to the centre of the game canvas", () => {
+        expect(checkCollisionShipAsteroid).toBeDefined(); 
+    });
+});

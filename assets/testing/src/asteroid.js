@@ -3,9 +3,10 @@ class Asteroid {
     this.visible = true;
     this.x = Math.floor(Math.random() * canvasWidth); 
     this.y = Math.floor(Math.random() * canvasHeight); 
-    this.angle = 90;
+    this.angle = Math.floor(Math.random() * 359);
     this.speed = 1;
     this.radius = 50; 
+    this.collisionRadius = 46; 
   }
 
   updateAsteroid() {

@@ -106,3 +106,18 @@ function collisionDetection(obj1x, obj1y, obj1CollisionRadius, obj2x, obj2y, obj
     return false;
   }
 }
+
+//for checking collision between ship and asteroid 
+function checkCollisionShipAsteroid() {
+  if(asteroidsArray.length !== 0) {
+    for(let i=0; i<asteroidsArray.length; i++) {
+      if(collisionDetection(ship.x, ship.y, ship.collisionRadius, 
+        asteroidsArray[i].x, asteroidsArray[i].y, asteroidsArray[i].collisionRadius)) {
+          ship.x = canvasWidth/2; 
+          ship.y = canvasHeight/2;
+          ship.velX = 0; 
+          ship.velY = 0; 
+      }
+    }
+  }
+}

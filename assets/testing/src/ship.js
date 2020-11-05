@@ -11,6 +11,7 @@ class Ship {
     this.velY = 0;
     this.radius = 14;
     this.frictionConstant = 0.99;
+    this.collisionRadius = 11; 
   }
 
   rotate(direction) {
