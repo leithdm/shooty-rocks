@@ -12,6 +12,8 @@ it("test we can create an instance of an asteroid and that it is visible", () =>
 describe("test we are updating the asteroids y position when moving forward in y-direction", () => {
   beforeEach(() => {
     asteroid = new Asteroid();
+    asteroid.x = 400; 
+    asteroid.y = 300; 
     //initial conditions with asteroid starting at x=400px, y=300px
     expect(asteroid.x).toBe(400);
     expect(asteroid.y).toBe(300);
@@ -34,6 +36,8 @@ describe("test we are updating the asteroids y position when moving forward in y
 describe("test we are updating the asteroids x position when moving forward in x-direction", () => {
   beforeEach(() => {
     asteroid = new Asteroid();
+    asteroid.x = 400; 
+    asteroid.y = 300; 
     asteroid.angle = 0;
     expect(asteroid.x).toBe(400);
     expect(asteroid.y).toBe(300);
@@ -56,6 +60,8 @@ describe("test we are updating the asteroids x position when moving forward in x
 describe("test we are updating both the asteroids x and y position when moving forward in x and y direction", () => {
   beforeEach(() => {
     asteroid = new Asteroid();
+    asteroid.x = 400; 
+    asteroid.y = 300; 
     asteroid.angle = 45;
     expect(asteroid.x).toBe(400);
     expect(asteroid.y).toBe(300);
