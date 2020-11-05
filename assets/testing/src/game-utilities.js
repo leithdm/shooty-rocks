@@ -13,6 +13,22 @@ function convertAngleToRadians(angle) {
   return angle * (Math.PI / 180);
 }
 
+//for listening to keyboard input
+function setupKeyboardInput() {
+  //holding down any key sets the value for that particular key to true
+  document.body.addEventListener("keydown", (evt) => {
+    keysArray[evt.keyCode] = true;
+  });
+
+  //releasing the key sets the value for that particular key to false
+  document.body.addEventListener("keyup", (evt) => {
+    keysArray[evt.keyCode] = false;
+    if(evt.keyCode === KEY_SHOOT) {
+      bulletsArray.push(new Bullet()); 
+    }
+  });
+}
+
 //for creating a black game canvas
 function drawGameCanvas() {
   context.fillStyle = "black";
@@ -26,7 +42,7 @@ function createAsteroids() {
   }
 }
 
-//for drawing bullets to the screen
+//for drawing bullets to the game canvas
 function renderBullets() {
   if (bulletsArray.length !== 0) {
     for(let i=0; i < bulletsArray.length; i++) {
@@ -36,7 +52,7 @@ function renderBullets() {
   }
 }
 
-//for rendering asteroids to the screen
+//for rendering asteroids to the game canvas
 function renderAsteroids() {
   for(let i=0; i<asteroidsArray.length; i++) {
     asteroidsArray[i].updateAsteroid(); 

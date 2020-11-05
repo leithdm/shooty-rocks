@@ -11,37 +11,23 @@ window.onload = () => {
 function setupCanvas() {
   canvas = document.getElementById("canvas");
   context = canvas.getContext("2d");
-  
   canvas.width = canvasWidth;
   canvas.height = canvasHeight;
+
+  //draw the game canvas
   drawGameCanvas(); 
 
-  //create a new ship
+  //instantiate a new ship
   ship = new Ship();
 
-  //create asteroids and push into asteroids array
+  //create asteroids, and push into asteroidsArray
   createAsteroids(); 
 
-  //setup keyboard input
+  //setup keyboard to listen for input
   setupKeyboardInput();
 
   //render everything to the screen
   render();
-}
-
-function setupKeyboardInput() {
-  //holding down any key sets the value for that particular key to true
-  document.body.addEventListener("keydown", (evt) => {
-    keysArray[evt.keyCode] = true;
-  });
-
-  //releasing the key sets the value for that key to false
-  document.body.addEventListener("keyup", (evt) => {
-    keysArray[evt.keyCode] = false;
-    if(evt.keyCode === KEY_SHOOT) {
-      bulletsArray.push(new Bullet()); 
-    }
-  });
 }
 
 function render() {
