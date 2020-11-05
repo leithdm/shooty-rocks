@@ -6,6 +6,7 @@ class Asteroid {
     this.angle = 90;
     this.speed = 1;
     this.radius = 50; 
+    this.collisionRadius = 46; 
   }
 
   updateAsteroid() {
