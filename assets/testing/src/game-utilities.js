@@ -88,3 +88,36 @@ function renderAsteroids() {
     asteroidsArray[i].drawAsteroid();
   }
 }
+
+//for circle collision-detection between an object 1 and an object 2
+function collisionDetection(obj1x, obj1y, obj1CollisionRadius, obj2x, obj2y, obj2CollisionRadius) {
+  let radiusCollisionSum;
+  let xDiff;
+  let yDiff;
+
+  radiusCollisionSum = obj1CollisionRadius + obj2CollisionRadius;
+  xDiff = obj1x - obj2x;
+  yDiff = obj1y - obj2y;
+
+  //determine if there is a collision
+  if (radiusCollisionSum > Math.sqrt(xDiff * xDiff + yDiff * yDiff)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+//for checking collision between ship and asteroid 
+function checkCollisionShipAsteroid() {
+  if(asteroidsArray.length !== 0) {
+    for(let i=0; i<asteroidsArray.length; i++) {
+      if(collisionDetection(ship.x, ship.y, ship.collisionRadius, 
+        asteroidsArray[i].x, asteroidsArray[i].y, asteroidsArray[i].collisionRadius)) {
+          ship.x = canvasWidth/2; 
+          ship.y = canvasHeight/2;
+          ship.velX = 0; 
+          ship.velY = 0; 
+      }
+    }
+  }
+}
