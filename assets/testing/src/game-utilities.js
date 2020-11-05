@@ -88,3 +88,21 @@ function renderAsteroids() {
     asteroidsArray[i].drawAsteroid();
   }
 }
+
+//for circle collision-detection between an object 1 and an object 2
+function collisionDetection(obj1x, obj1y, obj1CollisionRadius, obj2x, obj2y, obj2CollisionRadius) {
+  let radiusCollisionSum;
+  let xDiff;
+  let yDiff;
+
+  radiusCollisionSum = obj1CollisionRadius + obj2CollisionRadius;
+  xDiff = obj1x - obj2x;
+  yDiff = obj1y - obj2y;
+
+  //determine if there is a collision
+  if (radiusCollisionSum > Math.sqrt(xDiff * xDiff + yDiff * yDiff)) {
+    return true;
+  } else {
+    return false;
+  }
+}
