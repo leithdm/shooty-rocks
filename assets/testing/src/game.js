@@ -3,6 +3,7 @@ let ship;
 let keysArray = [];
 let bulletsArray = [];
 let asteroidsArray = [];
+let score = 0; 
 
 /**************************************************/
 /*Reference 'game-utilities' for abstracted code  */
@@ -55,6 +56,8 @@ function renderGame() {
 
   //render the asteroids
   renderAsteroids();
+
+  console.log(score);
 
   //automated frame per second game loop. More efficient than setInterval()
   requestAnimationFrame(renderGame);

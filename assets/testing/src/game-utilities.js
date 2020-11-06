@@ -19,6 +19,9 @@ const MEDIUM_ASTEROID_COLLISION_RADIUS = 22; //for setting the size of collision
 const SMALL_ASTEROID_RADIUS = 15 //for setting the radius of a small sized asteroid
 const SMALL_ASTEROID_COLLISION_RADIUS = 12; //for setting the size of collision radius of small asteroid
 const ASTEROID_OFFSET = 5; //for off-setting asteroid from x and y coordinates when split into 2
+const SCORE_LARGE_ASTEROID = 100 //for setting score of hitting large asteroid
+const SCORE_MEDIUM_ASTEROID = 200 //for setting score of hitting medium asteroid
+const SCORE_SMALL_ASTEROID = 300 //for setting score of hitting small asteroid
 
 /**************************************************/
 /*game 'helper' methods                           */
@@ -123,6 +126,7 @@ function checkCollisionShipAsteroid() {
         asteroidsArray[i].x, asteroidsArray[i].y, asteroidsArray[i].collisionRadius)) {
         ship.x = canvasWidth/2;
         ship.y = canvasHeight/2;
+        ship.angle = 90; 
         ship.velX = 0;
         ship.velY = 0;
       }
@@ -137,7 +141,6 @@ function checkCollisionBulletAsteroid() {
       for (let j=0; j<bulletsArray.length; j++) {
         if(collisionDetection(bulletsArray[j].x, bulletsArray[j].y, bulletsArray[j].collisionRadius,
           asteroidsArray[i].x, asteroidsArray[i].y, asteroidsArray[i].collisionRadius)) {
-
           //if asteroid is a large asteroid, break it up into x2 medium asteroids, offset to the right and left
           if(asteroidsArray[i].size === LARGE_ASTEROID_SIZE) {
             asteroidsArray.push(new Asteroid(asteroidsArray[i].x - ASTEROID_OFFSET,
@@ -152,6 +155,9 @@ function checkCollisionBulletAsteroid() {
               MEDIUM_ASTEROID_SIZE,
               MEDIUM_ASTEROID_COLLISION_RADIUS
               )); 
+              
+              //update the score
+              score += SCORE_LARGE_ASTEROID; 
 
           //else if asteroid is a medium asteroid, break it up into x2 small asteroids, offset to the right and left
           } else if (asteroidsArray[i].size === MEDIUM_ASTEROID_SIZE) {
@@ -167,7 +173,15 @@ function checkCollisionBulletAsteroid() {
               SMALL_ASTEROID_SIZE,
               SMALL_ASTEROID_COLLISION_RADIUS
               )); 
+
+              //update the score
+              score += SCORE_MEDIUM_ASTEROID; 
+          } else {
+            //update the score
+            score += SCORE_SMALL_ASTEROID; 
           }
+
+
           //remote the bullet and the asteroid
           asteroidsArray.splice(i, 1);
           bulletsArray.splice(j, 1);
