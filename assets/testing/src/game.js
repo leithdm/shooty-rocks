@@ -57,8 +57,6 @@ function renderGame() {
   //render the asteroids
   renderAsteroids();
 
-  console.log(score);
-
   //automated frame per second game loop. More efficient than setInterval()
   requestAnimationFrame(renderGame);
 }

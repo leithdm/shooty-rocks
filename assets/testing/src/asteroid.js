@@ -32,7 +32,9 @@ class Asteroid {
 
   drawAsteroid() {
     context.beginPath();
-    let verticeAngle = (Math.PI * 2) / 6; //divide a 360 degree into 6 to get a hexagonal angle.
+    let randomVerticeAngle = Math.floor(Math.random() * (ASTEROID_MAX_VERTICE_ANGLE - ASTEROID_MIN_VERTICE_ANGLE) 
+    + ASTEROID_MIN_VERTICE_ANGLE); 
+    let verticeAngle = (Math.PI * 2) / randomVerticeAngle; //divide a 360 degree into 6 to get a hexagonal angle.
     let radians = convertAngleToRadians(verticeAngle);
 
     context.moveTo(
@@ -40,13 +42,16 @@ class Asteroid {
       this.x - this.radius * Math.cos(radians),
       this.y - this.radius * Math.sin(radians)
     );
-    for (let i = 1; i < 6; i++) {
+    for (let i = 1; i < randomVerticeAngle; i++) {
+      colorfulAsteroidsStoke(); 
       context.lineTo(
         this.x - this.radius * Math.cos(verticeAngle * i + radians),
         this.y - this.radius * Math.sin(verticeAngle * i + radians)
       );
     }
     context.closePath();
+    colorfulAsteroidsFill(); 
     context.stroke();
+    // context.fill(); 
   }
 }

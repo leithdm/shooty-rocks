@@ -9,9 +9,9 @@ class Ship {
     this.angle = 90;
     this.velX = 0;
     this.velY = 0;
-    this.radius = 14;
+    this.radius = 12;
     this.frictionConstant = 0.99;
-    this.collisionRadius = 11; 
+    this.collisionRadius = 9; 
   }
 
   rotate(direction) {

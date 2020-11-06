@@ -22,6 +22,9 @@ const ASTEROID_OFFSET = 5; //for off-setting asteroid from x and y coordinates w
 const SCORE_LARGE_ASTEROID = 100 //for setting score of hitting large asteroid
 const SCORE_MEDIUM_ASTEROID = 200 //for setting score of hitting medium asteroid
 const SCORE_SMALL_ASTEROID = 300 //for setting score of hitting small asteroid
+const ASTEROID_MAX_VERTICE_ANGLE = 20 //for setting the max vertice angle of an asteroid
+const ASTEROID_MIN_VERTICE_ANGLE = 9 //for setting the min vertice angle of an asteroid
+const SCORE_HTML = document.querySelector(".score");
 
 /**************************************************/
 /*game 'helper' methods                           */
@@ -157,30 +160,33 @@ function checkCollisionBulletAsteroid() {
               )); 
               
               //update the score
-              score += SCORE_LARGE_ASTEROID; 
+              score += SCORE_LARGE_ASTEROID;
+              
+              //else if asteroid is a medium asteroid, break it up into x2 small asteroids, offset to the right and left
+            } else if (asteroidsArray[i].size === MEDIUM_ASTEROID_SIZE) {
+              asteroidsArray.push(new Asteroid(asteroidsArray[i].x - ASTEROID_OFFSET,
+                asteroidsArray[i].y - ASTEROID_OFFSET,
+                SMALL_ASTEROID_RADIUS, 
+                SMALL_ASTEROID_SIZE,
+                SMALL_ASTEROID_COLLISION_RADIUS
+                )); 
+                asteroidsArray.push(new Asteroid(asteroidsArray[i].x + ASTEROID_OFFSET,
+                  asteroidsArray[i].y + ASTEROID_OFFSET,
+                  SMALL_ASTEROID_RADIUS, 
+                  SMALL_ASTEROID_SIZE,
+                  SMALL_ASTEROID_COLLISION_RADIUS
+                  )); 
+                  
+                  //update the score
+                  score += SCORE_MEDIUM_ASTEROID; 
 
-          //else if asteroid is a medium asteroid, break it up into x2 small asteroids, offset to the right and left
-          } else if (asteroidsArray[i].size === MEDIUM_ASTEROID_SIZE) {
-            asteroidsArray.push(new Asteroid(asteroidsArray[i].x - ASTEROID_OFFSET,
-              asteroidsArray[i].y - ASTEROID_OFFSET,
-              SMALL_ASTEROID_RADIUS, 
-              SMALL_ASTEROID_SIZE,
-              SMALL_ASTEROID_COLLISION_RADIUS
-              )); 
-            asteroidsArray.push(new Asteroid(asteroidsArray[i].x + ASTEROID_OFFSET,
-              asteroidsArray[i].y + ASTEROID_OFFSET,
-              SMALL_ASTEROID_RADIUS, 
-              SMALL_ASTEROID_SIZE,
-              SMALL_ASTEROID_COLLISION_RADIUS
-              )); 
-
-              //update the score
-              score += SCORE_MEDIUM_ASTEROID; 
-          } else {
-            //update the score
-            score += SCORE_SMALL_ASTEROID; 
-          }
-
+                } else {
+                  //update the score
+                  score += SCORE_SMALL_ASTEROID; 
+                }
+                
+          //set html score value
+          SCORE_HTML.textContent = score;  
 
           //remote the bullet and the asteroid
           asteroidsArray.splice(i, 1);
@@ -190,4 +196,18 @@ function checkCollisionBulletAsteroid() {
       }
     }
   }
+}
+
+//for creating colorful outline of asteroids 
+function colorfulAsteroidsStoke() {
+  context.strokeStyle = "rgb(" + Math.floor(Math.random() *255) + " ," + 
+  Math.floor(Math.random() * 255) + " ," + 
+  Math.floor(Math.random() * 255) + ")";
+}
+
+//for creating a colorful fill of asteroids
+function colorfulAsteroidsFill() {
+  context.fillStyle = "rgb(" + Math.floor(Math.random() *255) + " ," + 
+  Math.floor(Math.random() * 255) + " ," + 
+  Math.floor(Math.random() * 255) + ")";
 }
