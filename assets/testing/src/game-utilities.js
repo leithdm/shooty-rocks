@@ -133,6 +133,7 @@ function checkCollisionBulletAsteroid() {
           //remote the bullet and the asteroid
           asteroidsArray.splice(i, 1);
           bulletsArray.splice(j, 1);
+          break; 
         }
       }
     }
