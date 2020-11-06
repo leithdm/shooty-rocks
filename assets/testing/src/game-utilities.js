@@ -19,6 +19,13 @@ const MEDIUM_ASTEROID_COLLISION_RADIUS = 22; //for setting the size of collision
 const SMALL_ASTEROID_RADIUS = 15 //for setting the radius of a small sized asteroid
 const SMALL_ASTEROID_COLLISION_RADIUS = 12; //for setting the size of collision radius of small asteroid
 const ASTEROID_OFFSET = 5; //for off-setting asteroid from x and y coordinates when split into 2
+const SCORE_LARGE_ASTEROID = 100 //for setting score of hitting large asteroid
+const SCORE_MEDIUM_ASTEROID = 200 //for setting score of hitting medium asteroid
+const SCORE_SMALL_ASTEROID = 500 //for setting score of hitting small asteroid
+const ASTEROID_MAX_VERTICE_ANGLE = 15 //for setting the max vertice angle of an asteroid
+const ASTEROID_MIN_VERTICE_ANGLE =  9 //for setting the min vertice angle of an asteroid
+const SMALL_ASTEROID_SPEED = 2; //for setting the speed of a small asteroid
+const SCORE_HTML = document.querySelector(".score");
 
 /**************************************************/
 /*game 'helper' methods                           */
@@ -123,6 +130,7 @@ function checkCollisionShipAsteroid() {
         asteroidsArray[i].x, asteroidsArray[i].y, asteroidsArray[i].collisionRadius)) {
         ship.x = canvasWidth/2;
         ship.y = canvasHeight/2;
+        ship.angle = 90; 
         ship.velX = 0;
         ship.velY = 0;
       }
@@ -137,7 +145,6 @@ function checkCollisionBulletAsteroid() {
       for (let j=0; j<bulletsArray.length; j++) {
         if(collisionDetection(bulletsArray[j].x, bulletsArray[j].y, bulletsArray[j].collisionRadius,
           asteroidsArray[i].x, asteroidsArray[i].y, asteroidsArray[i].collisionRadius)) {
-
           //if asteroid is a large asteroid, break it up into x2 medium asteroids, offset to the right and left
           if(asteroidsArray[i].size === LARGE_ASTEROID_SIZE) {
             asteroidsArray.push(new Asteroid(asteroidsArray[i].x - ASTEROID_OFFSET,
@@ -152,28 +159,68 @@ function checkCollisionBulletAsteroid() {
               MEDIUM_ASTEROID_SIZE,
               MEDIUM_ASTEROID_COLLISION_RADIUS
               )); 
+              
+              //update the score
+              score += SCORE_LARGE_ASTEROID;
+              
+              //else if asteroid is a medium asteroid, break it up into x2 small asteroids, offset to the right and left
+            } else if (asteroidsArray[i].size === MEDIUM_ASTEROID_SIZE) {
+              asteroidsArray.push(new Asteroid(asteroidsArray[i].x - ASTEROID_OFFSET,
+                asteroidsArray[i].y - ASTEROID_OFFSET,
+                SMALL_ASTEROID_RADIUS, 
+                SMALL_ASTEROID_SIZE,
+                SMALL_ASTEROID_COLLISION_RADIUS,
+                SMALL_ASTEROID_SPEED
+                )); 
+                asteroidsArray.push(new Asteroid(asteroidsArray[i].x + ASTEROID_OFFSET,
+                  asteroidsArray[i].y + ASTEROID_OFFSET,
+                  SMALL_ASTEROID_RADIUS, 
+                  SMALL_ASTEROID_SIZE,
+                  SMALL_ASTEROID_COLLISION_RADIUS, 
+                  SMALL_ASTEROID_SPEED
+                  )); 
+                  
+                  //update the score
+                  score += SCORE_MEDIUM_ASTEROID; 
 
-          //else if asteroid is a medium asteroid, break it up into x2 small asteroids, offset to the right and left
-          } else if (asteroidsArray[i].size === MEDIUM_ASTEROID_SIZE) {
-            asteroidsArray.push(new Asteroid(asteroidsArray[i].x - ASTEROID_OFFSET,
-              asteroidsArray[i].y - ASTEROID_OFFSET,
-              SMALL_ASTEROID_RADIUS, 
-              SMALL_ASTEROID_SIZE,
-              SMALL_ASTEROID_COLLISION_RADIUS
-              )); 
-            asteroidsArray.push(new Asteroid(asteroidsArray[i].x + ASTEROID_OFFSET,
-              asteroidsArray[i].y + ASTEROID_OFFSET,
-              SMALL_ASTEROID_RADIUS, 
-              SMALL_ASTEROID_SIZE,
-              SMALL_ASTEROID_COLLISION_RADIUS
-              )); 
-          }
+                } else {
+                  //update the score
+                  score += SCORE_SMALL_ASTEROID; 
+                }
+                
+          //set html score value
+          SCORE_HTML.textContent = score;  
+
           //remote the bullet and the asteroid
           asteroidsArray.splice(i, 1);
           bulletsArray.splice(j, 1);
           break; 
         }
       }
+    }
+  }
+}
+
+//for creating colorful outline of asteroids 
+function colorfulAsteroidsStroke() {
+  context.strokeStyle = "rgb(" + Math.floor(Math.random() *255) + " ," + 
+  Math.floor(Math.random() * 255) + " ," + 
+  Math.floor(Math.random() * 255) + ")";
+}
+
+//for creating a colorful fill of asteroids
+function colorfulAsteroidsFill() {
+  context.fillStyle = "rgb(" + Math.floor(Math.random() *255) + " ," + 
+  Math.floor(Math.random() * 255) + " ," + 
+  Math.floor(Math.random() * 255) + ")";
+}
+
+
+function drawStars() {
+  context.fillStyle = "white";
+  for(let i=1; i<=7; i++) {
+    for(let j=1; j<=7; j++) {
+      context.fillRect(100*(i-(Math.floor(Math.random() * (3)))), 100*(j+(Math.floor(Math.random()*3))), 1, 1);
     }
   }
 }

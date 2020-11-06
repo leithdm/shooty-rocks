@@ -3,6 +3,7 @@ let ship;
 let keysArray = [];
 let bulletsArray = [];
 let asteroidsArray = [];
+let score = 0; 
 
 /**************************************************/
 /*Reference 'game-utilities' for abstracted code  */
@@ -37,6 +38,8 @@ function renderGame() {
 
   //render the game canvas
   renderGameCanvas();
+
+  drawStars(); 
 
   //check if collision between ship and asteroid
   checkCollisionShipAsteroid(); 
