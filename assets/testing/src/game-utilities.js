@@ -21,9 +21,10 @@ const SMALL_ASTEROID_COLLISION_RADIUS = 12; //for setting the size of collision 
 const ASTEROID_OFFSET = 5; //for off-setting asteroid from x and y coordinates when split into 2
 const SCORE_LARGE_ASTEROID = 100 //for setting score of hitting large asteroid
 const SCORE_MEDIUM_ASTEROID = 200 //for setting score of hitting medium asteroid
-const SCORE_SMALL_ASTEROID = 300 //for setting score of hitting small asteroid
-const ASTEROID_MAX_VERTICE_ANGLE = 20 //for setting the max vertice angle of an asteroid
-const ASTEROID_MIN_VERTICE_ANGLE = 9 //for setting the min vertice angle of an asteroid
+const SCORE_SMALL_ASTEROID = 500 //for setting score of hitting small asteroid
+const ASTEROID_MAX_VERTICE_ANGLE = 15 //for setting the max vertice angle of an asteroid
+const ASTEROID_MIN_VERTICE_ANGLE =  9 //for setting the min vertice angle of an asteroid
+const SMALL_ASTEROID_SPEED = 2; //for setting the speed of a small asteroid
 const SCORE_HTML = document.querySelector(".score");
 
 /**************************************************/
@@ -168,13 +169,15 @@ function checkCollisionBulletAsteroid() {
                 asteroidsArray[i].y - ASTEROID_OFFSET,
                 SMALL_ASTEROID_RADIUS, 
                 SMALL_ASTEROID_SIZE,
-                SMALL_ASTEROID_COLLISION_RADIUS
+                SMALL_ASTEROID_COLLISION_RADIUS,
+                SMALL_ASTEROID_SPEED
                 )); 
                 asteroidsArray.push(new Asteroid(asteroidsArray[i].x + ASTEROID_OFFSET,
                   asteroidsArray[i].y + ASTEROID_OFFSET,
                   SMALL_ASTEROID_RADIUS, 
                   SMALL_ASTEROID_SIZE,
-                  SMALL_ASTEROID_COLLISION_RADIUS
+                  SMALL_ASTEROID_COLLISION_RADIUS, 
+                  SMALL_ASTEROID_SPEED
                   )); 
                   
                   //update the score
@@ -199,7 +202,7 @@ function checkCollisionBulletAsteroid() {
 }
 
 //for creating colorful outline of asteroids 
-function colorfulAsteroidsStoke() {
+function colorfulAsteroidsStroke() {
   context.strokeStyle = "rgb(" + Math.floor(Math.random() *255) + " ," + 
   Math.floor(Math.random() * 255) + " ," + 
   Math.floor(Math.random() * 255) + ")";
