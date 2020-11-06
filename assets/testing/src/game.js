@@ -39,6 +39,8 @@ function renderGame() {
   //render the game canvas
   renderGameCanvas();
 
+  drawStars(); 
+
   //check if collision between ship and asteroid
   checkCollisionShipAsteroid(); 
 

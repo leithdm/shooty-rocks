@@ -214,3 +214,13 @@ function colorfulAsteroidsFill() {
   Math.floor(Math.random() * 255) + " ," + 
   Math.floor(Math.random() * 255) + ")";
 }
+
+
+function drawStars() {
+  context.fillStyle = "white";
+  for(let i=1; i<=7; i++) {
+    for(let j=1; j<=7; j++) {
+      context.fillRect(100*(i-(Math.floor(Math.random() * (3)))), 100*(j+(Math.floor(Math.random()*3))), 1, 1);
+    }
+  }
+}
