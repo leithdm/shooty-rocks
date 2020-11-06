@@ -14,6 +14,7 @@ describe("test we are updating the asteroids y position when moving forward in y
     asteroid = new Asteroid();
     asteroid.x = 400; 
     asteroid.y = 300; 
+    asteroid.angle = 90; 
     //initial conditions with asteroid starting at x=400px, y=300px
     expect(asteroid.x).toBe(400);
     expect(asteroid.y).toBe(300);

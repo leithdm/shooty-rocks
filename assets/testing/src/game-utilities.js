@@ -11,6 +11,14 @@ const KEY_UP_ARROW = 38; //for keyboard input up arrow key
 const KEY_RIGHT_ARROW = 39; //for keyboard input right arrow key
 const KEY_SHOOT = 32; //for keyboard input spacebar
 const NUMBER_OF_ASTEROIDS = 8; //for setting the number of asteroids that appear on screen
+const LARGE_ASTEROID_SIZE = 3; //for setting the size of largest asteroid
+const MEDIUM_ASTEROID_SIZE = 2; //for setting the size of medium asteroid
+const SMALL_ASTEROID_SIZE = 1; //for setting the size of smallest asteroid
+const MEDIUM_ASTEROID_RADIUS = 25 //for setting the radius of a medium sized asteroid
+const MEDIUM_ASTEROID_COLLISION_RADIUS = 22; //for setting the size of collision radius of medium asteroid
+const SMALL_ASTEROID_RADIUS = 15 //for setting the radius of a small sized asteroid
+const SMALL_ASTEROID_COLLISION_RADIUS = 12; //for setting the size of collision radius of small asteroid
+const ASTEROID_OFFSET = 5; //for off-setting asteroid from x and y coordinates when split into 2
 
 /**************************************************/
 /*game 'helper' methods                           */
@@ -117,7 +125,6 @@ function checkCollisionShipAsteroid() {
         ship.y = canvasHeight/2;
         ship.velX = 0;
         ship.velY = 0;
-        console.log("Collision with asteroid !");
       }
     }
   }
@@ -130,6 +137,37 @@ function checkCollisionBulletAsteroid() {
       for (let j=0; j<bulletsArray.length; j++) {
         if(collisionDetection(bulletsArray[j].x, bulletsArray[j].y, bulletsArray[j].collisionRadius,
           asteroidsArray[i].x, asteroidsArray[i].y, asteroidsArray[i].collisionRadius)) {
+
+          //if asteroid is a large asteroid, break it up into x2 medium asteroids, offset to the right and left
+          if(asteroidsArray[i].size === LARGE_ASTEROID_SIZE) {
+            asteroidsArray.push(new Asteroid(asteroidsArray[i].x - ASTEROID_OFFSET,
+              asteroidsArray[i].y - ASTEROID_OFFSET,
+              MEDIUM_ASTEROID_RADIUS, 
+              MEDIUM_ASTEROID_SIZE,
+              MEDIUM_ASTEROID_COLLISION_RADIUS
+              )); 
+            asteroidsArray.push(new Asteroid(asteroidsArray[i].x + ASTEROID_OFFSET,
+              asteroidsArray[i].y + ASTEROID_OFFSET,
+              MEDIUM_ASTEROID_RADIUS, 
+              MEDIUM_ASTEROID_SIZE,
+              MEDIUM_ASTEROID_COLLISION_RADIUS
+              )); 
+
+          //else if asteroid is a medium asteroid, break it up into x2 small asteroids, offset to the right and left
+          } else if (asteroidsArray[i].size === MEDIUM_ASTEROID_SIZE) {
+            asteroidsArray.push(new Asteroid(asteroidsArray[i].x - ASTEROID_OFFSET,
+              asteroidsArray[i].y - ASTEROID_OFFSET,
+              SMALL_ASTEROID_RADIUS, 
+              SMALL_ASTEROID_SIZE,
+              SMALL_ASTEROID_COLLISION_RADIUS
+              )); 
+            asteroidsArray.push(new Asteroid(asteroidsArray[i].x + ASTEROID_OFFSET,
+              asteroidsArray[i].y + ASTEROID_OFFSET,
+              SMALL_ASTEROID_RADIUS, 
+              SMALL_ASTEROID_SIZE,
+              SMALL_ASTEROID_COLLISION_RADIUS
+              )); 
+          }
           //remote the bullet and the asteroid
           asteroidsArray.splice(i, 1);
           bulletsArray.splice(j, 1);
