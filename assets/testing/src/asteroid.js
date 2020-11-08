@@ -59,8 +59,9 @@ class Asteroid {
         //if small sized, fill in the asteroid with a colorful fill
         if (this.size === SMALL_ASTEROID_SIZE) {
             // colorfulAsteroidsFill(); 
-            context.strokeStyle = "rgb(255, 40, 0)"; 
-            // context.fill(); 
+            context.strokeStyle = "rgb(254, 84, 66)"; 
+            context.fillStyle = "rgb(0, 192, 163)"; 
+            context.fill(); 
 
         }
 
