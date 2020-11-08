@@ -39,7 +39,11 @@ function renderGame() {
   //render the game canvas
   renderGameCanvas();
 
-  drawStars(); 
+  //render starts to the game canvas
+  renderStars(); 
+
+  //create a new level
+  createNewLevel(); 
 
   //check if collision between ship and asteroid
   checkCollisionShipAsteroid(); 

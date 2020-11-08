@@ -10,7 +10,6 @@ const KEY_LEFT_ARROW = 37; //for keyboard input left arrow key
 const KEY_UP_ARROW = 38; //for keyboard input up arrow key
 const KEY_RIGHT_ARROW = 39; //for keyboard input right arrow key
 const KEY_SHOOT = 32; //for keyboard input spacebar
-const NUMBER_OF_ASTEROIDS = 8; //for setting the number of asteroids that appear on screen
 const LARGE_ASTEROID_SIZE = 3; //for setting the size of largest asteroid
 const MEDIUM_ASTEROID_SIZE = 2; //for setting the size of medium asteroid
 const SMALL_ASTEROID_SIZE = 1; //for setting the size of smallest asteroid
@@ -22,10 +21,11 @@ const ASTEROID_OFFSET = 5; //for off-setting asteroid from x and y coordinates w
 const SCORE_LARGE_ASTEROID = 100 //for setting score of hitting large asteroid
 const SCORE_MEDIUM_ASTEROID = 200 //for setting score of hitting medium asteroid
 const SCORE_SMALL_ASTEROID = 500 //for setting score of hitting small asteroid
-const ASTEROID_MAX_VERTICE_ANGLE = 15 //for setting the max vertice angle of an asteroid
+const ASTEROID_MAX_VERTICE_ANGLE = 10 //for setting the max vertice angle of an asteroid
 const ASTEROID_MIN_VERTICE_ANGLE =  9 //for setting the min vertice angle of an asteroid
 const SMALL_ASTEROID_SPEED = 2; //for setting the speed of a small asteroid
 const SCORE_HTML = document.querySelector(".score");
+let NUMBER_OF_ASTEROIDS = 8; //for setting the number of asteroids that appear on screen
 
 /**************************************************/
 /*game 'helper' methods                           */
@@ -215,12 +215,28 @@ function colorfulAsteroidsFill() {
   Math.floor(Math.random() * 255) + ")";
 }
 
-
-function drawStars() {
+//render twinkling star effect to the game canvas
+function renderStars() {
   context.fillStyle = "white";
   for(let i=1; i<=7; i++) {
     for(let j=1; j<=7; j++) {
       context.fillRect(100*(i-(Math.floor(Math.random() * (3)))), 100*(j+(Math.floor(Math.random()*3))), 1, 1);
+    }
+  }
+}
+
+//create a new level
+function createNewLevel() {
+  if(asteroidsArray.length === 0) {
+    ship.x = canvasWidth/2;
+    ship.y = canvasHeight/2;
+    ship.velX = 0;
+    ship.velY = 0;
+    NUMBER_OF_ASTEROIDS++; 
+    for(let i=0; i<NUMBER_OF_ASTEROIDS; i++) {
+      let asteroid = new Asteroid();
+      asteroid.speed += 0.8; 
+      asteroidsArray.push(asteroid); 
     }
   }
 }
