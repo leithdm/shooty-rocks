@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asteroids</title>
-    <script defer src="assets/testing/src/bullet.js"></script>
-    <script defer src="assets/testing/src/asteroid.js"></script>
-    <script defer src="assets/testing/src/ship.js"></script>
-    <script defer src="assets/testing/src/game-utilities.js"></script>
-    <script defer src="assets/testing/src/game.js"></script>
+    <title>Document</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
-    <canvas id="canvas"></canvas>
-    <h2>Score: <span class="score">0</span></h2>
-</body>
-</html>
 
+<body>
+    <div class="welcome-container">
+        <h2 class="font-atari text-game-name"><span class="text-color-game-name">COVID</span>ROIDS</h2>
+        <div class="game-overview-container">
+            <h3 class="text-game-overview">A contagious plague of Covid-52 has infiltrated Sector 9 of the Alpha-Centauri Outpost.</h3>
+            <h3 class="text-game-overview text-your-mission"><span class="text-underline">Your Mission:</span> Sterlise Sector 9.</h3>
+        </div>
+        <button class="font-atari play-button" onclick="location.href='game.html'" type="button">Play</button>
+    </div>
+    <div class="menu-options">
+        <button class="font-atari menu-options-how" onclick="location.href='how-to-play.html'" type="button">How To Play</button>
+        <button class="font-atari menu-options-sound" onclick="location.href='sound.html'" type="button">Sound Options</button>
+        <button class="font-atari menu-options-score" onclick="location.href='score.html'" type="button">High Score</button>
+    </div>
+</body>
