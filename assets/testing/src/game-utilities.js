@@ -263,6 +263,6 @@ function checkIfGameOver() {
     context.fillText("GAME OVER", canvasWidth / 2 - 150, canvasHeight / 2);
     setInterval(()=> {
       window.location.href='index.html'
-    }, 3000)
+    }, 4000)
   }  
 }
