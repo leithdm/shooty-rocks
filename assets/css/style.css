@@ -5,8 +5,8 @@
     --background-color-black: black; 
     --white-color: white; 
     --yellow-color: yellow; 
-    --red-color: red; 
-    --blue-color: blue; 
+    --red-color: rgb(178, 34, 52); 
+    --blue-color:rgb(60, 59, 110); 
 }
 
 html {
