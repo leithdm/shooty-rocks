@@ -102,3 +102,19 @@ body {
     height: 40px;
     padding: 10px;  
 }
+
+.score-header {
+    background-color: var(--background-color-black);
+    color: var(--white-color);
+    font-family: "Press Start 2P", "arial"; 
+    margin: 0; 
+    padding: 10px; 
+    font-size: 1.2rem; 
+}
+
+.score {
+    color: var(--yellow-color);
+    margin: 0; 
+    padding: 0; 
+    font-size: 1.2rem; 
+}
