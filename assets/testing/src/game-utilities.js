@@ -25,7 +25,8 @@ const ASTEROID_MAX_VERTICE_ANGLE = 10 //for setting the max vertice angle of an 
 const ASTEROID_MIN_VERTICE_ANGLE =  9 //for setting the min vertice angle of an asteroid
 const SMALL_ASTEROID_SPEED = 2; //for setting the speed of a small asteroid
 const SCORE_HTML = document.querySelector(".score");
-let NUMBER_OF_ASTEROIDS = 8; //for setting the number of asteroids that appear on screen
+let NUMBER_OF_ASTEROIDS = 8; //for setting the number of asteroids that appear on screen]
+let lives = 3; //for setting the number of ship-lives
 
 /**************************************************/
 /*game 'helper' methods                           */
@@ -47,17 +48,21 @@ function convertAngleToRadians(angle) {
 //for listening to keyboard input
 function setupKeyboardInput() {
   //holding down any key sets the value for that particular key to true
-  document.body.addEventListener("keydown", (evt) => {
-    keysArray[evt.keyCode] = true;
-  });
+  document.body.addEventListener("keydown", handleKeyDown); 
 
   //releasing the key sets the value for that particular key to false
-  document.body.addEventListener("keyup", (evt) => {
-    keysArray[evt.keyCode] = false;
-    if (evt.keyCode === KEY_SHOOT) {
-      bulletsArray.push(new Bullet());
-    }
-  });
+  document.body.addEventListener("keyup", handleKeyUp); 
+}
+
+function handleKeyDown(e){
+  keysArray[e.keyCode] = true;
+}
+
+function handleKeyUp(e){
+  keysArray[e.keyCode] = false;
+  if (e.keyCode === 32){
+      bulletsArray.push(new Bullet(ship.angle));
+  }
 }
 
 //for checking if ship is moving forward, left, or right
@@ -133,6 +138,7 @@ function checkCollisionShipAsteroid() {
         ship.angle = 90; 
         ship.velX = 0;
         ship.velY = 0;
+        lives--; 
       }
     }
   }
@@ -189,7 +195,7 @@ function checkCollisionBulletAsteroid() {
                 }
                 
           //set html score value
-          SCORE_HTML.textContent = score;  
+          SCORE_HTML.textContent = numberWithCommas(score);
 
           //remote the bullet and the asteroid
           asteroidsArray.splice(i, 1);
@@ -215,7 +221,7 @@ function colorfulAsteroidsFill() {
   Math.floor(Math.random() * 255) + ")";
 }
 
-//render twinkling star effect to the game canvas
+//for rendering twinkling star effect to the game canvas
 function renderStars() {
   context.fillStyle = "white";
   for(let i=1; i<=7; i++) {
@@ -225,7 +231,12 @@ function renderStars() {
   }
 }
 
-//create a new level
+//for creating commas in score output
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+//for creating a new level
 function createNewLevel() {
   if(asteroidsArray.length === 0) {
     ship.x = canvasWidth/2;
@@ -239,4 +250,19 @@ function createNewLevel() {
       asteroidsArray.push(asteroid); 
     }
   }
+}
+
+//for checking if a game is over
+function checkIfGameOver() {
+  if(lives <= 0){
+    document.body.removeEventListener("keydown", handleKeyDown);
+    document.body.removeEventListener("keyup", handleKeyUp);
+    ship.visible = false;
+    context.font = "2rem 'Press Start 2P'"
+    context.fillStyle = 'red';
+    context.fillText("GAME OVER", canvasWidth / 2 - 150, canvasHeight / 2);
+    setInterval(()=> {
+      window.location.href='index.html'
+    }, 3000)
+  }  
 }
