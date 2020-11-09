@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P');
+
+:root {
+    --covid-color-green:  rgb(0, 192, 163); 
+    --background-color-black: black; 
+    --white-color: white; 
+    --yellow-color: yellow; 
+}
+
+html {
+    box-sizing: border-box; 
+}
+
+body {
+    padding: 0; 
+    width: 800px; 
+}
+
+.welcome-container {
+    background-color: var(--background-color-black);
+    height: 600px; 
+    display: grid; 
+    grid-template-columns: 800px;
+    grid-template-rows: 0.5fr 1fr 1.5fr;
+    justify-items: center;
+}
+
+.text-game-name {
+    margin-top: 100px; 
+    color: var(--white-color);
+    font-size: 4rem; 
+}
+
+.font-atari {
+    color: var(--white-color);
+    font-family: "Press Start 2P", "arial"; 
+}
+
+.text-color-game-name {
+    color: var(--covid-color-green);
+}
+
+.game-overview-container {
+    color: var(--white-color);
+    margin: 0 20%;
+    line-height: 1.2rem; 
+    font-size: 1rem; 
+    font-family: "Ubuntu Mono";
+}
+
+.text-game-overview {
+    color: var(--white-color);
+    font-family: "Press Start 2P", "arial"; 
+    font-size: 0.8rem;
+}
+
+.text-your-mission {
+    margin-top: 2rem; 
+}
+
+.text-underline {
+    text-decoration: underline;
+}
+
+.play-button {
+    margin-top: 2rem;
+    color: var(--background-color-black);
+    background-color: var(--yellow-color);
+    height: 40px;
+    padding: 10px;  
+}
