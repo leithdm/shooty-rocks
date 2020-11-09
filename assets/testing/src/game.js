@@ -3,7 +3,7 @@ let ship;
 let keysArray = [];
 let bulletsArray = [];
 let asteroidsArray = [];
-let score = 0; 
+let score = 0;
 
 /**************************************************/
 /*Reference 'game-utilities' for abstracted code  */
@@ -40,22 +40,27 @@ function renderGame() {
   renderGameCanvas();
 
   //render starts to the game canvas
-  renderStars(); 
+  renderStars();
+
+  //signal game over if no lives left
+  checkIfGameOver();
 
   //create a new level
-  createNewLevel(); 
+  createNewLevel();
 
   //check if collision between ship and asteroid
-  checkCollisionShipAsteroid(); 
+  checkCollisionShipAsteroid();
 
   //check if collision between a bullet and asteroid
-  checkCollisionBulletAsteroid();  
-  
-  //update the ships position
-  ship.updateShip();
+  checkCollisionBulletAsteroid();
 
-  //render the ship
-  ship.drawShip();
+  //update the ships position and render if visible
+  if (ship.visible) {
+    ship.updateShip();
+
+    //render the ship
+    ship.drawShip();
+  }
 
   //render the bullets
   renderBullets();
