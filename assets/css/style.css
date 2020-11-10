@@ -118,7 +118,7 @@ body {
     font-size: 1.2rem; 
     display: grid;
     grid-template-rows: 1;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 0.5fr 1.5fr;
     height: 20px;
     padding: 10px;  
 }
@@ -132,6 +132,11 @@ body {
     color: var(--yellow-color);
 }
 
+.high-score {
+    font-size: 1.2rem; 
+    color: var(--covid-color-green); 
+}
+
 .lives-header {
     margin: 0; 
     padding: 0; 
@@ -139,4 +144,15 @@ body {
 
 .lives {
     color: var(--red-color);
+}
+
+.high-score-menu { 
+    font-size: 2rem;
+}
+
+.text-high-score {
+    color: var(--white-color);
+    font-family: "Press Start 2P", "arial"; 
+    font-size: 1rem;
+    margin-bottom: 3rem; 
 }
