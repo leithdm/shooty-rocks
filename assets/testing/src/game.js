@@ -20,7 +20,10 @@ window.onload = () => {
   setupKeyboardInput();
 
   //retrieve highscore from local storage
-  getLocalStorage(); 
+  getLocalStorage();
+
+  //setup sound
+  loadSounds();
 
   //render everything to the canvas
   renderGame();
@@ -66,7 +69,7 @@ function renderGame() {
   renderAsteroids();
 
   //update high score
-  updateHighScore(); 
+  updateHighScore();
 
   //automated frame per second game loop. More efficient than setInterval()
   requestAnimationFrame(renderGame);
