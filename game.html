@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,19 +13,15 @@
     <script defer src="assets/testing/src/game.js"></script>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
-    <canvas id="canvas"></canvas>
-    <div class="bottom-banner">
-        <div class="score-container">
-            <h4 class="score-header">Score: <span class="score">0</span></h4>
-        </div>
-        <div class="lives-container">
-            <h4 class="lives-header"><img src="assets/artwork/ship_cropped.png" alt="ship_image" width="25" height="22"> <span class="lives">3</span></h4>
-        </div>
-        <div class="high-score-container">
-            <h4 class="score-header">High Score: <span class="high-score">0</span></h4>
-        </div>
-    </div>
-</body>
-</html>
 
+<body>
+    <div class="bottom-banner">
+        <p class="score-title">Score:<span class="score-value">0</span></p>
+        <p class="lives-header"><img class="lives-image" src="assets/artwork/ship_cropped.png">
+            <span class="lives">3</span></p>
+        <p class="score-title">High Score:<span class="high-score">0</span></p>
+    </div>
+    <canvas id="canvas" width="800" height="600"></canvas>
+</body>
+
+</html>

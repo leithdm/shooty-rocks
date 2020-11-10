@@ -43,7 +43,7 @@ function renderGame() {
   renderStars();
 
   //signal game over if no lives left
-  checkIfGameOver();
+  // checkIfGameOver();
 
   //create a new level
   createNewLevel();

@@ -24,10 +24,10 @@ const SCORE_SMALL_ASTEROID = 500 //for setting score of hitting small asteroid
 const ASTEROID_MAX_VERTICE_ANGLE = 10 //for setting the max vertice angle of an asteroid
 const ASTEROID_MIN_VERTICE_ANGLE =  9 //for setting the min vertice angle of an asteroid
 const SMALL_ASTEROID_SPEED = 2; //for setting the speed of a small asteroid
-const SCORE_HTML = document.querySelector(".score");
-const livesHTML = document.querySelector(".lives");
-const highScoreHTML = document.querySelector(".high-score");
-const localStorageKey = "highScore"; //for setting local storage key
+const SCORE_HTML = document.querySelector(".score-value");
+const LIVES_HTML = document.querySelector(".lives");
+const HIGH_SCORE_HTML = document.querySelector(".high-score");
+const LOCAL_STORAGE_KEY = "highScore"; //for setting local storage key
 let NUMBER_OF_ASTEROIDS = 3; //for setting the number of asteroids that appear on screen
 let lives = 3; //for setting the number of ship-lives
 let highScore; //for setting the high score
@@ -149,7 +149,7 @@ function checkCollisionShipAsteroid() {
 
         //set the lives in html
         if(lives >= 0) {
-        livesHTML.textContent = lives; 
+        LIVES_HTML.textContent = lives; 
         }
 
         ship.x = canvasWidth/2;
@@ -298,16 +298,16 @@ function checkIfGameOver() {
 
 //for getting local store of high score
 function getLocalStorage() {
-  if(localStorage.getItem(localStorageKey) == null) {
+  if(localStorage.getItem(LOCAL_STORAGE_KEY) == null) {
     highScore = 0; 
   } else {
-    highScore = localStorage.getItem(localStorageKey);
+    highScore = localStorage.getItem(LOCAL_STORAGE_KEY);
   }
 }
 
 //for updating the high score
 function updateHighScore() {
   highScore = Math.max(score, highScore); 
-  localStorage.setItem(localStorageKey, highScore); 
-  highScoreHTML.textContent = numberWithCommas(highScore.toString()); 
+  localStorage.setItem(LOCAL_STORAGE_KEY, highScore); 
+  HIGH_SCORE_HTML.textContent = numberWithCommas(highScore.toString()); 
 }
