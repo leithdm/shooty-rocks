@@ -13,14 +13,8 @@ window.onload = () => {
   //setup the game canvas
   setupCanvas();
 
-  //draw the game canvas
-  renderGameCanvas();
-
   //instantiate a new ship
   ship = new Ship();
-
-  //create asteroids, and push into asteroidsArray
-  createAsteroids();
 
   //setup keyboard to listen for input
   setupKeyboardInput();
