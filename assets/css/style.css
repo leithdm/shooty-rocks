@@ -1,158 +1,338 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P');
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P");
 
 :root {
-    --covid-color-green:  rgb(0, 192, 163); 
-    --background-color-black: black; 
-    --white-color: white; 
-    --yellow-color: yellow; 
-    --red-color: rgb(178, 34, 52); 
-    --blue-color:rgb(60, 59, 110); 
+  --covid-color-green: rgb(0, 192, 163);
+  --background-color-black: black;
+  --white-color: white;
+  --yellow-color: yellow;
+  --red-color: rgb(178, 34, 52);
+  --blue-color: rgb(60, 59, 110);
 }
 
 html {
-    box-sizing: border-box; 
+  box-sizing: border-box;
 }
 
 body {
-    padding: 0; 
-    width: 800px; 
+  padding: 0;
+  margin: auto;
+  max-width: 800px;
+  background-color: var(--background-color-black);
 }
 
 .welcome-container {
-    display: grid; 
-    grid-template-columns: 800px;
-    height: 600px; 
-    grid-template-rows: 0.5fr 1fr 1.5fr;
-    justify-items: center;
-    background: url("/assets/artwork/background-2.jpg") no-repeat center; 
+  display: grid;
+  grid-template-columns: 800px;
+  height: 600px;
+  grid-template-rows: 0.5fr 1fr 1.5fr;
+  justify-items: center;
+  background: url("/assets/artwork/background-2.jpg") no-repeat center;
 }
 
 .text-game-name {
-    margin-top: 100px; 
-    color: var(--white-color);
-    font-size: 4rem; 
+  margin-top: 100px;
+  color: var(--white-color);
+  font-size: 4rem;
 }
 
 .font-atari {
-    color: var(--white-color);
-    font-family: "Press Start 2P", "arial"; 
+  color: var(--white-color);
+  font-family: "Press Start 2P", "arial";
 }
 
 .text-color-game-name {
-    color: var(--covid-color-green);
+  color: var(--covid-color-green);
 }
 
 .game-overview-container {
-    color: var(--white-color);
-    margin: 0 15%;
-    line-height: 1.2rem; 
-    font-size: 1rem; 
-    font-family: "Ubuntu Mono";
+  color: var(--white-color);
+  margin: 0 15%;
+  line-height: 1.2rem;
+  font-size: 1rem;
 }
 
 .text-game-overview {
-    color: var(--white-color); 
-    font-family: "Press Start 2P", "arial"; 
-    font-size: 1rem;
+  color: var(--white-color);
+  font-family: "Press Start 2P", "arial";
+  font-size: 1rem;
 }
 
 .text-your-mission {
-    margin-top: 2rem; 
+  margin-top: 2rem;
 }
 
 .text-underline {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .play-button {
-    margin-top: 2rem;
-    color: var(--background-color-black);
-    background-color: var(--yellow-color);
-    height: 40px;
-    padding: 10px;  
+  margin-top: 2rem;
+  color: var(--background-color-black);
+  background-color: var(--yellow-color);
+  height: 40px;
+  padding: 10px;
 }
 
 .menu-options {
-    margin-top: 4px; 
-    display: grid; 
-    grid-template-rows: 1fr; 
-    grid-template-columns: 1fr 1fr 1fr;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .menu-options-how {
-    background-color:var(--red-color);
-    color: var(--white-color);
-    font-size: 0.7rem;
-    height: 40px;
-    padding: 10px;  
+  background-color: var(--red-color);
+  color: var(--white-color);
+  font-size: 0.7rem;
+  height: 40px;
+  padding: 10px;
 }
 
 .menu-options-sound {
-    color: var(--background-color-black);
-    background-color: var(--white-color);
-    font-size: 0.7rem;
-    height: 40px;
-    padding: 10px;  
+  color: var(--background-color-black);
+  background-color: var(--white-color);
+  font-size: 0.7rem;
+  height: 40px;
+  padding: 10px;
 }
 
 .menu-options-score {
-    background-color: var(--blue-color);
-    color: var(--white-color);
-    font-size: 0.7rem;
-    height: 40px;
-    padding: 10px;  
+  background-color: var(--blue-color);
+  color: var(--white-color);
+  font-size: 0.7rem;
+  height: 40px;
+  padding: 10px;
 }
 
 .high-score {
-    font-size: 5rem; 
+  font-size: 5rem;
 }
 
 .arrow {
-    font-size: 2rem; 
+  font-size: 2rem;
 }
 
 .bottom-banner {
-    background-color: var(--background-color-black);
-    color: var(--white-color);
-    font-family: "Press Start 2P", "arial"; 
-    font-size: 1.2rem; 
-    display: grid;
-    grid-template-rows: 1;
-    grid-template-columns: 1fr 0.5fr 1.5fr;
-    height: 20px;
-    padding: 10px;  
+  background-color: var(--background-color-black);
+  color: var(--white-color);
+  font-family: "Press Start 2P", "arial";
+  display: grid;
+  grid-template-rows: 1;
+  grid-template-columns: 1fr 0.5fr 1fr;
+  padding: 1rem;
 }
 
-.score-header {
-    margin: 0; 
-    padding: 0; 
+.score-title {
+  margin: 0;
+  padding: 0;
 }
 
-.score {
-    color: var(--yellow-color);
-}
-
-.high-score {
-    font-size: 1.2rem; 
-    color: var(--covid-color-green); 
+.score-value {
+  color: var(--yellow-color);
 }
 
 .lives-header {
-    margin: 0; 
-    padding: 0; 
+  margin: 0;
+  padding: 0;
 }
 
 .lives {
-    color: var(--red-color);
+  font-size: 1.2rem;
+  color: var(--red-color);
 }
 
-.high-score-menu { 
-    font-size: 2rem;
+.lives-image {
+  width: 25px;
+  height: 20px;
+}
+
+.high-score {
+  font-size: 1rem;
+  color: var(--covid-color-green);
+}
+
+.high-score-menu {
+  font-size: 2rem;
 }
 
 .text-high-score {
-    color: var(--white-color);
-    font-family: "Press Start 2P", "arial"; 
+  color: var(--white-color);
+  font-family: "Press Start 2P", "arial";
+  font-size: 1rem;
+  margin-bottom: 3rem;
+}
+
+/*------------------------------------*\
+  #MEDIA QUERIES
+\*------------------------------------*/
+
+/* iPad*/
+@media screen and (max-width: 768px) {
+  #canvas {
+    width: 768px;
+    height: 590px;
+  }
+}
+
+/* iPhone 6/7/8 Plus */
+@media screen and (max-width: 414px) {
+  body {
+    max-width: 414px;
+    background-color: var(--background-color-black);
+  }
+
+  .welcome-container {
+    grid-template-columns: 414px;
+    height: 696px;
+  }
+
+  .text-game-name {
+    margin-top: 5rem;
+    font-size: 2.4rem;
+  }
+
+  .game-overview-container {
+    margin: 10%;
+  }
+
+  .text-game-overview {
+    line-height: 1.6rem;
+    font-size: 1.2rem;
+  }
+
+  #canvas {
+    width: 414px;
+    height: 290px;
+  }
+
+  .score-title {
+    font-size: 0.7rem;
+  }
+
+  .score-value {
+    font-size: 0.7rem;
+  }
+
+  .lives {
     font-size: 1rem;
-    margin-bottom: 3rem; 
+  }
+
+  .lives-image {
+    width: 15px;
+    height: 15px;
+  }
+
+  .high-score {
+    font-size: 0.7rem;
+  }
+}
+
+/*  iPhone 6/7/8*/
+@media screen and (max-width: 375px) {
+  body {
+    max-width: 375px;
+    background-color: var(--background-color-black);
+  }
+
+  .welcome-container {
+    grid-template-columns: 375px;
+    height: 626px;
+  }
+
+  .text-game-name {
+    margin-top: 5rem;
+    font-size: 2rem;
+  }
+
+  .game-overview-container {
+    margin: 10%;
+  }
+
+  .text-game-overview {
+    font-size: 1rem;
+  }
+
+  #canvas {
+    width: 375px;
+    height: 280px;
+  }
+
+  .score-title {
+    font-size: 0.6rem;
+  }
+
+  .score-value {
+    font-size: 0.6rem;
+  }
+
+  .lives {
+    font-size: 1rem;
+  }
+
+  .lives-image {
+    width: 15px;
+    height: 15px;
+  }
+
+  .high-score {
+    font-size: 0.6rem;
+  }
+}
+
+/* iPhone 5/SE */
+@media screen and (max-width: 320px) {
+  body {
+    max-width: 318px;
+    background-color: var(--background-color-black);
+  }
+
+  .welcome-container {
+    grid-template-columns: 318px;
+    height: 528px;
+  }
+
+  .text-game-name {
+    margin-top: 5rem;
+    font-size: 1.8rem;
+  }
+
+  .game-overview-container {
+    margin: 5%;
+  }
+
+  .text-game-overview {
+    font-size: 0.8rem;
+  }
+
+  #canvas {
+    width: 320px;
+    height: 240px;
+  }
+
+  .bottom-banner {
+    grid-template-rows: 2;
+    grid-template-columns: 1fr 1fr;
+    font-size: 1.2rem;
+    padding: 10px;
+  }
+
+  .score-title {
+    font-size: 0.6rem;
+  }
+
+  .score-value {
+    font-size: 0.6rem;
+  }
+
+  .lives {
+    font-size: 1rem;
+  }
+
+  .lives-image {
+    width: 15px;
+    height: 15px;
+  }
+
+  .high-score {
+    font-size: 0.6rem;
+  }
 }
