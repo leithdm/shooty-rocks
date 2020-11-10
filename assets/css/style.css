@@ -137,3 +137,6 @@ body {
     padding: 0; 
 }
 
+.lives {
+    color: var(--red-color);
+}

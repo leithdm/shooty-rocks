@@ -25,7 +25,7 @@ const ASTEROID_MAX_VERTICE_ANGLE = 10 //for setting the max vertice angle of an 
 const ASTEROID_MIN_VERTICE_ANGLE =  9 //for setting the min vertice angle of an asteroid
 const SMALL_ASTEROID_SPEED = 2; //for setting the speed of a small asteroid
 const SCORE_HTML = document.querySelector(".score");
-let NUMBER_OF_ASTEROIDS = 8; //for setting the number of asteroids that appear on screen]
+let NUMBER_OF_ASTEROIDS = 3; //for setting the number of asteroids that appear on screen
 let lives = 3; //for setting the number of ship-lives
 const livesHTML = document.querySelector(".lives");
 
@@ -267,7 +267,7 @@ function checkIfGameOver() {
     document.body.removeEventListener("keyup", handleKeyUp);
     ship.visible = false;
     context.font = "2rem 'Press Start 2P'"
-    context.fillStyle = 'red';
+    context.fillStyle = "rgb(178, 34, 52)";
     context.fillText("GAME OVER", canvasWidth / 2 - 150, canvasHeight / 2);
     setInterval(()=> {
       window.location.href='index.html'
