@@ -27,6 +27,7 @@ const SMALL_ASTEROID_SPEED = 2; //for setting the speed of a small asteroid
 const SCORE_HTML = document.querySelector(".score");
 let NUMBER_OF_ASTEROIDS = 8; //for setting the number of asteroids that appear on screen]
 let lives = 3; //for setting the number of ship-lives
+const livesHTML = document.querySelector(".lives");
 
 /**************************************************/
 /*game 'helper' methods                           */
@@ -138,7 +139,14 @@ function checkCollisionShipAsteroid() {
         ship.angle = 90; 
         ship.velX = 0;
         ship.velY = 0;
+
+        //reduce number of lives
         lives--; 
+
+        //set the lives in html
+        if(lives >= 0) {
+        livesHTML.textContent = lives; 
+        }
       }
     }
   }

@@ -103,22 +103,6 @@ body {
     padding: 10px;  
 }
 
-.score-header {
-    background-color: var(--background-color-black);
-    color: var(--white-color);
-    font-family: "Press Start 2P", "arial"; 
-    margin: 0; 
-    padding: 10px; 
-    font-size: 1.2rem; 
-}
-
-.score {
-    color: var(--yellow-color);
-    margin: 0; 
-    padding: 0; 
-    font-size: 1.2rem; 
-}
-
 .high-score {
     font-size: 5rem; 
 }
@@ -126,3 +110,30 @@ body {
 .arrow {
     font-size: 2rem; 
 }
+
+.bottom-banner {
+    background-color: var(--background-color-black);
+    color: var(--white-color);
+    font-family: "Press Start 2P", "arial"; 
+    font-size: 1.2rem; 
+    display: grid;
+    grid-template-rows: 1;
+    grid-template-columns: 1fr 1fr;
+    height: 20px;
+    padding: 10px;  
+}
+
+.score-header {
+    margin: 0; 
+    padding: 0; 
+}
+
+.score {
+    color: var(--yellow-color);
+}
+
+.lives-header {
+    margin: 0; 
+    padding: 0; 
+}
+
