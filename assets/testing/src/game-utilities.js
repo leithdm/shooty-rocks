@@ -65,6 +65,7 @@ function handleKeyDown(e){
 function handleKeyUp(e){
   keysArray[e.keyCode] = false;
   if (e.keyCode === 32){
+      fireSound.play(); 
       bulletsArray.push(new Bullet(ship.angle));
   }
 }
@@ -72,6 +73,9 @@ function handleKeyUp(e){
 //for checking if ship is moving forward, left, or right
 function checkKeyboardInput() {
   ship.movingForward = keysArray[KEY_UP_ARROW];
+  if(keysArray[KEY_UP_ARROW]) {
+    thrustSound.play(); 
+  }
 
   if (keysArray[KEY_LEFT_ARROW]) {
     ship.rotate(LEFT);
@@ -143,6 +147,9 @@ function checkCollisionShipAsteroid() {
         ship.velX = 0;
         ship.velY = 0;
 
+        //play sound
+        bangLargeSound.play();
+
         //reduce number of lives
         lives--; 
 
@@ -164,6 +171,10 @@ function checkCollisionBulletAsteroid() {
           asteroidsArray[i].x, asteroidsArray[i].y, asteroidsArray[i].collisionRadius)) {
           //if asteroid is a large asteroid, break it up into x2 medium asteroids, offset to the right and left
           if(asteroidsArray[i].size === LARGE_ASTEROID_SIZE) {
+
+            //play sound
+            bangLargeSound.play();
+
             asteroidsArray.push(new Asteroid(asteroidsArray[i].x - ASTEROID_OFFSET,
               asteroidsArray[i].y - ASTEROID_OFFSET,
               MEDIUM_ASTEROID_RADIUS, 
@@ -182,6 +193,10 @@ function checkCollisionBulletAsteroid() {
               
               //else if asteroid is a medium asteroid, break it up into x2 small asteroids, offset to the right and left
             } else if (asteroidsArray[i].size === MEDIUM_ASTEROID_SIZE) {
+
+              //play sound
+              bangMediumSound.play();
+              
               asteroidsArray.push(new Asteroid(asteroidsArray[i].x - ASTEROID_OFFSET,
                 asteroidsArray[i].y - ASTEROID_OFFSET,
                 SMALL_ASTEROID_RADIUS, 
@@ -201,8 +216,11 @@ function checkCollisionBulletAsteroid() {
                   score += SCORE_MEDIUM_ASTEROID; 
 
                 } else {
-                  //update the score
-                  score += SCORE_SMALL_ASTEROID; 
+                 //play sound
+                 bangSmallSound.play();
+                
+                 //update the score
+                 score += SCORE_SMALL_ASTEROID; 
                 }
                 
           //set html score value
