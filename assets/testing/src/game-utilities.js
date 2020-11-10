@@ -26,8 +26,11 @@ const ASTEROID_MIN_VERTICE_ANGLE =  9 //for setting the min vertice angle of an 
 const SMALL_ASTEROID_SPEED = 2; //for setting the speed of a small asteroid
 const SCORE_HTML = document.querySelector(".score");
 let NUMBER_OF_ASTEROIDS = 3; //for setting the number of asteroids that appear on screen
-let lives = 3; //for setting the number of ship-lives
 const livesHTML = document.querySelector(".lives");
+const highScoreHTML = document.querySelector(".high-score");
+const localStorageKey = "highScore"; //for setting local storage key
+let lives = 3; //for setting the number of ship-lives
+let highScore; //for setting the high score
 
 /**************************************************/
 /*game 'helper' methods                           */
@@ -273,4 +276,20 @@ function checkIfGameOver() {
       window.location.href='index.html'
     }, 4000)
   }  
+}
+
+//for getting local store of high score
+function getLocalStorage() {
+  if(localStorage.getItem(localStorageKey) == null) {
+    highScore = 0; 
+  } else {
+    highScore = localStorage.getItem(localStorageKey);
+  }
+}
+
+//for updating the high score
+function updateHighScore() {
+  highScore = Math.max(score, highScore); 
+  localStorage.setItem(localStorageKey, highScore); 
+  highScoreHTML.textContent = numberWithCommas(highScore.toString()); 
 }
