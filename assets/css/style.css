@@ -19,21 +19,12 @@ body {
 }
 
 .welcome-container {
-    z-index: 1; 
     display: grid; 
     grid-template-columns: 800px;
     height: 600px; 
     grid-template-rows: 0.5fr 1fr 1.5fr;
     justify-items: center;
     background: url("/assets/artwork/background-2.jpg") no-repeat center; 
-}
-
-.overlay {
-    position: relative;
-    z-index: 100; 
-    width: 800px; 
-    height: 600px; 
-    background-color: rgba(0, 0, 0, 0.9);
 }
 
 .text-game-name {

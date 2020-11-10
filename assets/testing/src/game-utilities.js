@@ -25,10 +25,10 @@ const ASTEROID_MAX_VERTICE_ANGLE = 10 //for setting the max vertice angle of an 
 const ASTEROID_MIN_VERTICE_ANGLE =  9 //for setting the min vertice angle of an asteroid
 const SMALL_ASTEROID_SPEED = 2; //for setting the speed of a small asteroid
 const SCORE_HTML = document.querySelector(".score");
-let NUMBER_OF_ASTEROIDS = 3; //for setting the number of asteroids that appear on screen
 const livesHTML = document.querySelector(".lives");
 const highScoreHTML = document.querySelector(".high-score");
 const localStorageKey = "highScore"; //for setting local storage key
+let NUMBER_OF_ASTEROIDS = 3; //for setting the number of asteroids that appear on screen
 let lives = 3; //for setting the number of ship-lives
 let highScore; //for setting the high score
 
@@ -141,12 +141,6 @@ function checkCollisionShipAsteroid() {
     for (let i=0; i<asteroidsArray.length; i++) {
       if (collisionDetection(ship.x, ship.y, ship.collisionRadius,
         asteroidsArray[i].x, asteroidsArray[i].y, asteroidsArray[i].collisionRadius)) {
-        ship.x = canvasWidth/2;
-        ship.y = canvasHeight/2;
-        ship.angle = 90; 
-        ship.velX = 0;
-        ship.velY = 0;
-
         //play sound
         bangLargeSound.play();
 
@@ -157,6 +151,12 @@ function checkCollisionShipAsteroid() {
         if(lives >= 0) {
         livesHTML.textContent = lives; 
         }
+
+        ship.x = canvasWidth/2;
+        ship.y = canvasHeight/2;
+        ship.angle = 90; 
+        ship.velX = 0;
+        ship.velY = 0;
       }
     }
   }
