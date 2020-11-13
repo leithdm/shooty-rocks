@@ -64,7 +64,7 @@ function handleKeyDown(e){
 
 function handleKeyUp(e){
   keysArray[e.keyCode] = false;
-  if (e.keyCode === 32){
+  if (e.keyCode === KEY_SHOOT){   
       fireSound.play(); 
       bulletsArray.push(new Bullet(ship.angle));
   }

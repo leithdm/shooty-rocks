@@ -21,12 +21,17 @@ body {
 }
 
 .welcome-container {
+  position: relative; 
   display: grid;
   grid-template-columns: 800px;
   height: 600px;
   grid-template-rows: 0.5fr 1fr 1.5fr;
   justify-items: center;
-  background: url("/assets/artwork/background-2.jpg") no-repeat center;
+  background-image: linear-gradient(
+    rgba(0, 0, 0, 0.5), 
+    rgba(0, 0, 0, 0.6)
+  ), url("/assets/artwork/background-2.jpg");
+  background-position: center center;
 }
 
 .text-game-name {
@@ -160,6 +165,7 @@ body {
   font-size: 1rem;
   margin-bottom: 3rem;
 }
+
 
 /*------------------------------------*\
   #MEDIA QUERIES
