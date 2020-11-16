@@ -39,24 +39,24 @@ canvas {
 }
 
 .top-banner {
+  font-size: 0.8rem; 
+  display: grid;
   background-color: var(--background-color-black);
   color: var(--white-color);
-  display: grid;
-  grid-template-rows: 1;
-  grid-template-columns: 1fr 0.5fr 1fr;
-  padding: 1rem;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 4fr 1fr;
 }
 
 .controller {
-  width: 100%;
   display: grid; 
+  width: 100%;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   grid-gap: 10px; 
 }
 
 button {
-  height: 100px; 
+  height: 80px; 
   width: 100%; 
   touch-action: manipulation; 
 }
@@ -96,9 +96,9 @@ button {
   font-size: 4rem;
 }
 
-.font-atari {
+/* .font-atari {
   color: var(--white-color);
-}
+} */
 
 .text-color-game-name {
   color: var(--covid-color-green);
@@ -162,9 +162,9 @@ button {
   padding: 10px;
 }
 
-.high-score {
+/* .high-score {
   font-size: 5rem;
-}
+} */
 
 .arrow {
   font-size: 2rem;
@@ -190,13 +190,8 @@ button {
 } */
 
 .lives-image {
-  width: 25px;
+  width: 20px;
   height: 20px;
-}
-
-.high-score {
-  font-size: 1rem;
-  color: var(--covid-color-green);
 }
 
 .high-score-menu {
