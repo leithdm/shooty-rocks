@@ -32,6 +32,38 @@ let NUMBER_OF_ASTEROIDS = 3; //for setting the number of asteroids that appear o
 let lives = 3; //for setting the number of ship-lives
 let highScore; //for setting the high score
 
+const leftButton = document.querySelector(".left-button");
+leftButton.addEventListener("touchstart", ()=> {
+  keysArray[KEY_LEFT_ARROW] = true;
+})
+leftButton.addEventListener("touchend", ()=> {
+  keysArray[KEY_LEFT_ARROW] = false;
+})
+
+const rightButton = document.querySelector(".right-button");
+rightButton.addEventListener("touchstart", ()=> {
+  keysArray[KEY_RIGHT_ARROW] = true;
+})
+rightButton.addEventListener("touchend", ()=> {
+  keysArray[KEY_RIGHT_ARROW] = false;
+})
+
+const fireButton = document.querySelector(".fire-button");
+fireButton.addEventListener("touchstart", ()=> {
+  bulletsArray.push(new Bullet(ship.angle));
+})
+
+const thrustButton = document.querySelector(".thrust-button");
+thrustButton.addEventListener("touchstart", ()=> {
+  keysArray[KEY_UP_ARROW] = true;
+})
+thrustButton.addEventListener("touchend", ()=> {
+  keysArray[KEY_UP_ARROW] = false;
+})
+
+
+
+
 /**************************************************/
 /*game 'helper' methods                           */
 /**************************************************/

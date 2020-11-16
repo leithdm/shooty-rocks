@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <title>Asteroids</title>
     <script defer src="assets/testing/src/sound.js"></script>
     <script defer src="assets/testing/src/bullet.js"></script>
@@ -15,13 +15,21 @@
 </head>
 
 <body>
-    <div class="bottom-banner">
-        <p class="score-title">Score:<span class="score-value">0</span></p>
-        <p class="lives-header"><img class="lives-image" src="assets/artwork/ship_cropped.png">
-            <span class="lives">3</span></p>
-        <p class="score-title">High Score:<span class="high-score">0</span></p>
+    <div class="container">
+        <div class="top-banner">
+            <p class="score-title">Score:<span class="score-value">0</span></p>
+            <p class="lives-header"><img class="lives-image" src="assets/artwork/ship_cropped.png">
+                <span class="lives">3</span></p>
+            <p class="score-title">High Score:<span class="high-score">0</span></p>
+        </div>
+        <canvas id="canvas"> Sorry, your browser doesn't support the &lt;canvas&gt; element.</canvas>
+        <div class="controller">
+            <button class="thrust-button">Thrust</button>
+            <button class="left-button">Left</button>
+            <button class="right-button">Right</button>
+            <button class="fire-button">Fire</button>
+        </div>
     </div>
-    <canvas id="canvas" width="800" height="600"></canvas>
 </body>
 
 </html>

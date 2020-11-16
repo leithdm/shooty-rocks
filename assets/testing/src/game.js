@@ -49,7 +49,7 @@ function renderGame() {
   createNewLevel();
 
   //check if collision between ship and asteroid
-  checkCollisionShipAsteroid();
+  // checkCollisionShipAsteroid();
 
   //check if collision between a bullet and asteroid
   checkCollisionBulletAsteroid();
