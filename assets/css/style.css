@@ -21,6 +21,7 @@ body {
   margin: 0; 
   padding: 0;
   background-color: var(--background-color-black);
+  touch-action: manipulation; 
 }
 
 .container {
@@ -40,7 +41,6 @@ canvas {
 .top-banner {
   background-color: var(--background-color-black);
   color: var(--white-color);
-  font-family: "Press Start 2P", "arial";
   display: grid;
   grid-template-rows: 1;
   grid-template-columns: 1fr 0.5fr 1fr;
@@ -63,6 +63,16 @@ button {
 
 .fire-button {
   grid-column: 3 / 4; 
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
 }
 
 
