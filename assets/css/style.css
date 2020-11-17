@@ -130,11 +130,11 @@ button {
 
 .header-bg-image {
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.1)),
-    url("/assets/artwork/background.png");
+    url("/assets/artwork/background.PNG");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh;
+  height: 90vh;
   width: 100%;
 }
 
@@ -152,6 +152,7 @@ button {
 
 .game-story-text {
   font-size: 0.8rem;
+  line-height: 1.2rem; 
 }
 
 .play-button {
@@ -200,6 +201,7 @@ button {
 
   .game-story-text {
     font-size: 1rem;
+    line-height: 1.4rem; 
   }
 }
 
@@ -220,6 +222,7 @@ button {
 
   .game-story-text {
     font-size: 1.6rem;
+    line-height: 2.4rem; 
   }
 }
 
@@ -229,11 +232,12 @@ button {
   }
 
   .game-title-text {
-    font-size: 4.3rem; 
+    font-size: 4.4rem; 
   }
 
   .game-story-text {
-    font-size: 1.7rem;
+    font-size: 1.8rem;
+    line-height: 2.6rem; 
   }
 }
 
