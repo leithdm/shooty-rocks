@@ -24,21 +24,21 @@ const ASTEROID_MAX_VERTICE_ANGLE = 10 //for setting the max vertice angle of an 
 const ASTEROID_MIN_VERTICE_ANGLE =  9 //for setting the min vertice angle of an asteroid
 const SMALL_ASTEROID_SPEED = 2; //for setting the speed of a small asteroid
 const LOCAL_STORAGE_KEY = "highScore"; //for setting local storage key
-let NUMBER_OF_ASTEROIDS = 3; //for setting the number of asteroids that appear on screen
 const SCORE_HTML = document.querySelector(".score-value"); //for setting the score in html
 const LIVES_HTML = document.querySelector(".lives"); //for setting the lives value in html
 const HIGH_SCORE_HTML = document.querySelector(".high-score"); //for setting the high-score value in html
 const leftButton = document.querySelector(".left-button"); //for getting the left button on gamepad controller
 const rightButton = document.querySelector(".right-button"); //for getting the right button on gamepad controller
 const fireButton = document.querySelector(".fire-button"); //for getting the fire button on gamepad controller
-const thrustButton = document.querySelector(".thrust-button"); //for getting the thrust button on gamepad controller
+const thrustButton = document.querySelector(".up-button"); //for getting the thrust button on gamepad controller
 
 
 /*------------------------------------*\
-  #GAME VARIABLES
+#GAME VARIABLES
 \*------------------------------------*/
 let lives = 3; //for setting the number of ship-lives
 let highScore = 0; //for setting the high score
+let NUMBER_OF_ASTEROIDS = 3; //for setting the number of asteroids that appear on screen
 
 
 /*------------------------------------*\
@@ -290,7 +290,7 @@ function createNewLevel() {
   }
 }
 
-//for checking if a game is over
+//for checking if its game over
 function checkIfGameOver() {
   if(lives <= 0){
     document.body.removeEventListener("keydown", handleKeyDown);

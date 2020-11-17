@@ -20,25 +20,29 @@
     <script defer src="assets/testing/src/game.js"></script>
 
     <!-- CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+    integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
-    <div class="container">
-        <div class="top-banner">
-            <p class="high-score-title">HIGH SCORE:<span class="high-score">0</span></p>
-            <p class="score-title">SCORE:<span class="score-value">0</span></p>
-            <p class="lives-header"><img class="lives-image" src="assets/artwork/ship_cropped.png">
-                <span class="lives">3</span></p>
+    <header>
+        <div class="container">
+            <div class="top-banner">
+                <p class="high-score-title">HIGH SCORE:<span class="high-score">0</span></p>
+                <p class="score-title">SCORE:<span class="score-value">0</span></p>
+                <p class="lives-header"><img class="lives-image" src="assets/artwork/ship_cropped.png">
+                    <span class="lives">3</span></p>
+            </div>
+            <canvas id="canvas"> Sorry, your browser doesn't support the &lt;canvas&gt; element.</canvas>
+            <div class="controller">
+                <button class="up-button noselect"><i class="fas fa-arrow-up"></i></button>
+                <button class="left-button noselect"><i class="fas fa-arrow-left"></i></button>
+                <button class="right-button noselect"><i class="fas fa-arrow-right"></i></button>
+                <button class="fire-button noselect">FIRE</button>
+            </div>
         </div>
-        <canvas id="canvas"> Sorry, your browser doesn't support the &lt;canvas&gt; element.</canvas>
-        <div class="controller">
-            <button class="thrust-button noselect">THRUST</button>
-            <button class="left-button noselect">LEFT</button>
-            <button class="right-button noselect">RIGHT</button>
-            <button class="fire-button noselect">FIRE</button>
-        </div>
-    </div>
+    </header>
 </body>
 
 </html>
