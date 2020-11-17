@@ -1,6 +1,6 @@
 # Asteroids
 
-![asteroids](readme-files/responsive.png)
+<!-- ![asteroids](readme-files/responsive.png) -->
 
 - [Asteroids](#asteroids)
   - [Overview](#overview)
@@ -37,7 +37,10 @@ You can view the deployed game [here](https://leithdm.github.io/milestone-projec
 
 ## UX
 
-This project is part of the [Code Institute](https://codeinstitute.net/) Full Stack Software Development course, specifically **Module 2: Interactive Front-End Development**. The objective for this milestone project is to "*xxx*"
+This project is part of the [Code Institute](https://codeinstitute.net/) Full Stack Software Development course, specifically **Module 2: Interactive Front-End Development**. The objective for this milestone project is to "*build an interactive front-end site. The site should respond to the users' actions, allowing users to actively engage with data, alter the way the site displays the information to achieve their preferred goals.*"
+
+Main technologies required: HTML, CSS, JavaScript.
+Optional: other JavaScript libraries, external APIs. 
 
 Asteroids...
 
@@ -51,13 +54,19 @@ Asteroids...
 
 "**__As a *user*, I__** ______________________________________________"
 
-- 
+- need to be able to view the site from any device (mobile, tablet, desktop).
+- should be presented with a site that meets accessibility guidelines including contrast between background and foreground colors, and non-text elements with alt text equivalents.
+
 
 <br/>
 
 "**__As a *developer*, I__** ______________________________________________"
 
-- 
+- must maximise future maintainability through documentation, code structure and organisation.
+- must document testing fully to include evaluation of bugs found and their fixes and explanation of any bugs that are left unfixed.
+- must test and deploy to a cloud platform. 
+- HTML/CSS code pass through the official W3C validators with no issues.
+- JavaScript code must pass through a linter with no major issues.
 
 <br/>
 

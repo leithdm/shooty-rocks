@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P");
 
+/*------------------------------------*\
+  #COLORS
+\*------------------------------------*/
+
 :root {
   --covid-color-green: rgb(0, 192, 163);
   --background-color-black: black;
@@ -9,7 +13,13 @@
   --blue-color: rgb(60, 59, 110);
 }
 
-*, ::after, ::before {
+/*------------------------------------*\
+  #GLOBAL.HTML
+\*------------------------------------*/
+
+*,
+::after,
+::before {
   box-sizing: border-box;
 }
 
@@ -18,217 +28,218 @@
 }
 
 body {
-  margin: 0; 
+  margin: 0;
   padding: 0;
   background-color: var(--background-color-black);
-  touch-action: manipulation; 
+  touch-action: manipulation;
 }
 
 .container {
   width: 100%;
-  margin-right: auto; 
-  margin-left: auto; 
-  padding-left: 15px; 
-  padding-right: 15px; 
-}
-
-canvas {
-  border: 1px solid white; 
-  width: 100%; 
-  height: auto; 
-}
-
-.top-banner {
-  font-size: 0.8rem; 
-  display: grid;
-  background-color: var(--background-color-black);
-  color: var(--white-color);
-  grid-template-rows: 1fr 1fr;
-  grid-template-columns: 4fr 1fr;
-}
-
-.controller {
-  display: grid; 
-  width: 100%;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  grid-gap: 10px; 
-}
-
-button {
-  height: 80px; 
-  width: 100%; 
-  touch-action: manipulation; 
-}
-
-.fire-button {
-  grid-column: 3 / 4; 
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Old versions of Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome, Edge, Opera and Firefox */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 }
 
-
-.welcome-container {
-  position: relative; 
-  display: grid;
-  grid-template-columns: 800px;
-  height: 600px;
-  grid-template-rows: 0.5fr 1fr 1.5fr;
-  justify-items: center;
-  background-image: linear-gradient(
-    rgba(0, 0, 0, 0.5), 
-    rgba(0, 0, 0, 0.6)
-  ), url("/assets/artwork/background-2.jpg");
-  background-position: center center;
-}
-
-.text-game-name {
-  margin-top: 100px;
+.text-white {
   color: var(--white-color);
-  font-size: 4rem;
-}
-
-/* .font-atari {
-  color: var(--white-color);
-} */
-
-.text-color-game-name {
-  color: var(--covid-color-green);
-}
-
-.game-overview-container {
-  color: var(--white-color);
-  margin: 0 15%;
-  line-height: 1.2rem;
-  font-size: 1rem;
-}
-
-.text-game-overview {
-  color: var(--white-color);
-  font-size: 1rem;
-}
-
-.text-your-mission {
-  margin-top: 2rem;
 }
 
 .text-underline {
   text-decoration: underline;
 }
 
-.play-button {
-  margin-top: 2rem;
-  color: var(--background-color-black);
-  background-color: var(--yellow-color);
-  height: 40px;
-  padding: 10px;
+.text-uppercase {
+  text-transform: uppercase;
 }
 
-.menu-options {
+.text-green {
+  color: var(--covid-color-green); 
+}
+
+/*------------------------------------*\
+  #GAME.HTML
+\*------------------------------------*/
+
+canvas {
+  border: 1px solid white;
+  width: 100%;
+  height: auto;
+}
+
+.top-banner {
+  font-size: 0.8rem;
   display: grid;
-  grid-template-rows: 1fr;
+  color: var(--white-color);
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 4fr 1fr;
+  grid-template-areas:
+    "highScore highScore"
+    "score     lives";
+}
+
+.high-score-title {
+  grid-area: highScore;
+}
+
+.score-title {
+  grid-area: score;
+}
+
+.lives-header {
+  grid-area: lives;
+}
+
+.controller {
+  display: grid;
+  width: 100%;
   grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 10px;
 }
 
-.menu-options-how {
-  background-color: var(--red-color);
-  color: var(--white-color);
-  font-size: 0.7rem;
-  height: 40px;
-  padding: 10px;
+button {
+  height: 60px;
+  width: 100%;
+  touch-action: manipulation;
 }
 
-.menu-options-sound {
-  color: var(--background-color-black);
-  background-color: var(--white-color);
-  font-size: 0.7rem;
-  height: 40px;
-  padding: 10px;
+.fire-button {
+  grid-column: 3 / 4;
+  background-color: var(--yellow-color);
 }
-
-.menu-options-score {
-  background-color: var(--blue-color);
-  color: var(--white-color);
-  font-size: 0.7rem;
-  height: 40px;
-  padding: 10px;
-}
-
-/* .high-score {
-  font-size: 5rem;
-} */
-
-.arrow {
-  font-size: 2rem;
-}
-
-/* .score-title {
-  margin: 0;
-  padding: 0;
-} */
-
-/* .score-value {
-  color: var(--yellow-color);
-} */
-
-/* .lives-header {
-  margin: 0;
-  padding: 0;
-} */
-
-/* .lives {
-  font-size: 1.2rem;
-  color: var(--red-color);
-} */
 
 .lives-image {
   width: 20px;
   height: 20px;
 }
 
+/*------------------------------------*\
+  #INDEX.HTML
+\*------------------------------------*/
+
+.header-bg-image {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.1)),
+    url("/assets/artwork/background.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+}
+
+.header-text {
+  text-align: center;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+
+.game-title-text {
+  align-self: center;
+  font-size: 1.8rem;
+}
+
+.game-story-text {
+  font-size: 0.8rem;
+}
+
+.play-button {
+  color: var(--white-color);
+  background-color: var(--background-color-black);
+  width: 25%;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid white;
+}
+
+.menu-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.arrow {
+  font-size: 2rem;
+}
+
+/*------------------------------------*\
+  #HOW TO PLAY.HTML
+\*------------------------------------*/
+
+/*------------------------------------*\
+  #SCORE.HTML
+\*------------------------------------*/
+
 .high-score-menu {
   font-size: 2rem;
 }
 
-.text-high-score {
-  color: var(--white-color);
-  font-size: 1rem;
-  margin-bottom: 3rem;
-}
-
-
 /*------------------------------------*\
-  #MEDIA QUERIES
+  #SOUND.HTML
 \*------------------------------------*/
 
-@media (min-width: 576px) { 
-  .container {
-      max-width: 540px;       
+/*------------------------------------*\
+  #CONTAINER MEDIA QUERIES
+\*------------------------------------*/
+
+
+@media (min-width: 414px) {
+  .game-title-text {
+    font-size: 2rem; 
+  }
+
+  .game-story-text {
+    font-size: 1rem;
   }
 }
 
-@media (min-width: 768px) { 
+@media (min-width: 576px) {
   .container {
-      max-width: 720px;       
+    max-width: 540px;
   }
 }
 
-@media (min-width: 992px) { 
+@media (min-width: 768px) {
   .container {
-      max-width: 960px;       
+    max-width: 720px;
+  }
+
+  .game-title-text {
+    font-size: 4rem; 
+  }
+
+  .game-story-text {
+    font-size: 1.6rem;
   }
 }
 
-@media (min-width: 1200px) { 
+@media (min-width: 992px) {
   .container {
-      max-width: 1140px;       
+    max-width: 960px;
+  }
+
+  .game-title-text {
+    font-size: 4.3rem; 
+  }
+
+  .game-story-text {
+    font-size: 1.7rem;
   }
 }
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+

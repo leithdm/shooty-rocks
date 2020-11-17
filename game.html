@@ -2,32 +2,41 @@
 <html lang="en">
 
 <head>
+    <!-- META TAGS -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asteroids</title>
+    <meta name="description" content="An Asteroids clone with a modern theme" />
+
+    <!-- TITLE | FAVICON -->
+    <title>Covidroids | Game</title>
+    <link rel="icon" type="image/png" href="assets/images/favicon.jpg" />
+
+    <!-- JAVASCRIPT WITH DEFERRED LOADING -->
     <script defer src="assets/testing/src/sound.js"></script>
     <script defer src="assets/testing/src/bullet.js"></script>
     <script defer src="assets/testing/src/asteroid.js"></script>
     <script defer src="assets/testing/src/ship.js"></script>
     <script defer src="assets/testing/src/game-utilities.js"></script>
     <script defer src="assets/testing/src/game.js"></script>
+
+    <!-- CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
     <div class="container">
         <div class="top-banner">
-            <p class="score-title">Score:<span class="score-value">0</span></p>
+            <p class="high-score-title">HIGH SCORE:<span class="high-score">0</span></p>
+            <p class="score-title">SCORE:<span class="score-value">0</span></p>
             <p class="lives-header"><img class="lives-image" src="assets/artwork/ship_cropped.png">
                 <span class="lives">3</span></p>
-            <p class="score-title">High Score:<span class="high-score">0</span></p>
         </div>
         <canvas id="canvas"> Sorry, your browser doesn't support the &lt;canvas&gt; element.</canvas>
         <div class="controller">
-            <button class="thrust-button noselect">Thrust</button>
-            <button class="left-button noselect">Left</button>
-            <button class="right-button noselect">Right</button>
-            <button class="fire-button noselect">Fire</button>
+            <button class="thrust-button noselect">THRUST</button>
+            <button class="left-button noselect">LEFT</button>
+            <button class="right-button noselect">RIGHT</button>
+            <button class="fire-button noselect">FIRE</button>
         </div>
     </div>
 </body>

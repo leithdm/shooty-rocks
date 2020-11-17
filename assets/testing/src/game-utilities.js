@@ -1,7 +1,6 @@
-/**************************************************/
-/*game constants                                  */
-/**************************************************/
-
+/*------------------------------------*\
+  #GAME CONSTANTS
+\*------------------------------------*/
 const canvasWidth = 800; //canvas.width
 const canvasHeight = 600; //canvas.height
 const RIGHT = 1; //for ship rotation to the right in ship.rotation(direction)
@@ -18,56 +17,33 @@ const MEDIUM_ASTEROID_COLLISION_RADIUS = 22; //for setting the size of collision
 const SMALL_ASTEROID_RADIUS = 15 //for setting the radius of a small sized asteroid
 const SMALL_ASTEROID_COLLISION_RADIUS = 12; //for setting the size of collision radius of small asteroid
 const ASTEROID_OFFSET = 5; //for off-setting asteroid from x and y coordinates when split into 2
-const SCORE_LARGE_ASTEROID = 100 //for setting score of hitting large asteroid
-const SCORE_MEDIUM_ASTEROID = 200 //for setting score of hitting medium asteroid
-const SCORE_SMALL_ASTEROID = 500 //for setting score of hitting small asteroid
+const SCORE_LARGE_ASTEROID = 20 //for setting score of hitting large asteroid
+const SCORE_MEDIUM_ASTEROID = 50 //for setting score of hitting medium asteroid
+const SCORE_SMALL_ASTEROID = 100 //for setting score of hitting small asteroid
 const ASTEROID_MAX_VERTICE_ANGLE = 10 //for setting the max vertice angle of an asteroid
 const ASTEROID_MIN_VERTICE_ANGLE =  9 //for setting the min vertice angle of an asteroid
 const SMALL_ASTEROID_SPEED = 2; //for setting the speed of a small asteroid
-const SCORE_HTML = document.querySelector(".score-value");
-const LIVES_HTML = document.querySelector(".lives");
-const HIGH_SCORE_HTML = document.querySelector(".high-score");
 const LOCAL_STORAGE_KEY = "highScore"; //for setting local storage key
 let NUMBER_OF_ASTEROIDS = 3; //for setting the number of asteroids that appear on screen
+const SCORE_HTML = document.querySelector(".score-value"); //for setting the score in html
+const LIVES_HTML = document.querySelector(".lives"); //for setting the lives value in html
+const HIGH_SCORE_HTML = document.querySelector(".high-score"); //for setting the high-score value in html
+const leftButton = document.querySelector(".left-button"); //for getting the left button on gamepad controller
+const rightButton = document.querySelector(".right-button"); //for getting the right button on gamepad controller
+const fireButton = document.querySelector(".fire-button"); //for getting the fire button on gamepad controller
+const thrustButton = document.querySelector(".thrust-button"); //for getting the thrust button on gamepad controller
+
+
+/*------------------------------------*\
+  #GAME VARIABLES
+\*------------------------------------*/
 let lives = 3; //for setting the number of ship-lives
-let highScore; //for setting the high score
-
-const leftButton = document.querySelector(".left-button");
-leftButton.addEventListener("touchstart", ()=> {
-  keysArray[KEY_LEFT_ARROW] = true;
-})
-leftButton.addEventListener("touchend", ()=> {
-  keysArray[KEY_LEFT_ARROW] = false;
-})
-
-const rightButton = document.querySelector(".right-button");
-rightButton.addEventListener("touchstart", ()=> {
-  keysArray[KEY_RIGHT_ARROW] = true;
-})
-rightButton.addEventListener("touchend", ()=> {
-  keysArray[KEY_RIGHT_ARROW] = false;
-})
-
-const fireButton = document.querySelector(".fire-button");
-fireButton.addEventListener("touchstart", ()=> {
-  bulletsArray.push(new Bullet(ship.angle));
-})
-
-const thrustButton = document.querySelector(".thrust-button");
-thrustButton.addEventListener("touchstart", ()=> {
-  keysArray[KEY_UP_ARROW] = true;
-})
-thrustButton.addEventListener("touchend", ()=> {
-  keysArray[KEY_UP_ARROW] = false;
-})
+let highScore = 0; //for setting the high score
 
 
-
-
-/**************************************************/
-/*game 'helper' methods                           */
-/**************************************************/
-
+/*------------------------------------*\
+  #GAME HELPER METHODS
+\*------------------------------------*/
 //for setting up the game canvas
 function setupCanvas() {
   canvas = document.getElementById("canvas");
@@ -293,6 +269,7 @@ function renderStars() {
 }
 
 //for creating commas in score output
+//https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
 function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
@@ -342,4 +319,29 @@ function updateHighScore() {
   highScore = Math.max(score, highScore); 
   localStorage.setItem(LOCAL_STORAGE_KEY, highScore); 
   HIGH_SCORE_HTML.textContent = numberWithCommas(highScore.toString()); 
+}
+
+//for creating the touchscreen gamepad controller event listeners, and performing relevant actions
+function setupGamePadController() {
+    leftButton.addEventListener("touchstart", ()=> {
+    keysArray[KEY_LEFT_ARROW] = true;
+  })
+    leftButton.addEventListener("touchend", ()=> {
+    keysArray[KEY_LEFT_ARROW] = false;
+  })
+    rightButton.addEventListener("touchstart", ()=> {
+    keysArray[KEY_RIGHT_ARROW] = true;
+  })  
+    rightButton.addEventListener("touchend", ()=> {
+    keysArray[KEY_RIGHT_ARROW] = false;
+  })
+    fireButton.addEventListener("touchstart", ()=> {
+    bulletsArray.push(new Bullet(ship.angle));
+  })
+    thrustButton.addEventListener("touchstart", ()=> {
+    keysArray[KEY_UP_ARROW] = true;
+  })
+    thrustButton.addEventListener("touchend", ()=> {
+    keysArray[KEY_UP_ARROW] = false;
+  })
 }

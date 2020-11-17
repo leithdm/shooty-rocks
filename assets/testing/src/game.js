@@ -27,6 +27,9 @@ window.onload = () => {
 
   //render everything to the canvas
   renderGame();
+
+  //for setting up the touch screen gamepad controller
+  setupGamePadController(); 
 };
 
 function renderGame() {
