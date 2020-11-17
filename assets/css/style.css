@@ -130,18 +130,6 @@ button:active {
 	top: .2em;
 }
 
-.left-button {
-
-}
-
-.right-button {
-
-}
-
-.up-button {
-  
-}
-
 .fire-button {
   grid-column: 3 / 4;
   background-color: var(--yellow-color);
@@ -158,7 +146,7 @@ button:active {
 
 .header-bg-image {
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.1)),
-    url("/assets/artwork/background.png");
+    url("/assets/artwork/menu-image.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
