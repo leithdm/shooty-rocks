@@ -108,12 +108,12 @@ canvas {
   width: 100%;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  grid-gap: 5px;
+  grid-gap: 10px;
 }
 
 button {
   height: 50px;
-  width: 100%;
+  width: 95%;
   touch-action: manipulation;
   font-size: 0.8rem; 
   cursor: pointer; 
@@ -121,6 +121,7 @@ button {
   background-color: var(--white-color); 
   color: purple; 
   outline: none; 
+  /* border: 1px solid black;  */
   -webkit-border-radius:  10px;
      -moz-border-radius:  10px;
        -o-border-radius:  10px;
@@ -134,8 +135,31 @@ button:active {
 }
 
 .fire-button {
+  font-size: 1.1rem; 
+  color: var(--red-color);
   grid-column: 3 / 4;
   background-color: var(--yellow-color);
+}
+
+.up-button {
+  font-size: 1.3rem; 
+  border: 1px solid var(--white-color); 
+  background-color: var(--background-color-black); 
+  color: var(--white-color); 
+}
+
+.left-button {
+  font-size: 1.3rem; 
+  border: 1px solid var(--white-color); 
+  background-color: var(--background-color-black); 
+  color: var(--red-color);
+}
+
+.right-button {
+  font-size: 1.3rem; 
+  border: 1px solid var(--white-color); 
+  background-color: var(--background-color-black); 
+  color: var(--red-color);
 }
 
 .lives-image {
