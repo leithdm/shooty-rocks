@@ -27,10 +27,10 @@ const LOCAL_STORAGE_KEY = "highScore"; //for setting local storage key
 const SCORE_HTML = document.querySelector(".score-value"); //for setting the score in html
 const LIVES_HTML = document.querySelector(".lives"); //for setting the lives value in html
 const HIGH_SCORE_HTML = document.querySelector(".high-score"); //for setting the high-score value in html
-const leftButton = document.querySelector(".left-button"); //for getting the left button on gamepad controller
-const rightButton = document.querySelector(".right-button"); //for getting the right button on gamepad controller
-const fireButton = document.querySelector(".fire-button"); //for getting the fire button on gamepad controller
-const thrustButton = document.querySelector(".up-button"); //for getting the thrust button on gamepad controller
+const LEFT_BUTTON = document.querySelector(".left-button"); //for getting the left button on gamepad controller
+const RIGHT_BUTTON = document.querySelector(".right-button"); //for getting the right button on gamepad controller
+const FIRE_BUTTON = document.querySelector(".fire-button"); //for getting the fire button on gamepad controller
+const THRUST_BUTTON = document.querySelector(".up-button"); //for getting the thrust button on gamepad controller
 
 
 /*------------------------------------*\
@@ -323,25 +323,25 @@ function updateHighScore() {
 
 //for creating the touchscreen gamepad controller event listeners, and performing relevant actions
 function setupGamePadController() {
-    leftButton.addEventListener("touchstart", ()=> {
+    LEFT_BUTTON.addEventListener("touchstart", ()=> {
     keysArray[KEY_LEFT_ARROW] = true;
   })
-    leftButton.addEventListener("touchend", ()=> {
+    LEFT_BUTTON.addEventListener("touchend", ()=> {
     keysArray[KEY_LEFT_ARROW] = false;
   })
-    rightButton.addEventListener("touchstart", ()=> {
+    RIGHT_BUTTON.addEventListener("touchstart", ()=> {
     keysArray[KEY_RIGHT_ARROW] = true;
   })  
-    rightButton.addEventListener("touchend", ()=> {
+    RIGHT_BUTTON.addEventListener("touchend", ()=> {
     keysArray[KEY_RIGHT_ARROW] = false;
   })
-    fireButton.addEventListener("touchstart", ()=> {
+    FIRE_BUTTON.addEventListener("touchstart", ()=> {
     bulletsArray.push(new Bullet(ship.angle));
   })
-    thrustButton.addEventListener("touchstart", ()=> {
+    THRUST_BUTTON.addEventListener("touchstart", ()=> {
     keysArray[KEY_UP_ARROW] = true;
   })
-    thrustButton.addEventListener("touchend", ()=> {
+    THRUST_BUTTON.addEventListener("touchend", ()=> {
     keysArray[KEY_UP_ARROW] = false;
   })
 }

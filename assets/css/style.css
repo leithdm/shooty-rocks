@@ -103,6 +103,7 @@ canvas {
 }
 
 .controller {
+  margin-top: 8px; 
   display: grid;
   width: 100%;
   grid-template-columns: 1fr 1fr 1fr;
@@ -112,11 +113,13 @@ canvas {
 
 button {
   height: 50px;
-  width: 95%;
+  width: 100%;
   touch-action: manipulation;
   font-size: 0.8rem; 
   cursor: pointer; 
   box-shadow: 0 .2em gray; 
+  background-color: var(--white-color); 
+  color: purple; 
   outline: none; 
   -webkit-border-radius:  10px;
      -moz-border-radius:  10px;
@@ -146,7 +149,7 @@ button:active {
 
 .header-bg-image {
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.1)),
-    url("/assets/artwork/menu-image.png");
+    url("../artwork/menu-image.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
