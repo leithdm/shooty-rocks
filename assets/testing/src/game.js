@@ -22,9 +22,6 @@ window.onload = () => {
   //retrieve highscore from local storage
   getLocalStorage();
 
-  //setup sound
-  loadSounds();
-
   //render everything to the canvas
   renderGame();
 

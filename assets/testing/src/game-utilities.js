@@ -34,6 +34,26 @@ const THRUST_BUTTON = document.querySelector(".up-button"); //for getting the th
 
 
 /*------------------------------------*\
+  #SOUND CONSTANTS USING HOWLER LIBRARY
+\*------------------------------------*/
+const fireSound = new Howl({
+  src: ["assets/audio/fire.webm", "assets/audio/fire.ogg", "assets/audio/fire.mp3"]
+});
+const thrustSound = new Howl({
+  src: ["assets/audio/thrust.webm", "assets/audio/thrust.ogg", "assets/audio/thrust.mp3"]
+});
+const bangSmallSound = new Howl({
+  src: ["assets/audio/bangSmall.webm", "assets/audio/bangSmall.ogg", "assets/audio/bangSmall.mp3"]
+});
+const bangMediumSound = new Howl({
+  src: ["assets/audio/bangMedium.webm", "assets/audio/bangMedium.ogg", "assets/audio/bangMedium.mp3"]
+});
+const bangLargeSound = new Howl({
+  src: ["assets/audio/bangLarge.webm", "assets/audio/bangLarge.ogg", "assets/audio/bangLarge.mp3"]
+}); 
+
+
+/*------------------------------------*\
 #GAME VARIABLES
 \*------------------------------------*/
 let lives = 3; //for setting the number of ship-lives
@@ -336,6 +356,7 @@ function setupGamePadController() {
     keysArray[KEY_RIGHT_ARROW] = false;
   })
     FIRE_BUTTON.addEventListener("touchstart", ()=> {
+    fireSound.play(); 
     bulletsArray.push(new Bullet(ship.angle));
   })
     THRUST_BUTTON.addEventListener("touchstart", ()=> {
