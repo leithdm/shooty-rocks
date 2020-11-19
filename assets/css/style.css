@@ -233,6 +233,12 @@ button:active {
   #SOUND.HTML
 \*------------------------------------*/
 
+.sound-options {
+  margin-left: auto; 
+  margin-right: auto; 
+  width: 40%; 
+}
+
 /*------------------------------------*\
   #CONTAINER MEDIA QUERIES
 \*------------------------------------*/

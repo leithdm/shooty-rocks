@@ -23,7 +23,8 @@ const SCORE_SMALL_ASTEROID = 100 //for setting score of hitting small asteroid
 const ASTEROID_MAX_VERTICE_ANGLE = 10 //for setting the max vertice angle of an asteroid
 const ASTEROID_MIN_VERTICE_ANGLE =  9 //for setting the min vertice angle of an asteroid
 const SMALL_ASTEROID_SPEED = 2; //for setting the speed of a small asteroid
-const LOCAL_STORAGE_KEY = "highScore"; //for setting local storage key
+const LOCAL_STORAGE_KEY = "highScore"; //for setting local storage key of highscore
+const LOCAL_STORAGE_SOUNDFX = "soundfx"; //for setting the local storage key of soundfx on/off
 const SCORE_HTML = document.querySelector(".score-value"); //for setting the score in html
 const LIVES_HTML = document.querySelector(".lives"); //for setting the lives value in html
 const HIGH_SCORE_HTML = document.querySelector(".high-score"); //for setting the high-score value in html
@@ -31,7 +32,8 @@ const LEFT_BUTTON = document.querySelector(".left-button"); //for getting the le
 const RIGHT_BUTTON = document.querySelector(".right-button"); //for getting the right button on gamepad controller
 const FIRE_BUTTON = document.querySelector(".fire-button"); //for getting the fire button on gamepad controller
 const THRUST_BUTTON = document.querySelector(".up-button"); //for getting the thrust button on gamepad controller
-
+const ON = 1; 
+const OFF = 0; 
 
 /*------------------------------------*\
   #SOUND CONSTANTS USING HOWLER LIBRARY
@@ -59,7 +61,6 @@ const bangLargeSound = new Howl({
 let lives = 3; //for setting the number of ship-lives
 let highScore = 0; //for setting the high score
 let NUMBER_OF_ASTEROIDS = 3; //for setting the number of asteroids that appear on screen
-
 
 /*------------------------------------*\
   #GAME HELPER METHODS
@@ -93,7 +94,9 @@ function handleKeyDown(e){
 function handleKeyUp(e){
   keysArray[e.keyCode] = false;
   if (e.keyCode === KEY_SHOOT){   
-      fireSound.play(); 
+      if(soundfxOn == ON) {
+       fireSound.play(); 
+      }
       bulletsArray.push(new Bullet(ship.angle));
   }
 }
@@ -102,7 +105,9 @@ function handleKeyUp(e){
 function checkKeyboardInput() {
   ship.movingForward = keysArray[KEY_UP_ARROW];
   if(keysArray[KEY_UP_ARROW]) {
+     if(soundfxOn == ON) {
     thrustSound.play(); 
+    }
   }
 
   if (keysArray[KEY_LEFT_ARROW]) {
@@ -170,7 +175,9 @@ function checkCollisionShipAsteroid() {
       if (collisionDetection(ship.x, ship.y, ship.collisionRadius,
         asteroidsArray[i].x, asteroidsArray[i].y, asteroidsArray[i].collisionRadius)) {
         //play sound
-        bangLargeSound.play();
+          if(soundfxOn == ON) {
+         bangLargeSound.play();
+        }
 
         //reduce number of lives
         lives--; 
@@ -201,7 +208,9 @@ function checkCollisionBulletAsteroid() {
           if(asteroidsArray[i].size === LARGE_ASTEROID_SIZE) {
 
             //play sound
-            bangLargeSound.play();
+            if(soundfxOn == ON) {
+             bangLargeSound.play();
+            }
 
             asteroidsArray.push(new Asteroid(asteroidsArray[i].x - ASTEROID_OFFSET,
               asteroidsArray[i].y - ASTEROID_OFFSET,
@@ -223,7 +232,9 @@ function checkCollisionBulletAsteroid() {
             } else if (asteroidsArray[i].size === MEDIUM_ASTEROID_SIZE) {
 
               //play sound
-              bangMediumSound.play();
+              if(soundfxOn == ON) {
+               bangMediumSound.play();
+              }
               
               asteroidsArray.push(new Asteroid(asteroidsArray[i].x - ASTEROID_OFFSET,
                 asteroidsArray[i].y - ASTEROID_OFFSET,
@@ -245,7 +256,9 @@ function checkCollisionBulletAsteroid() {
 
                 } else {
                  //play sound
-                 bangSmallSound.play();
+                 if(soundfxOn == ON) {
+                  bangSmallSound.play();
+                 }
                 
                  //update the score
                  score += SCORE_SMALL_ASTEROID; 
@@ -356,7 +369,9 @@ function setupGamePadController() {
     keysArray[KEY_RIGHT_ARROW] = false;
   })
     FIRE_BUTTON.addEventListener("touchstart", ()=> {
-    fireSound.play(); 
+    if(soundfxOn == ON) {
+     fireSound.play(); 
+    }
     bulletsArray.push(new Bullet(ship.angle));
   })
     THRUST_BUTTON.addEventListener("touchstart", ()=> {
@@ -365,4 +380,13 @@ function setupGamePadController() {
     THRUST_BUTTON.addEventListener("touchend", ()=> {
     keysArray[KEY_UP_ARROW] = false;
   })
+}
+
+//for determining if soundfx are on/off
+function getLocalStorageSoundfx() {
+  if(localStorage.getItem(LOCAL_STORAGE_SOUNDFX) == OFF) {
+      soundfxOn = OFF; 
+  } else {
+      soundfxOn = ON; 
+  }
 }
