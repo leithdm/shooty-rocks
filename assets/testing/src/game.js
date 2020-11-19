@@ -22,11 +22,14 @@ window.onload = () => {
   //retrieve highscore from local storage
   getLocalStorage();
 
+  //retrieve whether soundfx are on/off
+  getLocalStorageSoundfx();
+
   //render everything to the canvas
   renderGame();
 
   //for setting up the touch screen gamepad controller
-  setupGamePadController(); 
+  setupGamePadController();
 };
 
 function renderGame() {

@@ -13,6 +13,12 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- JAVASCRIPT WITH DEFERRED LOADING -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.1/howler.min.js"></script>
+    <script defer src="assets/testing/src/game-utilities.js"></script>
+    <script defer src="assets/testing/src/sound.js"></script>
+
 </head>
 
 <body>
@@ -22,12 +28,15 @@
             <div class="header-bg-image text-white">
                 <div class="header-text">
                     <h2 class="game-title-text">SOUND OPTIONS</h2>
-                    <p class="game-story-text">Sound On </p>
-                    <p class="game-story-text">Sound Off</p>
+                    <div class="sound-options">
+                        <button class="soundfx-button" type="button">SOUND FX ON</button>
+                    </div>
+                    <div class="sound-options">
+                        <button class="music-button" type="button">MUSIC ON</button>
+                    </div>
                     <p></p>
                     <div class="menu-options">
-                        <button class="menu-options-how" onclick="location.href='index.html'"
-                            type="button">MENU</button>
+                        <button onclick="location.href='index.html'" type="button">MENU</button>
                     </div>
                 </div>
             </div>
