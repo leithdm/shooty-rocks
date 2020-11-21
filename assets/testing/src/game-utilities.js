@@ -36,6 +36,14 @@ const ON = 1;
 const OFF = 0; 
 
 /*------------------------------------*\
+#GAME VARIABLES
+\*------------------------------------*/
+let lives = 3; //for setting the number of ship-lives
+let highScore = 0; //for setting the high score
+let NUMBER_OF_ASTEROIDS = 4; //for setting the number of asteroids that appear on screen
+
+
+/*------------------------------------*\
   #SOUND CONSTANTS USING HOWLER LIBRARY
 \*------------------------------------*/
 const fireSound = new Howl({
@@ -54,13 +62,6 @@ const bangLargeSound = new Howl({
   src: ["assets/audio/bangLarge.webm", "assets/audio/bangLarge.ogg", "assets/audio/bangLarge.mp3"]
 }); 
 
-
-/*------------------------------------*\
-#GAME VARIABLES
-\*------------------------------------*/
-let lives = 3; //for setting the number of ship-lives
-let highScore = 0; //for setting the high score
-let NUMBER_OF_ASTEROIDS = 3; //for setting the number of asteroids that appear on screen
 
 /*------------------------------------*\
   #GAME HELPER METHODS
@@ -197,6 +198,25 @@ function checkCollisionShipAsteroid() {
   }
 }
 
+//for creating a new level
+function createNewLevel() {
+  if(asteroidsArray.length === 0) {
+    ship.x = canvasWidth/2;
+    ship.y = canvasHeight/2;
+    ship.velX = 0;
+    ship.velY = 0;
+    NUMBER_OF_ASTEROIDS++;
+
+    //ensures the asteroid is not positioned within collision radius of the ship at the start of game
+    for (let i = 0; i < NUMBER_OF_ASTEROIDS; i++) {
+      do { x = Math.floor(Math.random() * canvasWidth);
+        y = Math.floor(Math.random() * canvasHeight);
+      } while (collisionDetection(x,y,LARGE_ASTEROID_SIZE,ship.x,ship.y,ship.collisionRadius * 20));
+      asteroidsArray.push(new Asteroid(x, y)); 
+    }
+  }
+}
+
 //for checking collison between a bullet and an asteroid
 function checkCollisionBulletAsteroid() {
   if (asteroidsArray.length !== 0 && bulletsArray.length !== 0) {
@@ -305,22 +325,6 @@ function renderStars() {
 //https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
 function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
-
-//for creating a new level
-function createNewLevel() {
-  if(asteroidsArray.length === 0) {
-    ship.x = canvasWidth/2;
-    ship.y = canvasHeight/2;
-    ship.velX = 0;
-    ship.velY = 0;
-    NUMBER_OF_ASTEROIDS++; 
-    for(let i=0; i<NUMBER_OF_ASTEROIDS; i++) {
-      let asteroid = new Asteroid();
-      asteroid.speed += 0.8; 
-      asteroidsArray.push(asteroid); 
-    }
-  }
 }
 
 //for checking if its game over
