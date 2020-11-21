@@ -152,7 +152,6 @@ function collisionDetection(obj1x, obj1y, obj1CollisionRadius,
   radiusCollisionSum = obj1CollisionRadius + obj2CollisionRadius;
   xDiff = obj1x - obj2x;
   yDiff = obj1y - obj2y;
-
   //determine if there is a collision
   if (radiusCollisionSum > Math.sqrt((xDiff * xDiff) + (yDiff * yDiff))) {
     return true;
@@ -197,7 +196,6 @@ function createNewLevel() {
     ship.velX = 0;
     ship.velY = 0;
     NUMBER_OF_ASTEROIDS++;
-
     //ensures the asteroid is not positioned within collision radius of the ship at the start of game
     for (let i = 0; i < NUMBER_OF_ASTEROIDS; i++) {
       do { x = Math.floor(Math.random() * canvasWidth);
@@ -217,12 +215,13 @@ function checkCollisionBulletAsteroid() {
           asteroidsArray[i].x, asteroidsArray[i].y, asteroidsArray[i].collisionRadius)) {
           //if asteroid is a large asteroid, break it up into x2 medium asteroids, offset to the right and left
           if(asteroidsArray[i].size === LARGE_ASTEROID_SIZE) {
-
             //play sound
             if(soundfxOn == ON) {
              bangLargeSound.play();
             }
-
+            //show explosion
+            drawAsteroidExplosion(i, 0); 
+            //create 2 new medium sized asteroids
             asteroidsArray.push(new Asteroid(asteroidsArray[i].x - ASTEROID_OFFSET,
               asteroidsArray[i].y - ASTEROID_OFFSET,
               MEDIUM_ASTEROID_RADIUS, 
@@ -235,18 +234,17 @@ function checkCollisionBulletAsteroid() {
               MEDIUM_ASTEROID_SIZE,
               MEDIUM_ASTEROID_COLLISION_RADIUS
               )); 
-              
               //update the score
               score += SCORE_LARGE_ASTEROID;
-              
               //else if asteroid is a medium asteroid, break it up into x2 small asteroids, offset to the right and left
             } else if (asteroidsArray[i].size === MEDIUM_ASTEROID_SIZE) {
-
               //play sound
               if(soundfxOn == ON) {
                bangMediumSound.play();
               }
-              
+              //show explosion
+              drawAsteroidExplosion(i, 1); 
+              //create 2 new small sized asteroids
               asteroidsArray.push(new Asteroid(asteroidsArray[i].x - ASTEROID_OFFSET,
                 asteroidsArray[i].y - ASTEROID_OFFSET,
                 SMALL_ASTEROID_RADIUS, 
@@ -261,23 +259,20 @@ function checkCollisionBulletAsteroid() {
                   SMALL_ASTEROID_COLLISION_RADIUS, 
                   SMALL_ASTEROID_SPEED
                   )); 
-                  
                   //update the score
                   score += SCORE_MEDIUM_ASTEROID; 
-
                 } else {
                  //play sound
                  if(soundfxOn == ON) {
                   bangSmallSound.play();
                  }
-                
+                 //show the explosion
+                 drawAsteroidExplosion(i, 2);
                  //update the score
                  score += SCORE_SMALL_ASTEROID; 
                 }
-                
           //set html score value
           SCORE_HTML.textContent = numberWithCommas(score);
-
           //remote the bullet and the asteroid
           asteroidsArray.splice(i, 1);
           bulletsArray.splice(j, 1);
@@ -406,5 +401,28 @@ function drawShipExplosion() {
   context.fillStyle = "white";
   context.beginPath();
   context.arc(ship.x, ship.y, ship.radius * 1.0, 0, Math.PI * 2, false);
+  context.fill();
+}
+
+function drawAsteroidExplosion(i, explosionFactor) {
+  context.fillStyle = "darkred";
+  context.beginPath();
+  context.arc(asteroidsArray[i].x, asteroidsArray[i].y, asteroidsArray[i].radius * (0.68+explosionFactor), 0, Math.PI * 2, false);
+  context.fill();
+  context.fillStyle = "red";
+  context.beginPath();
+  context.arc(asteroidsArray[i].x, asteroidsArray[i].y, asteroidsArray[i].radius * (0.56+explosionFactor), 0, Math.PI * 2, false);
+  context.fill();
+  context.fillStyle = "orange";
+  context.beginPath();
+  context.arc(asteroidsArray[i].x, asteroidsArray[i].y, asteroidsArray[i].radius * (0.44+explosionFactor), 0, Math.PI * 2, false);
+  context.fill();
+  context.fillStyle = "yellow";
+  context.beginPath();
+  context.arc(asteroidsArray[i].x, asteroidsArray[i].y, asteroidsArray[i].radius * (0.32+explosionFactor), 0, Math.PI * 2, false);
+  context.fill();
+  context.fillStyle = "white";
+  context.beginPath();
+  context.arc(asteroidsArray[i].x, asteroidsArray[i].y, asteroidsArray[i].radius * (0.2+explosionFactor), 0, Math.PI * 2, false);
   context.fill();
 }
