@@ -110,7 +110,6 @@ function checkKeyboardInput() {
     thrustSound.play(); 
     }
   }
-
   if (keysArray[KEY_LEFT_ARROW]) {
     ship.rotate(LEFT);
   }
@@ -123,13 +122,6 @@ function checkKeyboardInput() {
 function renderGameCanvas() {
   context.fillStyle = "black";
   context.fillRect(0, 0, canvas.width, canvas.height);
-}
-
-//for creating an array of asteroid objects
-function createAsteroids() {
-  for (let i = 0; i < NUMBER_OF_ASTEROIDS; i++) {
-    asteroidsArray.push(new Asteroid()); 
-  }
 }
 
 //for drawing bullets to the game canvas
@@ -179,15 +171,14 @@ function checkCollisionShipAsteroid() {
           if(soundfxOn == ON) {
          bangLargeSound.play();
         }
-
+        //draw the ship explosion
+        drawShipExplosion();
         //reduce number of lives
         lives--; 
-
         //set the lives in html
         if(lives >= 0) {
         LIVES_HTML.textContent = lives; 
         }
-
         ship.x = canvasWidth/2;
         ship.y = canvasHeight/2;
         ship.angle = 90; 
@@ -393,4 +384,27 @@ function getLocalStorageSoundfx() {
   } else {
       soundfxOn = ON; 
   }
+}
+
+function drawShipExplosion() {
+  context.fillStyle = "darkred";
+  context.beginPath();
+  context.arc(ship.x, ship.y, ship.radius * 3.4, 0, Math.PI * 2, false);
+  context.fill();
+  context.fillStyle = "red";
+  context.beginPath();
+  context.arc(ship.x, ship.y, ship.radius * 2.8, 0, Math.PI * 2, false);
+  context.fill();
+  context.fillStyle = "orange";
+  context.beginPath();
+  context.arc(ship.x, ship.y, ship.radius * 2.2, 0, Math.PI * 2, false);
+  context.fill();
+  context.fillStyle = "yellow";
+  context.beginPath();
+  context.arc(ship.x, ship.y, ship.radius * 1.6, 0, Math.PI * 2, false);
+  context.fill();
+  context.fillStyle = "white";
+  context.beginPath();
+  context.arc(ship.x, ship.y, ship.radius * 1.0, 0, Math.PI * 2, false);
+  context.fill();
 }
