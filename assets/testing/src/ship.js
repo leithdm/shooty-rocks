@@ -11,7 +11,7 @@ class Ship {
     this.velY = 0;
     this.radius = 12;
     this.frictionConstant = 0.99;
-    this.collisionRadius = 9; 
+    this.collisionRadius = 9;
   }
 
   rotate(direction) {
@@ -55,6 +55,7 @@ class Ship {
 
   drawShip() {
     context.strokeStyle = "white";
+    context.lineWidth = 3;
 
     //begin tracing out the shape of the ship
     context.beginPath();
@@ -63,20 +64,14 @@ class Ship {
     let verticeAngle = (Math.PI * 2) / 2.5; //approx. a 144 degree angle. We want the ship to have an isosceles shape
     let radians = convertAngleToRadians(this.angle);
 
-    //move to nose of ship. Essentially move up x1 radius length from centre of triangle
+    //move to the back of ship (right-hand side)
     context.moveTo(
-      this.x - this.radius * Math.cos(radians),
-      this.y - this.radius * Math.sin(radians)
-    );
-
-    //trace a line from the nose of ship to the back of ship (right-hand side)
-    context.lineTo(
       this.x - this.radius * Math.cos(verticeAngle + radians),
       this.y - this.radius * Math.sin(verticeAngle + radians)
     );
 
-    //now move back to the nose of ship
-    context.moveTo(
+    //now trace a line to the nose of ship
+    context.lineTo(
       this.x - this.radius * Math.cos(radians),
       this.y - this.radius * Math.sin(radians)
     );
@@ -87,23 +82,29 @@ class Ship {
       this.y - this.radius * Math.sin(-verticeAngle + radians)
     );
 
+    //close the path, and stroke out the entire shape
+    context.closePath();
+    context.stroke();
+
     //move back to nose of ship
-    context.moveTo(
+    context.lineTo(
       this.x - this.radius * Math.cos(radians),
       this.y - this.radius * Math.sin(radians)
     );
 
-    //trace a line from nose of ship to the centre of triangle. This gives the ship definition
-    context.lineTo(
+    //trace a line from nose of ship to the centre of triangle.
+    context.moveTo(
       this.x + Math.cos(radians) / 2,
       this.y + Math.sin(radians) / 2
     );
 
     //draw a small circle in centre of triangle, representing the cock-pit
-    context.moveTo(this.x, this.y);
+    context.lineTo(this.x, this.y);
     context.arc(this.x, this.y, 3, 0, Math.PI * 2, false);
 
-    //stroke out the entire shape
+    context.strokeStyle = "white";
     context.stroke();
+    context.fillStyle = "black";
+    context.fill();
   }
 }
