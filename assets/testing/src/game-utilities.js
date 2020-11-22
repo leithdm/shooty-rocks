@@ -32,8 +32,9 @@ const LEFT_BUTTON = document.querySelector(".left-button"); //for getting the le
 const RIGHT_BUTTON = document.querySelector(".right-button"); //for getting the right button on gamepad controller
 const FIRE_BUTTON = document.querySelector(".fire-button"); //for getting the fire button on gamepad controller
 const THRUST_BUTTON = document.querySelector(".up-button"); //for getting the thrust button on gamepad controller
-const ON = 1; 
-const OFF = 0; 
+const ON = 1; //for setting soundfx to be on
+const OFF = 0; //for setting soundfx to be off
+const ANDROID_VERTICES = 16; //average number of vertices on each asteroid
 
 /*------------------------------------*\
 #GAME VARIABLES
