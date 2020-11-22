@@ -37,6 +37,9 @@ const ON = 1; //for setting soundfx to be on
 const OFF = 0; //for setting soundfx to be off
 const ASTEROID_VERTICES = 16; //average number of vertices on each asteroid
 const ASTEROID_IRREGUALITY = 0.1 //where 0 is normal and 1.0 is very irregular
+const LARGE_ASTEROID_EXPLOSION_FACTOR = 0; 
+const MEDIUM_ASTEROID_EXPLOSION_FACTOR = 1.0; 
+const SMALL_ASTEROID_EXPLOSION_FACTOR = 2.0; 
 
 /*------------------------------------*\
 #GAME VARIABLES
@@ -231,7 +234,7 @@ function checkCollisionBulletAsteroid() {
              bangLargeSound.play();
             }
             //show explosion
-            drawAsteroidExplosion(i, 0); 
+            drawAsteroidExplosion(i, LARGE_ASTEROID_EXPLOSION_FACTOR); 
             //create 2 new medium sized asteroids
             asteroidsArray.push(new Asteroid(asteroidsArray[i].x - ASTEROID_OFFSET,
               asteroidsArray[i].y - ASTEROID_OFFSET,
@@ -258,21 +261,23 @@ function checkCollisionBulletAsteroid() {
                bangMediumSound.play();
               }
               //show explosion
-              drawAsteroidExplosion(i, 1); 
+              drawAsteroidExplosion(i, MEDIUM_ASTEROID_EXPLOSION_FACTOR); 
               //create 2 new small sized asteroids
               asteroidsArray.push(new Asteroid(asteroidsArray[i].x - ASTEROID_OFFSET,
                 asteroidsArray[i].y - ASTEROID_OFFSET,
                 SMALL_ASTEROID_RADIUS, 
                 SMALL_ASTEROID_SIZE,
                 SMALL_ASTEROID_COLLISION_RADIUS,
-                SMALL_ASTEROID_SPEED
+                SMALL_ASTEROID_SPEED,
+                asteroidsArray[i].radiusOffsetArray
                 )); 
                 asteroidsArray.push(new Asteroid(asteroidsArray[i].x + ASTEROID_OFFSET,
                   asteroidsArray[i].y + ASTEROID_OFFSET,
                   SMALL_ASTEROID_RADIUS, 
                   SMALL_ASTEROID_SIZE,
                   SMALL_ASTEROID_COLLISION_RADIUS, 
-                  SMALL_ASTEROID_SPEED
+                  SMALL_ASTEROID_SPEED,
+                  asteroidsArray[i].radiusOffsetArray
                   )); 
                   //update the score
                   score += SCORE_MEDIUM_ASTEROID; 
@@ -282,7 +287,7 @@ function checkCollisionBulletAsteroid() {
                   bangSmallSound.play();
                  }
                  //show the explosion
-                 drawAsteroidExplosion(i, 2);
+                 drawAsteroidExplosion(i, SMALL_ASTEROID_EXPLOSION_FACTOR);
                  //update the score
                  score += SCORE_SMALL_ASTEROID; 
                 }
