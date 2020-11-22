@@ -34,7 +34,8 @@ const FIRE_BUTTON = document.querySelector(".fire-button"); //for getting the fi
 const THRUST_BUTTON = document.querySelector(".up-button"); //for getting the thrust button on gamepad controller
 const ON = 1; //for setting soundfx to be on
 const OFF = 0; //for setting soundfx to be off
-const ANDROID_VERTICES = 16; //average number of vertices on each asteroid
+const ASTEROID_VERTICES = 16; //average number of vertices on each asteroid
+const ASTEROID_IRREGUALITY = 0.1 //where 0 is normal and 1.0 is very irregular
 
 /*------------------------------------*\
 #GAME VARIABLES
@@ -143,6 +144,32 @@ function renderAsteroids() {
   }
 }
 
+//for creating a new level
+function createNewLevel() {
+  if(asteroidsArray.length === 0) {
+    ship.x = canvasWidth/2;
+    ship.y = canvasHeight/2;
+    ship.velX = 0;
+    ship.velY = 0;
+    NUMBER_OF_ASTEROIDS++;
+    //ensures the asteroid is not positioned within collision radius of the ship at the start of game
+    for (let i = 0; i < NUMBER_OF_ASTEROIDS; i++) {
+      do { x = Math.floor(Math.random() * canvasWidth);
+        y = Math.floor(Math.random() * canvasHeight);
+      } while (collisionDetection(x,y,LARGE_ASTEROID_SIZE,ship.x,ship.y,ship.collisionRadius * 20));
+      asteroidsArray.push(new Asteroid(x, y)); 
+    }
+
+    //in order to create irregular polygon shapes, we assign values to the asteroids radiusOffsetArray. 
+    //The radius of the asteroid is offset relative to the ASTEROID_IRREGUALITY constant.
+    for(let i=0; i<asteroidsArray.length; i++) {
+      for(let j=0; j<asteroidsArray[i].vertices; j++) {
+        asteroidsArray[i].radiusOffsetArray.push(Math.random() * ASTEROID_IRREGUALITY * 2 + 1 - ASTEROID_IRREGUALITY); 
+      }
+    } 
+  }
+}
+
 //for circle collision-detection between object 1 and object 2
 function collisionDetection(obj1x, obj1y, obj1CollisionRadius,
   obj2x, obj2y, obj2CollisionRadius) {
@@ -185,24 +212,6 @@ function checkCollisionShipAsteroid() {
         ship.velX = 0;
         ship.velY = 0;
       }
-    }
-  }
-}
-
-//for creating a new level
-function createNewLevel() {
-  if(asteroidsArray.length === 0) {
-    ship.x = canvasWidth/2;
-    ship.y = canvasHeight/2;
-    ship.velX = 0;
-    ship.velY = 0;
-    NUMBER_OF_ASTEROIDS++;
-    //ensures the asteroid is not positioned within collision radius of the ship at the start of game
-    for (let i = 0; i < NUMBER_OF_ASTEROIDS; i++) {
-      do { x = Math.floor(Math.random() * canvasWidth);
-        y = Math.floor(Math.random() * canvasHeight);
-      } while (collisionDetection(x,y,LARGE_ASTEROID_SIZE,ship.x,ship.y,ship.collisionRadius * 20));
-      asteroidsArray.push(new Asteroid(x, y)); 
     }
   }
 }

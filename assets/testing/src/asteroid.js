@@ -1,5 +1,5 @@
 class Asteroid {
-  constructor(x, y, radius, size, collisionRadius, speed) {
+  constructor(x, y, radius, size, collisionRadius, speed, radiusOffsetArray) {
     this.visible = true;
     this.x = x || Math.floor(Math.random() * canvasWidth); 
     this.y = y || Math.floor(Math.random() * canvasHeight); 
@@ -8,8 +8,8 @@ class Asteroid {
     this.radius = radius || 60; 
     this.collisionRadius = collisionRadius || 56; 
     this.size = size || LARGE_ASTEROID_SIZE
-    this.vertices = Math.floor(Math.random() * (ANDROID_VERTICES + 1) 
-    + ANDROID_VERTICES / 2); //a range of vertices to create different polygon shapes
+    this.radiusOffsetArray = radiusOffsetArray || []; //an array of radius offset values to make irregular shapes
+    this.vertices = Math.floor(Math.random() * (ASTEROID_VERTICES + 1) + ASTEROID_VERTICES / 2); //a range of vertices to create different polygon shapes
   }
 
   updateAsteroid() {
@@ -46,8 +46,8 @@ class Asteroid {
     );
     for (let i = 1; i < this.vertices; i++) {
         context.lineTo(
-            this.x - this.radius * Math.cos(((Math.PI * 2) / this.vertices) * i + radians),
-            this.y - this.radius * Math.sin(((Math.PI * 2) / this.vertices) * i + radians)
+            this.x - this.radius * this.radiusOffsetArray[i] * Math.cos(((Math.PI * 2) / this.vertices) * i + radians),
+            this.y - this.radius * this.radiusOffsetArray[i] * Math.sin(((Math.PI * 2) / this.vertices) * i + radians)
             );
         }
         context.closePath();
