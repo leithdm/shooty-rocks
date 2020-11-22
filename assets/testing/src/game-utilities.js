@@ -22,6 +22,7 @@ const SCORE_MEDIUM_ASTEROID = 50 //for setting score of hitting medium asteroid
 const SCORE_SMALL_ASTEROID = 100 //for setting score of hitting small asteroid
 const ASTEROID_MAX_VERTICE_ANGLE = 10 //for setting the max vertice angle of an asteroid
 const ASTEROID_MIN_VERTICE_ANGLE =  9 //for setting the min vertice angle of an asteroid
+const MEDIUM_ASTEROID_SPEED = 1; //for setting the speed of a medium sized asteroid
 const SMALL_ASTEROID_SPEED = 2; //for setting the speed of a small asteroid
 const LOCAL_STORAGE_KEY = "highScore"; //for setting local storage key of highscore
 const LOCAL_STORAGE_SOUNDFX = "soundfx"; //for setting the local storage key of soundfx on/off
@@ -236,13 +237,17 @@ function checkCollisionBulletAsteroid() {
               asteroidsArray[i].y - ASTEROID_OFFSET,
               MEDIUM_ASTEROID_RADIUS, 
               MEDIUM_ASTEROID_SIZE,
-              MEDIUM_ASTEROID_COLLISION_RADIUS
+              MEDIUM_ASTEROID_COLLISION_RADIUS,
+              MEDIUM_ASTEROID_SPEED,
+              asteroidsArray[i].radiusOffsetArray
               )); 
             asteroidsArray.push(new Asteroid(asteroidsArray[i].x + ASTEROID_OFFSET,
               asteroidsArray[i].y + ASTEROID_OFFSET,
               MEDIUM_ASTEROID_RADIUS, 
               MEDIUM_ASTEROID_SIZE,
-              MEDIUM_ASTEROID_COLLISION_RADIUS
+              MEDIUM_ASTEROID_COLLISION_RADIUS,
+              MEDIUM_ASTEROID_SPEED, 
+              asteroidsArray[i].radiusOffsetArray
               )); 
               //update the score
               score += SCORE_LARGE_ASTEROID;
