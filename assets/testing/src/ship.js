@@ -9,9 +9,9 @@ class Ship {
     this.angle = 90;
     this.velX = 0;
     this.velY = 0;
-    this.radius = 12;
+    this.radius = SHIP_SIZE;
     this.frictionConstant = 0.99;
-    this.collisionRadius = 9;
+    this.collisionRadius = SHIP_COLLISION_RADIUS;
     this.invincibility = 0;
   }
 
@@ -129,8 +129,8 @@ class Ship {
   }
 
   drawThrust() {
-    context.fillStyle = "red";
-    context.strokeStyle = "yellow";
+    context.fillStyle = shipThrustFill();
+    context.strokeStyle = shipThrustOutline(); 
 
     //to give the thruster a colored blinking effect when invincible and still visible
     if (ship.invincibility >= -SHIP_INVINCIBILITY_TIMEOUT && ship.visible) {
@@ -153,8 +153,8 @@ class Ship {
 
     //now draw a line (negative) to the nose of ship
     context.lineTo(
-      this.x + 1.7 * this.radius * Math.cos(radians),
-      this.y + 1.7 * this.radius * Math.sin(radians)
+      this.x + 1.3 * this.radius * Math.cos(radians),
+      this.y + 1.3 * this.radius * Math.sin(radians)
     );
 
     //trace a line from (negative) nose of ship to the back of ship (left-hand side)

@@ -60,7 +60,8 @@ class Asteroid {
 
         //if small sized, fill in the asteroid with a colorful fill
         if (this.size === SMALL_ASTEROID_SIZE) {
-            context.strokeStyle = "black";
+            context.lineWidth = 1;
+            context.strokeStyle = "white";
             context.fillStyle = this.color; 
             context.fill(); 
         }
