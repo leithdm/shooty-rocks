@@ -101,16 +101,20 @@ function setupKeyboardInput() {
 }
 
 function handleKeyDown(e){
-  keysArray[e.keyCode] = true;
+  if(ship.visible) {
+    keysArray[e.keyCode] = true;
+  }
 }
 
 function handleKeyUp(e){
   keysArray[e.keyCode] = false;
-  if (e.keyCode === KEY_SHOOT){   
-      if(soundfxOn == ON) {
-       fireSound.play(); 
-      }
-      bulletsArray.push(new Bullet(ship.angle));
+  if(ship.visible) {
+    if (e.keyCode === KEY_SHOOT){   
+        if(soundfxOn == ON) {
+        fireSound.play(); 
+        }
+        bulletsArray.push(new Bullet(ship.angle));
+    }
   }
 }
 
@@ -207,33 +211,37 @@ function collisionDetection(obj1x, obj1y, obj1CollisionRadius,
 
 //for checking collision between ship and asteroid
 function checkCollisionShipAsteroid() {
-  if(ship.invincibility < -SHIP_INVINCIBILITY_TIMEOUT) {
-    if (asteroidsArray.length !== 0) {
-      for (let i=0; i<asteroidsArray.length; i++) {
-        if (collisionDetection(ship.x, ship.y, ship.collisionRadius,
-          asteroidsArray[i].x, asteroidsArray[i].y, asteroidsArray[i].collisionRadius)) {
-          //play sound
-            if(soundfxOn == ON) {
-          bangLargeSound.play();
-          }
-          //draw the ship explosion
-          drawShipExplosion();
-          //reduce number of lives
-          _lives--; 
-          //set the lives in html
-          if(_lives >= 0) {
-            LIVES_HTML.textContent = _lives; 
-            bulletsArray = [];
-            ship.x = canvasWidth/2;
-            ship.y = canvasHeight/2;
-            ship.angle = 90; 
-            ship.velX = 0;
-            ship.velY = 0;
-            ship.invincibility = 0; 
-          }
-          //set the ship to invisible if ship-lives are zero
-          if(_lives === 0) {
-            ship.visible = false; 
+  if(ship.visible) {
+    if(ship.invincibility < -SHIP_INVINCIBILITY_TIMEOUT) {
+      if (asteroidsArray.length !== 0) {
+        for (let i=0; i<asteroidsArray.length; i++) {
+          if (collisionDetection(ship.x, ship.y, ship.collisionRadius,
+            asteroidsArray[i].x, asteroidsArray[i].y, asteroidsArray[i].collisionRadius)) {
+            //play sound
+              if(soundfxOn == ON) {
+            bangLargeSound.play();
+            }
+            //draw the ship explosion
+            drawShipExplosion();
+            //reduce number of lives
+            _lives--; 
+            //set the lives in html
+            if(_lives >= 0) {
+              LIVES_HTML.textContent = _lives; 
+              bulletsArray = [];
+              ship.x = canvasWidth/2;
+              ship.y = canvasHeight/2;
+              ship.angle = 90; 
+              ship.velX = 0;
+              ship.velY = 0;
+              ship.invincibility = 0; 
+            }
+            //set the ship to invisible if ship-lives are zero
+            if(_lives === 0) {
+              ship.visible = false; 
+              _onScreenText = "GAME OVER";
+              _textAlpha = 1.0; 
+            }
           }
         }
       }
@@ -467,5 +475,52 @@ function renderOnScreenText() {
     context.textAlign = "center";
     context.fillText(_onScreenText, canvasWidth / 2, canvasHeight * 0.65);
     _textAlpha -= 1.0 / TEXT_FADE_TIME / FPS;
-  } 
+  } else if (!ship.visible) {
+    createNewGame(); 
+  }
+}
+
+function createNewGame() {
+  _level = 1; 
+  score = 0; 
+  _lives = 3; 
+  LIVES_HTML.textContent = _lives;
+  SCORE_HTML.textContent = numberWithCommas(score);
+  asteroidsArray = [];
+  bulletsArray = [];
+  _onScreenText = "LEVEL " + _level;
+  _textAlpha = 1.0;
+  ship.x = canvasWidth / 2;
+  ship.y = canvasHeight / 2;
+  ship.velX = 0;
+  ship.velY = 0;
+  ship.visible = true; 
+  ship.invincibility = -SHIP_INVINCIBILITY_TIMEOUT;
+  let speedAsteroid = _level * 0.1 + 1;
+
+  for (let i = 0; i < NUMBER_OF_ASTEROIDS + _level; i++) {
+    do {
+      x = Math.floor(Math.random() * canvasWidth);
+      y = Math.floor(Math.random() * canvasHeight);
+    } while (
+      collisionDetection(
+        x,
+        y,
+        LARGE_ASTEROID_SIZE,
+        ship.x,
+        ship.y,
+        ship.collisionRadius * 20
+      )
+    );
+    asteroidsArray.push(new Asteroid(x, y, speedAsteroid));
+  }
+
+  for (let i = 0; i < asteroidsArray.length; i++) {
+    for (let j = 0; j < asteroidsArray[i].vertices; j++) {
+      asteroidsArray[i].radiusOffsetArray.push(
+        Math.random() * ASTEROID_IRREGUALITY * 2 + 1 - ASTEROID_IRREGUALITY
+      );
+    }
+  }
+  _level++; 
 }
