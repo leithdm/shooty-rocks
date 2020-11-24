@@ -1,15 +1,16 @@
 class Asteroid {
   constructor(x, y, speed, radius, size, collisionRadius, radiusOffsetArray) {
     this.visible = true;
-    this.x = x || Math.floor(Math.random() * canvasWidth); 
-    this.y = y || Math.floor(Math.random() * canvasHeight); 
+    this.x = x || Math.floor(Math.random() * CANVAS_WIDTH); 
+    this.y = y || Math.floor(Math.random() * CANVAS_HEIGHT); 
     this.angle = Math.floor(Math.random() * 359);
     this.speed = speed; 
-    this.radius = radius || 60; 
-    this.collisionRadius = collisionRadius || 56; 
+    this.radius = radius || LARGE_ASTEROID_RADIUS; 
+    this.collisionRadius = collisionRadius || LARGE_ASTEROID_COLLISION_RADIUS; 
     this.size = size || LARGE_ASTEROID_SIZE
     this.radiusOffsetArray = radiusOffsetArray || []; //an array of radius offset values to make irregular shapes
     this.vertices = Math.floor(Math.random() * (ASTEROID_VERTICES + 1) + ASTEROID_VERTICES / 2); //a range of vertices to create different polygon shapes
+    this.color = SMALL_ASTEROID_COLOR_ARRAY[Math.floor(Math.random() * (SMALL_ASTEROID_COLOR_ARRAY.length))]; 
   }
 
   updateAsteroid() {
@@ -19,15 +20,15 @@ class Asteroid {
 
     //if asteroid goes off screen move to opposite side
     if (this.x < 0) {
-      this.x = canvasWidth;
+      this.x = CANVAS_WIDTH;
     }
-    if (this.x > canvasWidth) {
+    if (this.x > CANVAS_WIDTH) {
       this.x = 0;
     }
     if (this.y < 0) {
-      this.y = canvasHeight;
+      this.y = CANVAS_HEIGHT;
     }
-    if (this.y > canvasHeight) {
+    if (this.y > CANVAS_HEIGHT) {
       this.y = 0;
     }
   }
@@ -59,9 +60,8 @@ class Asteroid {
 
         //if small sized, fill in the asteroid with a colorful fill
         if (this.size === SMALL_ASTEROID_SIZE) {
-            // colorfulAsteroidsFill(); 
-            context.strokeStyle = "darkgray"; 
-            context.fillStyle = "rgb(0, 192, 163)"; 
+            context.strokeStyle = "black";
+            context.fillStyle = this.color; 
             context.fill(); 
         }
 

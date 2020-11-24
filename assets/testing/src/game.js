@@ -37,7 +37,7 @@ function renderGame() {
   checkKeyboardInput();
 
   //clear the canvas, to get ready for the next frame
-  context.clearRect(0, 0, canvasWidth, canvasHeight);
+  context.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
   //render the game canvas
   renderGameCanvas();

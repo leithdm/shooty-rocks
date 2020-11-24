@@ -2,8 +2,8 @@ class Ship {
   constructor() {
     this.visible = true;
     this.movingForward = false;
-    this.x = canvasWidth / 2;
-    this.y = canvasHeight / 2;
+    this.x = CANVAS_WIDTH / 2;
+    this.y = CANVAS_HEIGHT / 2;
     this.speed = 0.1;
     this.rotationSpeed = 5;
     this.angle = 90;
@@ -49,16 +49,16 @@ class Ship {
 
   checkIfShipOffScreen() {
     if (this.x < 0) {
-      this.x = canvasWidth;
+      this.x = CANVAS_WIDTH;
     }
-    if (this.x > canvasWidth) {
+    if (this.x > CANVAS_WIDTH) {
       this.x = 0;
     }
-    if (this.y > canvasHeight) {
+    if (this.y > CANVAS_HEIGHT) {
       this.y = 0;
     }
     if (this.y < 0) {
-      this.y = canvasHeight;
+      this.y = CANVAS_HEIGHT;
     }
   }
 
@@ -69,7 +69,7 @@ class Ship {
 
       //to give the ship a colored blinking effect when invincible and having lost at least 1 life
       if (ship.invincibility >= -SHIP_INVINCIBILITY_TIMEOUT && _lives <= 2) {
-        context.strokeStyle = colorfulAsteroidsStroke();
+        context.strokeStyle = invincibleShipStroke();
       }
 
       //begin tracing out the shape of the ship
@@ -134,8 +134,8 @@ class Ship {
 
     //to give the thruster a colored blinking effect when invincible and still visible
     if (ship.invincibility >= -SHIP_INVINCIBILITY_TIMEOUT && ship.visible) {
-      context.fillStyle = colorfulAsteroidsFill();
-      context.strokeStyle = colorfulAsteroidsStroke();
+      context.fillStyle = invincibleShipThrustFill();
+      context.strokeStyle = invincibleShipStroke();
     }
 
     //begin tracing out the shape of the ship
