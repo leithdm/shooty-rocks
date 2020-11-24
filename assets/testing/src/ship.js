@@ -67,7 +67,7 @@ class Ship {
       context.lineWidth = 3;
 
       //to give the ship a colored blinking effect when invincible and having lost at least 1 life
-      if (ship.invincibility >= -SHIP_INVINCIBILITY_TIMEOUT && lives <= 2) {
+      if (ship.invincibility >= -SHIP_INVINCIBILITY_TIMEOUT && _lives <= 2) {
         context.strokeStyle = colorfulAsteroidsStroke();
       }
 
