@@ -36,7 +36,6 @@ class Asteroid {
     context.strokeStyle = "white";
     context.lineWidth = 2;
     context.beginPath();
-
     let radians = convertAngleToRadians((Math.PI * 2) / this.vertices);
 
     context.moveTo(
@@ -61,13 +60,12 @@ class Asteroid {
         //if small sized, fill in the asteroid with a colorful fill
         if (this.size === SMALL_ASTEROID_SIZE) {
             // colorfulAsteroidsFill(); 
-            context.strokeStyle = "rgb(254, 84, 66)"; 
+            context.strokeStyle = "darkgray"; 
             context.fillStyle = "rgb(0, 192, 163)"; 
             context.fill(); 
-
         }
 
-        //default strokd for large asteroid
+        //default stroke for large asteroid
         context.stroke();
   }
 }

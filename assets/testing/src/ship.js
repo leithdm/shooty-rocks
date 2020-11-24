@@ -12,6 +12,7 @@ class Ship {
     this.radius = 12;
     this.frictionConstant = 0.99;
     this.collisionRadius = 9;
+    this.invincibility = 0;
   }
 
   rotate(direction) {
@@ -20,6 +21,14 @@ class Ship {
   }
 
   updateShip() {
+    //if the ship invinciblity timer has passed 3 seconds, set the timer to a static value of 3.01 to stop countdown
+    if (ship.invincibility < -SHIP_INVINCIBILITY_TIMEOUT) {
+      ship.invincibility = -(SHIP_INVINCIBILITY_TIMEOUT + 1);
+    }
+    //start the countdown timer
+    ship.invincibility--;
+
+    //update ships velocity in x and y direction
     let radians = convertAngleToRadians(this.angle);
     if (this.movingForward) {
       this.velX += Math.cos(radians) * this.speed;
@@ -29,7 +38,7 @@ class Ship {
     //determine if ship is off the screen
     this.checkIfShipOffScreen();
 
-    //friction
+    //add friction
     this.velY *= this.frictionConstant;
     this.velX *= this.frictionConstant;
 
@@ -54,68 +63,78 @@ class Ship {
   }
 
   drawShip() {
-    context.strokeStyle = "white";
-    context.lineWidth = 3;
+      context.strokeStyle = "white";
+      context.lineWidth = 3;
 
-    //begin tracing out the shape of the ship
-    context.beginPath();
+      //to give the ship a colored blinking effect when invincible and having lost at least 1 life
+      if (ship.invincibility >= -SHIP_INVINCIBILITY_TIMEOUT && lives <= 2) {
+        context.strokeStyle = colorfulAsteroidsStroke();
+      }
 
-    //determine the angle at each vertice of the triangular ship
-    let verticeAngle = (Math.PI * 2) / 2.5; //approx. a 144 degree angle. We want the ship to have an isosceles shape
-    let radians = convertAngleToRadians(this.angle);
+      //begin tracing out the shape of the ship
+      context.beginPath();
 
-    //move to the back of ship (right-hand side)
-    context.moveTo(
-      this.x - this.radius * Math.cos(verticeAngle + radians),
-      this.y - this.radius * Math.sin(verticeAngle + radians)
-    );
+      //determine the angle at each vertice of the triangular ship
+      let verticeAngle = (Math.PI * 2) / 2.5; //approx. a 144 degree angle. We want the ship to have an isosceles shape
+      let radians = convertAngleToRadians(this.angle);
 
-    //now trace a line to the nose of ship
-    context.lineTo(
-      this.x - this.radius * Math.cos(radians),
-      this.y - this.radius * Math.sin(radians)
-    );
+      //move to the back of ship (right-hand side)
+      context.moveTo(
+        this.x - this.radius * Math.cos(verticeAngle + radians),
+        this.y - this.radius * Math.sin(verticeAngle + radians)
+      );
 
-    //trace a line from the nose of ship to the back of ship (left-hand side)
-    context.lineTo(
-      this.x - this.radius * Math.cos(-verticeAngle + radians),
-      this.y - this.radius * Math.sin(-verticeAngle + radians)
-    );
+      //now trace a line to the nose of ship
+      context.lineTo(
+        this.x - this.radius * Math.cos(radians),
+        this.y - this.radius * Math.sin(radians)
+      );
 
-    //close the path, and stroke out the entire shape
-    context.closePath();
-    context.stroke();
+      //trace a line from the nose of ship to the back of ship (left-hand side)
+      context.lineTo(
+        this.x - this.radius * Math.cos(-verticeAngle + radians),
+        this.y - this.radius * Math.sin(-verticeAngle + radians)
+      );
 
-    //move back to nose of ship
-    context.lineTo(
-      this.x - this.radius * Math.cos(radians),
-      this.y - this.radius * Math.sin(radians)
-    );
+      //close the path, and stroke out the entire shape
+      context.closePath();
+      context.stroke();
 
-    //trace a line from nose of ship to the centre of triangle.
-    context.moveTo(
-      this.x + Math.cos(radians) / 2,
-      this.y + Math.sin(radians) / 2
-    );
+      //move back to nose of ship
+      context.lineTo(
+        this.x - this.radius * Math.cos(radians),
+        this.y - this.radius * Math.sin(radians)
+      );
 
-    //draw a small circle in centre of triangle, representing the cock-pit
-    context.lineTo(this.x, this.y);
-    context.arc(this.x, this.y, 3, 0, Math.PI * 2, false);
+      //trace a line from nose of ship to the centre of triangle.
+      context.moveTo(
+        this.x + Math.cos(radians) / 2,
+        this.y + Math.sin(radians) / 2
+      );
 
-    context.strokeStyle = "white";
-    context.stroke();
-    context.fillStyle = "black";
-    context.fill();
+      //draw a small circle in centre of triangle, representing the cock-pit
+      context.lineTo(this.x, this.y);
+      context.arc(this.x, this.y, 3, 0, Math.PI * 2, false);
 
-    //if ship is moving forward draw the thrust trail
-    if (this.movingForward) {
-      this.drawThrust();
-    }
+      context.stroke();
+      context.fillStyle = "black";
+      context.fill();
+
+      //if ship is moving forward draw the thrust trail
+      if (this.movingForward) {
+        this.drawThrust();
+      }
   }
 
   drawThrust() {
     context.fillStyle = "red";
     context.strokeStyle = "yellow";
+
+    //to give the thruster a colored blinking effect when invincible and still visible
+    if (ship.invincibility >= -SHIP_INVINCIBILITY_TIMEOUT && ship.visible) {
+      context.fillStyle = colorfulAsteroidsFill();
+      context.strokeStyle = colorfulAsteroidsStroke();
+    }
 
     //begin tracing out the shape of the ship
     context.beginPath();
@@ -142,10 +161,8 @@ class Ship {
       this.y - (this.radius * Math.sin(-verticeAngle + radians)) / 1.2
     );
 
-    //stroke out the entire shape
+    //stroke out the entire shape and fill it in
     context.closePath();
-    context.stroke();
-
     context.stroke();
     context.fill();
   }

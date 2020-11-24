@@ -35,11 +35,13 @@ const FIRE_BUTTON = document.querySelector(".fire-button"); //for getting the fi
 const THRUST_BUTTON = document.querySelector(".up-button"); //for getting the thrust button on gamepad controller
 const ON = 1; //for setting soundfx to be on
 const OFF = 0; //for setting soundfx to be off
-const ASTEROID_VERTICES = 16; //average number of vertices on each asteroid
-const ASTEROID_IRREGUALITY = 0.1 //where 0 is normal and 1.0 is very irregular
-const LARGE_ASTEROID_EXPLOSION_FACTOR = 0; 
-const MEDIUM_ASTEROID_EXPLOSION_FACTOR = 1.0; 
-const SMALL_ASTEROID_EXPLOSION_FACTOR = 2.0; 
+const ASTEROID_VERTICES = 16; //for setting the average number of vertices on each asteroid
+const ASTEROID_IRREGUALITY = 0.1 //for setting the irregularity of asteroid shape, where 0.0 is normal and 1.0 is very irregular
+const LARGE_ASTEROID_EXPLOSION_FACTOR = 0; //for setting a large asteroid explosion size
+const MEDIUM_ASTEROID_EXPLOSION_FACTOR = 1.0; //for setting a medium asteroid explosion size
+const SMALL_ASTEROID_EXPLOSION_FACTOR = 2.0; //for setting a small asteroid explosion size 
+const FPS = 60; //for setting a frames per second constant. Used for ship invincibility timer
+const SHIP_INVINCIBILITY_TIMEOUT = FPS * 3; //for setting a 3 second time-out for ship invincibility
 
 /*------------------------------------*\
 #GAME VARIABLES
@@ -155,6 +157,7 @@ function createNewLevel() {
     ship.y = canvasHeight/2;
     ship.velX = 0;
     ship.velY = 0;
+    ship.invincibility = -SHIP_INVINCIBILITY_TIMEOUT; 
     NUMBER_OF_ASTEROIDS++;
     //ensures the asteroid is not positioned within collision radius of the ship at the start of game
     for (let i = 0; i < NUMBER_OF_ASTEROIDS; i++) {
@@ -194,27 +197,31 @@ function collisionDetection(obj1x, obj1y, obj1CollisionRadius,
 
 //for checking collision between ship and asteroid
 function checkCollisionShipAsteroid() {
-  if (asteroidsArray.length !== 0) {
-    for (let i=0; i<asteroidsArray.length; i++) {
-      if (collisionDetection(ship.x, ship.y, ship.collisionRadius,
-        asteroidsArray[i].x, asteroidsArray[i].y, asteroidsArray[i].collisionRadius)) {
-        //play sound
-          if(soundfxOn == ON) {
-         bangLargeSound.play();
+  if(ship.invincibility < -SHIP_INVINCIBILITY_TIMEOUT) {
+    if (asteroidsArray.length !== 0) {
+      for (let i=0; i<asteroidsArray.length; i++) {
+        if (collisionDetection(ship.x, ship.y, ship.collisionRadius,
+          asteroidsArray[i].x, asteroidsArray[i].y, asteroidsArray[i].collisionRadius)) {
+          //play sound
+            if(soundfxOn == ON) {
+          bangLargeSound.play();
+          }
+          //draw the ship explosion
+          drawShipExplosion();
+          //reduce number of lives
+          lives--; 
+          //set the lives in html
+          if(lives >= 0) {
+            LIVES_HTML.textContent = lives; 
+            bulletsArray = [];
+            ship.x = canvasWidth/2;
+            ship.y = canvasHeight/2;
+            ship.angle = 90; 
+            ship.velX = 0;
+            ship.velY = 0;
+            ship.invincibility = 0; 
+          }
         }
-        //draw the ship explosion
-        drawShipExplosion();
-        //reduce number of lives
-        lives--; 
-        //set the lives in html
-        if(lives >= 0) {
-        LIVES_HTML.textContent = lives; 
-        }
-        ship.x = canvasWidth/2;
-        ship.y = canvasHeight/2;
-        ship.angle = 90; 
-        ship.velX = 0;
-        ship.velY = 0;
       }
     }
   }
@@ -305,16 +312,16 @@ function checkCollisionBulletAsteroid() {
 
 //for creating colorful outline of asteroids 
 function colorfulAsteroidsStroke() {
-  context.strokeStyle = "rgb(" + Math.floor(Math.random() *255) + " ," + 
+  context.strokeStyle = "rgb(" + Math.floor(Math.random() *204) + " ," + 
   Math.floor(Math.random() * 255) + " ," + 
-  Math.floor(Math.random() * 255) + ")";
+  Math.floor(Math.random() * 229) + ")";
 }
 
 //for creating a colorful fill of asteroids
 function colorfulAsteroidsFill() {
-  context.fillStyle = "rgb(" + Math.floor(Math.random() *255) + " ," + 
+  context.fillStyle = "rgb(" + Math.floor(Math.random() *204) + " ," + 
   Math.floor(Math.random() * 255) + " ," + 
-  Math.floor(Math.random() * 255) + ")";
+  Math.floor(Math.random() * 229) + ")";
 }
 
 //for rendering twinkling star effect to the game canvas
@@ -335,16 +342,13 @@ function numberWithCommas(x) {
 
 //for checking if its game over
 function checkIfGameOver() {
-  if(lives <= 0){
+  if(lives === 0){
     document.body.removeEventListener("keydown", handleKeyDown);
     document.body.removeEventListener("keyup", handleKeyUp);
     ship.visible = false;
     context.font = "2rem 'Press Start 2P'"
     context.fillStyle = "rgb(178, 34, 52)";
     context.fillText("GAME OVER", canvasWidth / 2 - 150, canvasHeight / 2);
-    setInterval(()=> {
-      window.location.href='index.html'
-    }, 4000)
   }  
 }
 
