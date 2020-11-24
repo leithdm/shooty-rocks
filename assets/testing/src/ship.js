@@ -63,6 +63,7 @@ class Ship {
   }
 
   drawShip() {
+    if(ship.visible) {
       context.strokeStyle = "white";
       context.lineWidth = 3;
 
@@ -124,6 +125,7 @@ class Ship {
       if (this.movingForward) {
         this.drawThrust();
       }
+    }
   }
 
   drawThrust() {
