@@ -46,7 +46,7 @@ function renderGame() {
   renderStars();
 
   //signal game over if no lives left
-  // checkIfGameOver();
+  checkIfGameOver();
 
   //create a new level
   createNewLevel();
@@ -68,6 +68,9 @@ function renderGame() {
 
   //render the asteroids
   renderAsteroids();
+
+  //render the text for 'Level" number and 'Game Over'
+  renderOnScreenText();
 
   //update high score
   updateHighScore();

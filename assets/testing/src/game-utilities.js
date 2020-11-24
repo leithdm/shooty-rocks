@@ -42,13 +42,17 @@ const MEDIUM_ASTEROID_EXPLOSION_FACTOR = 1.0; //for setting a medium asteroid ex
 const SMALL_ASTEROID_EXPLOSION_FACTOR = 2.0; //for setting a small asteroid explosion size 
 const FPS = 60; //for setting a frames per second constant. Used for ship invincibility timer
 const SHIP_INVINCIBILITY_TIMEOUT = FPS * 3; //for setting a 3 second time-out for ship invincibility
+const TEXT_FADE_TIME = 2.5 //for settting the fade time of _onScreenText to 2.5 seconds duration
 
 /*------------------------------------*\
 #GAME VARIABLES
 \*------------------------------------*/
-let lives = 3; //for setting the number of ship-lives
+let _lives = 3; //for setting the number of ship-lives
 let highScore = 0; //for setting the high score
-let NUMBER_OF_ASTEROIDS = 4; //for setting the number of asteroids that appear on screen
+let NUMBER_OF_ASTEROIDS = 1; //for setting the number of asteroids that appear on screen
+let _level = 1 //for setting the level
+let _onScreenText; //for displaying text related to Levels and Game Over
+let _textAlpha; //for setting the alpha value of _onScreenText, where 1.0 is opaque, 0.0 is transparent
 
 
 /*------------------------------------*\
@@ -153,18 +157,23 @@ function renderAsteroids() {
 //for creating a new level
 function createNewLevel() {
   if(asteroidsArray.length === 0) {
+    _onScreenText = "LEVEL " + _level; 
+    _textAlpha = 1.0; 
     ship.x = canvasWidth/2;
     ship.y = canvasHeight/2;
     ship.velX = 0;
     ship.velY = 0;
     ship.invincibility = -SHIP_INVINCIBILITY_TIMEOUT; 
-    NUMBER_OF_ASTEROIDS++;
+
+    //set the speed of the asteroid based on the level number
+    let speedAsteroid = _level * 0.1 + 1
+
     //ensures the asteroid is not positioned within collision radius of the ship at the start of game
-    for (let i = 0; i < NUMBER_OF_ASTEROIDS; i++) {
+    for (let i = 0; i < NUMBER_OF_ASTEROIDS + _level; i++) {
       do { x = Math.floor(Math.random() * canvasWidth);
         y = Math.floor(Math.random() * canvasHeight);
       } while (collisionDetection(x,y,LARGE_ASTEROID_SIZE,ship.x,ship.y,ship.collisionRadius * 20));
-      asteroidsArray.push(new Asteroid(x, y)); 
+      asteroidsArray.push(new Asteroid(x, y, speedAsteroid)); 
     }
 
     //in order to create irregular polygon shapes, we assign values to the asteroids radiusOffsetArray. 
@@ -173,7 +182,8 @@ function createNewLevel() {
       for(let j=0; j<asteroidsArray[i].vertices; j++) {
         asteroidsArray[i].radiusOffsetArray.push(Math.random() * ASTEROID_IRREGUALITY * 2 + 1 - ASTEROID_IRREGUALITY); 
       }
-    } 
+    }
+    _level++;  
   }
 }
 
@@ -209,10 +219,10 @@ function checkCollisionShipAsteroid() {
           //draw the ship explosion
           drawShipExplosion();
           //reduce number of lives
-          lives--; 
+          _lives--; 
           //set the lives in html
-          if(lives >= 0) {
-            LIVES_HTML.textContent = lives; 
+          if(_lives >= 0) {
+            LIVES_HTML.textContent = _lives; 
             bulletsArray = [];
             ship.x = canvasWidth/2;
             ship.y = canvasHeight/2;
@@ -220,6 +230,10 @@ function checkCollisionShipAsteroid() {
             ship.velX = 0;
             ship.velY = 0;
             ship.invincibility = 0; 
+          }
+          //set the ship to invisible if ship-lives are zero
+          if(_lives === 0) {
+            ship.visible = false; 
           }
         }
       }
@@ -245,18 +259,18 @@ function checkCollisionBulletAsteroid() {
             //create 2 new medium sized asteroids
             asteroidsArray.push(new Asteroid(asteroidsArray[i].x - ASTEROID_OFFSET,
               asteroidsArray[i].y - ASTEROID_OFFSET,
+              asteroidsArray[i].speed,
               MEDIUM_ASTEROID_RADIUS, 
               MEDIUM_ASTEROID_SIZE,
               MEDIUM_ASTEROID_COLLISION_RADIUS,
-              MEDIUM_ASTEROID_SPEED,
               asteroidsArray[i].radiusOffsetArray
               )); 
             asteroidsArray.push(new Asteroid(asteroidsArray[i].x + ASTEROID_OFFSET,
               asteroidsArray[i].y + ASTEROID_OFFSET,
+              asteroidsArray[i].speed,
               MEDIUM_ASTEROID_RADIUS, 
               MEDIUM_ASTEROID_SIZE,
               MEDIUM_ASTEROID_COLLISION_RADIUS,
-              MEDIUM_ASTEROID_SPEED, 
               asteroidsArray[i].radiusOffsetArray
               )); 
               //update the score
@@ -272,18 +286,18 @@ function checkCollisionBulletAsteroid() {
               //create 2 new small sized asteroids
               asteroidsArray.push(new Asteroid(asteroidsArray[i].x - ASTEROID_OFFSET,
                 asteroidsArray[i].y - ASTEROID_OFFSET,
+                asteroidsArray[i].speed,
                 SMALL_ASTEROID_RADIUS, 
                 SMALL_ASTEROID_SIZE,
                 SMALL_ASTEROID_COLLISION_RADIUS,
-                SMALL_ASTEROID_SPEED,
                 asteroidsArray[i].radiusOffsetArray
                 )); 
                 asteroidsArray.push(new Asteroid(asteroidsArray[i].x + ASTEROID_OFFSET,
                   asteroidsArray[i].y + ASTEROID_OFFSET,
+                  asteroidsArray[i].speed,
                   SMALL_ASTEROID_RADIUS, 
                   SMALL_ASTEROID_SIZE,
                   SMALL_ASTEROID_COLLISION_RADIUS, 
-                  SMALL_ASTEROID_SPEED,
                   asteroidsArray[i].radiusOffsetArray
                   )); 
                   //update the score
@@ -342,13 +356,8 @@ function numberWithCommas(x) {
 
 //for checking if its game over
 function checkIfGameOver() {
-  if(lives === 0){
-    document.body.removeEventListener("keydown", handleKeyDown);
-    document.body.removeEventListener("keyup", handleKeyUp);
+  if(_lives === 0){
     ship.visible = false;
-    context.font = "2rem 'Press Start 2P'"
-    context.fillStyle = "rgb(178, 34, 52)";
-    context.fillText("GAME OVER", canvasWidth / 2 - 150, canvasHeight / 2);
   }  
 }
 
@@ -449,4 +458,14 @@ function drawAsteroidExplosion(i, explosionFactor) {
   context.beginPath();
   context.arc(asteroidsArray[i].x, asteroidsArray[i].y, asteroidsArray[i].radius * (0.2+explosionFactor), 0, Math.PI * 2, false);
   context.fill();
+}
+
+function renderOnScreenText() {
+  if (_textAlpha >= 0) {
+    context.fillStyle = "rgba(255, 255, 255, " + _textAlpha + ")";
+    context.font = "2rem 'Press Start 2P'";
+    context.textAlign = "center";
+    context.fillText(_onScreenText, canvasWidth / 2, canvasHeight * 0.65);
+    _textAlpha -= 1.0 / TEXT_FADE_TIME / FPS;
+  } 
 }

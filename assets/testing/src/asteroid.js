@@ -1,10 +1,10 @@
 class Asteroid {
-  constructor(x, y, radius, size, collisionRadius, speed, radiusOffsetArray) {
+  constructor(x, y, speed, radius, size, collisionRadius, radiusOffsetArray) {
     this.visible = true;
     this.x = x || Math.floor(Math.random() * canvasWidth); 
     this.y = y || Math.floor(Math.random() * canvasHeight); 
     this.angle = Math.floor(Math.random() * 359);
-    this.speed = speed || 1;
+    this.speed = speed; 
     this.radius = radius || 60; 
     this.collisionRadius = collisionRadius || 56; 
     this.size = size || LARGE_ASTEROID_SIZE
