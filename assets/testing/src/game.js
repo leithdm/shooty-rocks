@@ -57,13 +57,11 @@ function renderGame() {
   //check if collision between a bullet and asteroid
   checkCollisionBulletAsteroid();
 
-  //update the ships position and render if visible
-  if (ship.visible) {
-    ship.updateShip();
+  //update the ships position
+  ship.updateShip();
 
-    //render the ship
-    ship.drawShip();
-  }
+  //render the ship
+  ship.drawShip();
 
   //render the bullets
   renderBullets();
