@@ -5,16 +5,17 @@
 \*------------------------------------*/
 
 :root {
-  --covid-color-green: rgb(0, 192, 163);
-  --background-color-black: black;
-  --white-color: white;
-  --yellow-color: yellow;
+  --black-color: rgb(0, 0, 0);
+  --white-color: rgb(255, 255, 255);
+  --yellow-color: rgb(255, 255, 0);
   --red-color: rgb(178, 34, 52);
-  --blue-color: rgb(60, 59, 110);
+  --covid-color-green: rgb(0, 192, 163);
+  --purple-color: rgb(128, 0, 128);
+  --gray-color: rgb(120, 128, 128);
 }
 
 /*------------------------------------*\
-  #GLOBAL.HTML
+  #GLOBAL SETTINGS
 \*------------------------------------*/
 
 *,
@@ -30,8 +31,8 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--background-color-black);
   touch-action: manipulation;
+  background-color: var(--black-color);
 }
 
 .container {
@@ -66,7 +67,7 @@ body {
 }
 
 .text-green {
-  color: var(--covid-color-green); 
+  color: var(--covid-color-green);
 }
 
 /*------------------------------------*\
@@ -74,9 +75,9 @@ body {
 \*------------------------------------*/
 
 canvas {
-  border: 1px solid white;
   width: 100%;
   height: auto;
+  border: 1px solid var(--white-color);
 }
 
 .top-banner {
@@ -103,7 +104,7 @@ canvas {
 }
 
 .controller {
-  margin-top: 8px; 
+  margin-top: 8px;
   display: grid;
   width: 100%;
   grid-template-columns: 1fr 1fr 1fr;
@@ -114,51 +115,50 @@ canvas {
 button {
   height: 50px;
   width: 95%;
+  font-size: 0.8rem;
+  cursor: pointer;
+  outline: none;
   touch-action: manipulation;
-  font-size: 0.8rem; 
-  cursor: pointer; 
-  box-shadow: 0 .2em gray; 
-  background-color: var(--white-color); 
-  color: purple; 
-  outline: none; 
-  /* border: 1px solid black;  */
-  -webkit-border-radius:  10px;
-     -moz-border-radius:  10px;
-       -o-border-radius:  10px;
-          border-radius:  10px;
+  box-shadow: 0 0.2em var(--gray-color);
+  background-color: var(--white-color);
+  color: var(--purple-color);
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
 }
 
 button:active {
-	box-shadow: none;
-	position: relative;
-	top: .2em;
+  box-shadow: none;
+  position: relative;
+  top: 0.2em;
 }
 
 .fire-button {
-  font-size: 1.1rem; 
-  color: var(--red-color);
+  font-size: 1.1rem;
   grid-column: 3 / 4;
+  color: var(--red-color);
   background-color: var(--yellow-color);
 }
 
 .up-button {
-  font-size: 1.3rem; 
-  border: 1px solid var(--white-color); 
-  background-color: var(--background-color-black); 
-  color: var(--white-color); 
+  font-size: 1.3rem;
+  border: 1px solid var(--white-color);
+  background-color: var(--black-color);
+  color: var(--white-color);
 }
 
 .left-button {
-  font-size: 1.3rem; 
-  border: 1px solid var(--white-color); 
-  background-color: var(--background-color-black); 
+  font-size: 1.3rem;
+  border: 1px solid var(--white-color);
+  background-color: var(--black-color);
   color: var(--red-color);
 }
 
 .right-button {
-  font-size: 1.3rem; 
-  border: 1px solid var(--white-color); 
-  background-color: var(--background-color-black); 
+  font-size: 1.3rem;
+  border: 1px solid var(--white-color);
+  background-color: var(--black-color);
   color: var(--red-color);
 }
 
@@ -172,8 +172,7 @@ button:active {
 \*------------------------------------*/
 
 .header-bg-image {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.1)),
-    url("../artwork/menu-image-mobile.jpg");
+  background-image:url("../artwork/menu-image-mobile.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -195,17 +194,17 @@ button:active {
 
 .game-story-text {
   font-size: 0.8rem;
-  line-height: 1.2rem; 
+  line-height: 1.2rem;
 }
 
 .start-button {
-  color: var(--white-color);
-  background-color: var(--red-color); 
   width: 30%;
   margin-left: auto;
   margin-right: auto;
-  border: 1px solid white;
   font-weight: bold;
+  color: var(--white-color);
+  background-color: var(--red-color);
+  border: 1px solid var(--white-color);
 }
 
 .menu-options {
@@ -216,10 +215,6 @@ button:active {
 .arrow {
   font-size: 2rem;
 }
-
-/*------------------------------------*\
-  #HOW TO PLAY.HTML
-\*------------------------------------*/
 
 /*------------------------------------*\
   #SCORE.HTML
@@ -234,25 +229,24 @@ button:active {
 \*------------------------------------*/
 
 .sound-options {
-  margin-left: auto; 
-  margin-right: auto; 
-  width: 40%; 
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
 }
 
 /*------------------------------------*\
-  #CONTAINER MEDIA QUERIES
+  #MEDIA QUERIES
 \*------------------------------------*/
-
 
 /* iPhone 6/7/8 Plus */
 @media (min-width: 414px) {
   .game-title-text {
-    font-size: 2rem; 
+    font-size: 2rem;
   }
 
   .game-story-text {
     font-size: 1rem;
-    line-height: 1.4rem; 
+    line-height: 1.4rem;
   }
 
   .high-score-menu {
@@ -260,17 +254,17 @@ button:active {
   }
 }
 
+/* Small Container*/
 @media (min-width: 576px) {
   .container {
     max-width: 540px;
   }
 }
 
-/* iPad */
+/* iPad and Medium Container*/
 @media (min-width: 768px) {
   .header-bg-image {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.1)),
-      url("../artwork/menu-image.jpg");
+    background-image: url("../artwork/menu-image.jpg");
   }
 
   .container {
@@ -278,12 +272,12 @@ button:active {
   }
 
   .game-title-text {
-    font-size: 4rem; 
+    font-size: 4rem;
   }
 
   .game-story-text {
     font-size: 1.6rem;
-    line-height: 2.4rem; 
+    line-height: 2.4rem;
   }
 
   .high-score-menu {
@@ -291,23 +285,19 @@ button:active {
   }
 }
 
+/* Large Container*/
 @media (min-width: 992px) {
-  .header-bg-image {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.1)),
-      url("../artwork/menu-image.jpg");
-  }
-  
   .container {
     max-width: 960px;
   }
 
   .game-title-text {
-    font-size: 4.4rem; 
+    font-size: 4.4rem;
   }
 
   .game-story-text {
     font-size: 1.8rem;
-    line-height: 2.6rem; 
+    line-height: 2.6rem;
   }
 
   .high-score-menu {
@@ -315,9 +305,9 @@ button:active {
   }
 }
 
+/* Extra Large Container*/
 @media (min-width: 1200px) {
   .container {
     max-width: 1140px;
   }
 }
-

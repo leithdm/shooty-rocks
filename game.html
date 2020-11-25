@@ -11,27 +11,22 @@
     <title>Covidroids | Game</title>
     <link rel="icon" type="image/png" href="assets/artwork/favicon.jpg" />
 
-    <!-- JAVASCRIPT WITH DEFERRED LOADING -->
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.1/howler.min.js"></script>
-    <script defer src="assets/testing/src/bullet.js"></script>
-    <script defer src="assets/testing/src/asteroid.js"></script>
-    <script defer src="assets/testing/src/ship.js"></script>
-    <script defer src="assets/testing/src/game-utilities.js"></script>
-    <script defer src="assets/testing/src/game.js"></script>
-
     <!-- CSS -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
-    integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+        integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
+    <!-- HEADER -->
     <header>
-        <div class="container">
+
+        <!-- NAV -->
+        <nav class="container">
             <div class="top-banner">
                 <p class="high-score-title">HIGH SCORE:<span class="high-score">0</span></p>
                 <p class="score-title">SCORE:<span class="score-value">0</span></p>
-                <p class="lives-header"><img class="lives-image" src="assets/artwork/ship-cropped.png">
+                <p class="lives-header"><img class="lives-image" alt="ship image" src="assets/artwork/ship-cropped.png">
                     <span class="lives">3</span></p>
             </div>
             <canvas id="canvas"> Sorry, your browser doesn't support the &lt;canvas&gt; element.</canvas>
@@ -41,8 +36,16 @@
                 <button class="right-button noselect"><i class="fas fa-arrow-right"></i></button>
                 <button class="fire-button noselect">FIRE</button>
             </div>
-        </div>
+        </nav>
     </header>
+
+    <!-- JAVASCRIPT -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.1/howler.min.js"></script>
+    <script src="assets/testing/src/bullet.js"></script>
+    <script src="assets/testing/src/asteroid.js"></script>
+    <script src="assets/testing/src/ship.js"></script>
+    <script src="assets/testing/src/game-utilities.js"></script>
+    <script src="assets/testing/src/game.js"></script>
 </body>
 
 </html>

@@ -5,7 +5,7 @@
 const CANVAS_WIDTH = 800; //canvas.width
 const CANVAS_HEIGHT = 600; //canvas.height
 const FPS = 60; //for setting a frames per second constant. Used for ship invincibility timer
-const TEXT_FADE_TIME = 2.5 //for settting the fade time of _onScreenText to 2.5 seconds duration
+const TEXT_FADE_TIME = 2.5; //for settting the fade time of _onScreenText to 2.5 seconds duration
 const ON = 1; //for setting soundfx to be on
 const OFF = 0; //for setting soundfx to be off
 
@@ -23,9 +23,9 @@ const SHIP_SIZE = 16; //for setting the size of the ship
 const SHIP_COLLISION_RADIUS = 14; //for setting the collsion radius of the ship
 
 //Asteroid Config
-const LARGE_ASTEROID_RADIUS = 80 //for setting the radius of a large asteroid
-const MEDIUM_ASTEROID_RADIUS = 45 //for setting the radius of a medium sized asteroid
-const SMALL_ASTEROID_RADIUS = 25 //for setting the radius of a small sized asteroid
+const LARGE_ASTEROID_RADIUS = 80; //for setting the radius of a large asteroid
+const MEDIUM_ASTEROID_RADIUS = 45; //for setting the radius of a medium sized asteroid
+const SMALL_ASTEROID_RADIUS = 25; //for setting the radius of a small sized asteroid
 const LARGE_ASTEROID_COLLISION_RADIUS = 76; //for setting the size of collision radius of large asteroid
 const MEDIUM_ASTEROID_COLLISION_RADIUS = 40; //for setting the size of collision radius of medium asteroid
 const SMALL_ASTEROID_COLLISION_RADIUS = 23; //for setting the size of collision radius of small asteroid
@@ -33,16 +33,22 @@ const MEDIUM_ASTEROID_SPEED = 1; //for setting the speed of a medium sized aster
 const SMALL_ASTEROID_SPEED = 2; //for setting the speed of a small asteroid
 const LARGE_ASTEROID_EXPLOSION_FACTOR = 0; //for setting a large asteroid explosion size
 const MEDIUM_ASTEROID_EXPLOSION_FACTOR = 1.0; //for setting a medium asteroid explosion size
-const SMALL_ASTEROID_EXPLOSION_FACTOR = 2.0; //for setting a small asteroid explosion size 
+const SMALL_ASTEROID_EXPLOSION_FACTOR = 2.0; //for setting a small asteroid explosion size
 const ASTEROID_OFFSET = 5; //for off-setting asteroid from x and y coordinates when split into 2
 const ASTEROID_VERTICES = 16; //for setting the average number of vertices on each asteroid
-const ASTEROID_IRREGUALITY = 0.2 //for setting the irregularity of asteroid shape, where 0.0 is normal and 1.0 is very irregular
-const SCORE_LARGE_ASTEROID = 20 //for setting score of hitting large asteroid
-const SCORE_MEDIUM_ASTEROID = 50 //for setting score of hitting medium asteroid
-const SCORE_SMALL_ASTEROID = 100 //for setting score of hitting small asteroid
+const ASTEROID_IRREGUALITY = 0.2; //for setting the irregularity of asteroid shape, where 0.0 is normal and 1.0 is very irregular
+const SCORE_LARGE_ASTEROID = 20; //for setting score of hitting large asteroid
+const SCORE_MEDIUM_ASTEROID = 50; //for setting score of hitting medium asteroid
+const SCORE_SMALL_ASTEROID = 100; //for setting score of hitting small asteroid
 const LARGE_ASTEROID_SIZE = 3; //for setting the sizing 'tag' of largest asteroid
 const MEDIUM_ASTEROID_SIZE = 2; //for setting the sizing 'tag' of medium asteroid
 const SMALL_ASTEROID_SIZE = 1; //for setting the sizing 'tag' of smallest asteroid
+
+//Bullet Config
+const BULLET_WIDTH = 4; //for setting the width of the bullet
+const BULLET_HEIGHT = 4; //for setting the height of the bullet
+const BULLET_COLLISION_RADIUS = 3; //for setting collision radius of the bullet
+const BULLET_SPEED = 10; //for setting the speed of the bullet
 
 //Local Storage
 const LOCAL_STORAGE_HIGHSCORE = "highScore"; //for setting local storage key of highscore
@@ -69,31 +75,40 @@ const SMALL_ASTEROID_COLOR_ARRAY = [
   "rgb(0, 193, 90)"
 ];
 
+const BULLET_COLOR = "rgb(255, 255, 0)";
+const WHITE_COLOR = "rgb(255, 255, 255)";
+const BLACK_COLOR = "rgb(0, 0, 0)";
+
 /*------------------------------------*\
   #SOUND CONSTANTS USING HOWLER LIBRARY
 \*------------------------------------*/
 const FIRE_SOUND = new Howl({
-  src: ["assets/audio/fire.webm", "assets/audio/fire.mp3"]
+  src: ["assets/audio/fire.webm", "assets/audio/fire.mp3"],
+  html5: true
 });
 const THRUST_SOUND = new Howl({
   src: ["assets/audio/thrust.webm", "assets/audio/thrust.mp3"],
-  volume: 0.3
+  volume: 0.3,
+  html5: true
 });
 const BANG_SMALL_ASTEROID_SOUND = new Howl({
-  src: ["assets/audio/bangSmall.webm", "assets/audio/bangSmall.mp3"]
+  src: ["assets/audio/bangSmall.webm", "assets/audio/bangSmall.mp3"],
+  html5: true
 });
 const BANG_MEDIUM_ASTEROID_SOUND = new Howl({
-  src: ["assets/audio/bangMedium.webm", "assets/audio/bangMedium.mp3"]
+  src: ["assets/audio/bangMedium.webm", "assets/audio/bangMedium.mp3"],
+  html5: true
 });
 const BANG_LARGE_ASTEROID_SOUND = new Howl({
-  src: ["assets/audio/bangLarge.webm", "assets/audio/bangLarge.mp3"]
-}); 
+  src: ["assets/audio/bangLarge.webm", "assets/audio/bangLarge.mp3"],
+  html5: true
+});
 
 /*------------------------------------*\
 #GAME VARIABLES
 \*------------------------------------*/
 let _lives = 3; //for setting the number of ship-lives
-let _level = 1 //for setting the game level
+let _level = 1; //for setting the game level
 let _highScore = 0; //for setting the high score
 let _numberOfAsteroids = 1; //for setting the number of asteroids that appear on screen
 let _onScreenText; //for displaying text related to 'Level No' and 'Game Over'
@@ -117,25 +132,25 @@ function convertAngleToRadians(angle) {
 
 //for listening to keyboard input
 function setupKeyboardInput() {
-  //holding down any key sets the value for that particular key to true
-  document.body.addEventListener("keydown", handleKeyDown); 
-
-  //releasing the key sets the value for that particular key to false
-  document.body.addEventListener("keyup", handleKeyUp); 
+  document.body.addEventListener("keydown", handleKeyDown);
+  document.body.addEventListener("keyup", handleKeyUp);
 }
 
+//for setting the keysArray[] value for a particular key to true when that key is pressed
 function handleKeyDown(e){
   if(ship.visible) {
     keysArray[e.keyCode] = true;
   }
 }
 
+//for setting the keysArray value for a particular key to false when that key is unpressed
+//if the key that is unpressed is the KEY_SHOOT, then fire a bullet
 function handleKeyUp(e){
   keysArray[e.keyCode] = false;
   if(ship.visible) {
-    if (e.keyCode === KEY_SHOOT){   
+    if (e.keyCode === KEY_SHOOT){
         if(soundfxOn == ON) {
-         FIRE_SOUND.play(); 
+         FIRE_SOUND.play();
         }
       bulletsArray.push(new Bullet(ship.angle));
     }
@@ -147,7 +162,7 @@ function checkKeyboardInput() {
   ship.movingForward = keysArray[KEY_UP_ARROW];
   if(keysArray[KEY_UP_ARROW]) {
      if(soundfxOn == ON) {
-    THRUST_SOUND.play(); 
+    THRUST_SOUND.play();
     }
   }
   if (keysArray[KEY_LEFT_ARROW]) {
@@ -200,7 +215,7 @@ function collisionDetection(obj1x, obj1y, obj1CollisionRadius,
   }
 }
 
-//for checking a collision between ship and asteroid
+//for checking if there is a collision between ship and asteroid
 function checkCollisionShipAsteroid() {
   if(ship.visible) {
     if(ship.invincibility < -SHIP_INVINCIBILITY_TIMEOUT) {
@@ -208,30 +223,28 @@ function checkCollisionShipAsteroid() {
         for (let i=0; i<asteroidsArray.length; i++) {
           if (collisionDetection(ship.x, ship.y, ship.collisionRadius,
             asteroidsArray[i].x, asteroidsArray[i].y, asteroidsArray[i].collisionRadius)) {
-            //play sound
               if(soundfxOn == ON) {
                 BANG_LARGE_ASTEROID_SOUND.play();
             }
-            //draw the ship explosion
             drawShipExplosion();
             //reduce number of lives
-            _lives--; 
+            _lives--;
             //set the lives in html
             if(_lives >= 0) {
-              LIVES_HTML.textContent = _lives; 
+              LIVES_HTML.textContent = _lives;
               bulletsArray = [];
               ship.x = CANVAS_WIDTH/2;
               ship.y = CANVAS_HEIGHT/2;
-              ship.angle = 90; 
+              ship.angle = 90;
               ship.velX = 0;
               ship.velY = 0;
-              ship.invincibility = 0; 
+              ship.invincibility = 0;
             }
-            //set the ship to invisible if ship-lives are zero
+            //set the ship to invisible if ship-lives are zero and set screen text to GAME OVER
             if(_lives === 0) {
-              ship.visible = false; 
+              ship.visible = false;
               _onScreenText = "GAME OVER";
-              _textAlpha = 1.0; 
+              _textAlpha = 1.0;
             }
           }
         }
@@ -240,151 +253,156 @@ function checkCollisionShipAsteroid() {
   }
 }
 
-//for checking collison between a bullet and an asteroid
+//for checking if there is a collison between a bullet and an asteroid
 function checkCollisionBulletAsteroid() {
   if (asteroidsArray.length !== 0 && bulletsArray.length !== 0) {
     for (let i=0; i<asteroidsArray.length; i++) {
       for (let j=0; j<bulletsArray.length; j++) {
         if(collisionDetection(bulletsArray[j].x, bulletsArray[j].y, bulletsArray[j].collisionRadius,
           asteroidsArray[i].x, asteroidsArray[i].y, asteroidsArray[i].collisionRadius)) {
-          //if asteroid is a large asteroid, break it up into x2 medium asteroids, offset to the right and left
+          //if asteroid is a large asteroid, break it up into x2 medium asteroids
           if(asteroidsArray[i].size === LARGE_ASTEROID_SIZE) {
             //play sound
             if(soundfxOn == ON) {
              BANG_LARGE_ASTEROID_SOUND.play();
             }
-            //show explosion
-            drawAsteroidExplosion(i, LARGE_ASTEROID_EXPLOSION_FACTOR); 
+            drawAsteroidExplosion(i, LARGE_ASTEROID_EXPLOSION_FACTOR);
+
             //create 2 new medium sized asteroids
             asteroidsArray.push(new Asteroid(asteroidsArray[i].x - ASTEROID_OFFSET,
               asteroidsArray[i].y - ASTEROID_OFFSET,
               asteroidsArray[i].speed,
-              MEDIUM_ASTEROID_RADIUS, 
+              MEDIUM_ASTEROID_RADIUS,
               MEDIUM_ASTEROID_SIZE,
               MEDIUM_ASTEROID_COLLISION_RADIUS,
               asteroidsArray[i].radiusOffsetArray
-              )); 
+              ));
             asteroidsArray.push(new Asteroid(asteroidsArray[i].x + ASTEROID_OFFSET,
               asteroidsArray[i].y + ASTEROID_OFFSET,
               asteroidsArray[i].speed,
-              MEDIUM_ASTEROID_RADIUS, 
+              MEDIUM_ASTEROID_RADIUS,
               MEDIUM_ASTEROID_SIZE,
               MEDIUM_ASTEROID_COLLISION_RADIUS,
               asteroidsArray[i].radiusOffsetArray
-              )); 
-              //update the score
+              ));
               score += SCORE_LARGE_ASTEROID;
-              //else if asteroid is a medium asteroid, break it up into x2 small asteroids, offset to the right and left
+
+            //if asteroid is a medium asteroid, break it up into x2 small asteroids
             } else if (asteroidsArray[i].size === MEDIUM_ASTEROID_SIZE) {
               //play sound
               if(soundfxOn == ON) {
                BANG_MEDIUM_ASTEROID_SOUND.play();
               }
-              //show explosion
-              drawAsteroidExplosion(i, MEDIUM_ASTEROID_EXPLOSION_FACTOR); 
+              drawAsteroidExplosion(i, MEDIUM_ASTEROID_EXPLOSION_FACTOR);
+
               //create 2 new small sized asteroids
               asteroidsArray.push(new Asteroid(asteroidsArray[i].x - ASTEROID_OFFSET,
                 asteroidsArray[i].y - ASTEROID_OFFSET,
-                asteroidsArray[i].speed,
-                SMALL_ASTEROID_RADIUS, 
+                asteroidsArray[i].speed+1,
+                SMALL_ASTEROID_RADIUS,
                 SMALL_ASTEROID_SIZE,
                 SMALL_ASTEROID_COLLISION_RADIUS,
                 asteroidsArray[i].radiusOffsetArray
-                )); 
+                ));
                 asteroidsArray.push(new Asteroid(asteroidsArray[i].x + ASTEROID_OFFSET,
                   asteroidsArray[i].y + ASTEROID_OFFSET,
-                  asteroidsArray[i].speed,
-                  SMALL_ASTEROID_RADIUS, 
+                  asteroidsArray[i].speed+1,
+                  SMALL_ASTEROID_RADIUS,
                   SMALL_ASTEROID_SIZE,
-                  SMALL_ASTEROID_COLLISION_RADIUS, 
+                  SMALL_ASTEROID_COLLISION_RADIUS,
                   asteroidsArray[i].radiusOffsetArray
-                  )); 
-                  //update the score
-                  score += SCORE_MEDIUM_ASTEROID; 
+                  ));
+                  score += SCORE_MEDIUM_ASTEROID;
+
+               //if asteroid is a small asteroid
                 } else {
-                 //play sound
                  if(soundfxOn == ON) {
                   BANG_SMALL_ASTEROID_SOUND.play();
                  }
-                 //show the explosion
                  drawAsteroidExplosion(i, SMALL_ASTEROID_EXPLOSION_FACTOR);
-                 //update the score
-                 score += SCORE_SMALL_ASTEROID; 
+                 score += SCORE_SMALL_ASTEROID;
                 }
+
           //set html score value
           SCORE_HTML.textContent = numberWithCommas(score);
-          //remote the bullet and the asteroid
+          //remote the bullet and the asteroid from relevant arrays
           asteroidsArray.splice(i, 1);
           bulletsArray.splice(j, 1);
-          break; 
+          break;
         }
       }
     }
   }
 }
 
-//for creating colorful outline of asteroids 
-function colorfulAsteroidsStroke() {
-  context.strokeStyle = "rgb(" + Math.floor(Math.random() *204) + " ," + 
-  Math.floor(Math.random() * 255) + " ," + 
-  Math.floor(Math.random() * 229) + ")";
-}
-
-//for creating the outline of ship when invincible
-function invincibleShipStroke() {
-  context.strokeStyle = "rgb(" + Math.floor(Math.random() * (255 - 200) + 200) + " ," + 
-  Math.floor(Math.random() * 0) + " ," + 
-  Math.floor(Math.random() * 0) + ")";
-}
-
-//for creating fill of invincible ship
-function invincibleShipThrustFill() {
-  context.fillStyle = "rgb(" + Math.floor(Math.random() * (255 - 100) + 100) + " ," + 
-  Math.floor(Math.random() * (255 - 100) + 100) + " ," + 
-  Math.floor(Math.random() * (255 - 100) + 100) + ")";
-}
-
-//for creating the fill of ship thrust
-function shipThrustFill() {
-  context.fillStyle = "rgb(" + Math.floor(Math.random() * (255 - 100) + 100) + " ," + 
-  Math.floor(Math.random() * 0) + " ," + 
-  Math.floor(Math.random() * 0) + ")";
-}
-
-//for creating the fill of ship thrust
-function shipThrustOutline() {
-  context.strokeStyle = "rgb(" + 255 + " ," + 
-  Math.floor(Math.random() * (255 - 50) + 50) + " ," + 
-  Math.floor(Math.random() * (100 - 50) + 50) + ")";
-}
-
-//for rendering twinkling star effect to the game canvas
-function renderStars() {
-  context.fillStyle = "white";
-  for(let i=1; i<=7; i++) {
-    for(let j=1; j<=7; j++) {
-      context.fillRect(100*(i-(Math.floor(Math.random() * (3)))), 100*(j+(Math.floor(Math.random()*3))), 1, 1);
-    }
-  }
-}
-
-//for creating commas in score output
-//https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
-function numberWithCommas(x) {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
-
 //for checking if its game over
 function checkIfGameOver() {
   if(_lives === 0){
     ship.visible = false;
-  }  
+  }
 }
 
-//for getting local store of high score
+//for resetting a ship, asteroid, and bullet
+function resetShipAsteroidBullet() {
+  asteroidsArray = [];
+  bulletsArray = [];
+  _onScreenText = "LEVEL " + _level;
+  _textAlpha = 1.0;
+  ship.x = CANVAS_WIDTH / 2;
+  ship.y = CANVAS_HEIGHT / 2;
+  ship.velX = 0;
+  ship.velY = 0;
+  ship.visible = true;
+  ship.invincibility = -SHIP_INVINCIBILITY_TIMEOUT;
+}
+
+//for setting up an asteroid belt
+function setupAsteroids() {
+  //set the speed of the asteroid based on the level number
+  let speedAsteroid = _level * 0.1 + 1;
+  //ensures the asteroid is not positioned within collision radius of the ship at the start of game
+  for (let i = 0; i < _numberOfAsteroids + _level; i++) {
+    do {
+      x = Math.floor(Math.random() * CANVAS_WIDTH);
+      y = Math.floor(Math.random() * CANVAS_HEIGHT);
+    } while (collisionDetection(x,y,LARGE_ASTEROID_SIZE,ship.x,ship.y,ship.collisionRadius * 20));
+    asteroidsArray.push(new Asteroid(x, y, speedAsteroid));
+  }
+  //in order to create irregular polygon shapes, we assign values to the asteroids radiusOffsetArray.
+  //The radius of the asteroid is offset relative to the ASTEROID_IRREGUALITY constant.
+  for (let i = 0; i < asteroidsArray.length; i++) {
+    for (let j = 0; j < asteroidsArray[i].vertices; j++) {
+      asteroidsArray[i].radiusOffsetArray.push(
+        Math.random() * ASTEROID_IRREGUALITY * 2 + 1 - ASTEROID_IRREGUALITY
+      );
+    }
+  }
+  _level++;
+}
+
+//for creating a new game
+function createNewGame() {
+  _level = 1;
+  score = 0;
+  _lives = 3;
+  LIVES_HTML.textContent = _lives;
+  SCORE_HTML.textContent = numberWithCommas(score);
+  resetShipAsteroidBullet();
+  setupAsteroids();
+}
+
+//for creating a new level
+function createNewLevel() {
+  if(asteroidsArray.length === 0) {
+    resetShipAsteroidBullet();
+    setupAsteroids();
+  }
+}
+
+//for retrieving local store of high score
 function getLocalStorage() {
   if(localStorage.getItem(LOCAL_STORAGE_HIGHSCORE) == null) {
-    _highScore = 0; 
+    _highScore = 0;
   } else {
     _highScore = localStorage.getItem(LOCAL_STORAGE_HIGHSCORE);
   }
@@ -392,48 +410,49 @@ function getLocalStorage() {
 
 //for updating the high score
 function updateHighScore() {
-  _highScore = Math.max(score, _highScore); 
-  localStorage.setItem(LOCAL_STORAGE_HIGHSCORE, _highScore); 
-  HIGH_SCORE_HTML.textContent = numberWithCommas(_highScore.toString()); 
+  _highScore = Math.max(score, _highScore);
+  localStorage.setItem(LOCAL_STORAGE_HIGHSCORE, _highScore);
+  HIGH_SCORE_HTML.textContent = numberWithCommas(_highScore.toString());
 }
 
 //for creating the touchscreen gamepad controller event listeners, and performing relevant actions
 function setupGamePadController() {
     LEFT_BUTTON.addEventListener("touchstart", ()=> {
     keysArray[KEY_LEFT_ARROW] = true;
-  })
+  });
     LEFT_BUTTON.addEventListener("touchend", ()=> {
     keysArray[KEY_LEFT_ARROW] = false;
-  })
+  });
     RIGHT_BUTTON.addEventListener("touchstart", ()=> {
     keysArray[KEY_RIGHT_ARROW] = true;
-  })  
+  });
     RIGHT_BUTTON.addEventListener("touchend", ()=> {
     keysArray[KEY_RIGHT_ARROW] = false;
-  })
+  });
     FIRE_BUTTON.addEventListener("touchstart", ()=> {
     if(soundfxOn == ON) {
-     FIRE_SOUND.play(); 
+     FIRE_SOUND.play();
     }
     bulletsArray.push(new Bullet(ship.angle));
-  })
+  });
     THRUST_BUTTON.addEventListener("touchstart", ()=> {
     keysArray[KEY_UP_ARROW] = true;
-  })
+  });
     THRUST_BUTTON.addEventListener("touchend", ()=> {
     keysArray[KEY_UP_ARROW] = false;
-  })
+  });
 }
 
 //for determining if soundfx are on/off
 function getLocalStorageSoundfx() {
   if(localStorage.getItem(LOCAL_STORAGE_SOUNDFX) == OFF) {
-      soundfxOn = OFF; 
+      soundfxOn = OFF;
   } else {
-      soundfxOn = ON; 
+      soundfxOn = ON;
   }
 }
 
+//for drawing a ship explosion
 function drawShipExplosion() {
   context.fillStyle = "darkred";
   context.beginPath();
@@ -457,6 +476,7 @@ function drawShipExplosion() {
   context.fill();
 }
 
+//for drawing an asteroid explosion, with an explosion factor based on size of asteroid
 function drawAsteroidExplosion(i, explosionFactor) {
   context.fillStyle = "darkred";
   context.beginPath();
@@ -480,6 +500,7 @@ function drawAsteroidExplosion(i, explosionFactor) {
   context.fill();
 }
 
+//for rendering on-screen text related to Level and Game Over
 function renderOnScreenText() {
   if (_textAlpha >= 0) {
     context.fillStyle = "rgba(255, 255, 255, " + _textAlpha + ")";
@@ -488,60 +509,62 @@ function renderOnScreenText() {
     context.fillText(_onScreenText, CANVAS_WIDTH / 2, CANVAS_HEIGHT * 0.7);
     _textAlpha -= 1.0 / TEXT_FADE_TIME / FPS;
   } else if (!ship.visible) {
-    createNewGame(); 
+    createNewGame();
   }
 }
 
-function resetShipAsteroidBullet() {
-  asteroidsArray = [];
-  bulletsArray = [];
-  _onScreenText = "LEVEL " + _level;
-  _textAlpha = 1.0;
-  ship.x = CANVAS_WIDTH / 2;
-  ship.y = CANVAS_HEIGHT / 2;
-  ship.velX = 0;
-  ship.velY = 0;
-  ship.visible = true; 
-  ship.invincibility = -SHIP_INVINCIBILITY_TIMEOUT;
+//for creating colorful invincible ship stroke
+function invincibleShipStroke() {
+  context.strokeStyle = "rgb(" +
+  Math.floor(Math.random() *204) + " ," +
+  Math.floor(Math.random() * 255) + " ," +
+  Math.floor(Math.random() * 229) + ")";
 }
 
-function setupAsteroids() {
-  //set the speed of the asteroid based on the level number
-  let speedAsteroid = _level * 0.1 + 1;
-  //ensures the asteroid is not positioned within collision radius of the ship at the start of game
-  for (let i = 0; i < _numberOfAsteroids + _level; i++) {
-    do {
-      x = Math.floor(Math.random() * CANVAS_WIDTH);
-      y = Math.floor(Math.random() * CANVAS_HEIGHT);
-    } while (collisionDetection(x,y,LARGE_ASTEROID_SIZE,ship.x,ship.y,ship.collisionRadius * 20));
-    asteroidsArray.push(new Asteroid(x, y, speedAsteroid));
-  }
-  //in order to create irregular polygon shapes, we assign values to the asteroids radiusOffsetArray. 
-  //The radius of the asteroid is offset relative to the ASTEROID_IRREGUALITY constant.
-  for (let i = 0; i < asteroidsArray.length; i++) {
-    for (let j = 0; j < asteroidsArray[i].vertices; j++) {
-      asteroidsArray[i].radiusOffsetArray.push(
-        Math.random() * ASTEROID_IRREGUALITY * 2 + 1 - ASTEROID_IRREGUALITY
-      );
+//for creating the outline of ship thrust when invincible
+function invincibleShipThrustStroke() {
+  context.strokeStyle = "rgb(" +
+  Math.floor(Math.random() * (255 - 200) + 200) + " ," +
+  Math.floor(Math.random() * 0) + " ," +
+  Math.floor(Math.random() * 0) + ")";
+}
+
+//for creating fill of invincible ship
+function invincibleShipThrustFill() {
+  context.fillStyle = "rgb(" +
+  Math.floor(Math.random() * (255 - 100) + 100) + " ," +
+  Math.floor(Math.random() * (255 - 100) + 100) + " ," +
+  Math.floor(Math.random() * (255 - 100) + 100) + ")";
+}
+
+//for creating the fill of ship thrust
+function shipThrustFill() {
+  context.fillStyle = "rgb(" +
+  Math.floor(Math.random() * (255 - 100) + 100) + " ," +
+  Math.floor(Math.random() * 0) + " ," +
+  Math.floor(Math.random() * 0) + ")";
+}
+
+//for creating the fill of ship thrust
+function shipThrustOutline() {
+  context.strokeStyle = "rgb(" +
+  255 + " ," +
+  Math.floor(Math.random() * (255 - 50) + 50) + " ," +
+  Math.floor(Math.random() * (100 - 50) + 50) + ")";
+}
+
+//for rendering twinkling star effect to the game canvas
+function renderStars() {
+  context.fillStyle = "white";
+  for(let i=1; i<=7; i++) {
+    for(let j=1; j<=7; j++) {
+      context.fillRect(100*(i-(Math.floor(Math.random() * (3)))), 100*(j+(Math.floor(Math.random()*3))), 1, 1);
     }
   }
-  _level++; 
 }
 
-function createNewGame() {
-  _level = 1; 
-  score = 0; 
-  _lives = 3; 
-  LIVES_HTML.textContent = _lives;
-  SCORE_HTML.textContent = numberWithCommas(score);
-  resetShipAsteroidBullet(); 
-  setupAsteroids(); 
-}
-
-//for creating a new level
-function createNewLevel() {
-  if(asteroidsArray.length === 0) {
-    resetShipAsteroidBullet(); 
-    setupAsteroids(); 
-  }
+//for creating commas in score output
+//https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }

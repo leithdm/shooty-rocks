@@ -60,7 +60,7 @@ describe("test we are updating the ships y position when moving forward in y-dir
     expect(ship.velX).toBe(0);
     expect(ship.velY).toBe(0);
     ship.movingForward = true;
-    ship.frictionConstant = 1.0; 
+    ship.frictionConstant = 1.0;
   });
   it("should move the ship forward by 0.1px starting at 90 degrees in y-direction if ship is moved forward x1 time", () => {
     expect(ship.updateShip).toBeDefined();
@@ -91,7 +91,7 @@ describe("test we are updating the ships x position when moving forward in x-dir
     expect(ship.velX).toBe(0);
     expect(ship.velY).toBe(0);
     ship.movingForward = true;
-    ship.frictionConstant = 1.0; 
+    ship.frictionConstant = 1.0;
   });
   it("should move the ship forward by 0.1px in x-direction starting at 0 degrees if ship is moved forward x1 times in x-direction", () => {
     expect(ship.movingForward).toBeTrue();
@@ -147,39 +147,39 @@ describe("test if the ship is off-screen. If true, make it re-enter on opposite 
     expect(ship.velX).toBe(0);
     expect(ship.velY).toBe(0);
     ship.movingForward = true;
-    ship.frictionConstant = 1.0; 
+    ship.frictionConstant = 1.0;
   });
   it("the ship.x should change to the canvas width once the ship is < than 0px", () => {
     expect(ship.movingForward).toBeTrue();
-    ship.x = 0;  
+    ship.x = 0;
     ship.angle = 0;
     expect(ship.x).toBe(0);
     for(let i=0; i<2; i++) {
-      //run updateShip() once to move ship by 0.1px from 0px.  
-      //when run a second time, ship is moved from canvasWidth - velX(which is 0.2px after the 2nd run)
+      //run updateShip() once to move ship by 0.1px from 0px.
+      //when run a second time, ship is moved from CANVAS_WIDTH - velX(which is 0.2px after the 2nd run)
       ship.updateShip();
     }
-    expect(ship.x).toBe(canvasWidth - 0.2);
+    expect(ship.x).toBe(CANVAS_WIDTH - 0.2);
   });
-  it("the ship.x should change to 0px once the ship is > than canvasWidth", () => {
+  it("the ship.x should change to 0px once the ship is > than CANVAS_WIDTH", () => {
     expect(ship.movingForward).toBeTrue();
-    ship.x = canvasWidth;  
+    ship.x = CANVAS_WIDTH;
     ship.angle = 180;
-    expect(ship.x).toBe(canvasWidth);
+    expect(ship.x).toBe(CANVAS_WIDTH);
     for(let i=0; i<2; i++) {
-      //run updateShip() once to move ship by 0.1px from canvasWidth.  
+      //run updateShip() once to move ship by 0.1px from CANVAS_WIDTH.
       //when run a second time, ship is moved from 0px + velX(which is 0.2px after the 2nd run)
       ship.updateShip();
     }
     expect(ship.x).toBe(0.2);
   });
-  it("the ship.y should change to 0px once the ship is > than canvasHeight", () => {
+  it("the ship.y should change to 0px once the ship is > than CANVAS_HEIGHT", () => {
     expect(ship.movingForward).toBeTrue();
-    ship.y = canvasHeight;  
+    ship.y = CANVAS_HEIGHT;
     ship.angle = 270;
-    expect(ship.y).toBe(canvasHeight);
+    expect(ship.y).toBe(CANVAS_HEIGHT);
     for(let i=0; i<2; i++) {
-      //run updateShip() once to move ship by 0.1px from canvasHeight.  
+      //run updateShip() once to move ship by 0.1px from CANVAS_HEIGHT.
       //when run a second time, ship is moved from 0px + velY(which is 0.2px after the 2nd run)
       ship.updateShip();
     }
@@ -187,52 +187,52 @@ describe("test if the ship is off-screen. If true, make it re-enter on opposite 
   });
   it("the ship.y should change to 800px once the ship is < than 0px", () => {
     expect(ship.movingForward).toBeTrue();
-    ship.y = 0;  
+    ship.y = 0;
     ship.angle = 90;
     expect(ship.y).toBe(0);
     for(let i=0; i<2; i++) {
-      //run updateShip() once to move ship by 0.1px from 0px.  
-      //when run a second time, ship is moved from canvasHeight - velY(which is 0.2px after the 2nd run)
+      //run updateShip() once to move ship by 0.1px from 0px.
+      //when run a second time, ship is moved from CANVAS_HEIGHT - velY(which is 0.2px after the 2nd run)
       ship.updateShip();
     }
-    expect(ship.y).toBe(canvasHeight - 0.2);
+    expect(ship.y).toBe(CANVAS_HEIGHT - 0.2);
   });
 });
 
 describe("test if the ship slows down, and eventually stops, due to friction when no longer moving forward in y-direction", () => {
   it("ship should feel friction constant of 0.99 when ship moves forward x1 time in y-direction", () => {
     //conditions
-    ship.movingForward = true; 
+    ship.movingForward = true;
     expect(ship.x).toBe(400);
     expect(ship.y).toBe(300);
     expect(ship.velX).toBe(0);
     expect(ship.velY).toBe(0);
     expect(ship.movingForward).toBeTrue();
-    ship.visible = true; 
+    ship.visible = true;
 
-    ship.updateShip(); 
+    ship.updateShip();
     expect(ship.velY).toBe(0.099);
     expect(ship.y).toBe(299.901);
   });
   it("ship should slow down and eventually stop due to friction constant of 0.99 in y-direction", () => {
     //conditions
-    ship.movingForward = true; 
+    ship.movingForward = true;
     expect(ship.x).toBe(400);
     expect(ship.y).toBe(300);
     expect(ship.velX).toBe(0);
     expect(ship.velY).toBe(0);
     expect(ship.movingForward).toBeTrue();
-    ship.visible = true; 
+    ship.visible = true;
 
     for(let i=0; i<10; i++) {
-      ship.updateShip(); 
+      ship.updateShip();
     }
     //stop moving the ship forward
-    ship.movingForward = false; 
-    
+    ship.movingForward = false;
+
     //call updateShip() x300 times and find resultant velY
     for(let i=0; i<300; i++) {
-      ship.updateShip(); 
+      ship.updateShip();
     }
     expect(ship.velY).toBeCloseTo(0.0, 1);
   });
@@ -241,39 +241,39 @@ describe("test if the ship slows down, and eventually stops, due to friction whe
 describe("test if the ship slows down, and eventually stops, due to friction when no longer moving forward in x-direction", () => {
   it("ship should feel friction constant of 0.99 when ship moves forward x1 time in x-direction", () => {
     //conditions
-    ship.movingForward = true; 
-    ship.angle = 0; 
+    ship.movingForward = true;
+    ship.angle = 0;
     expect(ship.x).toBe(400);
     expect(ship.y).toBe(300);
     expect(ship.velX).toBe(0);
     expect(ship.velY).toBe(0);
     expect(ship.movingForward).toBeTrue();
-    ship.visible = true; 
+    ship.visible = true;
 
-    ship.updateShip(); 
+    ship.updateShip();
     expect(ship.velX).toBe(0.099);
     expect(ship.x).toBe(399.901);
   });
   it("ship should slow down and eventually stop due to friction constant of 0.99 in x-direction", () => {
     //conditions
-    ship.movingForward = true; 
-    ship.angle = 0; 
+    ship.movingForward = true;
+    ship.angle = 0;
     expect(ship.x).toBe(400);
     expect(ship.y).toBe(300);
     expect(ship.velX).toBe(0);
     expect(ship.velY).toBe(0);
     expect(ship.movingForward).toBeTrue();
-    ship.visible = true; 
+    ship.visible = true;
 
     for(let i=0; i<10; i++) {
-      ship.updateShip(); 
+      ship.updateShip();
     }
     //stop moving the ship forward
-    ship.movingForward = false; 
-    
+    ship.movingForward = false;
+
     //call updateShip() x300 times and find resultant velX
     for(let i=0; i<300; i++) {
-      ship.updateShip(); 
+      ship.updateShip();
     }
     expect(ship.velX).toBeCloseTo(0.0, 1);
   });
@@ -281,6 +281,6 @@ describe("test if the ship slows down, and eventually stops, due to friction whe
 
 describe("test ship has a drawShip() method", () => {
   it("should have drawShip() method defined", () => {
-    expect(ship.drawShip).toBeDefined(); 
+    expect(ship.drawShip).toBeDefined();
   });
 });

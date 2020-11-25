@@ -12,9 +12,10 @@ it("test we can create an instance of an asteroid and that it is visible", () =>
 describe("test we are updating the asteroids y position when moving forward in y-direction", () => {
   beforeEach(() => {
     asteroid = new Asteroid();
-    asteroid.x = 400; 
-    asteroid.y = 300; 
-    asteroid.angle = 90; 
+    asteroid.x = 400;
+    asteroid.y = 300;
+    asteroid.speed = 1;
+    asteroid.angle = 90;
     //initial conditions with asteroid starting at x=400px, y=300px
     expect(asteroid.x).toBe(400);
     expect(asteroid.y).toBe(300);
@@ -37,8 +38,9 @@ describe("test we are updating the asteroids y position when moving forward in y
 describe("test we are updating the asteroids x position when moving forward in x-direction", () => {
   beforeEach(() => {
     asteroid = new Asteroid();
-    asteroid.x = 400; 
-    asteroid.y = 300; 
+    asteroid.x = 400;
+    asteroid.y = 300;
+    asteroid.speed = 1;
     asteroid.angle = 0;
     expect(asteroid.x).toBe(400);
     expect(asteroid.y).toBe(300);
@@ -61,8 +63,9 @@ describe("test we are updating the asteroids x position when moving forward in x
 describe("test we are updating both the asteroids x and y position when moving forward in x and y direction", () => {
   beforeEach(() => {
     asteroid = new Asteroid();
-    asteroid.x = 400; 
-    asteroid.y = 300; 
+    asteroid.x = 400;
+    asteroid.y = 300;
+    asteroid.speed = 1;
     asteroid.angle = 45;
     expect(asteroid.x).toBe(400);
     expect(asteroid.y).toBe(300);
@@ -85,37 +88,41 @@ describe("test if the asteroid is off-screen. If true, make it re-enter on oppos
   beforeEach(() => {
     asteroid = new Asteroid();
   });
-  it("the asteroid.x should change to 0 px once the asteroid is > than canvasWidth", () => {
-    asteroid.x = canvasWidth;
+  it("the asteroid.x should change to 0 px once the asteroid is > than CANVAS_WIDTH", () => {
+    asteroid.x = CANVAS_WIDTH;
     asteroid.angle = 0;
-    expect(asteroid.x).toBe(canvasWidth);
+    asteroid.speed = 1;
+    expect(asteroid.x).toBe(CANVAS_WIDTH);
     asteroid.updateAsteroid();
     expect(asteroid.x).toBe(0);
   });
-  it("the asteroid.x should change to canvasWidth once the asteroid is < than 0px", () => {
+  it("the asteroid.x should change to CANVAS_WIDTH once the asteroid is < than 0px", () => {
     asteroid.x = 0;
     asteroid.angle = 180;
+    asteroid.speed = 1;
     expect(asteroid.x).toBe(0);
     for (let i = 0; i < 2; i++) {
-      //run updateAsteroid() once to move asteroid by 1 px from 0 to canvasWidth.
+      //run updateAsteroid() once to move asteroid by 1 px from 0 to CANVAS_WIDTH.
       //when run a second time, asteroid is moved from 0px + asteroid.x (which is 2px after the 2nd run)
       asteroid.updateAsteroid();
     }
-    expect(asteroid.x).toBe(canvasWidth - 1);
+    expect(asteroid.x).toBe(CANVAS_WIDTH - 1);
   });
-  it("the asteroid.y should change to canvasHeight once the asteroid is < than 0px", () => {
+  it("the asteroid.y should change to CANVAS_HEIGHT once the asteroid is < than 0px", () => {
     asteroid.y = 0;
     asteroid.angle = 270;
+    asteroid.speed = 1;
     expect(asteroid.y).toBe(0);
     asteroid.updateAsteroid();
     expect(asteroid.y).toBe(600);
   });
   it("the asteroid.y should change to 0px once the asteroid is > than canvasHeight", () => {
-    asteroid.y = canvasHeight;
+    asteroid.y = CANVAS_HEIGHT;
     asteroid.angle = 90;
-    expect(asteroid.y).toBe(canvasHeight);
+    asteroid.speed = 1;
+    expect(asteroid.y).toBe(CANVAS_HEIGHT);
     for (let i = 0; i < 2; i++) {
-      //run updateAsteroid() once to move asteroid by 1px from canvasHeight to 0px.
+      //run updateAsteroid() once to move asteroid by 1px from CANVAS_HEIGHT to 0px.
       //when run a second time, asteroid is moved from 0 + asteroid.y (which is 2px after the 2nd run)
       asteroid.updateAsteroid();
     }

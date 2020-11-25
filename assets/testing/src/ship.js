@@ -64,7 +64,7 @@ class Ship {
 
   drawShip() {
     if(ship.visible) {
-      context.strokeStyle = "white";
+      context.strokeStyle = WHITE_COLOR;
       context.lineWidth = 3;
 
       //to give the ship a colored blinking effect when invincible and having lost at least 1 life
@@ -118,7 +118,7 @@ class Ship {
       context.arc(this.x, this.y, 3, 0, Math.PI * 2, false);
 
       context.stroke();
-      context.fillStyle = "black";
+      context.fillStyle = BLACK_COLOR;
       context.fill();
 
       //if ship is moving forward draw the thrust trail
@@ -130,12 +130,12 @@ class Ship {
 
   drawThrust() {
     context.fillStyle = shipThrustFill();
-    context.strokeStyle = shipThrustOutline(); 
+    context.strokeStyle = shipThrustOutline();
 
     //to give the thruster a colored blinking effect when invincible and still visible
     if (ship.invincibility >= -SHIP_INVINCIBILITY_TIMEOUT && ship.visible) {
+      context.strokeStyle = invincibleShipThrustStroke();
       context.fillStyle = invincibleShipThrustFill();
-      context.strokeStyle = invincibleShipStroke();
     }
 
     //begin tracing out the shape of the ship

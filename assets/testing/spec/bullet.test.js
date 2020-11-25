@@ -12,23 +12,23 @@ describe("test we are updating the bullets y position when moving forward in y-d
     ship = new Ship(); //starting at 300px in the y-direction
     bullet = new Bullet();
   });
-  it("should move the bullet forward by 5px starting at 90 degree ship-angle if bullet is moved forward x1 frame", () => {
+  it("should move the bullet forward by 10px starting at 90 degree ship-angle if bullet is moved forward x1 frame", () => {
     expect(ship).toBeDefined();
     expect(ship.x).toBe(400);
     expect(bullet.updateBullet).toBeDefined();
     expect(bullet.visible).toBeTrue();
-    expect(bullet.y).toBe(300); 
+    expect(bullet.y).toBe(300);
 
-    //move bullet in y-direction by 5px
+    //move bullet in y-direction by 10px
     bullet.updateBullet();
-    expect(bullet.y).toBe(295);
+    expect(bullet.y).toBe(290);
   });
-  it("should move the bullet forward by 20px starting at 90 degree ship-angle if bullet is moved forward x4 frames in y-direction", () => {
+  it("should move the bullet forward by 40px starting at 90 degree ship-angle if bullet is moved forward x4 frames in y-direction", () => {
     //move ship in y-direction by 4 frames
     for (let i = 0; i < 4; i++) {
       bullet.updateBullet();
     }
-    expect(bullet.y).toBe(280);
+    expect(bullet.y).toBe(260);
   });
 });
 
@@ -42,7 +42,7 @@ describe("test we are updating the bullets x position when moving forward in x-d
     bullet = new Bullet();
     bullet.angle = 0; //explicityly set the bullet.angle to 0 degrees
   });
-  it("should move the bullet forward by 5px starting at 0 degree ship-angle if bullet is moved forward x1 frame", () => {
+  it("should move the bullet forward by 10px starting at 0 degree ship-angle if bullet is moved forward x1 frame", () => {
     expect(ship).toBeDefined();
     expect(ship.x).toBe(400);
     expect(bullet.updateBullet).toBeDefined();
@@ -52,14 +52,14 @@ describe("test we are updating the bullets x position when moving forward in x-d
 
     //move bullet in x-direction by 5px
     bullet.updateBullet();
-    expect(bullet.x).toBe(395);
+    expect(bullet.x).toBe(390);
   });
-  it("should move the bullet forward by 20px starting at 0 degree ship-angle if bullet is moved forward x4 frames in x-direction", () => {
+  it("should move the bullet forward by 40px starting at 0 degree ship-angle if bullet is moved forward x4 frames in x-direction", () => {
     //move ship in x-direction by 4 frames
     for (let i = 0; i < 4; i++) {
       bullet.updateBullet();
     }
-    expect(bullet.x).toBe(380);
+    expect(bullet.x).toBe(360);
   });
 });
 
@@ -77,9 +77,9 @@ describe("test we are updating both the bullets x and y coordinates when moving 
     expect(bullet.angle).toBe(45);
 
     bullet.updateBullet();
-    expect(bullet.x).toBeCloseTo(396.5, 1);
-    expect(bullet.y).toBeCloseTo(296.5, 1);
-  }); 
+    expect(bullet.x).toBeCloseTo(392.9, 1);
+    expect(bullet.y).toBeCloseTo(292.9, 1);
+  });
 });
 
 describe("test we have a drawBullet() method", () => {
@@ -87,6 +87,6 @@ describe("test we have a drawBullet() method", () => {
     bullet = new Bullet();
   });
   it("should define a drawBullet() method", () => {
-    expect(bullet.drawBullet).toBeDefined(); 
+    expect(bullet.drawBullet).toBeDefined();
   });
 });

@@ -1,16 +1,16 @@
 class Asteroid {
   constructor(x, y, speed, radius, size, collisionRadius, radiusOffsetArray) {
     this.visible = true;
-    this.x = x || Math.floor(Math.random() * CANVAS_WIDTH); 
-    this.y = y || Math.floor(Math.random() * CANVAS_HEIGHT); 
+    this.x = x || Math.floor(Math.random() * CANVAS_WIDTH);
+    this.y = y || Math.floor(Math.random() * CANVAS_HEIGHT);
     this.angle = Math.floor(Math.random() * 359);
-    this.speed = speed; 
-    this.radius = radius || LARGE_ASTEROID_RADIUS; 
-    this.collisionRadius = collisionRadius || LARGE_ASTEROID_COLLISION_RADIUS; 
-    this.size = size || LARGE_ASTEROID_SIZE
+    this.speed = speed;
+    this.radius = radius || LARGE_ASTEROID_RADIUS;
+    this.collisionRadius = collisionRadius || LARGE_ASTEROID_COLLISION_RADIUS;
+    this.size = size || LARGE_ASTEROID_SIZE;
     this.radiusOffsetArray = radiusOffsetArray || []; //an array of radius offset values to make irregular shapes
     this.vertices = Math.floor(Math.random() * (ASTEROID_VERTICES + 1) + ASTEROID_VERTICES / 2); //a range of vertices to create different polygon shapes
-    this.color = SMALL_ASTEROID_COLOR_ARRAY[Math.floor(Math.random() * (SMALL_ASTEROID_COLOR_ARRAY.length))]; 
+    this.color = SMALL_ASTEROID_COLOR_ARRAY[Math.floor(Math.random() * (SMALL_ASTEROID_COLOR_ARRAY.length))];
   }
 
   updateAsteroid() {
@@ -34,7 +34,7 @@ class Asteroid {
   }
 
   drawAsteroid() {
-    context.strokeStyle = "white";
+    context.strokeStyle = WHITE_COLOR;
     context.lineWidth = 2;
     context.beginPath();
     let radians = convertAngleToRadians((Math.PI * 2) / this.vertices);
@@ -54,16 +54,15 @@ class Asteroid {
 
         //if medium sized, give the asteroid a colorful stroke
         if (this.size === MEDIUM_ASTEROID_SIZE) {
-            colorfulAsteroidsStroke(); 
             context.stroke();
         }
 
         //if small sized, fill in the asteroid with a colorful fill
         if (this.size === SMALL_ASTEROID_SIZE) {
             context.lineWidth = 1;
-            context.strokeStyle = "white";
-            context.fillStyle = this.color; 
-            context.fill(); 
+            context.strokeStyle = BLACK_COLOR;
+            context.fillStyle = this.color;
+            context.fill();
         }
 
         //default stroke for large asteroid

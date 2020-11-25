@@ -4,10 +4,10 @@ class Bullet {
     this.angle = ship.angle;
     this.x = ship.x;
     this.y = ship.y;
-    this.speed = 10;
-    this.width = 4; 
-    this.height = 4; 
-    this.collisionRadius = 3; 
+    this.speed = BULLET_SPEED;
+    this.width = BULLET_WIDTH;
+    this.height = BULLET_HEIGHT;
+    this.collisionRadius = BULLET_COLLISION_RADIUS;
   }
 
   updateBullet() {
@@ -17,7 +17,7 @@ class Bullet {
   }
 
   drawBullet() {
-    context.fillStyle = "yellow" 
+    context.fillStyle = BULLET_COLOR;
     context.fillRect(this.x, this.y, this.width, this.height);
   }
 }
