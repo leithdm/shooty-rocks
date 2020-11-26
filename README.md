@@ -1,30 +1,31 @@
-# CovidRoids
+
+![Covidroids](assets/artwork/game-logo.PNG)
 
 <!-- ![asteroids](readme-files/responsive.png) -->
 
-- [CovidRoids](#covidroids)
-  - [Overview](#overview)
-  - [UX](#ux)
-    - [User Stories](#user-stories)
-    - [Design](#design)
-      - [Color Scheme](#color-scheme)
-      - [Icons](#icons)
-      - [Typography](#typography)
-    - [Wireframes](#wireframes)
-        - [back to top](#back-to-top)
-  - [Features](#features)
-    - [Existing Features](#existing-features)
-    - [Future Features](#future-features)
-        - [back to top](#back-to-top-1)
-  - [Technologies Used](#technologies-used)
-    - [Front-End Technologies](#front-end-technologies)
-  - [Agile Project Management](#agile-project-management)
-  - [Testing](#testing)
-  - [Deployment](#deployment)
-  - [Credits](#credits)
-    - [Content](#content)
-    - [Media](#media)
-    - [Acknowledgments](#acknowledgments)
+- [Overview](#overview)
+- [UX](#ux)
+  - [User Stories](#user-stories)
+  - [Design](#design)
+    - [Color Scheme](#color-scheme)
+    - [Icons](#icons)
+    - [Typography](#typography)
+  - [Wireframes](#wireframes)
+      - [back to top](#back-to-top)
+- [Features](#features)
+  - [Existing Features](#existing-features)
+  - [Future Features](#future-features)
+      - [back to top](#back-to-top-1)
+- [Technologies Used](#technologies-used)
+  - [Miscellaneous Technologies](#miscellaneous-technologies)
+  - [Front-End Technologies](#front-end-technologies)
+- [Agile Project Management](#agile-project-management)
+- [Testing](#testing)
+- [Deployment](#deployment)
+- [Credits](#credits)
+  - [Content](#content)
+  - [Media](#media)
+  - [Acknowledgments](#acknowledgments)
 
 <br/>
 
@@ -32,7 +33,7 @@
 
 ## Overview
 
-CovidRoids is a remake of the classic Asteroids game, with a modern theme. You can view the deployed game [here](https://leithdm.github.io/milestone-project-2/).
+Covidroids is a remake of the classic *Asteroids* game, with a modern theme. You can view the deployed game [here](https://leithdm.github.io/milestone-project-2/).
 
 <br/>
 
@@ -96,7 +97,7 @@ The inspiration for developing this game came from the classic Asteroids game co
 
 ### Design
 
-Mobile responsiveness was a key design consideration for this project, and resulted in the development of a "gamepad controller" to capture the movements of the ship. The overall concept and color scheme is aligned with the classic Asteroids game from the 1970's, howerver there are some notable deviations which are mentioned in the features section.
+Mobile responsiveness was a key design consideration for this project, and resulted in the development of a "gamepad controller" to capture the movements of the ship when playing on movile. The overall concept is aligned with the classic Asteroids game from the 1970's, however there are some notable deviations not least in color scheme and the addition/ommision of certain features.
 
 <br/>
 
@@ -121,7 +122,7 @@ Mobile responsiveness was a key design consideration for this project, and resul
 
 ### Wireframes
 
-- Wireframes were created using [Balsamiq Wireframes](https://balsamiq.com/).
+- Wireframes were created using [Balsamiq Wireframes](https://balsamiq.com/) and can be viewed by clicking on links below.
 
 <br/>
 
@@ -138,12 +139,11 @@ Mobile responsiveness was a key design consideration for this project, and resul
 
 ## Features
 
-
-
 ### Existing Features
+- lorem
 
 ### Future Features
-
+- lorem
 
 
 ##### back to [top](#table-of-contents)
@@ -154,16 +154,21 @@ Mobile responsiveness was a key design consideration for this project, and resul
 
 ## Technologies Used
 
+### Miscellaneous Technologies
+
 - [VS Code](https://code.visualstudio.com/) - used as the primary IDE.
 - [GitHub](https://github.com/) - used for remote storage of code.
 - [TinyPNG](https://tinypng.com/) - used to optimize (.jpg, .png) images for faster loading.
+- [Balsamiq](https://balsamiq.com/) - used to create the project's wireframes.
 
 ### Front-End Technologies
 
 - [HTML5](https://en.wikipedia.org/wiki/HTML5) - used to provide content and structure.
 - [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets) - used to provide styling.
-- [Balsamiq](https://balsamiq.com/) - used to create the project's wireframes.
 - [Google Fonts](https://fonts.google.com/) - used to provide font styling.
+- [Jasmine](https://jasmine.github.io/) - used for Test-Driven Development (TDD).
+- [JavaScript ES6](https://developer.mozilla.org/en-US/docs/Web/JavaScript) - the game is built entirely from vanilla JavaScript.
+- [Howler.js](https://github.com/goldfire/howler.js#documentation) - an audio library for the modern web.
 - [Am I Responsive?](http://ami.responsivedesign.is/) - used to show site responsiveness.
 
 <br/>
@@ -172,7 +177,13 @@ Mobile responsiveness was a key design consideration for this project, and resul
 
 ## Agile Project Management
 
-GitHub [Projects](https://github.com/leithdm/milestone-project-2/projects/1) was used to iteratively sprint through the development of this app. Each *Issue* was an individual *User Story*.
+[GitHub Projects](https://github.com/features/project-management/) was used to iteratively sprint through the development of this app. Each *User Story* became an individual *Issue*, and was placed in a Kanban board composed of the following columns:
+1. **Backlog** - all user stories, ordered by value/priority.
+2. **Sprint** - a subset of user stories to be completed in a x1 week sprint.
+3. **In Progress** - user stories currently being worked on from current sprint.
+4. **Done** - user stories completed, and tested.
+
+ A separate git branch was created for each user story, and a Pull Request (PR) was submitted for its subsequent approval/merger into the master repository. Along with tracking user stories, Github Projects was also used to track bugs. The full list of user stories/bugs and their relevant timestamped PR's **can be viewed [here](https://github.com/leithdm/milestone-project-2/projects/1).**
 
 ![GitHub Projects in action](wireframes/agile-project-management.png)
 
@@ -221,11 +232,13 @@ To clone this project from GitHub:
 
 ### Content
 
-- All of the text in this site was created by myself. Any resemblance to other website content is coincidental.
+- lorem
 
 <br/>
 
 ### Media
+
+- [Classic Gaming](http://www.classicgaming.cc/classics/asteroids/) for [audio sounds]([https://link](http://www.classicgaming.cc/classics/asteroids/sounds)) and [background images]([https://link](http://www.classicgaming.cc/classics/asteroids/graphics)) related specifically to the *Asteroids* game. This was an invaluable resource.
 
 <br/>
 

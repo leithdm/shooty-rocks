@@ -160,11 +160,6 @@ function handleKeyUp(e){
 //for checking if ship is moving forward, left, or right
 function checkKeyboardInput() {
   ship.movingForward = keysArray[KEY_UP_ARROW];
-  if(keysArray[KEY_UP_ARROW]) {
-     if(soundfxOn == ON) {
-    THRUST_SOUND.play();
-    }
-  }
   if (keysArray[KEY_LEFT_ARROW]) {
     ship.rotate(LEFT);
   }
