@@ -19,8 +19,8 @@ const KEY_SHOOT = 32; //for keyboard input spacebar
 const RIGHT = 1; //for ship rotation to the right in ship.rotation(direction)
 const LEFT = -1; //for ship rotation to the left in ship.rotation(direction)
 const SHIP_INVINCIBILITY_TIMEOUT = FPS * 3; //for setting a 3 second time-out for ship invincibility
-const SHIP_SIZE = 16; //for setting the size of the ship
-const SHIP_COLLISION_RADIUS = 14; //for setting the collsion radius of the ship
+const SHIP_SIZE = 12; //for setting the size of the ship
+const SHIP_COLLISION_RADIUS = 10; //for setting the collsion radius of the ship
 
 //Asteroid Config
 const LARGE_ASTEROID_RADIUS = 80; //for setting the radius of a large asteroid
@@ -83,24 +83,24 @@ const BLACK_COLOR = "rgb(0, 0, 0)";
   #SOUND CONSTANTS USING HOWLER LIBRARY
 \*------------------------------------*/
 const FIRE_SOUND = new Howl({
-  src: ["assets/audio/fire.webm", "assets/audio/fire.mp3"],
+  src: ["assets/sounds/fire.webm", "assets/sounds/fire.mp3"],
   html5: true
 });
 const THRUST_SOUND = new Howl({
-  src: ["assets/audio/thrust.webm", "assets/audio/thrust.mp3"],
+  src: ["assets/sounds/thrust.webm", "assets/sounds/thrust.mp3"],
   volume: 0.3,
   html5: true
 });
 const BANG_SMALL_ASTEROID_SOUND = new Howl({
-  src: ["assets/audio/bangSmall.webm", "assets/audio/bangSmall.mp3"],
+  src: ["assets/sounds/bangSmall.webm", "assets/sounds/bangSmall.mp3"],
   html5: true
 });
 const BANG_MEDIUM_ASTEROID_SOUND = new Howl({
-  src: ["assets/audio/bangMedium.webm", "assets/audio/bangMedium.mp3"],
+  src: ["assets/sounds/bangMedium.webm", "assets/sounds/bangMedium.mp3"],
   html5: true
 });
 const BANG_LARGE_ASTEROID_SOUND = new Howl({
-  src: ["assets/audio/bangLarge.webm", "assets/audio/bangLarge.mp3"],
+  src: ["assets/sounds/bangLarge.webm", "assets/sounds/bangLarge.mp3"],
   html5: true
 });
 

@@ -12,6 +12,7 @@
   --covid-color-green: rgb(0, 192, 163);
   --purple-color: rgb(128, 0, 128);
   --gray-color: rgb(120, 128, 128);
+  --size: 100vw;
 }
 
 /*------------------------------------*\
@@ -31,12 +32,14 @@
 body {
   margin: 0;
   padding: 0;
+  overflow: hidden;
   touch-action: manipulation;
   background-color: var(--black-color);
 }
 
 .container {
-  width: 100%;
+  width: var(--size);
+  height: var(--size);
   margin-right: auto;
   margin-left: auto;
   padding-left: 10px;
@@ -76,7 +79,6 @@ body {
 
 canvas {
   width: 100%;
-  height: auto;
   border: 1px solid var(--white-color);
 }
 
@@ -172,7 +174,7 @@ button:active {
 \*------------------------------------*/
 
 .header-bg-image {
-  background-image:url("../artwork/menu-image-mobile.jpg");
+  background-image:url("../images/menu-image-mobile.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -189,12 +191,12 @@ button:active {
 
 .game-title-text {
   align-self: center;
-  font-size: 1.8rem;
+  font-size: 8vw;
 }
 
 .game-story-text {
-  font-size: 0.8rem;
-  line-height: 1.2rem;
+  font-size: 4vw;
+  line-height: 5vw;
 }
 
 .start-button {
@@ -221,7 +223,7 @@ button:active {
 \*------------------------------------*/
 
 .high-score-menu {
-  font-size: 2rem;
+  font-size: 12vw;
 }
 
 /*------------------------------------*\
@@ -238,33 +240,33 @@ button:active {
   #MEDIA QUERIES
 \*------------------------------------*/
 
-/* iPhone 6/7/8 Plus */
-@media (min-width: 414px) {
-  .game-title-text {
-    font-size: 2rem;
-  }
-
-  .game-story-text {
-    font-size: 1rem;
-    line-height: 1.4rem;
-  }
-
-  .high-score-menu {
-    font-size: 3rem;
-  }
-}
-
-/* Small Container*/
+/* Small Container */
 @media (min-width: 576px) {
   .container {
     max-width: 540px;
   }
+
+  .game-title-text {
+    font-size: 4vh;
+  }
+
+  .game-story-text {
+    font-size: 2vh;
+    line-height: 3.5vh;
+  }
+
+  .high-score-menu {
+    font-size: 8vh;
+  }
 }
 
-/* iPad and Medium Container*/
+/* iPad and Medium Container */
 @media (min-width: 768px) {
+  /* reset root 'size' variable to vh instead of vw */
+  :root {--size: 85vh;}
+
   .header-bg-image {
-    background-image: url("../artwork/menu-image.jpg");
+    background-image: url("../images/menu-image.jpg");
   }
 
   .container {
@@ -272,40 +274,22 @@ button:active {
   }
 
   .game-title-text {
-    font-size: 4rem;
-  }
-
-  .game-story-text {
-    font-size: 1.6rem;
-    line-height: 2.4rem;
-  }
-
-  .high-score-menu {
-    font-size: 4rem;
+    font-size: 5vh;
   }
 }
 
-/* Large Container*/
+/* Large Container */
 @media (min-width: 992px) {
   .container {
     max-width: 960px;
   }
 
   .game-title-text {
-    font-size: 4.4rem;
-  }
-
-  .game-story-text {
-    font-size: 1.8rem;
-    line-height: 2.6rem;
-  }
-
-  .high-score-menu {
-    font-size: 6rem;
+    font-size: 5vh;
   }
 }
 
-/* Extra Large Container*/
+/* Extra Large Container */
 @media (min-width: 1200px) {
   .container {
     max-width: 1140px;
