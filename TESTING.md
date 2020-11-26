@@ -187,7 +187,7 @@ TDD was employed on this project when creating and interacting with the Asteroid
 [Jasmine 3.6.0](https://jasmine.github.io/) was used to automated these tests, and they can be found in the [testing/spec](assets/testing/spec) folder. To run the automated tests use the [spec-runner.html](assets/testing/spec-runner.html) file.
 
 
-![Spec Results](assets/testing/spec/jasmine-testing.PNG)
+![Spec Results](assets/testing/results/jasmine-testing.PNG)
 
 **Result:** 46 specs, 0 failures.
 
