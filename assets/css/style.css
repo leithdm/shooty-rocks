@@ -11,7 +11,7 @@
   --red-color: rgb(178, 34, 52);
   --covid-color-green: rgb(0, 192, 163);
   --purple-color: rgb(128, 0, 128);
-  --gray-color: rgb(120, 128, 128);
+  --gray-color: rgb(178, 180, 178);
   --size: 100vw;
 }
 
@@ -112,6 +112,7 @@ canvas {
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   grid-gap: 10px;
+  justify-items: center;
 }
 
 button {
@@ -136,37 +137,124 @@ button:active {
   top: 0.2em;
 }
 
+/* Video Game button styling...https://codepen.io/DanielWeiner/pen/iFadn */
 .fire-button {
-  font-size: 1.1rem;
+  font-size: 3rem;
+	text-shadow: 1px 1px pink, -1px -1px maroon;
+	line-height: 1.5em;
+	text-align: center;
+	display: inline-block;
+	width: 1.5em;
+	-webkit-border-radius: .75em;
+	-moz-border-radius: .75em;
+	-o-border-radius: .75em;
+		border-radius: .75em;
+	-webkit-box-shadow:  0 .2em maroon;
+	-moz-box-shadow:  0 .2em maroon;
+	-o-box-shadow:  0 .2em maroon;
+	box-shadow:  0 .2em maroon;
+	color: red;
+	margin: 5px;
+	background-color: red;
+	background-image: -o-linear-gradient(left top, pink 3%, red 22%, maroon 99%);
+	background-image: -moz-linear-gradient(left top, pink 3%, red 22%, maroon 99%);
+	background-image: -webkit-linear-gradient(left top, pink 3%, red 22%, maroon 99%);
+	background-image: linear-gradient(left top, pink 3%, red 22%, maroon 99%);
+	cursor: pointer;
+  padding-left: 5px;
   grid-column: 3 / 4;
-  color: var(--red-color);
-  background-color: var(--yellow-color);
 }
 
 .up-button {
-  font-size: 1.3rem;
-  border: 1px solid var(--white-color);
-  background-color: var(--black-color);
-  color: var(--white-color);
+  font-size: 3rem;
+	text-shadow: 1px 1px lightgreen, -1px -1px darkgreen;
+	line-height: 1.3em;
+	text-align: center;
+	display: inline-block;
+	width: 1.6em;
+	-webkit-border-radius: .75em;
+	-moz-border-radius: .75em;
+	-o-border-radius: .75em;
+		border-radius: .75em;
+	-webkit-box-shadow:  0 .2em darkgreen;
+	-moz-box-shadow:  0 .2em darkgreen;
+	-o-box-shadow:  0 .2em darkgreen;
+	box-shadow:  0 .2em darkgreen;
+	color: green;
+	margin: 5px;
+	background-color: green;
+	background-image: -o-linear-gradient(left top, lightgreen 3%, green 22%, darkgreen 99%);
+	background-image: -moz-linear-gradient(left top, lightgreen 3%, green 22%, darkgreen 99%);
+	background-image: -webkit-linear-gradient(left top, lightgreen 3%, green 22%, darkgreen 99%);
+	background-image: linear-gradient(left top, lightgreen 3%, green 22%, darkgreen 99%);
+	cursor: pointer;
+  padding-left: 2px;
 }
 
 .left-button {
-  font-size: 1.3rem;
-  border: 1px solid var(--white-color);
-  background-color: var(--black-color);
-  color: var(--red-color);
+  font-size: 3rem;
+	text-shadow: 1px 1px lightblue, -1px -1px darkblue;
+	line-height: 1.3em;
+	text-align: center;
+	display: inline-block;
+	width: 1.6em;
+	-webkit-border-radius: .75em;
+	-moz-border-radius: .75em;
+	-o-border-radius: .75em;
+		border-radius: .75em;
+	-webkit-box-shadow:  0 .2em darkblue;
+	-moz-box-shadow:  0 .2em darkblue;
+	-o-box-shadow:  0 .2em darkblue;
+	box-shadow:  0 .2em darkblue;
+	color: blue;
+	margin: 5px;
+	background-color: blue;
+	background-image: -o-linear-gradient(left top, lightblue 3%, blue 22%, darkblue 99%);
+	background-image: -moz-linear-gradient(left top, lightblue 3%, blue 22%, darkblue 99%);
+	background-image: -webkit-linear-gradient(left top, lightblue 3%, blue 22%, darkblue 99%);
+	background-image: linear-gradient(left top, lightblue 3%, blue 22%, darkblue 99%);
+	cursor: pointer;
+  padding-left: 2px;
 }
 
 .right-button {
-  font-size: 1.3rem;
-  border: 1px solid var(--white-color);
-  background-color: var(--black-color);
-  color: var(--red-color);
+  font-size: 3rem;
+	text-shadow: 1px 1px lightyellow, -1px -1px orange;
+	line-height: 1.3em;
+	text-align: center;
+	display: inline-block;
+	width: 1.6em;
+	-webkit-border-radius: .75em;
+	-moz-border-radius: .75em;
+	-o-border-radius: .75em;
+		border-radius: .75em;
+	-webkit-box-shadow:  0 .2em orange;
+	-moz-box-shadow:  0 .2em orange;
+	-o-box-shadow:  0 .2em orange;
+	box-shadow:  0 .2em orange;
+	color: yellow;
+	margin: 5px;
+	background-color: yellow;
+	background-image: -o-linear-gradient(left top, lightyellow 3%, yellow 22%, orange 99%);
+	background-image: -moz-linear-gradient(left top, lightyellow 3%, yellow 22%, orange 99%);
+	background-image: -webkit-linear-gradient(left top, lightyellow 3%, yellow 22%, orange 99%);
+	background-image: linear-gradient(left top, lightyellow 3%, yellow 22%, orange 99%);
+	cursor: pointer;
+  padding-left: 2px;
+}
+
+.fire-button:active,
+.up-button:active,
+.right-button:active,
+.left-button:active  {
+	box-shadow: none;
+	position: relative;
+	top: .2em;
 }
 
 .lives-image {
-  width: 25px;
-  height: 25px;
+  width: 12px;
+  height: 12px;
 }
 
 /*------------------------------------*\

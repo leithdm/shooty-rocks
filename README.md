@@ -1,5 +1,5 @@
 
-![Covidroids](assets/artwork/game-logo.PNG)
+![Covidroids](assets/images/game-logo.PNG)
 
 <!-- ![asteroids](readme-files/responsive.png) -->
 
