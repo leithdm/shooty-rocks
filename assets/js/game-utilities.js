@@ -63,6 +63,7 @@ const RIGHT_BUTTON = document.querySelector(".right-button"); //for getting the 
 const FIRE_BUTTON = document.querySelector(".fire-button"); //for getting the fire button on gamepad controller
 const THRUST_BUTTON = document.querySelector(".up-button"); //for getting the thrust button on gamepad controller
 const SOUNDFX_TOGGLE = document.querySelector(".soundfx-button"); //for setting the in-game soundfx to on/off
+const LEVEL_HTML = document.querySelector(".level"); //for setting the in-game level
 
 //Color Array for small asteroids
 const SMALL_ASTEROID_COLOR_ARRAY = [
@@ -344,6 +345,7 @@ function resetShipAsteroidBullet() {
   asteroidsArray = [];
   bulletsArray = [];
   _onScreenText = "LEVEL " + _level;
+  LEVEL_HTML.textContent = _level;
   _textAlpha = 1.0;
   ship.x = CANVAS_WIDTH / 2;
   ship.y = CANVAS_HEIGHT / 2;
