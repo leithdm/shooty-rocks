@@ -44,6 +44,7 @@ body {
   margin-left: auto;
   padding-left: 10px;
   padding-right: 10px;
+  color: var(--white-color);
 }
 
 /* disable text selection highlighting */
@@ -83,26 +84,56 @@ canvas {
 }
 
 .top-banner {
-  font-size: 0.8rem;
   display: grid;
-  color: var(--white-color);
-  grid-template-rows: 1fr 1fr;
-  grid-template-columns: 4fr 1fr;
+  row-gap: 2px;
+  grid-template-rows: 1fr 0.5fr 0.5fr;
+  grid-template-columns: 1fr 1fr;
   grid-template-areas:
-    "highScore highScore"
-    "score     lives";
+    "returnMainMenu inGameSoundFx"
+    "highScore      level"
+    "score          ships";
 }
 
-.high-score-title {
+.return-main-menu {
+  grid-area: returnMainMenu;
+  width: 50%;
+}
+
+.ingame-soundfx {
+  justify-self: end;
+  width: 50%;
+  grid-area: inGameSoundFx;
+}
+
+.high-score-title,
+.high-score {
+  margin: 0;
+  font-size: 1.4rem;
   grid-area: highScore;
 }
 
-.score-title {
+.level-header,
+.level {
+  justify-self: end;
+  margin: 0;
+  font-size: 1.4rem;
+  grid-area: level;
+}
+
+
+.score-title,
+.score-value {
+  margin: 0;
+  font-size: 1.4rem;
   grid-area: score;
 }
 
-.lives-header {
-  grid-area: lives;
+.lives-header,
+.lives {
+  justify-self: end;
+  margin: 0;
+  font-size: 1.4rem;
+  grid-area: ships;
 }
 
 .controller {
@@ -252,11 +283,6 @@ button:active {
 	top: .2em;
 }
 
-.lives-image {
-  width: 12px;
-  height: 12px;
-}
-
 /*------------------------------------*\
   #INDEX.HTML
 \*------------------------------------*/
@@ -300,10 +326,6 @@ button:active {
 .menu-options {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-}
-
-.arrow {
-  font-size: 2rem;
 }
 
 /*------------------------------------*\

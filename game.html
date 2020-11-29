@@ -5,10 +5,10 @@
     <!-- META TAGS -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="An Asteroids clone with a modern theme" />
+    <meta name="description" content="An Asteroids clone" />
 
     <!-- TITLE | FAVICON -->
-    <title>Covidroids | Game</title>
+    <title>Shooty Rock | Game</title>
     <link rel="icon" type="image/png" href="assets/images/favicon.jpg" />
 
     <!-- CSS -->
@@ -24,18 +24,12 @@
         <!-- NAV -->
         <nav class="container noselect">
             <div class="top-banner">
-                <p class="high-score-title">HIGH SCORE:
-                    <span class="high-score">0
-                    </span>
-                </p>
-                <p class="score-title">SCORE:
-                    <span class="score-value">0
-                    </span>
-                </p>
-                <p class="lives-header"><img class="lives-image" alt="ship image" src="assets/images/ship-cropped.png">
-                    <span class="lives">3
-                    </span>
-                </p>
+                <button class="return-main-menu" onclick="location.href='index.html'">< MENU</button>
+                <button class="ingame-soundfx soundfx-button">SOUND FX ON</button>
+                <p class="high-score-title">H:<span class="high-score">0</span></p>
+                <p class="score-title">S:<span class="score-value">0</span></p>
+                <p class="lives-header">SHIPS:<span class="lives">3</span></p>
+                <p class="level-header">LEVEL:<span class="level">1</span></p>
             </div>
             <canvas id="canvas"> Sorry, your browser doesn't support the &lt;canvas&gt; element.</canvas>
             <div class="controller">

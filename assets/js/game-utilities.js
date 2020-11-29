@@ -62,6 +62,7 @@ const LEFT_BUTTON = document.querySelector(".left-button"); //for getting the le
 const RIGHT_BUTTON = document.querySelector(".right-button"); //for getting the right button on gamepad controller
 const FIRE_BUTTON = document.querySelector(".fire-button"); //for getting the fire button on gamepad controller
 const THRUST_BUTTON = document.querySelector(".up-button"); //for getting the thrust button on gamepad controller
+const SOUNDFX_TOGGLE = document.querySelector(".soundfx-button"); //for setting the in-game soundfx to on/off
 
 //Color Array for small asteroids
 const SMALL_ASTEROID_COLOR_ARRAY = [
@@ -113,6 +114,7 @@ let _highScore = 0; //for setting the high score
 let _numberOfAsteroids = 1; //for setting the number of asteroids that appear on screen
 let _onScreenText; //for displaying text related to 'Level No' and 'Game Over'
 let _textAlpha; //for setting the alpha value of _onScreenText, where 1.0 is opaque, 0.0 is transparent
+let soundfxOn = ON; //for setting the in-game soundfx
 
 /*------------------------------------*\
   #GAME HELPER METHODS
@@ -562,4 +564,28 @@ function renderStars() {
 //https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
 function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+//for listening to soundfx on/off button
+SOUNDFX_TOGGLE.addEventListener("click", () => {
+  if (SOUNDFX_TOGGLE.textContent === "SOUND FX ON") {
+    SOUNDFX_TOGGLE.textContent = "SOUND FX OFF";
+    localStorage.setItem(LOCAL_STORAGE_SOUNDFX, OFF);
+    soundfxOn = OFF;
+  } else {
+    SOUNDFX_TOGGLE.textContent = "SOUND FX ON";
+    localStorage.setItem(LOCAL_STORAGE_SOUNDFX, ON);
+    soundfxOn = ON;
+  }
+});
+
+//for determining if soundfx are on/off. Use of local storage to remember the setting
+function getLocalStorageSoundfxMenu() {
+  if (localStorage.getItem(LOCAL_STORAGE_SOUNDFX) == OFF) {
+    SOUNDFX_TOGGLE.textContent = "SOUND FX OFF";
+    soundfxOn = OFF;
+  } else {
+    SOUNDFX_TOGGLE.textContent = "SOUND FX ON";
+    soundfxOn = ON;
+  }
 }
