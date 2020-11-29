@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P");
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto+Mono:wght@300&display=swap');
 
 /*------------------------------------*\
   #COLORS
@@ -12,6 +12,7 @@
   --covid-color-green: rgb(0, 192, 163);
   --purple-color: rgb(128, 0, 128);
   --gray-color: rgb(178, 180, 178);
+  --dashboard-blue: rgb(2, 175, 255);
   --size: 100vw;
 }
 
@@ -107,6 +108,8 @@ canvas {
 
 .high-score-title,
 .high-score {
+  color: var(--dashboard-blue);
+  font-family: 'Roboto Mono', 'Courier New';
   margin: 0;
   font-size: 1.4rem;
   grid-area: highScore;
@@ -114,15 +117,18 @@ canvas {
 
 .level-header,
 .level {
+  color: var(--dashboard-blue);
+  font-family: 'Roboto Mono', 'Courier New';
   justify-self: end;
   margin: 0;
   font-size: 1.4rem;
   grid-area: level;
 }
 
-
 .score-title,
 .score-value {
+  color: var(--dashboard-blue);
+  font-family: 'Roboto Mono', 'Courier New';
   margin: 0;
   font-size: 1.4rem;
   grid-area: score;
@@ -130,6 +136,8 @@ canvas {
 
 .lives-header,
 .lives {
+  color: var(--dashboard-blue);
+  font-family: 'Roboto Mono', 'Courier New';
   justify-self: end;
   margin: 0;
   font-size: 1.4rem;
