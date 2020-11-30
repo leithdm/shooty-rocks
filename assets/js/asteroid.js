@@ -64,8 +64,6 @@ class Asteroid {
             context.fillStyle = this.color;
             context.fill();
         }
-
-        //default stroke for large asteroid
         context.stroke();
   }
 }
