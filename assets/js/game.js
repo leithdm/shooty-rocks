@@ -40,7 +40,7 @@ function renderGame() {
   context.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
   //render the game canvas
-  renderGameCanvas();
+  // renderGameCanvas();
 
   //render starts to the game canvas
   renderStars();

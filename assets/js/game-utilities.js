@@ -86,24 +86,19 @@ const BLACK_COLOR = "rgb(0, 0, 0)";
 \*------------------------------------*/
 const FIRE_SOUND = new Howl({
   src: ["assets/sounds/fire.webm", "assets/sounds/fire.mp3"],
-  html5: true
 });
-const THRUST_SOUND = new Howl({
-  src: ["assets/sounds/thrust.webm", "assets/sounds/thrust.mp3"],
-  volume: 0.3,
-  html5: true
-});
+// const THRUST_SOUND = new Howl({
+//   src: ["assets/sounds/thrust.webm", "assets/sounds/thrust.mp3"],
+//   volume: 0.3,
+// });
 const BANG_SMALL_ASTEROID_SOUND = new Howl({
   src: ["assets/sounds/bangSmall.webm", "assets/sounds/bangSmall.mp3"],
-  html5: true
 });
 const BANG_MEDIUM_ASTEROID_SOUND = new Howl({
   src: ["assets/sounds/bangMedium.webm", "assets/sounds/bangMedium.mp3"],
-  html5: true
 });
 const BANG_LARGE_ASTEROID_SOUND = new Howl({
   src: ["assets/sounds/bangLarge.webm", "assets/sounds/bangLarge.mp3"],
-  html5: true
 });
 
 /*------------------------------------*\
@@ -171,10 +166,18 @@ function checkKeyboardInput() {
   }
 }
 
-//for creating a black game canvas
+//for creating a new canvas with background image
 function renderGameCanvas() {
-  context.fillStyle = "black";
-  context.fillRect(0, 0, canvas.width, canvas.height);
+  context.fillStyle = BLACK_COLOR;
+  context.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+}
+
+function renderImage() {
+  let img = new Image();
+  img.onload = () => {
+    context.drawImage(img, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+  };
+  img.src = "assets/images/background.jpg";
 }
 
 //for drawing bullets to the game canvas
@@ -479,23 +482,23 @@ function drawShipExplosion() {
 function drawAsteroidExplosion(i, explosionFactor) {
   context.fillStyle = "darkred";
   context.beginPath();
-  context.arc(asteroidsArray[i].x, asteroidsArray[i].y, asteroidsArray[i].radius * (0.68+explosionFactor), 0, Math.PI * 2, false);
+  context.arc(asteroidsArray[i].x, asteroidsArray[i].y, (asteroidsArray[i].radius * (0.68+explosionFactor)), 0, Math.PI * 2, false);
   context.fill();
   context.fillStyle = "red";
   context.beginPath();
-  context.arc(asteroidsArray[i].x, asteroidsArray[i].y, asteroidsArray[i].radius * (0.56+explosionFactor), 0, Math.PI * 2, false);
+  context.arc(asteroidsArray[i].x, asteroidsArray[i].y, (asteroidsArray[i].radius * (0.56+explosionFactor)), 0, Math.PI * 2, false);
   context.fill();
   context.fillStyle = "orange";
   context.beginPath();
-  context.arc(asteroidsArray[i].x, asteroidsArray[i].y, asteroidsArray[i].radius * (0.44+explosionFactor), 0, Math.PI * 2, false);
+  context.arc(asteroidsArray[i].x, asteroidsArray[i].y, (asteroidsArray[i].radius * (0.44+explosionFactor)), 0, Math.PI * 2, false);
   context.fill();
   context.fillStyle = "yellow";
   context.beginPath();
-  context.arc(asteroidsArray[i].x, asteroidsArray[i].y, asteroidsArray[i].radius * (0.32+explosionFactor), 0, Math.PI * 2, false);
+  context.arc(asteroidsArray[i].x, asteroidsArray[i].y, (asteroidsArray[i].radius * (0.32+explosionFactor)), 0, Math.PI * 2, false);
   context.fill();
   context.fillStyle = "white";
   context.beginPath();
-  context.arc(asteroidsArray[i].x, asteroidsArray[i].y, asteroidsArray[i].radius * (0.2+explosionFactor), 0, Math.PI * 2, false);
+  context.arc(asteroidsArray[i].x, asteroidsArray[i].y, (asteroidsArray[i].radius * (0.2+explosionFactor)), 0, Math.PI * 2, false);
   context.fill();
 }
 
@@ -557,7 +560,12 @@ function renderStars() {
   context.fillStyle = "white";
   for(let i=1; i<=7; i++) {
     for(let j=1; j<=7; j++) {
-      context.fillRect(100*(i-(Math.floor(Math.random() * (3)))), 100*(j+(Math.floor(Math.random()*3))), 1, 1);
+      context.fillRect(
+        100*(i-(Math.floor(Math.random() * (3)))),
+        100*(j+(Math.floor(Math.random()*3))),
+        1.1,
+        1.1
+        );
     }
   }
 }

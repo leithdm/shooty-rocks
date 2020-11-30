@@ -33,7 +33,7 @@
 
 ## Overview
 
-Covidroids is a remake of the classic *Asteroids* game, with a modern theme. You can view the deployed game [here](https://leithdm.github.io/milestone-project-2/).
+Shooty Rocks is an endless space shooter arcade game inspired by the classic *Asteroids* game. You can view the deployed game [here](https://leithdm.github.io/milestone-project-2/).
 
 <br/>
 
