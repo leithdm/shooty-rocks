@@ -36,7 +36,7 @@ const MEDIUM_ASTEROID_EXPLOSION_FACTOR = 1.0; //for setting a medium asteroid ex
 const SMALL_ASTEROID_EXPLOSION_FACTOR = 2.0; //for setting a small asteroid explosion size
 const ASTEROID_OFFSET = 5; //for off-setting asteroid from x and y coordinates when split into 2
 const ASTEROID_VERTICES = 16; //for setting the average number of vertices on each asteroid
-const ASTEROID_IRREGUALITY = 0.2; //for setting the irregularity of asteroid shape, where 0.0 is normal and 1.0 is very irregular
+const ASTEROID_IRREGUALITY = 0.2; //for setting irregularity of asteroid shape; 0.0 is normal, 1.0 irregular
 const SCORE_LARGE_ASTEROID = 20; //for setting score of hitting large asteroid
 const SCORE_MEDIUM_ASTEROID = 50; //for setting score of hitting medium asteroid
 const SCORE_SMALL_ASTEROID = 100; //for setting score of hitting small asteroid
@@ -64,6 +64,8 @@ const FIRE_BUTTON = document.querySelector(".fire-button"); //for getting the fi
 const THRUST_BUTTON = document.querySelector(".up-button"); //for getting the thrust button on gamepad controller
 const SOUNDFX_TOGGLE = document.querySelector(".soundfx-button"); //for setting the in-game soundfx to on/off
 const LEVEL_HTML = document.querySelector(".level"); //for setting the in-game level
+const GAME_OVER_PROMPT = document.querySelector(".game-over-prompt"); //for displaying game over prompt
+const GAME_OVER_SCORE = document.querySelector(".game-over-score"); //for displaying game over score within the game over prompt
 
 //Color Array for small asteroids
 const SMALL_ASTEROID_COLOR_ARRAY = [
@@ -87,10 +89,6 @@ const BLACK_COLOR = "rgb(0, 0, 0)";
 const FIRE_SOUND = new Howl({
   src: ["assets/sounds/fire.webm", "assets/sounds/fire.mp3"],
 });
-// const THRUST_SOUND = new Howl({
-//   src: ["assets/sounds/thrust.webm", "assets/sounds/thrust.mp3"],
-//   volume: 0.3,
-// });
 const BANG_SMALL_ASTEROID_SOUND = new Howl({
   src: ["assets/sounds/bangSmall.webm", "assets/sounds/bangSmall.mp3"],
 });
@@ -107,10 +105,10 @@ const BANG_LARGE_ASTEROID_SOUND = new Howl({
 let _lives = 3; //for setting the number of ship-lives
 let _level = 1; //for setting the game level
 let _highScore = 0; //for setting the high score
-let _numberOfAsteroids = 1; //for setting the number of asteroids that appear on screen
+let _numberOfAsteroids = 3; //for setting the number of asteroids that initially appear on screen
 let _onScreenText; //for displaying text related to 'Level No' and 'Game Over'
 let _textAlpha; //for setting the alpha value of _onScreenText, where 1.0 is opaque, 0.0 is transparent
-let soundfxOn = ON; //for setting the in-game soundfx
+let _soundfxOn = ON; //for setting the in-game soundfx
 
 /*------------------------------------*\
   #GAME HELPER METHODS
@@ -147,7 +145,7 @@ function handleKeyUp(e){
   keysArray[e.keyCode] = false;
   if(ship.visible) {
     if (e.keyCode === KEY_SHOOT){
-        if(soundfxOn == ON) {
+        if(_soundfxOn == ON) {
          FIRE_SOUND.play();
         }
       bulletsArray.push(new Bullet(ship.angle));
@@ -224,7 +222,7 @@ function checkCollisionShipAsteroid() {
         for (let i=0; i<asteroidsArray.length; i++) {
           if (collisionDetection(ship.x, ship.y, ship.collisionRadius,
             asteroidsArray[i].x, asteroidsArray[i].y, asteroidsArray[i].collisionRadius)) {
-              if(soundfxOn == ON) {
+              if(_soundfxOn == ON) {
                 BANG_LARGE_ASTEROID_SOUND.play();
             }
             drawShipExplosion();
@@ -264,7 +262,7 @@ function checkCollisionBulletAsteroid() {
           //if asteroid is a large asteroid, break it up into x2 medium asteroids
           if(asteroidsArray[i].size === LARGE_ASTEROID_SIZE) {
             //play sound
-            if(soundfxOn == ON) {
+            if(_soundfxOn == ON) {
              BANG_LARGE_ASTEROID_SOUND.play();
             }
             drawAsteroidExplosion(i, LARGE_ASTEROID_EXPLOSION_FACTOR);
@@ -291,7 +289,7 @@ function checkCollisionBulletAsteroid() {
             //if asteroid is a medium asteroid, break it up into x2 small asteroids
             } else if (asteroidsArray[i].size === MEDIUM_ASTEROID_SIZE) {
               //play sound
-              if(soundfxOn == ON) {
+              if(_soundfxOn == ON) {
                BANG_MEDIUM_ASTEROID_SOUND.play();
               }
               drawAsteroidExplosion(i, MEDIUM_ASTEROID_EXPLOSION_FACTOR);
@@ -317,7 +315,7 @@ function checkCollisionBulletAsteroid() {
 
                //if asteroid is a small asteroid
                 } else {
-                 if(soundfxOn == ON) {
+                 if(_soundfxOn == ON) {
                   BANG_SMALL_ASTEROID_SOUND.play();
                  }
                  drawAsteroidExplosion(i, SMALL_ASTEROID_EXPLOSION_FACTOR);
@@ -384,6 +382,7 @@ function setupAsteroids() {
 
 //for creating a new game
 function createNewGame() {
+  GAME_OVER_PROMPT.style.display = "none";
   _level = 1;
   score = 0;
   _lives = 3;
@@ -432,10 +431,12 @@ function setupGamePadController() {
     keysArray[KEY_RIGHT_ARROW] = false;
   });
     FIRE_BUTTON.addEventListener("touchstart", ()=> {
-    if(soundfxOn == ON) {
-     FIRE_SOUND.play();
-    }
-    bulletsArray.push(new Bullet(ship.angle));
+    if(ship.visible) {
+      if(_soundfxOn == ON) {
+      FIRE_SOUND.play();
+      }
+      bulletsArray.push(new Bullet(ship.angle));
+      }
   });
     THRUST_BUTTON.addEventListener("touchstart", ()=> {
     keysArray[KEY_UP_ARROW] = true;
@@ -448,9 +449,9 @@ function setupGamePadController() {
 //for determining if soundfx are on/off
 function getLocalStorageSoundfx() {
   if(localStorage.getItem(LOCAL_STORAGE_SOUNDFX) == OFF) {
-      soundfxOn = OFF;
+      _soundfxOn = OFF;
   } else {
-      soundfxOn = ON;
+      _soundfxOn = ON;
   }
 }
 
@@ -511,7 +512,8 @@ function renderOnScreenText() {
     context.fillText(_onScreenText, CANVAS_WIDTH / 2, CANVAS_HEIGHT * 0.7);
     _textAlpha -= 1.0 / TEXT_FADE_TIME / FPS;
   } else if (!ship.visible) {
-    createNewGame();
+    GAME_OVER_PROMPT.style.display = "inline-block";
+    GAME_OVER_SCORE.textContent = numberWithCommas(score);
   }
 }
 
@@ -577,25 +579,27 @@ function numberWithCommas(x) {
 }
 
 //for listening to soundfx on/off button
-SOUNDFX_TOGGLE.addEventListener("click", () => {
-  if (SOUNDFX_TOGGLE.textContent === "SOUND FX ON") {
-    SOUNDFX_TOGGLE.textContent = "SOUND FX OFF";
-    localStorage.setItem(LOCAL_STORAGE_SOUNDFX, OFF);
-    soundfxOn = OFF;
-  } else {
-    SOUNDFX_TOGGLE.textContent = "SOUND FX ON";
-    localStorage.setItem(LOCAL_STORAGE_SOUNDFX, ON);
-    soundfxOn = ON;
-  }
-});
+function enableSoundfx() {
+  SOUNDFX_TOGGLE.addEventListener("click", () => {
+    if (SOUNDFX_TOGGLE.textContent === "SOUND FX ON") {
+      SOUNDFX_TOGGLE.textContent = "SOUND FX OFF";
+      localStorage.setItem(LOCAL_STORAGE_SOUNDFX, OFF);
+      _soundfxOn = OFF;
+    } else {
+      SOUNDFX_TOGGLE.textContent = "SOUND FX ON";
+      localStorage.setItem(LOCAL_STORAGE_SOUNDFX, ON);
+      _soundfxOn = ON;
+    }
+  });
+}
 
 //for determining if soundfx are on/off. Use of local storage to remember the setting
 function getLocalStorageSoundfxMenu() {
   if (localStorage.getItem(LOCAL_STORAGE_SOUNDFX) == OFF) {
     SOUNDFX_TOGGLE.textContent = "SOUND FX OFF";
-    soundfxOn = OFF;
+    _soundfxOn = OFF;
   } else {
     SOUNDFX_TOGGLE.textContent = "SOUND FX ON";
-    soundfxOn = ON;
+    _soundfxOn = ON;
   }
 }
