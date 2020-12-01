@@ -53,6 +53,7 @@ const BULLET_SPEED = 10; //for setting the speed of the bullet
 //Local Storage
 const LOCAL_STORAGE_HIGHSCORE = "highScore"; //for setting local storage key of highscore
 const LOCAL_STORAGE_SOUNDFX = "soundfx"; //for setting the local storage key of soundfx on/off
+const LOCAL_STORAGE_MUSIC = "music"; //for setting the local storage key of music on/off
 
 //DOM elements
 const SCORE_HTML = document.querySelector(".score-value"); //for setting the score in html
@@ -63,6 +64,7 @@ const RIGHT_BUTTON = document.querySelector(".right-button"); //for getting the 
 const FIRE_BUTTON = document.querySelector(".fire-button"); //for getting the fire button on gamepad controller
 const THRUST_BUTTON = document.querySelector(".up-button"); //for getting the thrust button on gamepad controller
 const SOUNDFX_TOGGLE = document.querySelector(".soundfx-button"); //for setting the in-game soundfx to on/off
+const MUSIC_TOGGLE = document.querySelector(".music-button"); //for setting the in-game music to on/off
 const LEVEL_HTML = document.querySelector(".level"); //for setting the in-game level
 const GAME_OVER_PROMPT = document.querySelector(".game-over-prompt"); //for displaying game over prompt
 const GAME_OVER_SCORE = document.querySelector(".game-over-score"); //for displaying game over score within the game over prompt
@@ -87,17 +89,22 @@ const BLACK_COLOR = "rgb(0, 0, 0)";
   #SOUND CONSTANTS USING HOWLER LIBRARY
 \*------------------------------------*/
 const FIRE_SOUND = new Howl({
-  src: ["assets/sounds/fire.webm", "assets/sounds/fire.mp3"],
+  src: ["assets/sounds/fire.webm", "assets/sounds/fire.mp3"]
 });
 const BANG_SMALL_ASTEROID_SOUND = new Howl({
-  src: ["assets/sounds/bangSmall.webm", "assets/sounds/bangSmall.mp3"],
+  src: ["assets/sounds/bangSmall.webm", "assets/sounds/bangSmall.mp3"]
 });
 const BANG_MEDIUM_ASTEROID_SOUND = new Howl({
-  src: ["assets/sounds/bangMedium.webm", "assets/sounds/bangMedium.mp3"],
+  src: ["assets/sounds/bangMedium.webm", "assets/sounds/bangMedium.mp3"]
 });
 const BANG_LARGE_ASTEROID_SOUND = new Howl({
-  src: ["assets/sounds/bangLarge.webm", "assets/sounds/bangLarge.mp3"],
+  src: ["assets/sounds/bangLarge.webm", "assets/sounds/bangLarge.mp3"]
 });
+const GAME_MUSIC = new Howl({
+  src: ["assets/sounds/game-music.webm", "assets/audio/game-music.mp3"],
+  loop: true
+});
+
 
 /*------------------------------------*\
 #GAME VARIABLES
@@ -108,7 +115,8 @@ let _highScore = 0; //for setting the high score
 let _numberOfAsteroids = 3; //for setting the number of asteroids that initially appear on screen
 let _onScreenText; //for displaying text related to 'Level No' and 'Game Over'
 let _textAlpha; //for setting the alpha value of _onScreenText, where 1.0 is opaque, 0.0 is transparent
-let _soundfxOn = ON; //for setting the in-game soundfx
+let _soundfxOn; //for setting the in-game soundfx
+let _music; //for setting in-game music
 
 /*------------------------------------*\
   #GAME HELPER METHODS
@@ -359,7 +367,7 @@ function resetShipAsteroidBullet() {
 //for setting up an asteroid belt
 function setupAsteroids() {
   //set the speed of the asteroid based on the level number
-  let speedAsteroid = _level * 0.1 + 1;
+  let speedAsteroid = _level * 0.2 + 1;
   //ensures the asteroid is not positioned within collision radius of the ship at the start of game
   for (let i = 0; i < _numberOfAsteroids + _level; i++) {
     do {
@@ -382,6 +390,9 @@ function setupAsteroids() {
 
 //for creating a new game
 function createNewGame() {
+  if(!GAME_MUSIC.playing() && _music == ON) {
+    GAME_MUSIC.play();
+    }
   GAME_OVER_PROMPT.style.display = "none";
   _level = 1;
   score = 0;
@@ -395,6 +406,9 @@ function createNewGame() {
 //for creating a new level
 function createNewLevel() {
   if(asteroidsArray.length === 0) {
+    if(!GAME_MUSIC.playing() && _music == ON) {
+      GAME_MUSIC.play();
+      }
     resetShipAsteroidBullet();
     setupAsteroids();
   }
@@ -507,11 +521,14 @@ function drawAsteroidExplosion(i, explosionFactor) {
 function renderOnScreenText() {
   if (_textAlpha >= 0) {
     context.fillStyle = "rgba(255, 255, 255, " + _textAlpha + ")";
-    context.font = "4rem 'Press Start 2P'";
+    context.font = "60px 'Press Start 2P'";
     context.textAlign = "center";
     context.fillText(_onScreenText, CANVAS_WIDTH / 2, CANVAS_HEIGHT * 0.7);
     _textAlpha -= 1.0 / TEXT_FADE_TIME / FPS;
   } else if (!ship.visible) {
+    if(_music == ON) {
+    GAME_MUSIC.stop();
+    }
     GAME_OVER_PROMPT.style.display = "inline-block";
     GAME_OVER_SCORE.textContent = numberWithCommas(score);
   }
@@ -601,5 +618,35 @@ function getLocalStorageSoundfxMenu() {
   } else {
     SOUNDFX_TOGGLE.textContent = "SOUND FX ON";
     _soundfxOn = ON;
+  }
+}
+
+//for listening to music on/off button
+function enableMusic() {
+  MUSIC_TOGGLE.addEventListener("click", () => {
+    if (MUSIC_TOGGLE.textContent === "MUSIC ON") {
+      MUSIC_TOGGLE.textContent = "MUSIC OFF";
+      GAME_MUSIC.stop();
+      localStorage.setItem(LOCAL_STORAGE_MUSIC, OFF);
+      _music = OFF;
+    } else {
+      MUSIC_TOGGLE.textContent = "MUSIC ON";
+      localStorage.setItem(LOCAL_STORAGE_MUSIC, ON);
+      GAME_MUSIC.play();
+      _music = ON;
+    }
+  });
+}
+
+//for determining if soundfx are on/off. Use of local storage to remember the setting
+function getLocalStorageMusicMenu() {
+  if (localStorage.getItem(LOCAL_STORAGE_MUSIC) == OFF) {
+    MUSIC_TOGGLE.textContent = "MUSIC OFF";
+    GAME_MUSIC.stop();
+    _music = OFF;
+  } else {
+    MUSIC_TOGGLE.textContent = "MUSIC ON";
+    GAME_MUSIC.play();
+    _music = ON;
   }
 }

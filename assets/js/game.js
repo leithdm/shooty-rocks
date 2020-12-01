@@ -28,6 +28,12 @@ window.onload = () => {
   //retrieve whether soundfx are on/off
   getLocalStorageSoundfxMenu();
 
+  //enable music listener
+  enableMusic();
+
+  //retrieve whether music is on/off
+  getLocalStorageMusicMenu();
+
   //for setting up the touch screen gamepad controller
   setupGamePadController();
 

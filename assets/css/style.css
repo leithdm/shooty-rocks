@@ -85,29 +85,35 @@ body {
 canvas {
   width: 100%;
   border: 1px solid var(--white-color);
-  background-image: url("/assets/images/background.jpg");
+  background-image: url("../images/background.jpg");
 }
 
 .top-banner {
   display: grid;
   row-gap: 2px;
   grid-template-rows: 1fr 0.5fr 0.5fr;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template-areas:
-    "returnMainMenu inGameSoundFx"
-    "highScore      level"
-    "score          ships";
+    "returnMainMenu inGameSoundFx inGame-music"
+    "highScore      level         level"
+    "score          ships         ships";
 }
 
 .return-main-menu {
   grid-area: returnMainMenu;
-  width: 50%;
+  width: 80%;
 }
 
 .ingame-soundfx {
-  justify-self: end;
-  width: 50%;
+  width: 80%;
+  justify-self: center;
   grid-area: inGameSoundFx;
+}
+
+.ingame-music {
+  justify-self: end;
+  width: 80%;
+  grid-area: inGame-music;
 }
 
 .high-score-title,
@@ -373,16 +379,6 @@ button:active {
 
 .high-score-menu {
   font-size: 12vw;
-}
-
-/*------------------------------------*\
-  #SOUND.HTML
-\*------------------------------------*/
-
-.sound-options {
-  margin-left: auto;
-  margin-right: auto;
-  width: 40%;
 }
 
 /*------------------------------------*\
