@@ -25,7 +25,7 @@
         <nav class="container noselect">
             <div class="top-banner">
                 <button class="return-main-menu"
-                onclick="location.href='index.html'">< MENU
+                onclick="location.href='index.html'">MENU
                 </button>
                 <button class="ingame-soundfx
                 soundfx-button">SOUND FX ON
@@ -35,7 +35,13 @@
                 <p class="lives-header">SHIPS:<span class="lives">3</span></p>
                 <p class="level-header">LEVEL:<span class="level">1</span></p>
             </div>
-            <canvas id="canvas" style="background: url('assets/images/background.jpg')"> Sorry, your browser doesn't support the &lt;canvas&gt; element.</canvas>
+            <canvas id="canvas"> Sorry, your browser doesn't support the &lt;canvas&gt; element.</canvas>
+            <div class="game-over-prompt">
+                <p>Congratulations!</p>
+                <p>You scored: <span class="game-over-score"></span></p>
+                <button class="play-again" onclick="createNewGame()">PLAY AGAIN</button>
+                <button class="menu-game-over" onclick="location.href='index.html'">MENU</button>
+            </div>
             <div class="controller">
                 <span class="up-button"><i class="fas fa-arrow-up"></i></i></span>
                 <span class="left-button"><i class="fas fa-arrow-left"></i></i></span>

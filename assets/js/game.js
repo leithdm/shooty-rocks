@@ -22,6 +22,9 @@ window.onload = () => {
   //retrieve highscore from local storage
   getLocalStorage();
 
+  //enable soundFx listener
+  enableSoundfx();
+
   //retrieve whether soundfx are on/off
   getLocalStorageSoundfxMenu();
 
@@ -38,9 +41,6 @@ function renderGame() {
 
   //clear the canvas, to get ready for the next frame
   context.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-
-  //render the game canvas
-  // renderGameCanvas();
 
   //render starts to the game canvas
   renderStars();

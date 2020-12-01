@@ -85,6 +85,7 @@ body {
 canvas {
   width: 100%;
   border: 1px solid var(--white-color);
+  background-image: url("/assets/images/background.jpg");
 }
 
 .top-banner {
@@ -294,6 +295,33 @@ button:active {
 	top: .2em;
 }
 
+.game-over-prompt {
+  display: none;
+  text-align: center;
+  position: absolute;
+  font-size: 1.2rem;
+  top: 38%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  padding: 3px 20px 20px 20px;
+  border-radius: 10px;
+}
+
+.game-over-prompt > p {
+  font-family: 'Roboto Mono', 'Courier New';
+}
+
+.game-over-prompt button {
+  width: 50%;
+  margin-top: 10px;
+}
+
+.game-over-score {
+  font-family: 'Roboto Mono', 'Courier New';
+  color: var(--dashboard-blue);
+}
+
 /*------------------------------------*\
   #INDEX.HTML
 \*------------------------------------*/
@@ -361,6 +389,30 @@ button:active {
   #MEDIA QUERIES
 \*------------------------------------*/
 
+/* iPhone 6/7/8*/
+@media (min-width: 375px) {
+  .game-over-prompt {
+    font-size: 1.2rem;
+    top: 35%;
+  }
+}
+
+/* XSmall to Small */
+@media (min-width: 520px) {
+  .game-over-prompt {
+    font-size: 1.2rem;
+    top: 25%;
+  }
+}
+
+/* XSmall to Small | Surface Duo */
+@media (min-width: 540px) {
+  .game-over-prompt {
+    font-size: 1.2rem;
+    top: 30%;
+  }
+}
+
 /* Small Container */
 @media (min-width: 576px) {
   .container {
@@ -378,6 +430,11 @@ button:active {
 
   .high-score-menu {
     font-size: 8vh;
+  }
+
+  .game-over-prompt {
+    font-size: 1.5rem;
+    top: 30%;
   }
 }
 
@@ -397,6 +454,11 @@ button:active {
   .game-title-text {
     font-size: 5vh;
   }
+
+  .game-over-prompt {
+    font-size: 1.5rem;
+    top: 30%;
+  }
 }
 
 /* Large Container */
@@ -407,6 +469,11 @@ button:active {
 
   .game-title-text {
     font-size: 5vh;
+  }
+
+  .game-over-prompt {
+    font-size: 2rem;
+    top: 35%;
   }
 }
 
