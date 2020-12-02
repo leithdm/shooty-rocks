@@ -101,7 +101,7 @@ const BANG_LARGE_ASTEROID_SOUND = new Howl({
   src: ["assets/sounds/bangLarge.webm", "assets/sounds/bangLarge.mp3"]
 });
 const GAME_MUSIC = new Howl({
-  src: ["assets/sounds/game-music.webm", "assets/audio/game-music.mp3"],
+  src: ["assets/sounds/game-music.webm", "assets/sounds/game-music.mp3"],
   loop: true
 });
 

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto+Mono:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto+Mono:wght@300&display=swap");
 
 /*------------------------------------*\
   #COLORS
@@ -37,8 +37,6 @@ body {
   overflow: hidden;
   touch-action: manipulation;
   background-color: var(--black-color);
-  /* http://www.heropatterns.com/ */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%2302afff' fill-opacity='0.21'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
 
 .container {
@@ -119,7 +117,7 @@ canvas {
 .high-score-title,
 .high-score {
   color: var(--dashboard-blue);
-  font-family: 'Roboto Mono', 'Courier New';
+  font-family: "Roboto Mono", "Courier New";
   margin: 0;
   font-size: 1.4rem;
   grid-area: highScore;
@@ -128,7 +126,7 @@ canvas {
 .level-header,
 .level {
   color: var(--dashboard-blue);
-  font-family: 'Roboto Mono', 'Courier New';
+  font-family: "Roboto Mono", "Courier New";
   justify-self: end;
   margin: 0;
   font-size: 1.4rem;
@@ -138,7 +136,7 @@ canvas {
 .score-title,
 .score-value {
   color: var(--dashboard-blue);
-  font-family: 'Roboto Mono', 'Courier New';
+  font-family: "Roboto Mono", "Courier New";
   margin: 0;
   font-size: 1.4rem;
   grid-area: score;
@@ -147,7 +145,7 @@ canvas {
 .lives-header,
 .lives {
   color: var(--dashboard-blue);
-  font-family: 'Roboto Mono', 'Courier New';
+  font-family: "Roboto Mono", "Courier New";
   justify-self: end;
   margin: 0;
   font-size: 1.4rem;
@@ -189,116 +187,204 @@ button:active {
 /* Video Game button styling...https://codepen.io/DanielWeiner/pen/iFadn */
 .fire-button {
   font-size: 3rem;
-	text-shadow: 1px 1px pink, -1px -1px maroon;
-	line-height: 1.5em;
-	text-align: center;
-	display: inline-block;
-	width: 1.5em;
-	-webkit-border-radius: .75em;
-	-moz-border-radius: .75em;
-	-o-border-radius: .75em;
-		border-radius: .75em;
-	-webkit-box-shadow:  0 .2em maroon;
-	-moz-box-shadow:  0 .2em maroon;
-	-o-box-shadow:  0 .2em maroon;
-	box-shadow:  0 .2em maroon;
-	color: red;
-	margin: 5px;
-	background-color: red;
-	background-image: -o-linear-gradient(left top, pink 3%, red 22%, maroon 99%);
-	background-image: -moz-linear-gradient(left top, pink 3%, red 22%, maroon 99%);
-	background-image: -webkit-linear-gradient(left top, pink 3%, red 22%, maroon 99%);
-	background-image: linear-gradient(left top, pink 3%, red 22%, maroon 99%);
-	cursor: pointer;
+  text-shadow: 1px 1px pink, -1px -1px maroon;
+  line-height: 1.5em;
+  text-align: center;
+  display: inline-block;
+  width: 1.5em;
+  -webkit-border-radius: 0.75em;
+  -moz-border-radius: 0.75em;
+  -o-border-radius: 0.75em;
+  border-radius: 0.75em;
+  -webkit-box-shadow: 0 0.2em maroon;
+  -moz-box-shadow: 0 0.2em maroon;
+  -o-box-shadow: 0 0.2em maroon;
+  box-shadow: 0 0.2em maroon;
+  color: red;
+  margin: 5px;
+  background-color: red;
+  background-image: -o-linear-gradient(left top, pink 3%, red 22%, maroon 99%);
+  background-image: -moz-linear-gradient(
+    left top,
+    pink 3%,
+    red 22%,
+    maroon 99%
+  );
+  background-image: -webkit-linear-gradient(
+    left top,
+    pink 3%,
+    red 22%,
+    maroon 99%
+  );
+  background-image: linear-gradient(left top, pink 3%, red 22%, maroon 99%);
+  cursor: pointer;
   padding-left: 5px;
   grid-column: 3 / 4;
 }
 
 .up-button {
   font-size: 3rem;
-	text-shadow: 1px 1px lightgreen, -1px -1px darkgreen;
-	line-height: 1.3em;
-	text-align: center;
-	display: inline-block;
-	width: 1.6em;
-	-webkit-border-radius: .75em;
-	-moz-border-radius: .75em;
-	-o-border-radius: .75em;
-		border-radius: .75em;
-	-webkit-box-shadow:  0 .2em darkgreen;
-	-moz-box-shadow:  0 .2em darkgreen;
-	-o-box-shadow:  0 .2em darkgreen;
-	box-shadow:  0 .2em darkgreen;
-	color: green;
-	margin: 5px;
-	background-color: green;
-	background-image: -o-linear-gradient(left top, lightgreen 3%, green 22%, darkgreen 99%);
-	background-image: -moz-linear-gradient(left top, lightgreen 3%, green 22%, darkgreen 99%);
-	background-image: -webkit-linear-gradient(left top, lightgreen 3%, green 22%, darkgreen 99%);
-	background-image: linear-gradient(left top, lightgreen 3%, green 22%, darkgreen 99%);
-	cursor: pointer;
+  text-shadow: 1px 1px lightgreen, -1px -1px darkgreen;
+  line-height: 1.3em;
+  text-align: center;
+  display: inline-block;
+  width: 1.6em;
+  -webkit-border-radius: 0.75em;
+  -moz-border-radius: 0.75em;
+  -o-border-radius: 0.75em;
+  border-radius: 0.75em;
+  -webkit-box-shadow: 0 0.2em darkgreen;
+  -moz-box-shadow: 0 0.2em darkgreen;
+  -o-box-shadow: 0 0.2em darkgreen;
+  box-shadow: 0 0.2em darkgreen;
+  color: green;
+  margin: 5px;
+  background-color: green;
+  background-image: -o-linear-gradient(
+    left top,
+    lightgreen 3%,
+    green 22%,
+    darkgreen 99%
+  );
+  background-image: -moz-linear-gradient(
+    left top,
+    lightgreen 3%,
+    green 22%,
+    darkgreen 99%
+  );
+  background-image: -webkit-linear-gradient(
+    left top,
+    lightgreen 3%,
+    green 22%,
+    darkgreen 99%
+  );
+  background-image: linear-gradient(
+    left top,
+    lightgreen 3%,
+    green 22%,
+    darkgreen 99%
+  );
+  cursor: pointer;
   padding-left: 2px;
 }
 
 .left-button {
   font-size: 3rem;
-	text-shadow: 1px 1px lightblue, -1px -1px darkblue;
-	line-height: 1.3em;
-	text-align: center;
-	display: inline-block;
-	width: 1.6em;
-	-webkit-border-radius: .75em;
-	-moz-border-radius: .75em;
-	-o-border-radius: .75em;
-		border-radius: .75em;
-	-webkit-box-shadow:  0 .2em darkblue;
-	-moz-box-shadow:  0 .2em darkblue;
-	-o-box-shadow:  0 .2em darkblue;
-	box-shadow:  0 .2em darkblue;
-	color: blue;
-	margin: 5px;
-	background-color: blue;
-	background-image: -o-linear-gradient(left top, lightblue 3%, blue 22%, darkblue 99%);
-	background-image: -moz-linear-gradient(left top, lightblue 3%, blue 22%, darkblue 99%);
-	background-image: -webkit-linear-gradient(left top, lightblue 3%, blue 22%, darkblue 99%);
-	background-image: linear-gradient(left top, lightblue 3%, blue 22%, darkblue 99%);
-	cursor: pointer;
+  text-shadow: 1px 1px lightblue, -1px -1px darkblue;
+  line-height: 1.3em;
+  text-align: center;
+  display: inline-block;
+  width: 1.6em;
+  -webkit-border-radius: 0.75em;
+  -moz-border-radius: 0.75em;
+  -o-border-radius: 0.75em;
+  border-radius: 0.75em;
+  -webkit-box-shadow: 0 0.2em darkblue;
+  -moz-box-shadow: 0 0.2em darkblue;
+  -o-box-shadow: 0 0.2em darkblue;
+  box-shadow: 0 0.2em darkblue;
+  color: blue;
+  margin: 5px;
+  background-color: blue;
+  background-image: -o-linear-gradient(
+    left top,
+    lightblue 3%,
+    blue 22%,
+    darkblue 99%
+  );
+  background-image: -moz-linear-gradient(
+    left top,
+    lightblue 3%,
+    blue 22%,
+    darkblue 99%
+  );
+  background-image: -webkit-linear-gradient(
+    left top,
+    lightblue 3%,
+    blue 22%,
+    darkblue 99%
+  );
+  background-image: linear-gradient(
+    left top,
+    lightblue 3%,
+    blue 22%,
+    darkblue 99%
+  );
+  cursor: pointer;
   padding-left: 2px;
 }
 
 .right-button {
   font-size: 3rem;
-	text-shadow: 1px 1px lightyellow, -1px -1px orange;
-	line-height: 1.3em;
-	text-align: center;
-	display: inline-block;
-	width: 1.6em;
-	-webkit-border-radius: .75em;
-	-moz-border-radius: .75em;
-	-o-border-radius: .75em;
-		border-radius: .75em;
-	-webkit-box-shadow:  0 .2em orange;
-	-moz-box-shadow:  0 .2em orange;
-	-o-box-shadow:  0 .2em orange;
-	box-shadow:  0 .2em orange;
-	color: yellow;
-	margin: 5px;
-	background-color: yellow;
-	background-image: -o-linear-gradient(left top, lightyellow 3%, yellow 22%, orange 99%);
-	background-image: -moz-linear-gradient(left top, lightyellow 3%, yellow 22%, orange 99%);
-	background-image: -webkit-linear-gradient(left top, lightyellow 3%, yellow 22%, orange 99%);
-	background-image: linear-gradient(left top, lightyellow 3%, yellow 22%, orange 99%);
-	cursor: pointer;
+  text-shadow: 1px 1px lightyellow, -1px -1px orange;
+  line-height: 1.3em;
+  text-align: center;
+  display: inline-block;
+  width: 1.6em;
+  -webkit-border-radius: 0.75em;
+  -moz-border-radius: 0.75em;
+  -o-border-radius: 0.75em;
+  border-radius: 0.75em;
+  -webkit-box-shadow: 0 0.2em orange;
+  -moz-box-shadow: 0 0.2em orange;
+  -o-box-shadow: 0 0.2em orange;
+  box-shadow: 0 0.2em orange;
+  color: yellow;
+  margin: 5px;
+  background-color: yellow;
+  background-image: -o-linear-gradient(
+    left top,
+    lightyellow 3%,
+    yellow 22%,
+    orange 99%
+  );
+  background-image: -moz-linear-gradient(
+    left top,
+    lightyellow 3%,
+    yellow 22%,
+    orange 99%
+  );
+  background-image: -webkit-linear-gradient(
+    left top,
+    lightyellow 3%,
+    yellow 22%,
+    orange 99%
+  );
+  background-image: linear-gradient(
+    left top,
+    lightyellow 3%,
+    yellow 22%,
+    orange 99%
+  );
+  cursor: pointer;
   padding-left: 2px;
 }
 
 .fire-button:active,
 .up-button:active,
 .right-button:active,
-.left-button:active  {
-	box-shadow: none;
-	position: relative;
-	top: .2em;
+.left-button:active {
+  box-shadow: none;
+  position: relative;
+  top: 0.2em;
+}
+
+.game-over-button-container {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "menu playAgain";
+}
+
+.menu-game-over-button {
+  grid-area: menu;
+}
+
+.play-again-button {
+  background-color: var(--yellow-color);
+  color: var(--black-color);
+  grid-area: playAgain;
+  justify-self: end;
 }
 
 .game-over-prompt {
@@ -306,7 +392,7 @@ button:active {
   text-align: center;
   position: absolute;
   font-size: 1.2rem;
-  top: 38%;
+  top: 42%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
@@ -315,16 +401,11 @@ button:active {
 }
 
 .game-over-prompt > p {
-  font-family: 'Roboto Mono', 'Courier New';
-}
-
-.game-over-prompt button {
-  width: 50%;
-  margin-top: 10px;
+  font-family: "Roboto Mono", "Courier New";
 }
 
 .game-over-score {
-  font-family: 'Roboto Mono', 'Courier New';
+  font-family: "Roboto Mono", "Courier New";
   color: var(--dashboard-blue);
 }
 
@@ -333,7 +414,7 @@ button:active {
 \*------------------------------------*/
 
 .header-bg-image {
-  background-image:url("../images/menu-image-mobile.jpg");
+  background-image: url("../images/menu-image-mobile.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -342,13 +423,14 @@ button:active {
 }
 
 .header-text {
+  margin: 10px;
   text-align: center;
   height: 100%;
   display: grid;
   grid-template-rows: 1fr 1fr 1fr 1fr;
 }
 
-.game-title-text {
+.title-text {
   align-self: center;
   font-size: 8vw;
 }
@@ -382,6 +464,22 @@ button:active {
 }
 
 /*------------------------------------*\
+  #HOW-TO-PLAY.HTML
+\*------------------------------------*/
+
+.how-to-play-text,
+.text-underline {
+  font-family: "Roboto Mono", "Courier New";
+  color: var(--white-color);
+  font-size: 6vw;
+}
+
+.text-yellow {
+  color: var(--yellow-color);
+  font-size: 8vw;
+  font-family: "Roboto Mono", "Courier New";
+}
+/*------------------------------------*\
   #MEDIA QUERIES
 \*------------------------------------*/
 
@@ -407,6 +505,15 @@ button:active {
     font-size: 1.2rem;
     top: 30%;
   }
+
+  .how-to-play-text,
+  .text-underline {
+    font-size: 3vh;
+  }
+
+  .text-yellow {
+    font-size: 3vh;
+  }
 }
 
 /* Small Container */
@@ -415,7 +522,7 @@ button:active {
     max-width: 540px;
   }
 
-  .game-title-text {
+  .title-text {
     font-size: 4vh;
   }
 
@@ -437,7 +544,9 @@ button:active {
 /* iPad and Medium Container */
 @media (min-width: 768px) {
   /* reset root 'size' variable to vh instead of vw */
-  :root {--size: 85vh;}
+  :root {
+    --size: 85vh;
+  }
 
   .header-bg-image {
     background-image: url("../images/menu-image.jpg");
@@ -447,7 +556,7 @@ button:active {
     max-width: 720px;
   }
 
-  .game-title-text {
+  .title-text {
     font-size: 5vh;
   }
 
@@ -463,13 +572,18 @@ button:active {
     max-width: 960px;
   }
 
-  .game-title-text {
+  .title-text {
     font-size: 5vh;
   }
 
   .game-over-prompt {
     font-size: 2rem;
     top: 35%;
+  }
+
+  .controller {
+    /* http://www.heropatterns.com/ */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%2302afff' fill-opacity='0.21'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
 }
 

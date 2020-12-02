@@ -36,10 +36,11 @@
             </div>
             <canvas id="canvas"> Sorry, your browser doesn't support the &lt;canvas&gt; element.</canvas>
             <div class="game-over-prompt">
-                <p>Congratulations!</p>
                 <p>You scored: <span class="game-over-score"></span></p>
-                <button class="play-again" onclick="createNewGame()">PLAY AGAIN</button>
-                <button class="menu-game-over" onclick="location.href='index.html'">MENU</button>
+                <div class="game-over-button-container">
+                    <button class="play-again-button" onclick="createNewGame()">PLAY AGAIN</button>
+                    <button class="menu-game-over-button" onclick="location.href='index.html'">MENU</button>
+                </div>
             </div>
             <div class="controller">
                 <span class="up-button"><i class="fas fa-arrow-up"></i></i></span>
