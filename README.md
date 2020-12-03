@@ -11,19 +11,16 @@
     - [Icons](#icons)
     - [Typography](#typography)
   - [Wireframes](#wireframes)
-      - [back to top](#back-to-top)
 - [Features](#features)
   - [Existing Features](#existing-features)
   - [Future Features](#future-features)
-      - [back to top](#back-to-top-1)
 - [Technologies Used](#technologies-used)
-  - [Miscellaneous Technologies](#miscellaneous-technologies)
   - [Front-End Technologies](#front-end-technologies)
+  - [Miscellaneous Technologies](#miscellaneous-technologies)
 - [Agile Project Management](#agile-project-management)
 - [Testing](#testing)
 - [Deployment](#deployment)
 - [Credits](#credits)
-  - [Content](#content)
   - [Media](#media)
   - [Acknowledgments](#acknowledgments)
 
@@ -47,7 +44,7 @@ The inspiration for developing this game came from the classic Asteroids game co
 
 ### User Stories
 
-- User Stories were written from the perspective of the user and the developer.
+- User Stories were written from the perspective of the user, and are detailed below (in no particular order).
 
 <br/>
 
@@ -79,44 +76,42 @@ The inspiration for developing this game came from the classic Asteroids game co
 - should be able to shoot bullets by tapping a "FIRE" button when on mobile.
 - should be able to move the ship using swipes or a button keypad when playing the game on mobile.
 - should be able to click on a HIGH SCORES menu button, and be presented with the highest score.
-- should be able to click on a SOUND OPTIONS menu button, and be presented with an option to turn sound ON/OFF.
-- should be presented with a GAME MENU.
-- should be presented with a game that meets accessibility guidelines.
-
-<br/>
-
-"**__As a *developer*, I__** ______________________________________________"
-
-- must maximise future maintainability through documentation, code structure and organisation.
-- must document testing fully to include evaluation of bugs found and their fixes, and explanation of any bugs that are left unfixed.
-- must test and deploy to a cloud platform.
-- must pass HTML/CSS through the official W3C validators with no issues.
-- must pass JavaScript code through a linter with no major issues.
 
 <br/>
 
 ### Design
 
-Mobile responsiveness was a key design consideration for this project, and resulted in the development of a "gamepad controller" to capture the movements of the ship when playing on movile. The overall concept is aligned with the classic Asteroids game from the 1970's, however there are some notable deviations not least in color scheme and the addition/ommision of certain features.
+Mobile responsiveness was a key consideration in this project, and resulted in the development of a gamepad controller in order to move the ship when playing on mobile. The use of responsive CSS sizing elements including `vw` , `vh` and `grid` helped to ensure the site responds to the appropriate device, along with my own `container` element that is functionally the same as a Bootstrap [container](https://getbootstrap.com/docs/4.5/layout/overview/) but without the overhead of using the framework.
 
 <br/>
 
 
 #### Color Scheme
 
-- All of these colors are set at `:root` level within my [style.css](assets/css/style.css) file.
+- ![#800080](https://placehold.it/15/800080/800080) purple text/background
+- ![#B22234](https://placehold.it/15/B22234/B22234) red button
+- ![#FFFF00](https://placehold.it/15/FFFF00/FFFF00) yellow button/text
+- ![#00C0A3](https://placehold.it/15/00C0A3/00C0A3) green text
+- ![#02AFFF](https://placehold.it/15/02AFFF/02AFFF) blue dashboard (score, level, lives)
+
+- The gamepad color scheme is loosely based on the [SNES](https://link) controller.
+![GamePad](assets/images/gamepad.PNG)
+
+- All of these colors are set at `:root` level within my [style.css](assets/css/style.css) file. The use of css custom properties (variables) is in keeping with the principles of DRY.
 
 <br/>
 
 #### Icons
 
-- [Font Awesome 5.6.1](https://link) icons are used on the [How To Play](how-to-play.html) page.
+- [Font Awesome 5.6.1](https://link) icons are used on the [How To Play](how-to-play.html) page and in the gamepad controller.
 
 <br/>
 
 #### Typography
 
-- The site incorporates [Google Fonts](https://fonts.google.com/) throughout the application. The primary font selected is [Press Start 2P](https://fonts.google.com/specimen/Press+Start+2P).
+- 2 [Google Fonts](https://fonts.google.com/) were used across the site.
+  - [Press Start 2P](https://fonts.google.com/specimen/Press+Start+2P) : game title and menu buttons.
+  - [Roboto Mono](https://fonts.google.com/specimen/Roboto+Mono) : in-game dashboard including score, highscore, ships, level.
 
 <br/>
 
@@ -133,20 +128,23 @@ Mobile responsiveness was a key design consideration for this project, and resul
 
 <br/>
 
-##### back to [top](#table-of-contents)
-
 ---
 
 ## Features
 
 ### Existing Features
-- lorem
+  - **Progressive Difficulty:** the game is an endless space shooter arcade game. The game starts at Level 1, and becomes increasingly more difficult at each new level. This is implemented by increasing the number of asteroids, and increasing the speed at which the asteroids move.
+  - **Play Again:** Once the game is over, a pop up screen allows the user to play again, or exit to the main menu.
+  - **Sound Fx / Music:** option to turn Sound Fx and background Music on/off from within the game itself. Settings are stored in local storage.
+  - **How to Play:** a menu item to explain how to play the game on both Desktop and Mobile.
+  - **High Score:** a menu item to display the highest score achieved to date. High score is also displayed within the game to provide extra incentive to the user.
+  - **In-game Dashboard:** displaying High Score, Score, Level, and Ships status.
+  - **Gamepad Controller:** built for mobile users. Large buttons to aid functionality.
 
 ### Future Features
-- lorem
+- **In-game enhancements:** alien space ships that shoot at player, power-ups, gain-lives, flashier explosions/collisions, different sound fx, game-over music, different backgrounds for different levels, pause-button, etc, etc. There are many improvements that can be implemented to enhance the overall game experience.
+-  **Menu Items:** High Score leaderboard, e.g. top 10. UX change-out e.g. dark mode/light mode.
 
-
-##### back to [top](#table-of-contents)
 
 <br/>
 
@@ -154,22 +152,22 @@ Mobile responsiveness was a key design consideration for this project, and resul
 
 ## Technologies Used
 
+### Front-End Technologies
+
+- [HTML5](https://en.wikipedia.org/wiki/HTML5) - used to provide content and structure.
+- [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets) - used to provide styling.
+- [JavaScript ES6](https://developer.mozilla.org/en-US/docs/Web/JavaScript) - the game is built entirely from vanilla JavaScript.
+- [Jasmine](https://jasmine.github.io/) - used for Test-Driven Development (TDD).
+- [Howler.js](https://github.com/goldfire/howler.js#documentation) - an audio library for the modern web.
+- [Google Fonts](https://fonts.google.com/) - used to provide font styling.
+- [Am I Responsive?](http://ami.responsivedesign.is/) - used to show site responsiveness.
+
 ### Miscellaneous Technologies
 
 - [VS Code](https://code.visualstudio.com/) - used as the primary IDE.
 - [GitHub](https://github.com/) - used for remote storage of code.
 - [TinyPNG](https://tinypng.com/) - used to optimize (.jpg, .png) images for faster loading.
 - [Balsamiq](https://balsamiq.com/) - used to create the project's wireframes.
-
-### Front-End Technologies
-
-- [HTML5](https://en.wikipedia.org/wiki/HTML5) - used to provide content and structure.
-- [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets) - used to provide styling.
-- [Google Fonts](https://fonts.google.com/) - used to provide font styling.
-- [Jasmine](https://jasmine.github.io/) - used for Test-Driven Development (TDD).
-- [JavaScript ES6](https://developer.mozilla.org/en-US/docs/Web/JavaScript) - the game is built entirely from vanilla JavaScript.
-- [Howler.js](https://github.com/goldfire/howler.js#documentation) - an audio library for the modern web.
-- [Am I Responsive?](http://ami.responsivedesign.is/) - used to show site responsiveness.
 
 <br/>
 
@@ -183,7 +181,7 @@ Mobile responsiveness was a key design consideration for this project, and resul
 3. **In Progress** - user stories currently being worked on from current sprint.
 4. **Done** - user stories completed, and tested.
 
- A separate git branch was created for each user story, and a Pull Request (PR) was submitted for its subsequent approval/merger into the master repository. Along with tracking user stories, Github Projects was also used to track bugs. The full list of user stories/bugs and their relevant timestamped PR's **can be viewed [here](https://github.com/leithdm/milestone-project-2/projects/1).**
+ A separate git branch was created for each user story, and a Pull Request (PR) was submitted for its subsequent approval/merger into the master repository. Along with tracking user stories, Github Projects was also used to track bugs. **The full list of user stories/bugs and their relevant PR's can be viewed [here](https://github.com/leithdm/milestone-project-2/projects/1).**
 
 ![GitHub Projects in action](wireframes/agile-project-management.png)
 
@@ -230,15 +228,22 @@ To clone this project from GitHub:
 
 ## Credits
 
-### Content
-
-- lorem
-
-<br/>
-
 ### Media
 
-- [Classic Gaming](http://www.classicgaming.cc/classics/asteroids/) for [audio sounds]([https://link](http://www.classicgaming.cc/classics/asteroids/sounds)) and [background images]([https://link](http://www.classicgaming.cc/classics/asteroids/graphics)) related specifically to the *Asteroids* game. This was an invaluable resource.
+- Audio:
+  - [Classic Gaming](http://www.classicgaming.cc/classics/asteroids/) provided the in-game [sound fx](http://www.classicgaming.cc/classics/asteroids/sounds). These are the same sounds used in the original *Asteroids* arcade classic.
+  - Background music was provided for free by [DL Sounds](https://www.dl-sounds.com/royalty-free/andromeda-journey/).
+- Images:
+  - The [background image]([https://link](http://www.classicgaming.cc/classics/asteroids/graphics)) used in the game menu was again provided by [Classic Gaming](http://www.classicgaming.cc/classics/asteroids/).
+  - The in-game star background was provided by [Jake Weirick](https://unsplash.com/photos/Q_RBVFFXR_g) via [Unsplash](https://unsplash.com/).
+  - The in-game controller background was provided by [Hero Patterns](http://www.heropatterns.com/).
+- Game Programming Tutorials:
+  - [Make JavaScript Asteroids in One Video](https://www.youtube.com/watch?v=HWuU5ly0taA&ab_channel=DerekBanas): a great introductory video.
+  - [Code Asteroids in JavaScript (1979 Atari game) - tutorial](https://www.youtube.com/watch?v=H9CSWMxJx84&ab_channel=freeCodeCamp.org): another excellent tutorial.
+  - [Canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial) tutorials provided by Mozilla.
+  - [Code Your First Game: Arcade Classic in JavaScript on Canvas](https://www.udemy.com/course/code-your-first-game/): a free course on [Udemy](https://www.udemy.com/).
+  - [How to Program Games: Tile Classic in JS for HTML5 Canvas](https://www.udemy.com/course/how-to-program-games/): a paid course on [Udemy](https://www.udemy.com/).
+
 
 <br/>
 

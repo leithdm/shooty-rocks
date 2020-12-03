@@ -282,7 +282,8 @@ Using [XML-SiteMaps](https://www.xml-sitemaps.com/) a site-map was created and a
 # User Stories
 
 
-**Result:** All user stories have been successfully implemented, with a :white_check_mark: to denote items that have been implemented in this website.
+**Result:** All user stories have been successfully implemented, with a :white_check_mark: to denote items that have been implemented in this game.
+- The full list of **user stories with relevant screenshots** can be viewed in this [document](assets/testing/results/user-story-checklist.pdf).
 
 <br/>
 
@@ -315,19 +316,6 @@ Using [XML-SiteMaps](https://www.xml-sitemaps.com/) a site-map was created and a
 - :white_check_mark: should be able to shoot bullets by tapping a "FIRE" button when on mobile.
 - :white_check_mark: should be able to move the ship using swipes or a button keypad when playing the game on mobile.
 - :white_check_mark: should be able to click on a HIGH SCORES menu button, and be presented with the highest score.
-- :white_check_mark: should be able to click on a SOUND OPTIONS menu button, and be presented with an option to turn sound ON/OFF.
-- :white_check_mark: should be presented with a GAME MENU.
-- :white_check_mark: should be presented with a game that meets accessibility guidelines.
-
-<br/>
-
-"**__As a developer, I__** ______________________________________________"
-
-- :white_check_mark: must maximise future maintainability through documentation, code structure and organisation.
-- :white_check_mark: must document testing fully to include evaluation of bugs found and their fixes, and explanation of any bugs that are left unfixed.
-- :white_check_mark: must test and deploy to a cloud platform.
-- :white_check_mark: must pass HTML/CSS through the official W3C validators with no issues.
-- :white_check_mark: must pass JavaScript code through a linter with no major issues.
 
 <br/>
 

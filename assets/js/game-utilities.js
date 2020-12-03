@@ -92,13 +92,13 @@ const FIRE_SOUND = new Howl({
   src: ["assets/sounds/fire.webm", "assets/sounds/fire.mp3"]
 });
 const BANG_SMALL_ASTEROID_SOUND = new Howl({
-  src: ["assets/sounds/bangSmall.webm", "assets/sounds/bangSmall.mp3"]
+  src: ["assets/sounds/bang-small.webm", "assets/sounds/bang-small.mp3"]
 });
 const BANG_MEDIUM_ASTEROID_SOUND = new Howl({
-  src: ["assets/sounds/bangMedium.webm", "assets/sounds/bangMedium.mp3"]
+  src: ["assets/sounds/bang-medium.webm", "assets/sounds/bang-medium.mp3"]
 });
 const BANG_LARGE_ASTEROID_SOUND = new Howl({
-  src: ["assets/sounds/bangLarge.webm", "assets/sounds/bangLarge.mp3"]
+  src: ["assets/sounds/bang-large.webm", "assets/sounds/bang-large.mp3"]
 });
 const GAME_MUSIC = new Howl({
   src: ["assets/sounds/game-music.webm", "assets/sounds/game-music.mp3"],
