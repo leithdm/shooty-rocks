@@ -28,7 +28,7 @@
 
 <br/>
 
-- Menu Page (index.html)
+- [Menu Page (index.html)]([https://link](https://github.com/leithdm/milestone-project-2/blob/master/index.html))
 
 <br/>
 
@@ -40,7 +40,7 @@
 
 <br/>
 
-- Game Page (game.html)
+- [Game Page (game.html)](https://github.com/leithdm/milestone-project-2/blob/master/game.html)
 
 <br/>
 
@@ -52,7 +52,7 @@
 
 <br/>
 
-- High Score Page (high-score.html)
+- [High Score Page (high-score.html)](https://github.com/leithdm/milestone-project-2/blob/master/high-score.html)
 
 <br/>
 
@@ -64,7 +64,7 @@
 
 <br/>
 
-- How To Play Page (how-to-play.html)
+- [How To Play Page (how-to-play.html)](https://github.com/leithdm/milestone-project-2/blob/master/how-to-play.html)
 
 <br/>
 
@@ -75,16 +75,6 @@
 ----------
 
 <br/>
-
-- Sound Page (sound.html)
-
-<br/>
-
-![Sound Page HTML Validator](assets/testing/results/sound.html-testing.PNG)
-
-**Result:** No Errors or warnings
-
-----------
 
 # CSS Validator
 
@@ -106,46 +96,39 @@
 
 ## [JSHint](https://jshint.com/)
 
-- File: [asteroid.js](assets/testing/src/asteroid.js)
+- File: [asteroid.js](assets/js/asteroid.js)
 
 ![asteroid.js JSHint](assets/testing/results/jshint-asteroid-testing.PNG)
 
-**Result:** [No Errors](assets/testing/results/jshint-asteroid-testing.PNG) with x11 undefined variables (*ignored*).
+**Result:** [No Errors](assets/testing/results/jshint-asteroid-testing.PNG) with x11 undefined variables (*Errors are ignored because the undefined variables are all contained with game-utilities.js which links to this file*).
 
 
-- File: [bullet.js](assets/testing/src/bullet.js)
+- File: [bullet.js](assets/js/bullet.js)
 
 ![bullet.js JSHint](assets/testing/results/jshint-bullet-testing.PNG)
 
-**Result:** [No Errors](assets/testing/results/jshint-bullet-testing.PNG) with x8 undefined variables (*ignored*).
+**Result:** [No Errors](assets/testing/results/jshint-bullet-testing.PNG) with x8 undefined variables (*Errors are ignored because the undefined variables are all contained with game-utilities.js which links to this file*).
 
 
-- File: [game.js](assets/testing/src/game.js)
+- File: [game.js](assets/js/game.js)
 
 ![game.js JSHint](assets/testing/results/jshint-game-testing.PNG)
 
-**Result:** [No Errors](assets/testing/results/jshint-game-testing.PNG) with x20 undefined variables (*ignored*).
+**Result:** [No Errors](assets/testing/results/jshint-game-testing.PNG) with x20 undefined variables (*Errors are ignored because the undefined variables are all contained with game-utilities.js which links to this file*).
 
 
-- File: [game-utilities.js](assets/testing/src/game-utilities.js)
+- File: [game-utilities.js](assets/js/game-utilities.js)
 
 ![game-utilities.js JSHint](assets/testing/results/jshint-game-utilities-testing.PNG)
 
-**Result:** [No Errors](assets/testing/results/jshint-game-utilities-testing.PNG) with x13 undefined variables (*ignored*).
+**Result:** [No Errors](assets/testing/results/jshint-game-utilities-testing.PNG) with x13 undefined variables (*Errors are ignored because the undefined variables are all contained with game-utilities.js which links to this file*).
 
 
-- File: [ship.js](assets/testing/src/ship.js)
+- File: [ship.js](assets/js/ship.js)
 
 ![ship.js JSHint](assets/testing/results/jshint-ship-testing.PNG)
 
-**Result:** [No Errors](assets/testing/results/jshint-ship-testing.PNG) with x14 undefined variables (*ignored*).
-
-
-- File: [sound.js](assets/testing/src/sound.js)
-
-![sound.js JSHint](assets/testing/results/jshint-sound-testing.PNG)
-
-**Result:** [No Errors](assets/testing/results/jshint-sound-testing.PNG) with x3 undefined variables (*ignored*).
+**Result:** [No Errors](assets/testing/results/jshint-ship-testing.PNG) with x14 undefined variables (*Errors are ignored because the undefined variables are all contained with game-utilities.js which links to this file*).
 
 <br/>
 
@@ -162,7 +145,7 @@
   - Firefox v.81
   - Safari v.12
   - Opera v.71
-  - Internet Explorer v.6-11 (tested via [Browserstack](https://www.browserstack.com/test-in-internet-explorer)).
+  - Internet Explorer v.6-11 (tested via [BrowserStack](https://www.browserstack.com/test-in-internet-explorer)).
 
 <br/>
 
@@ -221,7 +204,6 @@ Further automated testing was performed using [Chrome Dev Tools - Lighthouse](ht
 
 ![Desktop](assets/testing/results/lighthouse-desktop.PNG)
 
-- View the full desktop game.html report [here](assets/testing/results/lighthouse-desktop-report.html)
 
 <br/>
 
@@ -229,16 +211,15 @@ Further automated testing was performed using [Chrome Dev Tools - Lighthouse](ht
 
 ![Mobile](assets/testing/results/lighthouse-mobile.PNG)
 
-- View the full mobile game.html report [here](assets/testing/results/lighthouse-mobile-report.html)
 
-**Conclusion:** Performance improvements are recommended in the following areas:
+**Recommendations:** Performance improvements are recommended in the following areas:
 - **Enable text compression:** in order to help the page load faster by up to 1.05s, it is recommended to compress the .js and .css files. It is also recommended to minify the .js to reduce payload sizes by up to 0.45s.
 - **Remove invisible text:** there is a flash of invisible text (FOIT) while the *game.html* page waits on Font-Awesome to load. The game-pad controller briefly displays blank text for the up, left, and right button icons.
 - **Use passive listeners to improve scrolling performance:** the browser does not know if the event listeners on *game.html* will prevent scrolling, so it waits for the listener to finish executing before scrolling the page. The recommendation is to add a `passive` flag to every event listener e.g.
 
 `document.addEventListener('touchstart', onTouchStart, {passive: true});`
 
-- As the project is sitting at 99% performance on Desktop, and 95% on Mobile, the suggestions are taken under advisement, but are not implemented at this point in time.
+**Conclusion:** As the project is sitting at 99% performance on Desktop, and 95% on Mobile, the suggestions are taken under advisement, but are not implemented at this point in time.
 
 <br/>
 
@@ -248,7 +229,7 @@ Further automated testing was performed using [Chrome Dev Tools - Lighthouse](ht
 
 
 **Result:** All user stories have been successfully implemented, with a :white_check_mark: to denote items that have been implemented in this game.
-- The full list of **user stories with relevant screenshots** can be viewed in this [document](assets/testing/results/user-story-checklist.pdf).
+- The full list of user stories with relevant screenshots **can be viewed in this [document](assets/testing/results/user-story-checklist.pdf).**
 
 <br/>
 
@@ -294,15 +275,21 @@ Using GitHub Projects, **a full list of bugs can be found [here](https://github.
 
 Audio was originally added to the game using standard Audio() object instantiation:
 
-`let audio = new Audio();
-audio.play();`
+`let audio = new Audio();`
+
+`audio.play();`
 
   // see original code [here](https://github.com/leithdm/milestone-project-2/pull/53/commits/5d11760f70c9aeffe6cdade6a3197f76c360b31e)
 
-This code worked fine on Desktop, but when testing on a physical Mobile device (Samsung Galaxy A10, iPhone 5), the audio would not play. Research revealed the [many]([https://link](https://pupunzi.open-lab.com/2013/03/13/making-html5-audio-actually-work-on-mobile/))  issues that can crop up when adding audio to a mobile game, mostly due to browser/performance limitations. The solution was to make use of the 3rd party [Howler.js](https://howlerjs.com/) library. By linking to the holwer.js cdn, and adding code like below, mobile audio worked.
+This code worked fine on Desktop, but when testing on a physical Mobile device (Samsung Galaxy A10, iPhone 5), the audio would not play. Research revealed the [many](https://link](https://pupunzi.open-lab.com/2013/03/13/making-html5-audio-actually-work-on-mobile/)) issues that can crop up when adding audio to a mobile game, mostly due to browser/performance limitations. The solution was to make use of the 3rd party [Howler.js](https://howlerjs.com/) library. By linking to the holwer.js cdn, and adding code like below, mobile audio worked.
 
-`const fireSound = new Howl({
-  src: ["assets/audio/fire.webm", "assets/audio/fire.mp3"]});`
+`const fireSound = new Howl({`
+
+`src: ["assets/audio/fire.webm",`
+
+`"assets/audio/fire.mp3"]`
+
+`});`
 
 
 //see full solution code [here](https://github.com/leithdm/milestone-project-2/commit/82aa0e5f8b65385c9f0d2259552034d540a39c1a)
@@ -315,20 +302,13 @@ When starting a new game, or restarting with a new life, the ship is placed in t
 1. For a **new game**, create a collision zone which cannot be entered by an asteroid.
 2. For a **new life**, make the ship invincible for a set period of time.
 
-Item 1, *new game*,  was solved using the code below. The idea was to randomly place the asteroid on the canvas, provided it does not collide with the ship within a specific radius:
+Item 1, *new game*,  was solved by randomly placing the asteroids onto the canvas, provided they do not collide with the ship within a specific radius.
 
-`for (let i = 0; i < NUMBER_OF_ASTEROIDS; i++) {
-  do { x = Math.floor(Math.random() * canvasWidth);
-       y = Math.floor(Math.random() * canvasHeight);
-      } while (collisionDetection(x,y,LARGE_ASTEROID_SIZE,ship.x,ship.y,ship.collisionRadius * 20));
-      asteroidsArray.push(new Asteroid(x, y));
-    }`
-
-//see full solution code [here](https://github.com/leithdm/milestone-project-2/pull/63/commits/8b086b5ec1e37de1f4756eb1e2ba425ac7ffa1cc)
+//see full solution code [here](https://github.com/leithdm/milestone-project-2/pull/63/commits/8b086b5ec1e37de1f4756eb1e2ba425ac7ffa1cc).
 
 Item 2, *new life*,  was more complicated, and required a 3-second countdown timer `SHIP_INVINCIBILITY_TIMEOUT`, as well as ensuring there was no collision detection between asteroids and the ship during this time period, and finally displaying an invincibility cloak for the ship.
 
-//see full solution code [here](https://github.com/leithdm/milestone-project-2/commit/31a63c9a7b565079931cd3d85d4c32d43870c858)
+//see full solution code [here](https://github.com/leithdm/milestone-project-2/commit/31a63c9a7b565079931cd3d85d4c32d43870c858).
 
 <br/>
 
@@ -336,17 +316,17 @@ Item 2, *new life*,  was more complicated, and required a 3-second countdown tim
 
 On mobile, this game required the development of a gamepad controller. The controller had to be designed for usability, meaning button positioning and size required serious consideration.
 
-- Initally, I coded a touch controller within a second `canvas` element, resulting in **Controller 1.0** :
+- Initially, I coded a touch controller within a second `canvas` element, resulting in **Controller 1.0** :
 
 ![Controller 1.0](assets/testing/results/controller-original.PNG)
 
-The issue with this controller was that it was difficult to make the buttons mobile responsive across a large number of devices.
+The issue with Controller 1.0 was that it was difficult to make the buttons mobile responsive across a large number of devices.
 
 - To solve this bug, I moved over to `button` elements, abandoning the `canvas` element. This resulted in **Controller 2.0** :
 
 ![Controller 2.0](assets/testing/results/controller-2.0.PNG)
 
-- Buttons were now fully responsive, and easier to style. With further styling, I settled on **Controller 3.0** :
+- Controller buttons were now fully mobile responsive, and easier to style, resulting in **Controller 3.0** :
 
 ![Controller 3.0](assets/testing/results/controller-3.0.PNG)
 

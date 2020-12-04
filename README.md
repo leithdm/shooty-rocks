@@ -85,7 +85,6 @@ Mobile responsiveness was a key consideration in this project, and resulted in t
 
 <br/>
 
-
 #### Color Scheme
 
 - ![#800080](https://placehold.it/15/800080/800080) purple text/background
@@ -240,6 +239,7 @@ To clone this project from GitHub:
 - Audio:
   - [Classic Gaming](http://www.classicgaming.cc/classics/asteroids/) provided the in-game [Sound FX](http://www.classicgaming.cc/classics/asteroids/sounds). These are the same sounds used in the original *Asteroids 1979* arcade classic.
   - Background music was provided royalty free by [DL Sounds](https://www.dl-sounds.com/royalty-free/andromeda-journey/).
+  - Audio compression and conversion was provided via [FreeConvert](https://www.freeconvert.com/mp3-to-webm).
 - Images:
   - The [background image]([https://link](http://www.classicgaming.cc/classics/asteroids/graphics)) used in the game menu was again provided by [Classic Gaming](http://www.classicgaming.cc/classics/asteroids/).
   - The in-game star background was provided by [Jake Weirick](https://unsplash.com/photos/Q_RBVFFXR_g) via [Unsplash](https://unsplash.com/).
