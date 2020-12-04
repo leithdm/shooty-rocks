@@ -12,14 +12,12 @@
   - [Manual Testing](#manual-testing)
   - [Automated Testing](#automated-testing)
     - [Test Driven Development](#test-driven-development)
-    - [PowerMapper](#powermapper)
-      - [1. Errors](#1-errors)
-      - [2. Accessibility](#2-accessibility)
-      - [3. Compatibility](#3-compatibility)
-      - [4. Search](#4-search)
-      - [5. Usability](#5-usability)
+    - [Chrome Dev Tools - Lighthouse](#chrome-dev-tools---lighthouse)
 - [User Stories](#user-stories)
 - [Bugs](#bugs)
+  - [1. Bug: Audio is not playing on mobile #55](#1-bug-audio-is-not-playing-on-mobile-55)
+  - [2. Bug: As a user, when I start the game I should not be immediately hit by an asteroid #60](#2-bug-as-a-user-when-i-start-the-game-i-should-not-be-immediately-hit-by-an-asteroid-60)
+  - [3. As a user I should be able to move the ship using swipes or a button keypad when playing the game on mobile #6](#3-as-a-user-i-should-be-able-to-move-the-ship-using-swipes-or-a-button-keypad-when-playing-the-game-on-mobile-6)
 
 <br/>
 
@@ -149,42 +147,58 @@
 
 **Result:** [No Errors](assets/testing/results/jshint-sound-testing.PNG) with x3 undefined variables (*ignored*).
 
+<br/>
+
+----------
+
 # Compatability
 
 ## Manual Testing
 
-To ensure a broad range of users can successfully use this site, it was manually tested across the 6 major browsers:
+- Browser compatability: To ensure a broad range of users can successfully use this site, it was manually tested across the 6 major browsers:
 
-- Chrome v.85
-- Edge v.85
-- Firefox v.81
-- Safari v.12
-- Opera v.71
-- Internet Explorer v.11
-
-<br/>
-
-To test site responsiveness the following tools were used:
-
-- [Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools)
+  - Chrome v.85
+  - Edge v.85
+  - Firefox v.81
+  - Safari v.12
+  - Opera v.71
+  - Internet Explorer v.6-11 (tested via [Browserstack](https://www.browserstack.com/test-in-internet-explorer)).
 
 <br/>
 
-**Result:**
+- Site responsiveness was tested using [Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools) using profiles for a wide variety of devices.
+
+<br/>
+
+- Physical Devices tested included an iPhone 5, Samsung Galaxy A10, MacBook Pro 13", Apple iMac 27" (running OSX and Windows 10).
+
+<br/>
+
+**Result:** Both browser compatability and site responsiveness testing can be summarised in the table below. Responsiveness was good on all of the devices listed, both physical and simulated. Brower compatability was good across all the major browsers, except for Internet Explorer 6-11 where both the `canvas` and `grid` elements are only partially supported, or not supported at all (reference [IE canvas support](https://caniuse.com/?search=canvas) and [IE grid support](https://caniuse.com/?search=grid)).
 
 ![Responsive Design](assets/testing/results/responsiveness.PNG)
 
 <br/>
 
+**IE browser incompatibility:** Lack of support for `canvas` and `grid` elements. Screenshot below shows *game.html* as displayed in IE 11.
+
+![Internet Explorer](assets/testing/results/ie-game.PNG)
+
+
+<br/>
+
+----------
 
 ## Automated Testing
 
 ### Test Driven Development
 
-TDD was employed on this project when creating and interacting with the Asteroid, Bullet and Ship objects.
+TDD was employed on this project when creating and interacting with the Asteroid, Bullet and Ship objects. The TDD cycle followed the red, green, refactor approach (...read more on this methodology via this [codecademy article](https://www.codecademy.com/articles/tdd-red-green-refactor)).
 
 
-[Jasmine 3.6.0](https://jasmine.github.io/) was used to automated these tests, and they can be found in the [testing/spec](assets/testing/spec) folder. To run the automated tests use the [spec-runner.html](assets/testing/spec-runner.html) file.
+
+
+[Jasmine 3.6.0](https://jasmine.github.io/) was used to automate these tests, and they can be found in the [testing/spec](assets/testing/spec) folder. To run all of the automated tests use the [spec-runner.html](assets/testing/spec-runner.html) file.
 
 
 ![Spec Results](assets/testing/results/jasmine-testing.PNG)
@@ -193,87 +207,38 @@ TDD was employed on this project when creating and interacting with the Asteroid
 
 <br/>
 
-<br/>
-
 ----------
 
-### PowerMapper
+### Chrome Dev Tools - Lighthouse
 
-Further automated testing was performed using [PowerMapper](https://www.powermapper.com/). This tool checks websites for **broken links, browser compatibility, accessibility, web standards validation, search engine issues, and general usability** under the following headers:
-1. Errors
+Further automated testing was performed using [Chrome Dev Tools - Lighthouse](https://developers.google.com/web/tools/lighthouse). Lighthouse is an open-source, automated tool for improving the quality of web pages. It performs audits under the following headers:
+1. Performance
 2. Accessibility
-3. Compatibility
-4. Search
-5. Usability
+3. Best Practices
+4. SEO
 
-#### 1. Errors
+**Result:** see summary results below for **Desktop *game.html***
 
-<br/>
+![Desktop](assets/testing/results/lighthouse-desktop.PNG)
 
-![PowerMapper Errors](readme-files/powermapper-errors.PNG)
-
-**Result:** No Errors Found.
+- View the full desktop game.html report [here](assets/testing/results/lighthouse-desktop-report.html)
 
 <br/>
 
-----------
+**Result:** see summary results below for **Mobile *game.html***
 
+![Mobile](assets/testing/results/lighthouse-mobile.PNG)
 
-#### 2. Accessibility
+- View the full mobile game.html report [here](assets/testing/results/lighthouse-mobile-report.html)
 
-<br/>
+**Conclusion:** Performance improvements are recommended in the following areas:
+- **Enable text compression:** in order to help the page load faster by up to 1.05s, it is recommended to compress the .js and .css files. It is also recommended to minify the .js to reduce payload sizes by up to 0.45s.
+- **Remove invisible text:** there is a flash of invisible text (FOIT) while the *game.html* page waits on Font-Awesome to load. The game-pad controller briefly displays blank text for the up, left, and right button icons.
+- **Use passive listeners to improve scrolling performance:** the browser does not know if the event listeners on *game.html* will prevent scrolling, so it waits for the listener to finish executing before scrolling the page. The recommendation is to add a `passive` flag to every event listener e.g.
 
+`document.addEventListener('touchstart', onTouchStart, {passive: true});`
 
-![PowerMapper Errors](readme-files/powermapper-accessibility.PNG)
-
-**Result:** x4 Level A Errors, x3 Level AA Errors.
-
-All of these errors were corrected except for:
-1. 'A video plays longer than 5 seconds, without a way to pause it'. This is in reference to the header videos that display on each of the main website pages. This is a design consideration. This error is ignored.
-2. 'Ensure that text and background colors have enough contrast'. This is a design consideration. This error is ignored.
-
-<br/>
-
-----------
-
-
-
-#### 3. Compatibility
-
-<br/>
-
-![PowerMapper Errors](readme-files/powermapper-compatibility.PNG)
-
-**Result:** SVG images, CSS filter, and CSS transform are not supported by some older browsers. These compatibility problems are accepted, and ignored. Most Android devices from 4.4 onwards use Chrome as the default browser instead of the original Android browswer, and IE and Safari <= 9 are *legacy* browsers.
-
-<br/>
-
-----------
-
-
-
-#### 4. Search
-
-<br/>
-
-![PowerMapper Errors](readme-files/powermapper-search.PNG)
-
-**Result:** Offer an HTML site map, and provide a unique page title to each page.
-Using [XML-SiteMaps](https://www.xml-sitemaps.com/) a site-map was created and added to the root directory. A unique page title was provided to each page.
-
-<br/>
-
-----------
-
-
-
-#### 5. Usability
-
-<br/>
-
-![PowerMapper Errors](readme-files/powermapper-usability.PNG)
-
-**Result:** minor Errors in relation to lack of img-width and img-height attributes making the page layout jumpy when first loading. This error is ignored for this version as its effects are negligible.
+- As the project is sitting at 99% performance on Desktop, and 95% on Mobile, the suggestions are taken under advisement, but are not implemented at this point in time.
 
 <br/>
 
@@ -319,8 +284,71 @@ Using [XML-SiteMaps](https://www.xml-sitemaps.com/) a site-map was created and a
 
 <br/>
 
+----------
+
 # Bugs
 
+Using GitHub Projects, **a full list of bugs can be found [here](https://github.com/leithdm/milestone-project-2/issues?q=label%3Abug+is%3Aclosed+project%3Aleithdm%2Fmilestone-project-2%2F1)**. In this section we will highlight some of the more interesting ones.
+
+## 1. [Bug: Audio is not playing on mobile #55](https://github.com/leithdm/milestone-project-2/issues/55)
+
+Audio was originally added to the game using standard Audio() object instantiation:
+
+`let audio = new Audio();
+audio.play();`
+
+  // see original code [here](https://github.com/leithdm/milestone-project-2/pull/53/commits/5d11760f70c9aeffe6cdade6a3197f76c360b31e)
+
+This code worked fine on Desktop, but when testing on a physical Mobile device (Samsung Galaxy A10, iPhone 5), the audio would not play. Research revealed the [many]([https://link](https://pupunzi.open-lab.com/2013/03/13/making-html5-audio-actually-work-on-mobile/))  issues that can crop up when adding audio to a mobile game, mostly due to browser/performance limitations. The solution was to make use of the 3rd party [Howler.js](https://howlerjs.com/) library. By linking to the holwer.js cdn, and adding code like below, mobile audio worked.
+
+`const fireSound = new Howl({
+  src: ["assets/audio/fire.webm", "assets/audio/fire.mp3"]});`
+
+
+//see full solution code [here](https://github.com/leithdm/milestone-project-2/commit/82aa0e5f8b65385c9f0d2259552034d540a39c1a)
+
+<br/>
+
+## 2. [Bug: As a user, when I start the game I should not be immediately hit by an asteroid #60](https://github.com/leithdm/milestone-project-2/issues/60)
+
+When starting a new game, or restarting with a new life, the ship is placed in the centre of the screen. However, there was always a possibility that an asteroid would immediately collide with the ship, giving the player no time to react. This bug was resolved in 2 parts:
+1. For a **new game**, create a collision zone which cannot be entered by an asteroid.
+2. For a **new life**, make the ship invincible for a set period of time.
+
+Item 1, *new game*,  was solved using the code below. The idea was to randomly place the asteroid on the canvas, provided it does not collide with the ship within a specific radius:
+
+`for (let i = 0; i < NUMBER_OF_ASTEROIDS; i++) {
+  do { x = Math.floor(Math.random() * canvasWidth);
+       y = Math.floor(Math.random() * canvasHeight);
+      } while (collisionDetection(x,y,LARGE_ASTEROID_SIZE,ship.x,ship.y,ship.collisionRadius * 20));
+      asteroidsArray.push(new Asteroid(x, y));
+    }`
+
+//see full solution code [here](https://github.com/leithdm/milestone-project-2/pull/63/commits/8b086b5ec1e37de1f4756eb1e2ba425ac7ffa1cc)
+
+Item 2, *new life*,  was more complicated, and required a 3-second countdown timer `SHIP_INVINCIBILITY_TIMEOUT`, as well as ensuring there was no collision detection between asteroids and the ship during this time period, and finally displaying an invincibility cloak for the ship.
+
+//see full solution code [here](https://github.com/leithdm/milestone-project-2/commit/31a63c9a7b565079931cd3d85d4c32d43870c858)
+
+<br/>
+
+## 3. [As a user I should be able to move the ship using swipes or a button keypad when playing the game on mobile #6](https://github.com/leithdm/milestone-project-2/issues/6)
+
+On mobile, this game required the development of a gamepad controller. The controller had to be designed for usability, meaning button positioning and size required serious consideration.
+
+- Initally, I coded a touch controller within a second `canvas` element, resulting in **Controller 1.0** :
+
+![Controller 1.0](assets/testing/results/controller-original.PNG)
+
+The issue with this controller was that it was difficult to make the buttons mobile responsive across a large number of devices.
+
+- To solve this bug, I moved over to `button` elements, abandoning the `canvas` element. This resulted in **Controller 2.0** :
+
+![Controller 2.0](assets/testing/results/controller-2.0.PNG)
+
+- Buttons were now fully responsive, and easier to style. With further styling, I settled on **Controller 3.0** :
+
+![Controller 3.0](assets/testing/results/controller-3.0.PNG)
 
 [Go back to README.md file](README.md).
 

@@ -1,7 +1,7 @@
 
-![Covidroids](assets/images/game-logo.PNG)
+![Shooty Rocks](assets/images/game-logo.PNG)
 
-<!-- ![asteroids](readme-files/responsive.png) -->
+![Shooty Rocks Responsive](assets/testing/results/amiresponsive.PNG)
 
 - [Overview](#overview)
 - [UX](#ux)
@@ -30,7 +30,7 @@
 
 ## Overview
 
-Shooty Rocks is an endless space shooter arcade game inspired by the classic *Asteroids* game. You can view the deployed game [here](https://leithdm.github.io/milestone-project-2/).
+Shooty Rocks is an endless space shooter arcade game inspired by the classic 1979 [*Asteroids*](https://en.wikipedia.org/wiki/Asteroids_(video_game)) game. You can play the deployed game [here](https://leithdm.github.io/milestone-project-2/).
 
 <br/>
 
@@ -81,7 +81,7 @@ The inspiration for developing this game came from the classic Asteroids game co
 
 ### Design
 
-Mobile responsiveness was a key consideration in this project, and resulted in the development of a gamepad controller in order to move the ship when playing on mobile. The use of responsive CSS sizing elements including `vw` , `vh` and `grid` helped to ensure the site responds to the appropriate device, along with my own `container` element that is functionally the same as a Bootstrap [container](https://getbootstrap.com/docs/4.5/layout/overview/) but without the overhead of using the framework.
+Mobile responsiveness was a key consideration in this project, and resulted in the development of a gamepad controller in order to move the ship when playing on mobile. The use of responsive CSS sizing elements including `vw` , `vh` and `grid` helped to ensure the site responds to the appropriate device, along with my own `container` element that is functionally the same as a [Bootstrap container](https://getbootstrap.com/docs/4.5/layout/overview/) but without the overhead of using the framework.
 
 <br/>
 
@@ -93,23 +93,22 @@ Mobile responsiveness was a key consideration in this project, and resulted in t
 - ![#FFFF00](https://placehold.it/15/FFFF00/FFFF00) yellow button/text
 - ![#00C0A3](https://placehold.it/15/00C0A3/00C0A3) green text
 - ![#02AFFF](https://placehold.it/15/02AFFF/02AFFF) blue dashboard (score, level, lives)
+- All of these colors are set at `:root` level within the [style.css](assets/css/style.css) file. The use of css custom properties (variables) is in keeping with the principles of DRY.
 
-- The gamepad color scheme is loosely based on the [SNES](https://link) controller.
+- The gamepad color scheme is loosely based on the [SNES](https://en.wikipedia.org/wiki/Super_Nintendo_Entertainment_System) controller:
+
 ![GamePad](assets/images/gamepad.PNG)
 
-- All of these colors are set at `:root` level within my [style.css](assets/css/style.css) file. The use of css custom properties (variables) is in keeping with the principles of DRY.
-
-<br/>
 
 #### Icons
 
-- [Font Awesome 5.6.1](https://link) icons are used on the [How To Play](how-to-play.html) page and in the gamepad controller.
+- [Font Awesome 5.6.1](https://fontawesome.com/) icons are used in the [how to play](how-to-play.html) page, and in the gamepad controller buttons.
 
 <br/>
 
 #### Typography
 
-- 2 [Google Fonts](https://fonts.google.com/) were used across the site.
+- [Google Fonts](https://fonts.google.com/) were used across the site, namely:
   - [Press Start 2P](https://fonts.google.com/specimen/Press+Start+2P) : game title and menu buttons.
   - [Roboto Mono](https://fonts.google.com/specimen/Roboto+Mono) : in-game dashboard including score, highscore, ships, level.
 
@@ -133,17 +132,20 @@ Mobile responsiveness was a key consideration in this project, and resulted in t
 ## Features
 
 ### Existing Features
-  - **Progressive Difficulty:** the game is an endless space shooter arcade game. The game starts at Level 1, and becomes increasingly more difficult at each new level. This is implemented by increasing the number of asteroids, and increasing the speed at which the asteroids move.
+  - **Progressive Difficulty:** the game is an endless space shooter arcade game. The game starts at Level 1, and becomes increasingly more difficult as each level progresses. This is implemented by increasing the number of asteroids, and increasing the speed at which the asteroids move.
   - **Play Again:** Once the game is over, a pop up screen allows the user to play again, or exit to the main menu.
-  - **Sound Fx / Music:** option to turn Sound Fx and background Music on/off from within the game itself. Settings are stored in local storage.
+  - **Sound FX / Music:** option to turn Sound FX and background Music on/off from within the game. These setting options are stored in local storage.
   - **How to Play:** a menu item to explain how to play the game on both Desktop and Mobile.
-  - **High Score:** a menu item to display the highest score achieved to date. High score is also displayed within the game to provide extra incentive to the user.
-  - **In-game Dashboard:** displaying High Score, Score, Level, and Ships status.
-  - **Gamepad Controller:** built for mobile users. Large buttons to aid functionality.
+  - **High Score:** a menu item to display the highest score achieved. High score is also displayed within the game to provide extra incentive to the user. This value is stored in local storage.
+  - **In-game Dashboard:** displaying High Score, Score, Level, Ships, and buttons for navigating back to the main menu and for controlling sound fx/music.
+  - **Gamepad Controller:** built for mobile users. Designed with large buttons and positioned for ease of use. The gamepad controller is also hidden on large (>992px) devices and replaced with a background pattern.
+
+<br/>
 
 ### Future Features
-- **In-game enhancements:** alien space ships that shoot at player, power-ups, gain-lives, flashier explosions/collisions, different sound fx, game-over music, different backgrounds for different levels, pause-button, etc, etc. There are many improvements that can be implemented to enhance the overall game experience.
--  **Menu Items:** High Score leaderboard, e.g. top 10. UX change-out e.g. dark mode/light mode.
+A full list of future features **can be viewed in the [Product Backlog](https://github.com/leithdm/milestone-project-2/projects/1)**, but we will briefly mention some of them here:
+- **In-game enhancements:** alien space ships that shoot at player, extra-lives, flashier explosions/collisions, game-over music, different backgrounds for different levels.
+-  **Menu Items:** high score Leaderboard, e.g. top 10 high scores.
 
 
 <br/>
@@ -161,6 +163,8 @@ Mobile responsiveness was a key consideration in this project, and resulted in t
 - [Howler.js](https://github.com/goldfire/howler.js#documentation) - an audio library for the modern web.
 - [Google Fonts](https://fonts.google.com/) - used to provide font styling.
 - [Am I Responsive?](http://ami.responsivedesign.is/) - used to show site responsiveness.
+
+<br/>
 
 ### Miscellaneous Technologies
 
@@ -199,30 +203,33 @@ The testing process can be viewed [here](TESTING.md).
 
 ## Deployment
 
-**To deploy the project:**
+**How to deploy**
 
-This project is hosted in GitHub Pages
+To deploy this page to GitHub Pages from its [GitHub repository](https://github.com/leithdm/milestone-project-2), the following steps were taken:
 
-1. On the menu on the top of the project’s repository on GitHub select **Settings**.
+1. From the menu items near the top of the page, select **Settings**.
 2. Scroll down to the GitHub **Pages** section.
-3. Inside that section, click on the drop-down menu under **Source** and select **Master Branch**.
-4. The page refreshes automatically and the website is now deployed.
-5. The link to the webpage is just in the GitHub **Pages** section down below.
-
-Only the master branch has been used for this project.
+3. Under **Source** click the drop-down menu labelled **None** and select **Master Branch**.
+4. The page refreshes automatically, and the website is now deployed.
+5. Scroll back down to the **GitHub Pages** section in **Settings** to retrieve the link to the deployed website. It may take a short time to go live, but typically < 60 seconds.
 
 <br/>
 
-**To run the project locally:**
+**How to run locally:**
 
 To clone this project from GitHub:
 
 1. Under the repository’s name, click **Clone or download**.
-2. In the **Clone with hTTPS** section, copy the given URL.
+2. In the **Clone with HTTPS** section, copy the given URL.
 3. In your IDE of choice, open **Git Bash**.
 4. Change the current working directory to the location where you want the cloned directory to be made.
-5. Type **git clone**, and then paste the URL copied from GitHub.
-6. Press **enter** and a localized clone will be created.
+5. Type **git clone**, and then paste the URL copied in Step 2
+
+`git clone https://github.com/leithdm/milestone-project-2.git`
+
+1. Press **Enter**. Your local clone will be created.
+
+<br/>
 
 ---
 
@@ -231,16 +238,16 @@ To clone this project from GitHub:
 ### Media
 
 - Audio:
-  - [Classic Gaming](http://www.classicgaming.cc/classics/asteroids/) provided the in-game [sound fx](http://www.classicgaming.cc/classics/asteroids/sounds). These are the same sounds used in the original *Asteroids* arcade classic.
-  - Background music was provided for free by [DL Sounds](https://www.dl-sounds.com/royalty-free/andromeda-journey/).
+  - [Classic Gaming](http://www.classicgaming.cc/classics/asteroids/) provided the in-game [Sound FX](http://www.classicgaming.cc/classics/asteroids/sounds). These are the same sounds used in the original *Asteroids 1979* arcade classic.
+  - Background music was provided royalty free by [DL Sounds](https://www.dl-sounds.com/royalty-free/andromeda-journey/).
 - Images:
   - The [background image]([https://link](http://www.classicgaming.cc/classics/asteroids/graphics)) used in the game menu was again provided by [Classic Gaming](http://www.classicgaming.cc/classics/asteroids/).
   - The in-game star background was provided by [Jake Weirick](https://unsplash.com/photos/Q_RBVFFXR_g) via [Unsplash](https://unsplash.com/).
-  - The in-game controller background was provided by [Hero Patterns](http://www.heropatterns.com/).
+  - The patterned background visible on desktop was provided by [Hero Patterns](http://www.heropatterns.com/).
 - Game Programming Tutorials:
   - [Make JavaScript Asteroids in One Video](https://www.youtube.com/watch?v=HWuU5ly0taA&ab_channel=DerekBanas): a great introductory video.
   - [Code Asteroids in JavaScript (1979 Atari game) - tutorial](https://www.youtube.com/watch?v=H9CSWMxJx84&ab_channel=freeCodeCamp.org): another excellent tutorial.
-  - [Canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial) tutorials provided by Mozilla.
+  - [Canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial) tutorials provided by [MDN web docs](https://developer.mozilla.org/en-US/).
   - [Code Your First Game: Arcade Classic in JavaScript on Canvas](https://www.udemy.com/course/code-your-first-game/): a free course on [Udemy](https://www.udemy.com/).
   - [How to Program Games: Tile Classic in JS for HTML5 Canvas](https://www.udemy.com/course/how-to-program-games/): a paid course on [Udemy](https://www.udemy.com/).
 

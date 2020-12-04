@@ -69,7 +69,7 @@ const LEVEL_HTML = document.querySelector(".level"); //for setting the in-game l
 const GAME_OVER_PROMPT = document.querySelector(".game-over-prompt"); //for displaying game over prompt
 const GAME_OVER_SCORE = document.querySelector(".game-over-score"); //for displaying game over score within the game over prompt
 
-//Color Array for small asteroids
+//Colors
 const SMALL_ASTEROID_COLOR_ARRAY = [
   "rgb(0, 178, 163)",
   "rgb(0, 134, 163)",
@@ -80,7 +80,6 @@ const SMALL_ASTEROID_COLOR_ARRAY = [
   "rgb(0, 193, 123)",
   "rgb(0, 193, 90)"
 ];
-
 const BULLET_COLOR = "rgb(255, 255, 0)";
 const WHITE_COLOR = "rgb(255, 255, 255)";
 const BLACK_COLOR = "rgb(0, 0, 0)";
@@ -104,7 +103,6 @@ const GAME_MUSIC = new Howl({
   src: ["assets/sounds/game-music.webm", "assets/sounds/game-music.mp3"],
   loop: true
 });
-
 
 /*------------------------------------*\
 #GAME VARIABLES
@@ -170,20 +168,6 @@ function checkKeyboardInput() {
   if (keysArray[KEY_RIGHT_ARROW]) {
     ship.rotate(RIGHT);
   }
-}
-
-//for creating a new canvas with background image
-function renderGameCanvas() {
-  context.fillStyle = BLACK_COLOR;
-  context.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-}
-
-function renderImage() {
-  let img = new Image();
-  img.onload = () => {
-    context.drawImage(img, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-  };
-  img.src = "assets/images/background.jpg";
 }
 
 //for drawing bullets to the game canvas
