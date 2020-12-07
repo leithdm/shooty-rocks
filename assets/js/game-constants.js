@@ -105,30 +105,5 @@ var BANG_LARGE_ASTEROID_SOUND = new Howl({
 var GAME_MUSIC = new Howl({
   src: ["assets/sounds/game-music.webm", "assets/sounds/game-music.mp3"],
   html5: true,
-  loop: false,
-  preload: true,
-  onload: () => {
-    GAME_MUSIC.once('load', function() {
-        GAME_MUSIC.play();
-    });
-   },
-   onloaderror: () => {
-     GAME_MUSIC.once('unload', function() {
-         GAME_MUSIC.unload();
-     });
-    },
-  onplayerror: () => {
-    GAME_MUSIC.once('unlock', function() {
-        GAME_MUSIC.unload();
-    });
-   },
-  onstop: () => {
-   },
-  onunlock: () => {
-   },
-  onend: () => {
-    GAME_MUSIC.once('stop', function() {
-        GAME_MUSIC.stop();
-    });
-   },
+  loop: true,
 });

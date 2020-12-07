@@ -86,17 +86,17 @@
 
 ![CSS Validator](assets/testing/results/style.css-testing.PNG)
 
-**Result:** No Errors, 36 warnings. Regarding the warnings, the validator found x22 generic warnings related to the use of CSS variables. The W3C validator [does not support CSS variables](https://github.com/w3c/css-validator/issues/111), so these warnings are expected. The validator also warned that deepest possible browser support for stylings such as `box-shadow`, `transform` and `user-select` were "unknown vendor extensions", however the use of `webkit`, `moz` and `ms` prefixes in front of these items is required in order to provide full browser support. In summary, all 35 warnings were noted, but ignored.
+**Result:** No Errors, 36 warnings. Regarding the warnings, the validator found x22 generic warnings related to the use of CSS variables. The W3C validator [does not support CSS variables](https://github.com/w3c/css-validator/issues/111), so these warnings are expected. The validator also warned that deepest possible browser support for stylings such as `box-shadow`, `transform` and `user-select` were "unknown vendor extensions", however the use of `webkit`, `moz` and `ms` prefixes in front of these items is required in order to provide full browser support. In summary, all 36 warnings were noted, but ignored.
 
 It is also worth noting that W3C initially produced a *"too few values for the property linear-gradient"* error when css variables were used to define the linear-gradient colors i.e.
 
 ` background: linear-gradient(to bottom, var(--red-controller), var(--maroon-controller));`
 
-A number of fixes were tried, including redefining the css variable in `:root` by removing reference ro `rgb` and declaring:
+A number of fixes were tried, including redefining the css variable in `:root` by removing references to `rgb` and declaring:
 
 ` background: linear-gradient(to bottom, rgb(var(--red-controller)), rgb(var(--maroon-controller)));`
 
-However, the only solution that worked was to remove the css variable within linear-gradient entirely, and replace with the following:
+However, the only solution that worked was to remove the css variable within the linear-gradient entirely, and replace with the following:
 
 `background: linear-gradient(to bottom, red, maroon);`
 
@@ -114,7 +114,7 @@ However, the only solution that worked was to remove the css variable within lin
 
 ![asteroid.js JSHint](assets/testing/results/jshint-asteroid-testing.PNG)
 
-**Result:** [No Errors](assets/testing/results/jshint-asteroid-testing.PNG) with x11 undefined variables (*undefined variables are ignored because these variables are all contained and defined within game-utilities.js / game-constants.js, which link to this file*).
+**Result:** [No Errors](assets/testing/results/jshint-asteroid-testing.PNG) with x13 undefined variables (*undefined variables are ignored because these variables are all contained and defined within game-utilities.js / game-constants.js, which link to this file*).
 
 
 - File: [bullet.js](assets/js/bullet.js)
@@ -304,7 +304,7 @@ Further automated testing was performed using [Chrome Dev Tools - Lighthouse](ht
 
 # Bugs
 
-Using GitHub Projects, **a full list of bugs can be found [here](https://github.com/leithdm/milestone-project-2/issues?q=label%3Abug+is%3Aclosed+project%3Aleithdm%2Fmilestone-project-2%2F1)**. In this section we will highlight some of the more interesting ones.
+Using GitHub Projects, **a full list of closed bugs can be found [here](https://github.com/leithdm/milestone-project-2/issues?q=label%3Abug+is%3Aclosed+project%3Aleithdm%2Fmilestone-project-2%2F1)**. In this section we will highlight some of the more interesting ones.
 
 ## 1. [Bug: Audio is not playing on mobile #55](https://github.com/leithdm/milestone-project-2/issues/55)
 
