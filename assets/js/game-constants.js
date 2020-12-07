@@ -104,6 +104,5 @@ var BANG_LARGE_ASTEROID_SOUND = new Howl({
 });
 var GAME_MUSIC = new Howl({
   src: ["assets/sounds/game-music.webm", "assets/sounds/game-music.mp3"],
-  html5: true,
   loop: true,
 });

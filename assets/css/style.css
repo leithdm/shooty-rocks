@@ -172,14 +172,15 @@ canvas {
 
 button {
   height: 50px;
-  width: 95%;
-  font-size: 0.8rem;
+  width: 100%;
+  font-size: 0.7rem;
   cursor: pointer;
   outline: none;
   box-shadow: 0 0.2em var(--gray-color);
   background-color: var(--white-color);
   color: var(--purple-color);
   border-radius: 10px;
+  line-height: 1rem;
 }
 
 button:active {
@@ -280,6 +281,7 @@ button:active {
   grid-template-rows: 1fr;
   grid-template-columns: 1fr 1fr;
   grid-template-areas: "menu playAgain";
+  grid-gap: 10px;
 }
 
 .menu-game-over-button {
@@ -303,8 +305,7 @@ button:active {
   -webkit-transform: translate(-50%, -50%); /* Chrome 4-35, Safari 3-8, Opera 15-22 */
   -moz-transform: translate(-50%, -50%); /* Firefox 3-15 */
   transform: translate(-50%, -50%);
-  padding: 3px 20px 20px 20px;
-  border-radius: 10px;
+  padding: 3px 3px 3px 3px;
 }
 
 .game-over-prompt > p {
