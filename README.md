@@ -241,7 +241,7 @@ To clone this project from GitHub:
   - Background music was provided royalty free by [DL Sounds](https://www.dl-sounds.com/royalty-free/andromeda-journey/).
   - Audio compression and conversion was provided via [FreeConvert](https://www.freeconvert.com/mp3-to-webm).
 - Images:
-  - The [background image]([https://link](http://www.classicgaming.cc/classics/asteroids/graphics)) used in the game menu was again provided by [Classic Gaming](http://www.classicgaming.cc/classics/asteroids/).
+  - The [background image]([https://link](http://www.classicgaming.cc/classics/asteroids/graphics)) used in the game menu was again provided by [Classic Gaming](http://www.classicgaming.cc/classics/asteroids/). A filter was applied to darken the image.
   - The in-game star background was provided by [Jake Weirick](https://unsplash.com/photos/Q_RBVFFXR_g) via [Unsplash](https://unsplash.com/).
   - The patterned background visible on desktop was provided by [Hero Patterns](http://www.heropatterns.com/).
 - Game Programming Tutorials:

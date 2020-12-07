@@ -9,6 +9,15 @@ let score = 0;
 /*Reference 'game-utilities' for abstracted code  */
 /**************************************************/
 
+//https://stackoverflow.com/questions/8622892/how-to-redirect-a-page-to-another-page-when-refresh-at-second-attempt
+//for redirecting user back to menu home page preventing an 'AudioContext' error using howler.js
+// window.onbeforeunload = () => {
+//   window.setTimeout(() => {
+//       window.location = 'index.html';
+//   }, 0);
+//   window.onbeforeunload = null; // necessary to prevent infinite loop, that kills your browser
+// }
+
 window.onload = () => {
   //setup the game canvas
   setupCanvas();

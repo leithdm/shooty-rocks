@@ -18,6 +18,8 @@
   - [1. Bug: Audio is not playing on mobile #55](#1-bug-audio-is-not-playing-on-mobile-55)
   - [2. Bug: As a user, when I start the game I should not be immediately hit by an asteroid #60](#2-bug-as-a-user-when-i-start-the-game-i-should-not-be-immediately-hit-by-an-asteroid-60)
   - [3. As a user I should be able to move the ship using swipes or a button keypad when playing the game on mobile #6](#3-as-a-user-i-should-be-able-to-move-the-ship-using-swipes-or-a-button-keypad-when-playing-the-game-on-mobile-6)
+  - [4. Unresolved Bug: Audio is delayed when playing on physical Android device #97](#4-unresolved-bug-audio-is-delayed-when-playing-on-physical-android-device-97)
+  - [5. Unresolved Bug: HTML5 Audio pool exhausted, AudioContext was not allowed to start #98](#5-unresolved-bug-html5-audio-pool-exhausted-audiocontext-was-not-allowed-to-start-98)
 
 <br/>
 
@@ -84,7 +86,19 @@
 
 ![CSS Validator](assets/testing/results/style.css-testing.PNG)
 
-**Result:** No Errors, 16 warnings. The validator found x16 generic warnings related to border extensions for 'moz' and 'webkit'. Other warnings are related to using css custom properties/variables for color designation, and touch gestures related to the keypad controller. All of these warnings are ignored.
+**Result:** No Errors, 36 warnings. Regarding the warnings, the validator found x22 generic warnings related to the use of CSS variables. The W3C validator [does not support CSS variables](https://github.com/w3c/css-validator/issues/111), so these warnings are expected. The validator also warned that deepest possible browser support for stylings such as `box-shadow`, `transform` and `user-select` were "unknown vendor extensions", however the use of `webkit`, `moz` and `ms` prefixes in front of these items is required in order to provide full browser support. In summary, all 35 warnings were noted, but ignored.
+
+It is also worth noting that W3C initially produced a *"too few values for the property linear-gradient"* error when css variables were used to define the linear-gradient colors i.e.
+
+` background: linear-gradient(to bottom, var(--red-controller), var(--maroon-controller));`
+
+A number of fixes were tried, including redefining the css variable in `:root` by removing reference ro `rgb` and declaring:
+
+` background: linear-gradient(to bottom, rgb(var(--red-controller)), rgb(var(--maroon-controller)));`
+
+However, the only solution that worked was to remove the css variable within linear-gradient entirely, and replace with the following:
+
+`background: linear-gradient(to bottom, red, maroon);`
 
 ![CSS Validator](assets/testing/results/style.css-warnings-testing.PNG)
 
@@ -100,35 +114,56 @@
 
 ![asteroid.js JSHint](assets/testing/results/jshint-asteroid-testing.PNG)
 
-**Result:** [No Errors](assets/testing/results/jshint-asteroid-testing.PNG) with x11 undefined variables (*Errors are ignored because the undefined variables are all contained with game-utilities.js which links to this file*).
+**Result:** [No Errors](assets/testing/results/jshint-asteroid-testing.PNG) with x11 undefined variables (*undefined variables are ignored because these variables are all contained and defined within game-utilities.js / game-constants.js, which link to this file*).
 
 
 - File: [bullet.js](assets/js/bullet.js)
 
 ![bullet.js JSHint](assets/testing/results/jshint-bullet-testing.PNG)
 
-**Result:** [No Errors](assets/testing/results/jshint-bullet-testing.PNG) with x8 undefined variables (*Errors are ignored because the undefined variables are all contained with game-utilities.js which links to this file*).
+**Result:** [No Errors](assets/testing/results/jshint-bullet-testing.PNG) with x8 undefined variables (*undefined variables are ignored because these variables are all contained and defined within game-utilities.js / game-constants.js, which link to this file*).
 
+- File: [collision-detection.js](assets/js/collision-detection.js)
+
+![asteroid.js JSHint](assets/testing/results/jshint-collision-detection-testing.PNG)
+
+**Result:** [No Errors](assets/testing/results/jshint-collision-detection-testing.PNG) with x35 undefined variables (*undefined variables are ignored because these variables are all contained and defined within game-utilities.js / game-constants.js, etc, which link to this file*).
+
+- File: [game-constants-testing.js](assets/js/game-constants.js)
+
+![asteroid.js JSHint](assets/testing/results/jshint-game-constants-testing.PNG)
+
+**Result:** [No Errors](assets/testing/results/jshint-game-constants-testing.PNG) with x65 unused variables, x1 undefined variable (*unused variables are ignored as these variables are all used within game-utilities.js, which link to this file. The x1 undefined variable is also ignored for the same reason*).
 
 - File: [game.js](assets/js/game.js)
 
 ![game.js JSHint](assets/testing/results/jshint-game-testing.PNG)
 
-**Result:** [No Errors](assets/testing/results/jshint-game-testing.PNG) with x20 undefined variables (*Errors are ignored because the undefined variables are all contained with game-utilities.js which links to this file*).
-
+**Result:** [No Errors](assets/testing/results/jshint-game-testing.PNG) with x22 undefined variables (*undefined variables are ignored because these variables are all contained and defined within game-utilities.js / game-constants.js, which link to this file*).
 
 - File: [game-utilities.js](assets/js/game-utilities.js)
 
 ![game-utilities.js JSHint](assets/testing/results/jshint-game-utilities-testing.PNG)
 
-**Result:** [No Errors](assets/testing/results/jshint-game-utilities-testing.PNG) with x13 undefined variables (*Errors are ignored because the undefined variables are all contained with game-utilities.js which links to this file*).
-
+**Result:** [No Errors](assets/testing/results/jshint-game-utilities-testing.PNG) with x29 undefined variables (*undefined variables are ignored because these variables are all contained and defined within game-utilities.js / game-constants.js, which link to this file*)..
 
 - File: [ship.js](assets/js/ship.js)
 
 ![ship.js JSHint](assets/testing/results/jshint-ship-testing.PNG)
 
-**Result:** [No Errors](assets/testing/results/jshint-ship-testing.PNG) with x14 undefined variables (*Errors are ignored because the undefined variables are all contained with game-utilities.js which links to this file*).
+**Result:** [No Errors](assets/testing/results/jshint-ship-testing.PNG) with x16 undefined variables (*undefined variables are ignored because these variables are all contained and defined within game-utilities.js / game-constants.js, which link to this file*).
+
+- File: [local-storage.js](assets/js/local-storage.js)
+
+![ship.js JSHint](assets/testing/results/jshint-local-storage-testing.PNG)
+
+**Result:** [No Errors](assets/testing/results/jshint-local-storage-testing.PNG) with x14 undefined variables (*undefined variables are ignored because these variables are all contained and defined within game-utilities.js / game-constants.js, which link to this file*).
+
+- File: [user-input.js](assets/js/user-input.js)
+
+![ship.js JSHint](assets/testing/results/jshint-user-input-testing.PNG)
+
+**Result:** [No Errors](assets/testing/results/jshint-user-input-testing.PNG) with x17 undefined variables (*undefined variables are ignored because these variables are all contained and defined within game-utilities.js / game-constants.js, which link to this file*).
 
 <br/>
 
@@ -163,7 +198,7 @@
 
 <br/>
 
-**IE browser incompatibility:** Lack of support for `canvas` and `grid` elements. Screenshot below shows *game.html* as displayed in IE 11.
+**IE browser incompatibility:** Lack of support for `canvas`, `grid` and css variable elements. Screenshot below shows *game.html* as displayed in IE 11.
 
 ![Internet Explorer](assets/testing/results/ie-game.PNG)
 
@@ -281,7 +316,7 @@ Audio was originally added to the game using standard Audio() object instantiati
 
   // see original code [here](https://github.com/leithdm/milestone-project-2/pull/53/commits/5d11760f70c9aeffe6cdade6a3197f76c360b31e)
 
-This code worked fine on Desktop, but when testing on a physical Mobile device (Samsung Galaxy A10, iPhone 5), the audio would not play. Research revealed the [many](https://link](https://pupunzi.open-lab.com/2013/03/13/making-html5-audio-actually-work-on-mobile/)) issues that can crop up when adding audio to a mobile game, mostly due to browser/performance limitations. The solution was to make use of the 3rd party [Howler.js](https://howlerjs.com/) library. By linking to the holwer.js cdn, and adding code like below, mobile audio worked.
+This code worked fine on Desktop, but when testing on a physical Mobile device (Samsung Galaxy A10, iPhone 5), the audio would not play. Research revealed the [many](https://pupunzi.open-lab.com/2013/03/13/making-html5-audio-actually-work-on-mobile/) issues that can crop up when adding audio to a mobile game, mostly due to browser/performance limitations. The solution was to make use of a 3rd party library, namely [Howler.js](https://howlerjs.com/). By linking to the holwer.js cdn, and adding code below, mobile audio worked.
 
 `const fireSound = new Howl({`
 
@@ -329,6 +364,22 @@ The issue with Controller 1.0 was that it was difficult to make the buttons mobi
 - Controller buttons were now fully mobile responsive, and easier to style, resulting in **Controller 3.0** :
 
 ![Controller 3.0](assets/testing/results/controller-3.0.PNG)
+
+<br/>
+
+## 4. [Unresolved Bug: Audio is delayed when playing on physical Android device #97](https://github.com/leithdm/milestone-project-2/issues/97)
+
+- Physical device tested: Samsung Galaxy A10 using Chrome 87.0.4280.86 on Android 10; SM-A105FN Build/QP1A.
+- There is a delay of approx. 300-900ms from the time the shoot button is pressed, to when the audio is heard.
+
+
+## 5. [Unresolved Bug: HTML5 Audio pool exhausted, AudioContext was not allowed to start #98](https://github.com/leithdm/milestone-project-2/issues/98)
+
+- Device tested: Desktop using Chrome 87.0.4280.88 on Windows 10 Pro, Version 2004, OS build 19041.630.
+- This bug was noticed when manually refreshing the game.html window. Audio continues to work fine, but the following errors shows up in the console log:
+  - 'howler.min.js:2 The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page.'
+  - 'howler.min.js:2 HTML5 Audio pool exhausted, returning potentially locked audio object.'
+
 
 [Go back to README.md file](README.md).
 

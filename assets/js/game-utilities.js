@@ -1,110 +1,4 @@
 /*------------------------------------*\
-  #GAME CONSTANTS
-\*------------------------------------*/
-//General Game Config
-const CANVAS_WIDTH = 800; //canvas.width
-const CANVAS_HEIGHT = 600; //canvas.height
-const FPS = 60; //for setting a frames per second constant. Used for ship invincibility timer
-const TEXT_FADE_TIME = 2.5; //for settting the fade time of _onScreenText to 2.5 seconds duration
-const ON = 1; //for setting soundfx to be on
-const OFF = 0; //for setting soundfx to be off
-
-//Keyboard Config
-const KEY_LEFT_ARROW = 37; //for keyboard input left arrow key
-const KEY_UP_ARROW = 38; //for keyboard input up arrow key
-const KEY_RIGHT_ARROW = 39; //for keyboard input right arrow key
-const KEY_SHOOT = 32; //for keyboard input spacebar
-
-//Ship Config
-const RIGHT = 1; //for ship rotation to the right in ship.rotation(direction)
-const LEFT = -1; //for ship rotation to the left in ship.rotation(direction)
-const SHIP_INVINCIBILITY_TIMEOUT = FPS * 3; //for setting a 3 second time-out for ship invincibility
-const SHIP_SIZE = 12; //for setting the size of the ship
-const SHIP_COLLISION_RADIUS = 10; //for setting the collsion radius of the ship
-
-//Asteroid Config
-const LARGE_ASTEROID_RADIUS = 80; //for setting the radius of a large asteroid
-const MEDIUM_ASTEROID_RADIUS = 45; //for setting the radius of a medium sized asteroid
-const SMALL_ASTEROID_RADIUS = 25; //for setting the radius of a small sized asteroid
-const LARGE_ASTEROID_COLLISION_RADIUS = 76; //for setting the size of collision radius of large asteroid
-const MEDIUM_ASTEROID_COLLISION_RADIUS = 40; //for setting the size of collision radius of medium asteroid
-const SMALL_ASTEROID_COLLISION_RADIUS = 23; //for setting the size of collision radius of small asteroid
-const MEDIUM_ASTEROID_SPEED = 1; //for setting the speed of a medium sized asteroid
-const SMALL_ASTEROID_SPEED = 2; //for setting the speed of a small asteroid
-const LARGE_ASTEROID_EXPLOSION_FACTOR = 0; //for setting a large asteroid explosion size
-const MEDIUM_ASTEROID_EXPLOSION_FACTOR = 1.0; //for setting a medium asteroid explosion size
-const SMALL_ASTEROID_EXPLOSION_FACTOR = 2.0; //for setting a small asteroid explosion size
-const ASTEROID_OFFSET = 5; //for off-setting asteroid from x and y coordinates when split into 2
-const ASTEROID_VERTICES = 16; //for setting the average number of vertices on each asteroid
-const ASTEROID_IRREGUALITY = 0.2; //for setting irregularity of asteroid shape; 0.0 is normal, 1.0 irregular
-const SCORE_LARGE_ASTEROID = 20; //for setting score of hitting large asteroid
-const SCORE_MEDIUM_ASTEROID = 50; //for setting score of hitting medium asteroid
-const SCORE_SMALL_ASTEROID = 100; //for setting score of hitting small asteroid
-const LARGE_ASTEROID_SIZE = 3; //for setting the sizing 'tag' of largest asteroid
-const MEDIUM_ASTEROID_SIZE = 2; //for setting the sizing 'tag' of medium asteroid
-const SMALL_ASTEROID_SIZE = 1; //for setting the sizing 'tag' of smallest asteroid
-
-//Bullet Config
-const BULLET_WIDTH = 4; //for setting the width of the bullet
-const BULLET_HEIGHT = 4; //for setting the height of the bullet
-const BULLET_COLLISION_RADIUS = 3; //for setting collision radius of the bullet
-const BULLET_SPEED = 10; //for setting the speed of the bullet
-
-//Local Storage
-const LOCAL_STORAGE_HIGHSCORE = "highScore"; //for setting local storage key of highscore
-const LOCAL_STORAGE_SOUNDFX = "soundfx"; //for setting the local storage key of soundfx on/off
-const LOCAL_STORAGE_MUSIC = "music"; //for setting the local storage key of music on/off
-
-//DOM elements
-const SCORE_HTML = document.querySelector(".score-value"); //for setting the score in html
-const LIVES_HTML = document.querySelector(".lives"); //for setting the lives value in html
-const HIGH_SCORE_HTML = document.querySelector(".high-score"); //for setting the high-score value in html
-const LEFT_BUTTON = document.querySelector(".left-button"); //for getting the left button on gamepad controller
-const RIGHT_BUTTON = document.querySelector(".right-button"); //for getting the right button on gamepad controller
-const FIRE_BUTTON = document.querySelector(".fire-button"); //for getting the fire button on gamepad controller
-const THRUST_BUTTON = document.querySelector(".up-button"); //for getting the thrust button on gamepad controller
-const SOUNDFX_TOGGLE = document.querySelector(".soundfx-button"); //for setting the in-game soundfx to on/off
-const MUSIC_TOGGLE = document.querySelector(".music-button"); //for setting the in-game music to on/off
-const LEVEL_HTML = document.querySelector(".level"); //for setting the in-game level
-const GAME_OVER_PROMPT = document.querySelector(".game-over-prompt"); //for displaying game over prompt
-const GAME_OVER_SCORE = document.querySelector(".game-over-score"); //for displaying game over score within the game over prompt
-
-//Colors
-const SMALL_ASTEROID_COLOR_ARRAY = [
-  "rgb(0, 178, 163)",
-  "rgb(0, 134, 163)",
-  "rgb(0, 156, 134)",
-  "rgb(10, 162, 147)",
-  "rgb(0, 162, 147)",
-  "rgb(0, 192, 163)",
-  "rgb(0, 193, 123)",
-  "rgb(0, 193, 90)"
-];
-const BULLET_COLOR = "rgb(255, 255, 0)";
-const WHITE_COLOR = "rgb(255, 255, 255)";
-const BLACK_COLOR = "rgb(0, 0, 0)";
-
-/*------------------------------------*\
-  #SOUND CONSTANTS USING HOWLER LIBRARY
-\*------------------------------------*/
-const FIRE_SOUND = new Howl({
-  src: ["assets/sounds/fire.webm", "assets/sounds/fire.mp3"]
-});
-const BANG_SMALL_ASTEROID_SOUND = new Howl({
-  src: ["assets/sounds/bang-small.webm", "assets/sounds/bang-small.mp3"]
-});
-const BANG_MEDIUM_ASTEROID_SOUND = new Howl({
-  src: ["assets/sounds/bang-medium.webm", "assets/sounds/bang-medium.mp3"]
-});
-const BANG_LARGE_ASTEROID_SOUND = new Howl({
-  src: ["assets/sounds/bang-large.webm", "assets/sounds/bang-large.mp3"]
-});
-const GAME_MUSIC = new Howl({
-  src: ["assets/sounds/game-music.webm", "assets/sounds/game-music.mp3"],
-  loop: true
-});
-
-/*------------------------------------*\
 #GAME VARIABLES
 \*------------------------------------*/
 let _lives = 3; //for setting the number of ship-lives
@@ -132,44 +26,6 @@ function convertAngleToRadians(angle) {
   return angle * (Math.PI / 180);
 }
 
-//for listening to keyboard input
-function setupKeyboardInput() {
-  document.body.addEventListener("keydown", handleKeyDown);
-  document.body.addEventListener("keyup", handleKeyUp);
-}
-
-//for setting the keysArray[] value for a particular key to true when that key is pressed
-function handleKeyDown(e){
-  if(ship.visible) {
-    keysArray[e.keyCode] = true;
-  }
-}
-
-//for setting the keysArray value for a particular key to false when that key is unpressed
-//if the key that is unpressed is the KEY_SHOOT, then fire a bullet
-function handleKeyUp(e){
-  keysArray[e.keyCode] = false;
-  if(ship.visible) {
-    if (e.keyCode === KEY_SHOOT){
-        if(_soundfxOn == ON) {
-         FIRE_SOUND.play();
-        }
-      bulletsArray.push(new Bullet(ship.angle));
-    }
-  }
-}
-
-//for checking if ship is moving forward, left, or right
-function checkKeyboardInput() {
-  ship.movingForward = keysArray[KEY_UP_ARROW];
-  if (keysArray[KEY_LEFT_ARROW]) {
-    ship.rotate(LEFT);
-  }
-  if (keysArray[KEY_RIGHT_ARROW]) {
-    ship.rotate(RIGHT);
-  }
-}
-
 //for drawing bullets to the game canvas
 function renderBullets() {
   if (bulletsArray.length !== 0) {
@@ -185,144 +41,6 @@ function renderAsteroids() {
   for (let i=0; i <asteroidsArray.length; i++) {
     asteroidsArray[i].updateAsteroid();
     asteroidsArray[i].drawAsteroid();
-  }
-}
-
-//for circle collision-detection between object 1 and object 2
-function collisionDetection(obj1x, obj1y, obj1CollisionRadius,
-  obj2x, obj2y, obj2CollisionRadius) {
-  let radiusCollisionSum;
-  let xDiff;
-  let yDiff;
-
-  radiusCollisionSum = obj1CollisionRadius + obj2CollisionRadius;
-  xDiff = obj1x - obj2x;
-  yDiff = obj1y - obj2y;
-  //determine if there is a collision
-  if (radiusCollisionSum > Math.sqrt((xDiff * xDiff) + (yDiff * yDiff))) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
-//for checking if there is a collision between ship and asteroid
-function checkCollisionShipAsteroid() {
-  if(ship.visible) {
-    if(ship.invincibility < -SHIP_INVINCIBILITY_TIMEOUT) {
-      if (asteroidsArray.length !== 0) {
-        for (let i=0; i<asteroidsArray.length; i++) {
-          if (collisionDetection(ship.x, ship.y, ship.collisionRadius,
-            asteroidsArray[i].x, asteroidsArray[i].y, asteroidsArray[i].collisionRadius)) {
-              if(_soundfxOn == ON) {
-                BANG_LARGE_ASTEROID_SOUND.play();
-            }
-            drawShipExplosion();
-            //reduce number of lives
-            _lives--;
-            //set the lives in html
-            if(_lives >= 0) {
-              LIVES_HTML.textContent = _lives;
-              bulletsArray = [];
-              ship.x = CANVAS_WIDTH/2;
-              ship.y = CANVAS_HEIGHT/2;
-              ship.angle = 90;
-              ship.velX = 0;
-              ship.velY = 0;
-              ship.invincibility = 0;
-            }
-            //set the ship to invisible if ship-lives are zero and set screen text to GAME OVER
-            if(_lives === 0) {
-              ship.visible = false;
-              _onScreenText = "GAME OVER";
-              _textAlpha = 1.0;
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-//for checking if there is a collison between a bullet and an asteroid
-function checkCollisionBulletAsteroid() {
-  if (asteroidsArray.length !== 0 && bulletsArray.length !== 0) {
-    for (let i=0; i<asteroidsArray.length; i++) {
-      for (let j=0; j<bulletsArray.length; j++) {
-        if(collisionDetection(bulletsArray[j].x, bulletsArray[j].y, bulletsArray[j].collisionRadius,
-          asteroidsArray[i].x, asteroidsArray[i].y, asteroidsArray[i].collisionRadius)) {
-          //if asteroid is a large asteroid, break it up into x2 medium asteroids
-          if(asteroidsArray[i].size === LARGE_ASTEROID_SIZE) {
-            //play sound
-            if(_soundfxOn == ON) {
-             BANG_LARGE_ASTEROID_SOUND.play();
-            }
-            drawAsteroidExplosion(i, LARGE_ASTEROID_EXPLOSION_FACTOR);
-
-            //create 2 new medium sized asteroids
-            asteroidsArray.push(new Asteroid(asteroidsArray[i].x - ASTEROID_OFFSET,
-              asteroidsArray[i].y - ASTEROID_OFFSET,
-              asteroidsArray[i].speed,
-              MEDIUM_ASTEROID_RADIUS,
-              MEDIUM_ASTEROID_SIZE,
-              MEDIUM_ASTEROID_COLLISION_RADIUS,
-              asteroidsArray[i].radiusOffsetArray
-              ));
-            asteroidsArray.push(new Asteroid(asteroidsArray[i].x + ASTEROID_OFFSET,
-              asteroidsArray[i].y + ASTEROID_OFFSET,
-              asteroidsArray[i].speed,
-              MEDIUM_ASTEROID_RADIUS,
-              MEDIUM_ASTEROID_SIZE,
-              MEDIUM_ASTEROID_COLLISION_RADIUS,
-              asteroidsArray[i].radiusOffsetArray
-              ));
-              score += SCORE_LARGE_ASTEROID;
-
-            //if asteroid is a medium asteroid, break it up into x2 small asteroids
-            } else if (asteroidsArray[i].size === MEDIUM_ASTEROID_SIZE) {
-              //play sound
-              if(_soundfxOn == ON) {
-               BANG_MEDIUM_ASTEROID_SOUND.play();
-              }
-              drawAsteroidExplosion(i, MEDIUM_ASTEROID_EXPLOSION_FACTOR);
-
-              //create 2 new small sized asteroids
-              asteroidsArray.push(new Asteroid(asteroidsArray[i].x - ASTEROID_OFFSET,
-                asteroidsArray[i].y - ASTEROID_OFFSET,
-                asteroidsArray[i].speed+1,
-                SMALL_ASTEROID_RADIUS,
-                SMALL_ASTEROID_SIZE,
-                SMALL_ASTEROID_COLLISION_RADIUS,
-                asteroidsArray[i].radiusOffsetArray
-                ));
-                asteroidsArray.push(new Asteroid(asteroidsArray[i].x + ASTEROID_OFFSET,
-                  asteroidsArray[i].y + ASTEROID_OFFSET,
-                  asteroidsArray[i].speed+1,
-                  SMALL_ASTEROID_RADIUS,
-                  SMALL_ASTEROID_SIZE,
-                  SMALL_ASTEROID_COLLISION_RADIUS,
-                  asteroidsArray[i].radiusOffsetArray
-                  ));
-                  score += SCORE_MEDIUM_ASTEROID;
-
-               //if asteroid is a small asteroid
-                } else {
-                 if(_soundfxOn == ON) {
-                  BANG_SMALL_ASTEROID_SOUND.play();
-                 }
-                 drawAsteroidExplosion(i, SMALL_ASTEROID_EXPLOSION_FACTOR);
-                 score += SCORE_SMALL_ASTEROID;
-                }
-
-          //set html score value
-          SCORE_HTML.textContent = numberWithCommas(score);
-          //remote the bullet and the asteroid from relevant arrays
-          asteroidsArray.splice(i, 1);
-          bulletsArray.splice(j, 1);
-          break;
-        }
-      }
-    }
   }
 }
 
@@ -398,80 +116,25 @@ function createNewLevel() {
   }
 }
 
-//for retrieving local store of high score
-function getLocalStorage() {
-  if(localStorage.getItem(LOCAL_STORAGE_HIGHSCORE) == null) {
-    _highScore = 0;
-  } else {
-    _highScore = localStorage.getItem(LOCAL_STORAGE_HIGHSCORE);
-  }
-}
-
-//for updating the high score
-function updateHighScore() {
-  _highScore = Math.max(score, _highScore);
-  localStorage.setItem(LOCAL_STORAGE_HIGHSCORE, _highScore);
-  HIGH_SCORE_HTML.textContent = numberWithCommas(_highScore.toString());
-}
-
-//for creating the touchscreen gamepad controller event listeners, and performing relevant actions
-function setupGamePadController() {
-    LEFT_BUTTON.addEventListener("touchstart", ()=> {
-    keysArray[KEY_LEFT_ARROW] = true;
-  });
-    LEFT_BUTTON.addEventListener("touchend", ()=> {
-    keysArray[KEY_LEFT_ARROW] = false;
-  });
-    RIGHT_BUTTON.addEventListener("touchstart", ()=> {
-    keysArray[KEY_RIGHT_ARROW] = true;
-  });
-    RIGHT_BUTTON.addEventListener("touchend", ()=> {
-    keysArray[KEY_RIGHT_ARROW] = false;
-  });
-    FIRE_BUTTON.addEventListener("touchstart", ()=> {
-    if(ship.visible) {
-      if(_soundfxOn == ON) {
-      FIRE_SOUND.play();
-      }
-      bulletsArray.push(new Bullet(ship.angle));
-      }
-  });
-    THRUST_BUTTON.addEventListener("touchstart", ()=> {
-    keysArray[KEY_UP_ARROW] = true;
-  });
-    THRUST_BUTTON.addEventListener("touchend", ()=> {
-    keysArray[KEY_UP_ARROW] = false;
-  });
-}
-
-//for determining if soundfx are on/off
-function getLocalStorageSoundfx() {
-  if(localStorage.getItem(LOCAL_STORAGE_SOUNDFX) == OFF) {
-      _soundfxOn = OFF;
-  } else {
-      _soundfxOn = ON;
-  }
-}
-
-//for drawing a ship explosion
+//for drawing ship explosion
 function drawShipExplosion() {
-  context.fillStyle = "darkred";
+  context.fillStyle = DARKRED_COLOR;
   context.beginPath();
   context.arc(ship.x, ship.y, ship.radius * 3.4, 0, Math.PI * 2, false);
   context.fill();
-  context.fillStyle = "red";
+  context.fillStyle = RED_COLOR;
   context.beginPath();
   context.arc(ship.x, ship.y, ship.radius * 2.8, 0, Math.PI * 2, false);
   context.fill();
-  context.fillStyle = "orange";
+  context.fillStyle = ORANGE_COLOR;
   context.beginPath();
   context.arc(ship.x, ship.y, ship.radius * 2.2, 0, Math.PI * 2, false);
   context.fill();
-  context.fillStyle = "yellow";
+  context.fillStyle = BULLET_COLOR;
   context.beginPath();
   context.arc(ship.x, ship.y, ship.radius * 1.6, 0, Math.PI * 2, false);
   context.fill();
-  context.fillStyle = "white";
+  context.fillStyle = WHITE_COLOR;
   context.beginPath();
   context.arc(ship.x, ship.y, ship.radius * 1.0, 0, Math.PI * 2, false);
   context.fill();
@@ -479,23 +142,23 @@ function drawShipExplosion() {
 
 //for drawing an asteroid explosion, with an explosion factor based on size of asteroid
 function drawAsteroidExplosion(i, explosionFactor) {
-  context.fillStyle = "darkred";
+  context.fillStyle = DARKRED_COLOR;
   context.beginPath();
   context.arc(asteroidsArray[i].x, asteroidsArray[i].y, (asteroidsArray[i].radius * (0.68+explosionFactor)), 0, Math.PI * 2, false);
   context.fill();
-  context.fillStyle = "red";
+  context.fillStyle = RED_COLOR;
   context.beginPath();
   context.arc(asteroidsArray[i].x, asteroidsArray[i].y, (asteroidsArray[i].radius * (0.56+explosionFactor)), 0, Math.PI * 2, false);
   context.fill();
-  context.fillStyle = "orange";
+  context.fillStyle = ORANGE_COLOR;
   context.beginPath();
   context.arc(asteroidsArray[i].x, asteroidsArray[i].y, (asteroidsArray[i].radius * (0.44+explosionFactor)), 0, Math.PI * 2, false);
   context.fill();
-  context.fillStyle = "yellow";
+  context.fillStyle = BULLET_COLOR;
   context.beginPath();
   context.arc(asteroidsArray[i].x, asteroidsArray[i].y, (asteroidsArray[i].radius * (0.32+explosionFactor)), 0, Math.PI * 2, false);
   context.fill();
-  context.fillStyle = "white";
+  context.fillStyle = WHITE_COLOR;
   context.beginPath();
   context.arc(asteroidsArray[i].x, asteroidsArray[i].y, (asteroidsArray[i].radius * (0.2+explosionFactor)), 0, Math.PI * 2, false);
   context.fill();
@@ -552,8 +215,7 @@ function shipThrustFill() {
 
 //for creating the fill of ship thrust
 function shipThrustOutline() {
-  context.strokeStyle = "rgb(" +
-  255 + " ," +
+  context.strokeStyle = "rgb(" + 255 + " ," +
   Math.floor(Math.random() * (255 - 50) + 50) + " ," +
   Math.floor(Math.random() * (100 - 50) + 50) + ")";
 }
@@ -561,76 +223,11 @@ function shipThrustOutline() {
 //for rendering twinkling star effect to the game canvas
 function renderStars() {
   context.fillStyle = "white";
-  for(let i=1; i<=7; i++) {
-    for(let j=1; j<=7; j++) {
-      context.fillRect(
-        100*(i-(Math.floor(Math.random() * (3)))),
-        100*(j+(Math.floor(Math.random()*3))),
-        1.1,
-        1.1
-        );
-    }
-  }
+  context.fillRect((Math.floor(Math.random() * CANVAS_WIDTH)), ((Math.floor(Math.random() * CANVAS_HEIGHT))), 1.8, 1.8);
 }
 
 //for creating commas in score output
 //https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
 function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
-
-//for listening to soundfx on/off button
-function enableSoundfx() {
-  SOUNDFX_TOGGLE.addEventListener("click", () => {
-    if (SOUNDFX_TOGGLE.textContent === "SOUND FX ON") {
-      SOUNDFX_TOGGLE.textContent = "SOUND FX OFF";
-      localStorage.setItem(LOCAL_STORAGE_SOUNDFX, OFF);
-      _soundfxOn = OFF;
-    } else {
-      SOUNDFX_TOGGLE.textContent = "SOUND FX ON";
-      localStorage.setItem(LOCAL_STORAGE_SOUNDFX, ON);
-      _soundfxOn = ON;
-    }
-  });
-}
-
-//for determining if soundfx are on/off. Use of local storage to remember the setting
-function getLocalStorageSoundfxMenu() {
-  if (localStorage.getItem(LOCAL_STORAGE_SOUNDFX) == OFF) {
-    SOUNDFX_TOGGLE.textContent = "SOUND FX OFF";
-    _soundfxOn = OFF;
-  } else {
-    SOUNDFX_TOGGLE.textContent = "SOUND FX ON";
-    _soundfxOn = ON;
-  }
-}
-
-//for listening to music on/off button
-function enableMusic() {
-  MUSIC_TOGGLE.addEventListener("click", () => {
-    if (MUSIC_TOGGLE.textContent === "MUSIC ON") {
-      MUSIC_TOGGLE.textContent = "MUSIC OFF";
-      GAME_MUSIC.stop();
-      localStorage.setItem(LOCAL_STORAGE_MUSIC, OFF);
-      _music = OFF;
-    } else {
-      MUSIC_TOGGLE.textContent = "MUSIC ON";
-      localStorage.setItem(LOCAL_STORAGE_MUSIC, ON);
-      GAME_MUSIC.play();
-      _music = ON;
-    }
-  });
-}
-
-//for determining if soundfx are on/off. Use of local storage to remember the setting
-function getLocalStorageMusicMenu() {
-  if (localStorage.getItem(LOCAL_STORAGE_MUSIC) == OFF) {
-    MUSIC_TOGGLE.textContent = "MUSIC OFF";
-    GAME_MUSIC.stop();
-    _music = OFF;
-  } else {
-    MUSIC_TOGGLE.textContent = "MUSIC ON";
-    GAME_MUSIC.play();
-    _music = ON;
-  }
 }
