@@ -188,7 +188,12 @@ However, the only solution that worked was to remove the css variable within the
 
 <br/>
 
-- Physical Devices tested included an iPhone 5, Samsung Galaxy A10, MacBook Pro 13", Apple iMac 27" (running OSX and Windows 10).
+- Physical Devices tested included:
+  - iPhone 5 (S/W: 12.4.9)
+  - iPhone 6 (S/W: 12.4.9)
+  - Samsung Galaxy A10 (Model SM-A105FN)
+  - MacBook Pro 13"
+  - Apple iMac 27" (running OSX and Windows 10).
 
 <br/>
 

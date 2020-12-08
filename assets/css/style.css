@@ -40,7 +40,12 @@
 
 * {
   font-family: "Press Start 2P", sans-serif, arial;
-  touch-action: manipulation; /* 300ms tap delay on game-controller https://developers.google.com/web/updates/2013/12/300ms-tap-delay-gone-away */
+  touch-action: none; /* disable browser handling of all panning and zooming gestures. https://developer.mozilla.org/en-US/docs/Web/CSS/touch-action */
+  pointer-events: none; /*prevent zooming in on elements when playing on mobile*/
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /*Firefox */
+  -ms-user-select: none; /* Internet Explorer and Edge */
+   user-select: none; /* ensures text is not selectable */
 }
 
 body {
@@ -58,14 +63,6 @@ body {
   padding-left: 10px;
   padding-right: 10px;
   color: var(--white-color);
-}
-
-/* disable text selection */
-.noselect {
-  -webkit-user-select: none; /* Safari */
-  -moz-user-select: none; /*Firefox */
-  -ms-user-select: none; /* Internet Explorer and Edge */
-  user-select: none;
 }
 
 .text-white {
@@ -164,9 +161,8 @@ canvas {
   margin-top: 8px;
   display: grid;
   width: 100%;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  grid-gap: 10px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
   justify-items: center;
 }
 
@@ -181,17 +177,12 @@ button {
   color: var(--purple-color);
   border-radius: 10px;
   line-height: 1rem;
-}
-
-button:active {
-  box-shadow: none;
-  position: relative;
-  top: 0.2em;
+  pointer-events: auto;
 }
 
 /* Video Game button styling based on https://codepen.io/DanielWeiner/pen/iFadn */
 .fire-button {
-  font-size: 3rem;
+  font-size: 2.5em;
   text-shadow: 1px 1px var(--pink-controller), -1px -1px var(--maroon-controller);
   line-height: 1.5em;
   text-align: center;
@@ -207,16 +198,16 @@ button:active {
   background: linear-gradient(to bottom, red, maroon);
   cursor: pointer;
   padding-left: 5px;
-  grid-column: 3 / 4;
+  pointer-events: auto;
 }
 
 .up-button {
-  font-size: 3rem;
+  font-size: 2.5rem;
   text-shadow: 1px 1px var(--lightgreen-controller), -1px -1px var(--darkgreen-controller);
   line-height: 1.3em;
   text-align: center;
   display: inline-block;
-  width: 1.6em;
+  width: 1.5em;
   border-radius: 0.75em;
   color: var(--green-controller);
   -webkit-box-shadow: 0 0.2em var(--darkgreen-controller);
@@ -227,15 +218,16 @@ button:active {
   background: linear-gradient(to top, green, darkgreen);
   cursor: pointer;
   padding-left: 2px;
+  pointer-events: auto;
 }
 
 .left-button {
-  font-size: 3rem;
+  font-size: 2.5rem;
   text-shadow: 1px 1px var(--lightblue-controller), -1px -1px var(--darkblue-controller);
   line-height: 1.3em;
   text-align: center;
   display: inline-block;
-  width: 1.6em;
+  width: 1.5em;
   border-radius: 0.75em;
   color: var(--blue-controller);
   -webkit-box-shadow: 0 0.2em var(--darkblue-controller);
@@ -246,15 +238,16 @@ button:active {
   background: linear-gradient(to left, blue, darkblue);
   cursor: pointer;
   padding-left: 2px;
+  pointer-events: auto;
 }
 
 .right-button {
-  font-size: 3rem;
+  font-size: 2.5rem;
   text-shadow: 1px 1px var(--lightyellow-controller), -1px -1px var(--orange-controller);
   line-height: 1.3em;
   text-align: center;
   display: inline-block;
-  width: 1.6em;
+  width: 1.5em;
   border-radius: 0.75em;
   color: var(--yellow-color);
   -webkit-box-shadow: 0 0.2em var(--orange-controller);
@@ -265,6 +258,7 @@ button:active {
   background: linear-gradient(to right, yellow, orange);
   cursor: pointer;
   padding-left: 2px;
+  pointer-events: auto;
 }
 
 .fire-button:active,
@@ -326,7 +320,7 @@ button:active {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 85vh;
+  height: 80vh;
   width: 100%;
 }
 
@@ -395,12 +389,19 @@ button:active {
 @media (min-width: 375px) {
   .game-over-prompt {
     font-size: 1.2rem;
-    top: 35%;
+    top: 45%;
   }
 
   .top-banner {
     margin-top: 1rem;
     row-gap: 0.5rem;
+  }
+
+  .fire-button,
+  .up-button,
+  .left-button,
+  .right-button {
+    font-size: 3em;
   }
 }
 
@@ -477,6 +478,27 @@ button:active {
     font-size: 1.5rem;
     top: 30%;
   }
+
+  .controller {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 10px;
+  }
+
+  .fire-button,
+  .up-button,
+  .left-button,
+  .right-button {
+    font-size: 3.5em;
+  }
+
+  .left-button {
+    justify-self: end;
+  }
+
+  .fire-button {
+    grid-column: 3 / 4;
+  }
 }
 
 /* Large Container */
@@ -492,6 +514,13 @@ button:active {
   .game-over-prompt {
     font-size: 2rem;
     top: 35%;
+  }
+
+  .fire-button,
+  .up-button,
+  .left-button,
+  .right-button {
+    font-size: 4em;
   }
 }
 

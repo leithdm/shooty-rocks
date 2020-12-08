@@ -38,6 +38,11 @@ function setupKeyboardInput() {
 
   //for creating the touchscreen gamepad controller event listeners, and performing relevant actions
 function setupGamePadController() {
+    //prevents pinch-to-zoom on iOS mobile
+    document.addEventListener('touchmove', (event) => {
+        event.preventDefault();
+      },  {passive: false });
+
     LEFT_BUTTON.addEventListener("touchstart", ()=> {
     keysArray[KEY_LEFT_ARROW] = true;
   });

@@ -10,6 +10,12 @@ let score = 0;
 /**************************************************/
 
 window.onload = () => {
+
+  //to prevent pinch-zooming on mobile
+  document.addEventListener('touchmove', (event) => {
+    event.preventDefault();
+  },  {passive: false });
+
   //setup the game canvas
   setupCanvas();
 
