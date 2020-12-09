@@ -90,19 +90,19 @@ const ORANGE_COLOR = "rgb(255, 165, 0)";
 /*------------------------------------*\
   #SOUND CONSTANTS USING HOWLER LIBRARY
 \*------------------------------------*/
-var FIRE_SOUND = new Howl({
+const FIRE_SOUND = new Howl({
   src: ["assets/sounds/fire.webm", "assets/sounds/fire.mp3"]
 });
-var BANG_SMALL_ASTEROID_SOUND = new Howl({
+const BANG_SMALL_ASTEROID_SOUND = new Howl({
   src: ["assets/sounds/bang-small.webm", "assets/sounds/bang-small.mp3"]
 });
-var BANG_MEDIUM_ASTEROID_SOUND = new Howl({
+const BANG_MEDIUM_ASTEROID_SOUND = new Howl({
   src: ["assets/sounds/bang-medium.webm", "assets/sounds/bang-medium.mp3"]
 });
-var BANG_LARGE_ASTEROID_SOUND = new Howl({
+const BANG_LARGE_ASTEROID_SOUND = new Howl({
   src: ["assets/sounds/bang-large.webm", "assets/sounds/bang-large.mp3"]
 });
-var GAME_MUSIC = new Howl({
+const GAME_MUSIC = new Howl({
   src: ["assets/sounds/game-music.webm", "assets/sounds/game-music.mp3"],
   loop: true,
 });

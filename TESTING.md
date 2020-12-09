@@ -15,12 +15,12 @@
     - [Chrome Dev Tools - Lighthouse](#chrome-dev-tools---lighthouse)
 - [User Stories](#user-stories)
 - [Bugs](#bugs)
-  - [1. Bug: Audio is not playing on mobile #55](#1-bug-audio-is-not-playing-on-mobile-55)
+  - [1. Bug: Audio is not playing on iOS mobile #55](#1-bug-audio-is-not-playing-on-ios-mobile-55)
   - [2. Bug: As a user, when I start the game I should not be immediately hit by an asteroid #60](#2-bug-as-a-user-when-i-start-the-game-i-should-not-be-immediately-hit-by-an-asteroid-60)
   - [3. As a user I should be able to move the ship using swipes or a button keypad when playing the game on mobile #6](#3-as-a-user-i-should-be-able-to-move-the-ship-using-swipes-or-a-button-keypad-when-playing-the-game-on-mobile-6)
   - [4. Bug: game is double clicking to zoom on mobile #99](#4-bug-game-is-double-clicking-to-zoom-on-mobile-99)
-  - [5. Unresolved Bug: Audio is delayed when playing on physical Android device #97](#5-unresolved-bug-audio-is-delayed-when-playing-on-physical-android-device-97)
-  - [6. Unresolved Bug: HTML5 Audio pool exhausted, AudioContext was not allowed to start #98](#6-unresolved-bug-html5-audio-pool-exhausted-audiocontext-was-not-allowed-to-start-98)
+  - [5. Unresolved Bug: Chrome: AudioContext was not allowed to start #98](#5-unresolved-bug-chrome-audiocontext-was-not-allowed-to-start-98)
+  - [6. Unresolved Bug: Audio is delayed when playing on physical Android device #97](#6-unresolved-bug-audio-is-delayed-when-playing-on-physical-android-device-97)
 
 <br/>
 
@@ -312,7 +312,7 @@ Further automated testing was performed using [Chrome Dev Tools - Lighthouse](ht
 
 Using GitHub Projects, **a full list of closed bugs can be found [here](https://github.com/leithdm/milestone-project-2/issues?q=label%3Abug+is%3Aclosed+project%3Aleithdm%2Fmilestone-project-2%2F1)**. In this section we will highlight some of the more interesting ones.
 
-## 1. [Bug: Audio is not playing on mobile #55](https://github.com/leithdm/milestone-project-2/issues/55)
+## 1. [Bug: Audio is not playing on iOS mobile #55](https://github.com/leithdm/milestone-project-2/issues/55)
 
 Audio was originally added to the game using standard Audio() object instantiation:
 
@@ -322,7 +322,7 @@ Audio was originally added to the game using standard Audio() object instantiati
 
   // see original code [here](https://github.com/leithdm/milestone-project-2/pull/53/commits/5d11760f70c9aeffe6cdade6a3197f76c360b31e)
 
-This code worked fine on Desktop, but when testing on a physical Mobile device (Samsung Galaxy A10, iPhone 5), the audio would not play. Research revealed the [many](https://pupunzi.open-lab.com/2013/03/13/making-html5-audio-actually-work-on-mobile/) issues that can crop up when adding audio to a mobile HTML5 game, mostly due to browser/performance limitations. The solution was to make use of a 3rd party library, namely [Howler.js](https://howlerjs.com/). By linking to the holwer.js cdn, and adding code below, mobile audio worked.
+This code worked fine on Desktop, but when testing on a physical mobile device (iPhone 5, iPhone 6), the audio would not play. Research revealed the [many](https://pupunzi.open-lab.com/2013/03/13/making-html5-audio-actually-work-on-mobile/) issues that can crop up when adding audio to a mobile HTML5 game, mostly due to browser/performance limitations. The solution, in this instance, was to make use of a 3rd party library, namely [Howler.js](https://howlerjs.com/). By linking to the howler.js cdn, and adding code below, mobile audio worked.
 
 `const fireSound = new Howl({`
 
@@ -403,24 +403,40 @@ on the relevant elements that need to be clicked (i.e. menu buttons, and game-pa
 
 `},  {passive: false });`
 
-While physically testing, it is worth noting that responsiveness from the controller buttons on iOS mobile was actually better when the above code was not present. However, this enhanced responsiveness had to be balanced with the poor UX of having the screen zoom in/out every time the user pressed more than one controller button at once.
+While physically testing, it is worth noting that responsiveness from the controller buttons on iOS mobile was actually better when the above code was not included. However, this enhanced responsiveness had to be balanced with the poor UX of having the screen zoom in/out every time the user pressed more than one controller button at once.
 
 <br/>
 
-## 5. [Unresolved Bug: Audio is delayed when playing on physical Android device #97](https://github.com/leithdm/milestone-project-2/issues/97)
-
-- Physical device tested: Samsung Galaxy SM-A105FN Build/QP1A using Chrome 87.0.4280.86 on Android 10.
-- There is a delay of approx. 300-900ms from the time the shoot button is pressed, to when the audio is heard.
--
-
-<br/>
-
-## 6. [Unresolved Bug: HTML5 Audio pool exhausted, AudioContext was not allowed to start #98](https://github.com/leithdm/milestone-project-2/issues/98)
+## 5. [Unresolved Bug: Chrome: AudioContext was not allowed to start #98](https://github.com/leithdm/milestone-project-2/issues/98)
 
 - Device tested: Desktop using Chrome 87.0.4280.88 on Windows 10 Pro, Version 2004, OS build 19041.630.
-- This bug was noticed when manually refreshing the game.html browser window. Audio continues to work fine, but the following *warning* (not error) shows up in the console log:
+- This bug was noticed when manually refreshing the browser window on *game.html* and *high-score.html* using the Chrome browser. **Note:** this bug is only applicable to Chrome.
+- The following warning was displayed in the console log:
   - 'howler.min.js:2 The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page.'
-  - 'howler.min.js:2 HTML5 Audio pool exhausted, returning potentially locked audio object.'
+  ![audio error](assets/testing/results/audio-error.PNG)
+- This warning is directly related to Chrome's [Autoplay Policy Changes](https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#webaudio), which states that it is good practice to wait for user interaction before starting audio playback. As this is a warning, and did not interfere in any way with the game functionality or playability, the warning was ignored. A quick fix would be to redirect the user back to *index.html* when the browser is refreshed. The following code was tested and worked well:
+
+`  function checkForReload() {`
+
+`let evTypep = window.performance.getEntriesByType("navigation")[0].type;`
+
+ `if (evTypep == "reload") {`
+
+ `window.location.replace("index.html");`
+
+  `}}`
+
+- Further testing is required to remove the warning entirely.
+
+<br/>
+
+## 6. [Unresolved Bug: Audio is delayed when playing on physical Android device #97](https://github.com/leithdm/milestone-project-2/issues/97)
+
+- Physical device tested: Samsung Galaxy SM-A105FN Build/QP1A using Chrome 87.0.4280.86 on Android 10. **Note:** bug is only related to Android mobile. iOS has no audio lag issues.
+- There is a delay of approx. 300-900ms from the time the shoot button is pressed, to when the audio is heard.
+- Initial research pointed to [300ms tap delay, gone away](https://developers.google.com/web/updates/2013/12/300ms-tap-delay-gone-away), but this did not resolve the issue. Further testing is required to solve this bug.
+
+<br/>
 
 
 [Go back to README.md file](README.md).
