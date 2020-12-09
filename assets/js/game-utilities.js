@@ -178,6 +178,7 @@ function renderOnScreenText() {
     }
     GAME_OVER_PROMPT.style.display = "inline-block";
     GAME_OVER_SCORE.textContent = numberWithCommas(score);
+    LIVES_HTML.classList.remove("lives-blinking");
   }
 }
 

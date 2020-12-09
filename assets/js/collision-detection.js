@@ -30,6 +30,10 @@ function collisionDetection(obj1x, obj1y, obj1CollisionRadius,
               drawShipExplosion();
               //reduce number of lives
               _lives--;
+              //if lives is 1, make it blink
+              if(_lives === 1) {
+                LIVES_HTML.classList.add("lives-blinking");
+                }
               //set the lives in html
               if(_lives >= 0) {
                 LIVES_HTML.textContent = _lives;

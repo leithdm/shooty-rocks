@@ -18,8 +18,9 @@
   - [1. Bug: Audio is not playing on mobile #55](#1-bug-audio-is-not-playing-on-mobile-55)
   - [2. Bug: As a user, when I start the game I should not be immediately hit by an asteroid #60](#2-bug-as-a-user-when-i-start-the-game-i-should-not-be-immediately-hit-by-an-asteroid-60)
   - [3. As a user I should be able to move the ship using swipes or a button keypad when playing the game on mobile #6](#3-as-a-user-i-should-be-able-to-move-the-ship-using-swipes-or-a-button-keypad-when-playing-the-game-on-mobile-6)
-  - [4. Unresolved Bug: Audio is delayed when playing on physical Android device #97](#4-unresolved-bug-audio-is-delayed-when-playing-on-physical-android-device-97)
-  - [5. Unresolved Bug: HTML5 Audio pool exhausted, AudioContext was not allowed to start #98](#5-unresolved-bug-html5-audio-pool-exhausted-audiocontext-was-not-allowed-to-start-98)
+  - [4. Bug: game is double clicking to zoom on mobile #99](#4-bug-game-is-double-clicking-to-zoom-on-mobile-99)
+  - [5. Unresolved Bug: Audio is delayed when playing on physical Android device #97](#5-unresolved-bug-audio-is-delayed-when-playing-on-physical-android-device-97)
+  - [6. Unresolved Bug: HTML5 Audio pool exhausted, AudioContext was not allowed to start #98](#6-unresolved-bug-html5-audio-pool-exhausted-audiocontext-was-not-allowed-to-start-98)
 
 <br/>
 
@@ -175,7 +176,7 @@ However, the only solution that worked was to remove the css variable within the
 
 - Browser compatability: To ensure a broad range of users can successfully use this site, it was manually tested across the 6 major browsers:
 
-  - Chrome v.85
+  - Chrome v.87
   - Edge v.85
   - Firefox v.81
   - Safari v.12
@@ -189,11 +190,11 @@ However, the only solution that worked was to remove the css variable within the
 <br/>
 
 - Physical Devices tested included:
-  - iPhone 5 (S/W: 12.4.9)
-  - iPhone 6 (S/W: 12.4.9)
-  - Samsung Galaxy A10 (Model SM-A105FN)
-  - MacBook Pro 13"
-  - Apple iMac 27" (running OSX and Windows 10).
+  - iPhone 5 (iOS: 12.4.9)
+  - iPhone 6 (iOS: 12.4.9)
+  - Samsung Galaxy A10 (Model SM-A105FN, Build/QP1A, on Android 10)
+  - MacBook Pro (Retina, 13", Late 2013, OS Catalina)
+  - Apple iMac 27" (running Windows 10 Pro ver. 2004, OS 19041.630)
 
 <br/>
 
@@ -321,7 +322,7 @@ Audio was originally added to the game using standard Audio() object instantiati
 
   // see original code [here](https://github.com/leithdm/milestone-project-2/pull/53/commits/5d11760f70c9aeffe6cdade6a3197f76c360b31e)
 
-This code worked fine on Desktop, but when testing on a physical Mobile device (Samsung Galaxy A10, iPhone 5), the audio would not play. Research revealed the [many](https://pupunzi.open-lab.com/2013/03/13/making-html5-audio-actually-work-on-mobile/) issues that can crop up when adding audio to a mobile game, mostly due to browser/performance limitations. The solution was to make use of a 3rd party library, namely [Howler.js](https://howlerjs.com/). By linking to the holwer.js cdn, and adding code below, mobile audio worked.
+This code worked fine on Desktop, but when testing on a physical Mobile device (Samsung Galaxy A10, iPhone 5), the audio would not play. Research revealed the [many](https://pupunzi.open-lab.com/2013/03/13/making-html5-audio-actually-work-on-mobile/) issues that can crop up when adding audio to a mobile HTML5 game, mostly due to browser/performance limitations. The solution was to make use of a 3rd party library, namely [Howler.js](https://howlerjs.com/). By linking to the holwer.js cdn, and adding code below, mobile audio worked.
 
 `const fireSound = new Howl({`
 
@@ -354,7 +355,7 @@ Item 2, *new life*,  was more complicated, and required a 3-second countdown tim
 
 ## 3. [As a user I should be able to move the ship using swipes or a button keypad when playing the game on mobile #6](https://github.com/leithdm/milestone-project-2/issues/6)
 
-On mobile, this game required the development of a gamepad controller. The controller had to be designed for usability, meaning button positioning and size required serious consideration.
+On mobile, this game required the development of a gamepad controller. The controller had to be designed for usability, meaning button positioning and size required consideration.
 
 - Initially, I coded a touch controller within a second `canvas` element, resulting in **Controller 1.0** :
 
@@ -362,7 +363,7 @@ On mobile, this game required the development of a gamepad controller. The contr
 
 The issue with Controller 1.0 was that it was difficult to make the buttons mobile responsive across a large number of devices.
 
-- To solve this bug, I moved over to `button` elements, abandoning the `canvas` element. This resulted in **Controller 2.0** :
+- To solve this bug, I moved over to `span` elements, abandoning the `canvas` element. This resulted in **Controller 2.0** :
 
 ![Controller 2.0](assets/testing/results/controller-2.0.PNG)
 
@@ -372,16 +373,52 @@ The issue with Controller 1.0 was that it was difficult to make the buttons mobi
 
 <br/>
 
-## 4. [Unresolved Bug: Audio is delayed when playing on physical Android device #97](https://github.com/leithdm/milestone-project-2/issues/97)
+## 4. [Bug: game is double clicking to zoom on mobile #99](https://github.com/leithdm/milestone-project-2/issues/99)
 
-- Physical device tested: Samsung Galaxy A10 using Chrome 87.0.4280.86 on Android 10; SM-A105FN Build/QP1A.
+- Physical devices tested:
+  - Samsung Galaxy SM-A105FN Build/QP1A using Chrome 87.0.4280.86 on Android 10.
+  - iPhone 5 (iOS: 12.4.9, Chrome v.87.0.4280.77)
+  - iPhone 6 (iOS: 12.4.9 Chrome v.87.0.4280.77)
+- **This was actually 2 issues in one:**
+1. Firstly, a user could double tap anywhere on index.html, and the screen would automatically zoom in.
+   - This was resolved by making use of the `pointer-events` CSS property, ie:
+
+`* { `
+
+` pointer-events: none`
+
+`} `
+
+and then enabling
+
+`pointer-events: auto`
+
+on the relevant elements that need to be clicked (i.e. menu buttons, and game-pad controller buttons).
+
+1. Secondly, while playing the game on iOS mobile, the user could "pinch-to-zoom". This was most noticeable when the user was holding down the thrust key, and trying to shoot or move left/right at the same time, causing the entire screen to zoom in. This is actually an [accessibility feature of iOS +10](https://stackoverflow.com/questions/37808180/disable-viewport-zooming-ios-10-safari). Every solution suggested was tried from stack overflow from both [here](https://stackoverflow.com/questions/11689353/disable-pinch-zoom-on-mobile-web) and [here](https://stackoverflow.com/questions/4472891/how-can-i-disable-zoom-on-a-mobile-web-page/4472910#4472910), until the following code was added to resolve the bug:
+
+`document.addEventListener('touchmove', (event) => {`
+
+`event.preventDefault();`
+
+`},  {passive: false });`
+
+While physically testing, it is worth noting that responsiveness from the controller buttons on iOS mobile was actually better when the above code was not present. However, this enhanced responsiveness had to be balanced with the poor UX of having the screen zoom in/out every time the user pressed more than one controller button at once.
+
+<br/>
+
+## 5. [Unresolved Bug: Audio is delayed when playing on physical Android device #97](https://github.com/leithdm/milestone-project-2/issues/97)
+
+- Physical device tested: Samsung Galaxy SM-A105FN Build/QP1A using Chrome 87.0.4280.86 on Android 10.
 - There is a delay of approx. 300-900ms from the time the shoot button is pressed, to when the audio is heard.
+-
 
+<br/>
 
-## 5. [Unresolved Bug: HTML5 Audio pool exhausted, AudioContext was not allowed to start #98](https://github.com/leithdm/milestone-project-2/issues/98)
+## 6. [Unresolved Bug: HTML5 Audio pool exhausted, AudioContext was not allowed to start #98](https://github.com/leithdm/milestone-project-2/issues/98)
 
 - Device tested: Desktop using Chrome 87.0.4280.88 on Windows 10 Pro, Version 2004, OS build 19041.630.
-- This bug was noticed when manually refreshing the game.html window. Audio continues to work fine, but the following errors shows up in the console log:
+- This bug was noticed when manually refreshing the game.html browser window. Audio continues to work fine, but the following *warning* (not error) shows up in the console log:
   - 'howler.min.js:2 The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page.'
   - 'howler.min.js:2 HTML5 Audio pool exhausted, returning potentially locked audio object.'
 
