@@ -31,7 +31,7 @@
 
 <br/>
 
-- [Menu Page (index.html)]([https://link](https://github.com/leithdm/milestone-project-2/blob/master/index.html))
+- [Menu Page (index.html)](https://github.com/leithdm/milestone-project-2/blob/master/index.html)
 
 <br/>
 
@@ -379,7 +379,7 @@ The issue with Controller 1.0 was that it was difficult to make the buttons mobi
   - Samsung Galaxy SM-A105FN Build/QP1A using Chrome 87.0.4280.86 on Android 10.
   - iPhone 5 (iOS: 12.4.9, Chrome v.87.0.4280.77)
   - iPhone 6 (iOS: 12.4.9 Chrome v.87.0.4280.77)
-- **This was actually 2 issues in one:**
+- **This was 2 issues in one:**
 1. Firstly, a user could double tap anywhere on index.html, and the screen would automatically zoom in.
    - This was resolved by making use of the `pointer-events` CSS property, ie:
 
