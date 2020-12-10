@@ -26,12 +26,12 @@ function getLocalStorage() {
 //for listening to soundfx on/off button
 function enableSoundfx() {
   SOUNDFX_TOGGLE.addEventListener("click", () => {
-    if (SOUNDFX_TOGGLE.textContent === "SOUND FX ON") {
-      SOUNDFX_TOGGLE.textContent = "SOUND FX OFF";
+    if (SOUNDFX_TOGGLE.textContent === "FX ON") {
+      SOUNDFX_TOGGLE.textContent = "FX OFF";
       localStorage.setItem(LOCAL_STORAGE_SOUNDFX, OFF);
       _soundfxOn = OFF;
     } else {
-      SOUNDFX_TOGGLE.textContent = "SOUND FX ON";
+      SOUNDFX_TOGGLE.textContent = "FX ON";
       localStorage.setItem(LOCAL_STORAGE_SOUNDFX, ON);
       _soundfxOn = ON;
     }
@@ -41,10 +41,10 @@ function enableSoundfx() {
 //for determining if soundfx are on/off. Use of local storage to remember the setting
 function getLocalStorageSoundfxMenu() {
   if (localStorage.getItem(LOCAL_STORAGE_SOUNDFX) == OFF) {
-    SOUNDFX_TOGGLE.textContent = "SOUND FX OFF";
+    SOUNDFX_TOGGLE.textContent = "FX OFF";
     _soundfxOn = OFF;
   } else {
-    SOUNDFX_TOGGLE.textContent = "SOUND FX ON";
+    SOUNDFX_TOGGLE.textContent = "FX ON";
     _soundfxOn = ON;
   }
 }

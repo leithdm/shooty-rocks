@@ -183,7 +183,7 @@ canvas {
 button {
   height: 50px;
   width: 100%;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   cursor: pointer;
   outline: none;
   box-shadow: 0 0.2em var(--gray-color);
@@ -431,30 +431,30 @@ button.active {
 @-webkit-keyframes highscore-animation {
   0% { color: var(--dashboard-blue); }
   25% { color: var(--white-color); }
-  50% { color: var(--orange-controller); transform: scale(1.4); }
+  50% { color: var(--orange-controller); transform: scale(1.2); }
   75%  {color: var(--yellow-color); }
-  100% { color: var(--white-color); }
+  100% { color: var(--lives-blinking); }
 }
 @-moz-keyframes highscore-animation {
   0% { color: var(--dashboard-blue); }
   25% { color: var(--white-color); }
-  50% { color: var(--orange-controller); transform: scale(1.4); }
+  50% { color: var(--orange-controller); transform: scale(1.2); }
   75%  {color: var(--yellow-color); }
-  100% { color: var(--white-color); }
+  100% { color: var(--lives-blinking); }
 }
 @-o-keyframes highscore-animation {
   0% { color: var(--dashboard-blue); }
   25% { color: var(--white-color); }
-  50% { color: var(--orange-controller); transform: scale(1.4); }
+  50% { color: var(--orange-controller); transform: scale(1.2); }
   75%  {color: var(--yellow-color); }
-  100% { color: var(--white-color); }
+  100% { color: var(--lives-blinking); }
 }
 @keyframes highscore-animation {
   0% { color: var(--dashboard-blue); }
   25% { color: var(--white-color); }
-  50% { color: var(--orange-controller); transform: scale(1.4); }
+  50% { color: var(--orange-controller); transform: scale(1.2); }
   75%  {color: var(--yellow-color); }
-  100% { color: var(--white-color); }
+  100% { color: var(--lives-blinking); }
 }
 
 /*------------------------------------*\
