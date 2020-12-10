@@ -386,6 +386,7 @@ button.active {
 
 .high-score-menu {
   font-size: 12vw;
+  animation: highscore-animation 2.5s infinite;
 }
 
 /*------------------------------------*\
@@ -425,6 +426,35 @@ button.active {
 @keyframes blinking {
   0%   { opacity: 0; }
   100% { opacity: 1; }
+}
+
+@-webkit-keyframes highscore-animation {
+  0% { color: var(--dashboard-blue); }
+  25% { color: var(--white-color); }
+  50% { color: var(--orange-controller); transform: scale(1.4); }
+  75%  {color: var(--yellow-color); }
+  100% { color: var(--white-color); }
+}
+@-moz-keyframes highscore-animation {
+  0% { color: var(--dashboard-blue); }
+  25% { color: var(--white-color); }
+  50% { color: var(--orange-controller); transform: scale(1.4); }
+  75%  {color: var(--yellow-color); }
+  100% { color: var(--white-color); }
+}
+@-o-keyframes highscore-animation {
+  0% { color: var(--dashboard-blue); }
+  25% { color: var(--white-color); }
+  50% { color: var(--orange-controller); transform: scale(1.4); }
+  75%  {color: var(--yellow-color); }
+  100% { color: var(--white-color); }
+}
+@keyframes highscore-animation {
+  0% { color: var(--dashboard-blue); }
+  25% { color: var(--white-color); }
+  50% { color: var(--orange-controller); transform: scale(1.4); }
+  75%  {color: var(--yellow-color); }
+  100% { color: var(--white-color); }
 }
 
 /*------------------------------------*\

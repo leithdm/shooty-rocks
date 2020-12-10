@@ -5,9 +5,9 @@ let bulletsArray = [];
 let asteroidsArray = [];
 let score = 0;
 
-/**************************************************/
-/*Reference 'game-utilities' for abstracted code  */
-/**************************************************/
+/***********************************************************************/
+/*Entry point into game. Reference other .js files for abstracted code */
+/***********************************************************************/
 
 window.onload = () => {
 
