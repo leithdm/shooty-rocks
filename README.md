@@ -30,7 +30,7 @@
 
 ## Overview
 
-Shooty Rocks is an endless space shooter arcade game inspired by the classic 1979 [*Asteroids*](https://en.wikipedia.org/wiki/Asteroids_(video_game)) game. You can play the deployed game [here](https://leithdm.github.io/milestone-project-2/).
+Shooty Rocks is an endless space shooter arcade game inspired by the classic 1979 [*Asteroids*](https://en.wikipedia.org/wiki/Asteroids_(video_game)) game. You can play the deployed game [here](https://leithdm.github.io/shooty-rocks/).
 
 <br/>
 
