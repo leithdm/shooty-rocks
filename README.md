@@ -85,13 +85,6 @@ Mobile responsiveness was a key consideration in this project, and resulted in t
 
 #### Color Scheme
 
-- ![#800080](https://placehold.it/15/800080/800080) purple text/background
-- ![#B22234](https://placehold.it/15/B22234/B22234) red button
-- ![#FFFF00](https://placehold.it/15/FFFF00/FFFF00) yellow button/text
-- ![#00C0A3](https://placehold.it/15/00C0A3/00C0A3) green text
-- ![#02AFFF](https://placehold.it/15/02AFFF/02AFFF) blue dashboard (score, level, lives)
-- All of these colors are set at `:root` level within the [style.css](assets/css/style.css) file. The use of css custom properties (variables) is in keeping with the principles of DRY.
-
 - The gamepad color scheme is loosely based on the [SNES](https://en.wikipedia.org/wiki/Super_Nintendo_Entertainment_System) controller:
 
 ![GamePad](assets/images/gamepad.PNG)
